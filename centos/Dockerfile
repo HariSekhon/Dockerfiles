@@ -16,7 +16,10 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS Dev Build with my GitHub deps"
 
-RUN yum install -y git make maven ruby ruby-devel java-1.7.0-openjdk && \
+# unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
+ENV PATH /bin:$PATH
+
+RUN yum install -y git make maven ruby ruby-devel java-1.7.0-openjdk vim-enhanced && \
     curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y sbt && \
     # workaround for CentOS (found via strace) otherwise incorrectly states "Warning: You do not have write permission for Perl library directories." and local::lib hits use of uninitialized variables errors in base modules like even core File::Basename :-/

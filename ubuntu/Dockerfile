@@ -11,7 +11,7 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-FROM ubuntu
+FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu Dev Build with my GitHub deps"

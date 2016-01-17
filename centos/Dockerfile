@@ -39,5 +39,6 @@ RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /gi
 COPY invalidate_cache /tmp
 # pull updates
 RUN rm -f /tmp/invalidate_cache; /github/bash-tools/update-my-repos.sh
+RUN cd /github/nagios-plugins && make zookeeper
 
 CMD /bin/bash

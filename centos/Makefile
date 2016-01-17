@@ -12,4 +12,6 @@
 #
 
 make:
+	touch invalidate_cache
 	docker build -t harisekhon/centos-dev .
+	rm -f invalidate_cache

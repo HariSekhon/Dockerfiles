@@ -24,6 +24,7 @@ RUN apt-get update && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
     apt-get install -y sbt && \
+    apt-get clean && \
     mkdir -v /github
 
 WORKDIR /github

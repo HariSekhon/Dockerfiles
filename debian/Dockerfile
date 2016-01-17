@@ -28,7 +28,7 @@ RUN apt-get update && \
 
 WORKDIR /github
 
-RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh
+RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 #RUN for x in nagios-plugins tools spotify lib;  do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make || exit 1; done
@@ -38,6 +38,8 @@ RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /gi
 # trick to invalidate cache at this point to pull latest updates
 COPY invalidate_cache /tmp
 # pull updates
-RUN rm -f /tmp/invalidate_cache; apt-get update && /github/bash-tools/update-my-repos.sh
+RUN /github/bash-tools/update-my-repos.sh
+RUN cd /github/nagios-plugins && make zookeeper && make clean-zookeeper
+RUN rm -f /tmp/invalidate_cache
 
 CMD /bin/bash

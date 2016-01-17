@@ -28,7 +28,7 @@ RUN yum install -y git make maven ruby ruby-devel java-1.7.0-openjdk vim-enhance
 
 WORKDIR /github
 
-RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh
+RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 #RUN for x in nagios-plugins tools spotify lib;  do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make || exit 1; done

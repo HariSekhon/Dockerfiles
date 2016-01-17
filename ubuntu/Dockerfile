@@ -16,8 +16,6 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu Dev Build with my GitHub deps"
 
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-# apt-get install apt-transport-https # for sbt https repo
 RUN apt-get update && \
     apt-get install -y git make maven ruby ruby-dev openjdk-7-jdk && \
     # for sbt https repo
@@ -30,12 +28,19 @@ RUN apt-get update && \
     #echo deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main >> /etc/apt/sources.list && \
     #apt-get update && \
     #apt-get install -y maven && \
-    mkdir /github && \
-    for x in nagios-plugins tools pytools pylib lib spotify lib-java spark-apps; do \
-        git clone https://github.com/harisekhon/$x /github/$x && \
-        cd /github/$x && \
-        make || exit 1; \
-    done;
+    mkdir -v /github
+
+RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh
+
+# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
+#RUN for x in nagios-plugins tools spotify lib;  do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make || exit 1; done
+#RUN for x in pytools pylib;                     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make || exit 1; done
+#RUN for x in spark-apps lib-java;               do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make || exit 1; done
+
+# trick to invalidate cache at this point to pull latest updates
+COPY invalidate_cache /tmp
+# pull updates
+RUN rm -f /tmp/invalidate_cache; apt-get update && /github/bash-tools/update-my-repos.sh
 
 WORKDIR /github
 

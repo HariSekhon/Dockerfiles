@@ -28,6 +28,7 @@ RUN apt-get update && \
     #echo deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main >> /etc/apt/sources.list && \
     #apt-get update && \
     #apt-get install -y maven && \
+    apt-get clean && \
     mkdir -v /github
 
 WORKDIR /github

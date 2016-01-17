@@ -12,4 +12,6 @@
 #
 
 make:
+	touch invalidate_cache
 	docker build -t harisekhon/ubuntu-dev .
+	rm -f invalidate_cache

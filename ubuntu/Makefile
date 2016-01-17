@@ -12,9 +12,9 @@
 #
 
 make:
-	touch invalidate_cache
+	@date > invalidate_cache
 	docker build -t harisekhon/ubuntu-dev .
-	rm -f invalidate_cache
+	@rm -f invalidate_cache
 
 nocache:
 	docker build --no-cache -t harisekhon/ubuntu-dev .

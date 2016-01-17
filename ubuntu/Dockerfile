@@ -17,7 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Ubuntu Dev Build with my GitHub deps"
 
 RUN apt-get update && \
-    apt-get install -y git make maven ruby ruby-dev openjdk-7-jdk && \
+    apt-get install -y git make maven ruby ruby-dev openjdk-7-jdk vim && \
     # for sbt https repo
     apt-get install -y apt-transport-https && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \

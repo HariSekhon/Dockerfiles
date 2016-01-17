@@ -16,5 +16,8 @@ make:
 	docker build -t harisekhon/debian-dev .
 	rm -f invalidate_cache
 
+nocache:
+	docker build --no-cache -t harisekhon/debian-dev .
+
 clean:
 	rm invalidate_cache

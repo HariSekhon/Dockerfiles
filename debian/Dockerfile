@@ -11,7 +11,7 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-FROM debian
+FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Debian Dev Build with my GitHub deps"

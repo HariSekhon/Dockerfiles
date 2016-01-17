@@ -11,7 +11,7 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-FROM centos
+FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS Dev Build with my GitHub deps"

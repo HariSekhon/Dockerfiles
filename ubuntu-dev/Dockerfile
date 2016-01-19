@@ -14,7 +14,7 @@
 FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Ubuntu Dev Build with my GitHub deps"
+LABEL Description="Ubuntu Dev Build"
 
 RUN apt-get update && \
     apt-get install -y git make maven ruby ruby-dev openjdk-7-jdk vim && \
@@ -28,27 +28,6 @@ RUN apt-get update && \
     #echo deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main >> /etc/apt/sources.list && \
     #apt-get update && \
     #apt-get install -y maven && \
-    apt-get clean && \
-    mkdir -v /github
-
-WORKDIR /github
-
-# this is too big and unwieldy and makes caching/maintenance hard
-#RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh && apt-get clean
-
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get clean
-RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get clean
-RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; apt-get clean
-RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get clean
-RUN for x in lib-java;          do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get clean
-RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get clean
-
-# trick to invalidate cache at this point to pull latest updates
-#COPY invalidate_cache /tmp
-# pull updates
-#RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh && apt-get clean
-#RUN cd /gthub/nagios-plugins && make zookeeper && make clean-zookeeper
-#RUN rm -f /tmp/invalidate_cache
+    apt-get clean
 
 CMD /bin/bash

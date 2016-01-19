@@ -24,6 +24,10 @@ RUN apt-get update && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
     apt-get install -y sbt && \
+    # for Maven 3
+    #echo deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main >> /etc/apt/sources.list && \
+    #apt-get update && \
+    #apt-get install -y maven && \
     apt-get clean
 
 CMD /bin/bash

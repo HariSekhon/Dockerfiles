@@ -11,13 +11,19 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-make:
-	@date > invalidate_cache
-	docker build -t harisekhon/centos-dev .
-	@rm -f invalidate_cache
+TAG=harisekhon/centos-dev
+
+all:
+	make build push
+
+build:
+	docker build -t $(TAG) .
 
 nocache:
-	docker build --no-cache -t harisekhon/centos-dev .
+	docker build --no-cache -t $(TAG) .
+
+push:
+	docker push $(TAG)
 
 clean:
-	rm invalidate_cache
+	@echo Nothing to clean

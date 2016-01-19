@@ -34,7 +34,7 @@ RUN apt-get update && \
 WORKDIR /github
 
 # this is too big and unwieldy and makes caching/maintenance hard
-#RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh
+#RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh && apt-get clean
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get clean
@@ -47,7 +47,7 @@ RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /g
 # trick to invalidate cache at this point to pull latest updates
 #COPY invalidate_cache /tmp
 # pull updates
-#RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh
+#RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh && apt-get clean
 #RUN cd /gthub/nagios-plugins && make zookeeper && make clean-zookeeper
 #RUN rm -f /tmp/invalidate_cache
 

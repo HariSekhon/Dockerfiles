@@ -11,13 +11,19 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-make:
-	@date > invalidate_cache
-	docker build -t harisekhon/ubuntu-dev .
-	@rm -f invalidate_cache
+TAG=harisekhon/ubuntu-dev
+
+all:
+	make build push
+
+build:
+	docker build -t $(TAG) .
 
 nocache:
-	docker build --no-cache -t harisekhon/ubuntu-dev .
+	docker build --no-cache -t $(TAG) .
+
+push:
+	docker push $(TAG)
 
 clean:
-	rm invalidate_cache
+	@echo Nothing to clean

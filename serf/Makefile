@@ -13,13 +13,21 @@
 
 SERF_VERSION=0.7.0
 
-make:
+TAG=harisekhon/serf
+
+all:
+	make build push
+
+build:
 	wget -c https://releases.hashicorp.com/serf/$(SERF_VERSION)/serf_$(SERF_VERSION)_linux_amd64.zip
 	unzip -o serf_$(SERF_VERSION)_linux_amd64.zip
 	# makes build slightly quicker but doesn't make image any smaller
 	#rm -f serf_$(SERF_VERSION)_linux_amd64.zip
 	# multiple tags should arrive in Docker 1.10+
-	docker build --build-arg SERF_VERSION=$(SERF_VERSION) -t harisekhon/serf:$(SERF_VERSION) . && docker tag -f harisekhon/serf:$(SERF_VERSION) harisekhon/serf:latest
+	docker build --build-arg SERF_VERSION=$(SERF_VERSION) -t $(TAG):$(SERF_VERSION) . && docker tag -f harisekhon/serf:$(SERF_VERSION) $(TAG):latest
+
+push:
+	docker push $(TAG)
 
 clean:
 	rm serf_*_linux_amd64.zip serf

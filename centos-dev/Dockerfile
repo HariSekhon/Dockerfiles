@@ -16,7 +16,38 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS Dev Build"
 
-RUN yum install -y git make maven ruby ruby-devel java-1.7.0-openjdk vim-enhanced && \
+RUN yum install -y \
+    git \
+    make \
+    gcc \
+    gcc-c++ \
+    git \
+    maven \
+    perl \
+    perl-CPAN \
+    perl-libwww-perl \
+    python-devel \
+    python-setuptools \
+    python-pip \
+    ruby \
+    ruby-devel \
+    java-1.7.0-openjdk \
+    openssl-devel \
+    mysql-devel \
+    perl-DBD-MySQL \
+    expat-devel \
+    libev \
+    libev-devel \
+    snappy-devel \
+    cyrus-sasl-devel \
+    yum-security \
+    yum-plugin-security \
+    wget \
+    tar \
+    which \
+    vim-enhanced \
+    epel-release && \
+    yum install -y jwhois && \
     curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y sbt && \
     yum clean all && \

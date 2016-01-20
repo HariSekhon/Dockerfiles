@@ -26,6 +26,9 @@ build:
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg SERF_VERSION=$(SERF_VERSION) -t $(TAG):$(SERF_VERSION) . && docker tag -f harisekhon/serf:$(SERF_VERSION) $(TAG):latest
 
+nocache:
+	make build
+
 push:
 	docker push $(TAG)
 

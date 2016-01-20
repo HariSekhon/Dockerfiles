@@ -26,6 +26,9 @@ build:
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg CONSUL_VERSION=$(CONSUL_VERSION) -t $(TAG):$(CONSUL_VERSION) . && docker tag -f $(TAG):$(CONSUL_VERSION) $(TAG):latest
 
+nocache:
+	make build
+
 push:
 	docker push $(TAG)
 

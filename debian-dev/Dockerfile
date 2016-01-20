@@ -17,7 +17,26 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Debian Dev Build"
 
 RUN apt-get update && \
-    apt-get install -y git make maven ruby ruby-dev openjdk-7-jdk vim wget && \
+    apt-get install -y build-essential \
+                       git \
+                       make \
+                       maven \
+                       python-dev \
+                       python-setuptools \
+                       python-pip \
+                       ruby \
+                       ruby-dev \
+                       openjdk-7-jdk \
+                       libexpat1-dev \
+                       libssl-dev \
+                       libsasl2-dev \
+                       libmysqlclient-dev \
+                       libdbd-mysql-perl \
+                       libkrb5-dev \
+                       libev4 \
+                       libsnappy-dev \
+                       vim \
+                       wget && \
     # for sbt https repo
     apt-get install -y apt-transport-https && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \

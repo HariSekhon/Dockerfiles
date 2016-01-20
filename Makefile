@@ -11,5 +11,8 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-all:
+build:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make; popd; done
+
+nocache:
+	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done

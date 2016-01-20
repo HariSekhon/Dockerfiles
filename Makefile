@@ -11,6 +11,9 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
+all:
+	make build
+
 build:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make; popd; done
 

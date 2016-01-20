@@ -12,4 +12,4 @@
 #
 
 all:
-	for x in *; do [ -d $$x ] || continue; pushd $$x; echo make; popd; done
+	for x in *; do [ -d $$x ] || continue; pushd $$x; make; popd; done

@@ -36,7 +36,7 @@ RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /g
 # trick to invalidate cache at this point to pull latest updates
 #COPY invalidate_cache /tmp
 # pull updates
-#RUN /github/bash-tools/update-my-repos.sh
+#RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh && apt-get clean
 #RUN cd /github/nagios-plugins && make zookeeper && make clean-zookeeper && apt-get clean
 #RUN rm -f /tmp/invalidate_cache
 

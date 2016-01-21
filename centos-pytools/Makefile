@@ -1,0 +1,29 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2016-01-16 12:21:15 +0000 (Sat, 16 Jan 2016)
+#
+#  vim:ts=4:sts=4:sw=4:noet
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  http://www.linkedin.com/in/harisekhon
+#
+
+TAG=harisekhon/pytools
+
+all:
+	make build push
+
+build:
+	docker build -t $(TAG) .
+
+nocache:
+	docker build --no-cache -t $(TAG) .
+
+push:
+	docker push $(TAG)
+
+clean:
+	@echo Nothing to clean

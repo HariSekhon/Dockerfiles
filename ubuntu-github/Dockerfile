@@ -14,7 +14,9 @@
 FROM harisekhon/ubuntu-dev:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Ubuntu Dev Build with my GitHub deps"
+LABEL Description="Ubuntu with my GitHub pre-built"
+
+ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
 RUN mkdir -v /github
 
@@ -35,7 +37,7 @@ RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /g
 #COPY invalidate_cache /tmp
 # pull updates
 #RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh && apt-get clean
-#RUN cd /gthub/nagios-plugins && make zookeeper && make clean-zookeeper
+#RUN cd /github/nagios-plugins && make zookeeper && make clean-zookeeper && apt-get clean
 #RUN rm -f /tmp/invalidate_cache
 
 CMD /bin/bash

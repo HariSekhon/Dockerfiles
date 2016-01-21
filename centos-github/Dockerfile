@@ -14,10 +14,10 @@
 FROM harisekhon/centos-dev:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="CentOS Dev Build with my GitHub repos pre-built"
+LABEL Description="CentOS 7 with my GitHub repos pre-built"
 
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
-ENV PATH /bin:$PATH
+ENV PATH /bin:$PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
 RUN mkdir -v /github
 

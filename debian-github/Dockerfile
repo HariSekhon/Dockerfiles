@@ -14,7 +14,7 @@
 FROM harisekhon/debian-dev:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Debian with my GitHub pre-built"
+LABEL Description="Debian with my GitHub repos pre-built"
 
 ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 

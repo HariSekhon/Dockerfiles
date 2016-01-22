@@ -5,8 +5,12 @@ Hari Sekhon Dockerfiles
 
 To build all images, run:
 
-```git clone https://github/harisekhon/Dockerfiles
+```
+git clone https://github/harisekhon/Dockerfiles
+
 cd Dockerfiles
-make```
+
+make
+```
 
 Or to build just a specific container image, cd to the relevant directory and run ```make```.

@@ -22,9 +22,6 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-# this is too big and unwieldy and makes caching/maintenance hard
-#RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh && yum clean all
-
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN x=pytools; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; yum clean all
 

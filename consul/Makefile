@@ -15,9 +15,11 @@ CONSUL_VERSION=0.6.3
 
 TAG=harisekhon/consul
 
+.PHONY: all
 all:
 	make build push
 
+.PHONY: build
 build:
 	wget -c https://releases.hashicorp.com/consul/$(CONSUL_VERSION)/consul_$(CONSUL_VERSION)_linux_amd64.zip
 	unzip -o consul_$(CONSUL_VERSION)_linux_amd64.zip
@@ -26,11 +28,19 @@ build:
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg CONSUL_VERSION=$(CONSUL_VERSION) -t $(TAG):$(CONSUL_VERSION) . && docker tag -f $(TAG):$(CONSUL_VERSION) $(TAG):latest
 
+.PHONY: nocache
 nocache:
 	make build
 
+.PHONY: push
 push:
 	docker push $(TAG)
 
+.PHONY: clean
 clean:
 	rm consul_*_linux_amd64.zip consul
+
+#.PHONY: test
+#test:
+#	cd .. && make test-deps
+#	docklint Dockerfile

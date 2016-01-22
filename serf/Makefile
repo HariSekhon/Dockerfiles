@@ -15,9 +15,11 @@ SERF_VERSION=0.7.0
 
 TAG=harisekhon/serf
 
+.PHONY: all
 all:
 	make build push
 
+.PHONY: build
 build:
 	wget -c https://releases.hashicorp.com/serf/$(SERF_VERSION)/serf_$(SERF_VERSION)_linux_amd64.zip
 	unzip -o serf_$(SERF_VERSION)_linux_amd64.zip
@@ -26,11 +28,19 @@ build:
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg SERF_VERSION=$(SERF_VERSION) -t $(TAG):$(SERF_VERSION) . && docker tag -f harisekhon/serf:$(SERF_VERSION) $(TAG):latest
 
+.PHONY: nocache
 nocache:
 	make build
 
+.PHONY: push
 push:
 	docker push $(TAG)
 
+.PHONY: clean
 clean:
 	rm serf_*_linux_amd64.zip serf
+
+#.PHONY: all
+#test:
+#	cd .. && make test-deps
+#	docklint Dockerfile

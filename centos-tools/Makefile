@@ -13,17 +13,27 @@
 
 TAG=harisekhon/tools
 
+.PHONY: all
 all:
 	make build push
 
+.PHONY: build
 build:
 	docker build -t $(TAG) .
 
+.PHONY: nocache
 nocache:
 	docker build --no-cache -t $(TAG) .
 
+.PHONY: push
 push:
 	docker push $(TAG)
 
+.PHONY: clean
 clean:
 	@echo Nothing to clean
+
+#.PHONY: test
+#test:
+#	cd .. && make test deps
+#	docklint Dockerfile

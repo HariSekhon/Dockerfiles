@@ -13,19 +13,29 @@
 
 TAG=harisekhon/debian-github
 
+.PHONY: all
 all:
 	make build push
 
+.PHONY: build
 build:
 	@date > invalidate_cache
 	docker build -t $(TAG) .
 	@rm -f invalidate_cache
 
+.PHONY: nocache
 nocache:
 	docker build --no-cache -t $(TAG) .
 
+.PHONY: push
 push:
 	docker push $(TAG)
 
+.PHONY: clean
 clean:
 	rm invalidate_cache
+
+#.PHONY: test
+#test:
+#	cd .. && make test-deps
+#	docklint Dockerfile

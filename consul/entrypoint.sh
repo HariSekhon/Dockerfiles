@@ -19,4 +19,11 @@ set -euo pipefail
 # busybox's egrep and sed ERE are broken, don't recognize \. - doing something a bit more basic but it works
 ip="$(ifconfig | grep -m1 'inet addr:' | sed 's/.*inet addr://;s/ .*$//')"
 
-exec /consul $@ -data-dir /tmp -bind $ip -client $ip
+args=""
+if [ "${1:-}" = "agent" ]; then
+    args="-data-dir /tmp -bind $ip -client $ip"
+else
+    args="-rpc-addr $ip"
+fi
+
+exec /consul $@ $args

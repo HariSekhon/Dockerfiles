@@ -11,18 +11,19 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-FROM scratch
+FROM busybox
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG CONSUL_VERSION
 
-ENV PATH /
+ENV PATH $PATH:/
 
 LABEL Description="HashiCorp's Consul minimal" \
       "Consul Version"="$CONSUL_VERSION"
 
 COPY consul /
+COPY entrypoint.sh /
 
 EXPOSE 8400 8500 8600
 
-ENTRYPOINT ["/consul"]
+ENTRYPOINT ["/entrypoint.sh"]

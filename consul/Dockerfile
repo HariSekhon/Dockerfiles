@@ -27,3 +27,4 @@ COPY consul /
 EXPOSE 8400 8500 8600
 
 #ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/consul"]

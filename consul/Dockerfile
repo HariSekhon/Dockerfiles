@@ -22,8 +22,8 @@ LABEL Description="HashiCorp's Consul minimal" \
       "Consul Version"="$CONSUL_VERSION"
 
 COPY consul /
-COPY entrypoint.sh /
+#COPY entrypoint.sh /
 
 EXPOSE 8400 8500 8600
 
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]

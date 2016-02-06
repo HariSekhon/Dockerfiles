@@ -11,11 +11,48 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# EUID /  UID not exported in Make
+# USER not populated in Docker
+#ifeq '$(shell id -u)' '0'
+#	SUDO =
+#	SUDO2 =
+#else
+#	SUDO = sudo
+#endif
+
+.PHONY: all
 all:
 	make build
 
+.PHONY: build
 build:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make; popd; done
 
+.PHONY: nocache
 nocache:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done
+
+#.PHONY: apt-packages
+#apt-packages:
+#	$(SUDO) apt-get update
+#	$(SUDO) apt-get install -y npm
+#	$(SUDO) apt-get install -y which
+#
+#.PHONY: yum-packages
+#yum-packages:
+#	rpm -q rpm || $(SUDO) yum install -y npm
+#	rpm -q rpm || $(SUDO) yum install -y which
+#
+#.PHONY: test-deps
+#test-deps:
+#	if [ -x /usr/bin/apt-get ]; then make apt-packages; fi
+#	if [ -x /usr/bin/yum ];     then make yum-packages; fi
+#	# this is clearly too basic - it doesn't even recognize LABEL instruction, nor line continuations
+#	which docklint &>/dev/null || npm install -g validate-dockerfile
+#
+#.PHONY: test
+#test:
+#	@# this would test everything but would call test-deps over and over inefficiently
+#	@#for x in *; do [ -d $$x ] || continue; pushd $$x; make test; popd; done
+#	make test-deps
+#	find . -name Dockerfile | xargs -n1 docklint

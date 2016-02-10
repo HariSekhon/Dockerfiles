@@ -43,3 +43,7 @@ clean:
 #test:
 #	cd .. && make test-deps
 #	docklint Dockerfile
+
+.PHONY: run
+run:
+	docker run -t -p 19999:19999 -p 30000:30000 harisekhon/tachyon

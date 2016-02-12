@@ -33,7 +33,9 @@ RUN yum install -y \
     ruby-devel \
     java-1.7.0-openjdk \
     openssl-devel \
+    openssh-server \
     mysql-devel \
+    net-tools \
     perl-DBD-MySQL \
     expat-devel \
     libev \

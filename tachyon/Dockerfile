@@ -29,6 +29,7 @@ COPY tachyon-$TACHYON_VERSION /tachyon
 
 RUN yum install -y sudo openssh-server && yum clean all
 
+# Technically shouldn't store the SSH key in the image but this is purely a test driven development image, not prod and not accessible outside
 RUN cp -v /tachyon/conf/tachyon-env.sh{.template,} && \
     ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N "" && \
     cp -v /root/.ssh/{id_rsa.pub,authorized_keys} && \

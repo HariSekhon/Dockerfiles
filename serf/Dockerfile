@@ -11,18 +11,20 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-FROM scratch
+FROM busybox
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SERF_VERSION
 
-ENV PATH /
+ENV PATH $PATH:/
 
 LABEL Description="HashiCorp's Serf minimal" \
       "Serf Version"="$SERF_VERSION"
 
 COPY serf /
+#COPY entrypoint.sh /
 
 EXPOSE 7946 7373
 
 ENTRYPOINT ["/serf"]
+#ENTRYPOINT ["/entrypoint.sh"]

@@ -32,6 +32,9 @@ build:
 nocache:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done
 
+.PHONY: pull
+pull:
+	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x; done
 #.PHONY: apt-packages
 #apt-packages:
 #	$(SUDO) apt-get update

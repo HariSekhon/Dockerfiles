@@ -1,0 +1,4 @@
+[datastax] 
+name=DataStax Community Repo
+baseurl = http://rpm.datastax.com/community
+gpgcheck=0

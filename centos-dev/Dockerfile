@@ -8,7 +8,7 @@
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  http://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/harisekhon
 #
 
 FROM centos:latest
@@ -33,7 +33,9 @@ RUN yum install -y \
     ruby-devel \
     java-1.7.0-openjdk \
     openssl-devel \
+    openssh-server \
     mysql-devel \
+    net-tools \
     perl-DBD-MySQL \
     expat-devel \
     libev \

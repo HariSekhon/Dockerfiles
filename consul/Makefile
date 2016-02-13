@@ -8,7 +8,7 @@
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  http://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/harisekhon
 #
 
 CONSUL_VERSION=0.6.3
@@ -44,3 +44,7 @@ clean:
 #test:
 #	cd .. && make test-deps
 #	docklint Dockerfile
+
+.PHONY: run
+run:
+	docker run -p 8500:8500 harisekhon/consul agent -dev -data-dir /tmp -client 0.0.0.0

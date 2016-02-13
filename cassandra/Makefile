@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/tools
+CASSANDRA_VERSION=22
+
+TAG=harisekhon/cassandra
 
 .PHONY: all
 all:
@@ -19,11 +21,11 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build --build-arg CASSANDRA_VERSION=$(CASSANDRA_VERSION) -t $(TAG):$(CASSANDRA_VERSION) . && docker tag -f $(TAG):$(CASSANDRA_VERSION) $(TAG):latest
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
+	docker build --no-cache --build-arg CASSANDRA_VERSION=$(CASSANDRA_VERSION) -t $(TAG):$(CASSANDRA_VERSION) . && docker tag -f $(TAG):$(CASSANDRA_VERSION) $(TAG):latest
 
 .PHONY: push
 push:
@@ -37,3 +39,7 @@ clean:
 #test:
 #	cd .. && make test deps
 #	docklint Dockerfile
+
+.PHONY: run
+run:
+	docker run -ti -p 7199:7199 -p 9042:9042 -p 9160:9160 harisekhon/cassandra

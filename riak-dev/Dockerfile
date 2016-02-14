@@ -20,15 +20,21 @@ ARG RIAK_VERSION
 
 LABEL Description="Riak Dev"
 
-#RUN yum install http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm
 #RUN OS=el DIST=6 curl "https://packagecloud.io/install/repositories/basho/riak/config_file.repo?os=${OS}&dist=${DIST}&name=basho_repo" > /etc/yum.repos.d/basho.repo && \
-RUN yum install -y http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm && \
-    yum install -y riak-$RIAK_VERSION && \
+
+# Riak 1.x
+#RUN yum install -y http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm && \
+#    yum install -y riak-$RIAK_VERSION && \
+# Riak 2.x
+RUN yum install -y http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm && \
     yum clean all
 
 # make HTTP listen on 0.0.0.0 not 127.0.0.1
+# Riak 1.x
 COPY conf/app.config /etc/riak/
+# Riak 2.x
+COPY conf/riak.conf /etc/riak/
 
-EXPOSE 8098
+EXPOSE 8087 8098
 
 CMD su - riak -c '/usr/sbin/riak start'; sleep 5; tail -f /var/log/riak/*

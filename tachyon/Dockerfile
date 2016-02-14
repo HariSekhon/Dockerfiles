@@ -40,4 +40,4 @@ RUN cp -v /tachyon/conf/tachyon-env.sh{.template,} && \
 EXPOSE 19999 30000
 
 #ENTRYPOINT ["/entrypoint.sh"]
-CMD /usr/sbin/sshd; sleep 1; tachyon-start.sh local; sleep 1; tail -f /tachyon/logs/*
+CMD /usr/sbin/sshd; sleep 1; tachyon-start.sh local; sleep 2; cat /tachyon/logs/*; tail -f /tachyon/logs/*

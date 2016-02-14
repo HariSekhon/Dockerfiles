@@ -13,7 +13,7 @@
 
 CASSANDRA_VERSION=22
 
-TAG=harisekhon/cassandra
+TAG=harisekhon/cassandra-dev
 
 .PHONY: all
 all:
@@ -42,4 +42,4 @@ clean:
 
 .PHONY: run
 run:
-	docker run -ti -p 7199:7199 -p 9042:9042 -p 9160:9160 harisekhon/cassandra
+	docker run -ti -p 7199:7199 -p 9042:9042 -p 9160:9160 $(TAG)

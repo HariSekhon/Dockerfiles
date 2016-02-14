@@ -26,6 +26,9 @@ RUN yum install -y http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm && \
     yum install -y riak-$RIAK_VERSION && \
     yum clean all
 
+# make HTTP listen on 0.0.0.0 not 127.0.0.1
+COPY conf/app.config /etc/riak/
+
 EXPOSE 8098
 
 CMD su - riak -c '/usr/sbin/riak start'; sleep 5; tail -f /var/log/riak/*

@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-RIAK_VERSION=1.4.9
+RIAK_VERSION=2.1.3
 
 TAG=harisekhon/riak-dev
 

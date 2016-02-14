@@ -1,0 +1,31 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2016-01-16 09:58:07 +0000 (Sat, 16 Jan 2016)
+#
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+# can't base off official Riak as it's missing deps to run the tools
+#FROM riak
+FROM harisekhon/nagios-plugins
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+
+ARG RIAK_VERSION
+
+LABEL Description="Riak Dev"
+
+#RUN yum install http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm
+#RUN OS=el DIST=6 curl "https://packagecloud.io/install/repositories/basho/riak/config_file.repo?os=${OS}&dist=${DIST}&name=basho_repo" > /etc/yum.repos.d/basho.repo && \
+RUN yum install -y http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm && \
+    yum install -y riak-$RIAK_VERSION && \
+    yum clean all
+
+EXPOSE 8098
+
+CMD su - riak -c '/usr/sbin/riak start'; sleep 5; tail -f /var/log/riak/*

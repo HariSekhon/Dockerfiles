@@ -1,6 +1,7 @@
 apache-drill/apache-drill-*
 consul/consul
 invalidate_cache
+kafka/kafka_*
 serf/serf
 tachyon/tachyon-*
 zookeeper/zookeeper-*

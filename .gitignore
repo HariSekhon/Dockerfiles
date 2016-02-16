@@ -1,5 +1,6 @@
-invalidate_cache
+apache-drill/apache-drill-*
 consul/consul
+invalidate_cache
 serf/serf
 tachyon/tachyon-*
 zookeeper/zookeeper-*

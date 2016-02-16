@@ -14,7 +14,7 @@
 SCALA_VERSION=2.10
 KAFKA_VERSION=0.8.2.2
 
-TAG=harisekhon/kafka-scala-$(SCALA_VERSION)
+TAG=harisekhon/kafka_scala-$(SCALA_VERSION)
 
 .PHONY: all
 all:
@@ -47,4 +47,4 @@ clean:
 
 .PHONY: run
 run:
-	docker run -t -p 2181:2181 -p 9092:9092 harisekhon/kafka-scala-$(SCALA_VERSION)
+	docker run -t -p 2181:2181 -p 9092:9092 $(TAG)

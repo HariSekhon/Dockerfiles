@@ -25,19 +25,14 @@ LABEL Description="Tachyon from BDAS" \
 #RUN yum install -y java-1.7.0-openjdk && yum clean all
 
 COPY tachyon-$TACHYON_VERSION /tachyon
-#COPY entrypoint.sh /
+COPY entrypoint.sh /
 
 RUN yum install -y sudo openssh-server && yum clean all
 
-# Technically shouldn't store the SSH key in the image but this is purely a test driven development image, not prod and not accessible outside
 RUN cp -v /tachyon/conf/tachyon-env.sh{.template,} && \
-    ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N "" && \
-    cp -v /root/.ssh/{id_rsa.pub,authorized_keys} && \
-    chmod -v 0400 /root/.ssh/authorized_keys && \
-    /usr/sbin/sshd-keygen && \
     tachyon format
 
 EXPOSE 19999 30000
 
-#ENTRYPOINT ["/entrypoint.sh"]
-CMD /usr/sbin/sshd; sleep 1; tachyon-start.sh local; sleep 2; cat /tachyon/logs/*; tail -f /tachyon/logs/*
+ENTRYPOINT ["/entrypoint.sh"]
+#CMD /usr/sbin/sshd; sleep 1; tachyon-start.sh local; sleep 2; cat /tachyon/logs/*; tail -f /tachyon/logs/*

@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev
+FROM harisekhon/centos-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG TACHYON_VERSION

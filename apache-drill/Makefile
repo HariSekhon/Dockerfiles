@@ -12,6 +12,9 @@
 #
 
 DRILL_VERSION=1.4.0
+DRILL_HEAP=900M
+# use this name in container linking
+ZOOKEEPER_HOST=zookeeper
 
 TAG=harisekhon/apache-drill
 
@@ -23,6 +26,8 @@ all:
 build:
 	[ -d "apache-drill-$(DRILL_VERSION)" ] || wget -c 'http://www.apache.org/dyn/closer.lua?filename=drill/drill-$(DRILL_VERSION)/apache-drill-$(DRILL_VERSION).tar.gz&action=download' -O apache-drill-$(DRILL_VERSION).tar.gz
 	[ -d "apache-drill-$(DRILL_VERSION)" ] || tar zxvf apache-drill-$(DRILL_VERSION).tar.gz
+	perl -pi -e "s/^DRILL_HEAP=\".+\"/DRILL_HEAP=\"$(DRILL_HEAP)\"/" "apache-drill-$(DRILL_VERSION)/conf/drill-env.sh"
+	perl -pi -e "s/^(\s*)zk.connect:.*/\\1zk.connect: \"$(ZOOKEEPER_HOST)\"/" "apache-drill-$(DRILL_VERSION)/conf/drill-override.conf"
 	rm -fv apache-drill-$(DRILL_VERSION).tar.gz
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg DRILL_VERSION=$(DRILL_VERSION) -t $(TAG):$(DRILL_VERSION) . && docker tag -f $(TAG):$(DRILL_VERSION) $(TAG):latest

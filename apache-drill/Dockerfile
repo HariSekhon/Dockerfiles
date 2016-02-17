@@ -24,10 +24,10 @@ LABEL Description="Apache Drill" \
 # use dev build it's quicker and cached
 #RUN yum install -y java-1.7.0-openjdk && yum clean all
 
-#RUN yum install -y supervisor && yum clean all
+RUN yum install -y supervisor && yum clean all
 
 COPY apache-drill-$DRILL_VERSION /apache-drill
-#COPY drill.ini /etc/supervisord.d/
+COPY drill.ini /etc/supervisord.d/
 
 EXPOSE 8047
 

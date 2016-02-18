@@ -21,7 +21,8 @@ if ! [ -f /root/.ssh/authorized_keys ]; then
     cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
     chmod -v 0400 /root/.ssh/authorized_keys
 fi
-if ! [ -f ssh_host_rsa_key ]; then
+
+if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
     /usr/sbin/sshd-keygen
 fi
 

@@ -1,5 +1,6 @@
 apache-drill/apache-drill-*
 consul/consul
+h2o/h2o-*
 invalidate_cache
 kafka/kafka_*
 serf/serf

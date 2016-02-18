@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-jre7
+#FROM harisekhon/centos-jre7
+# > 100MB smaller than centos
+FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG TACHYON_VERSION
@@ -27,9 +29,11 @@ LABEL Description="Tachyon from BDAS" \
 COPY tachyon-$TACHYON_VERSION /tachyon
 COPY entrypoint.sh /
 
-RUN yum install -y sudo openssh-server && yum clean all
+#RUN yum install -y sudo openssh-server && yum clean all
+RUN apt-get update && apt-get install sudo openssh-server -y && apt-get clean
 
-RUN cp -v /tachyon/conf/tachyon-env.sh{.template,} && \
+RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
+    cp -v /tachyon/conf/tachyon-env.sh.template /tachyon/conf/tachyon-env.sh && \
     tachyon format
 
 EXPOSE 19999 30000

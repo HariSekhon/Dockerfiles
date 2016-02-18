@@ -46,4 +46,4 @@ clean:
 
 .PHONY: run
 run:
-	docker run -ti -p 19999:19999 -p 30000:30000 harisekhon/tachyon
+	docker run -t -p 19999:19999 -p 30000:30000 harisekhon/tachyon

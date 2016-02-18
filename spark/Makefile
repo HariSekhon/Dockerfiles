@@ -45,4 +45,4 @@ clean:
 
 .PHONY: run
 run:
-	docker run -ti -p 4040:4040 -p 8080:8080 -p 8081:8081 harisekhon/spark
+	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 harisekhon/spark

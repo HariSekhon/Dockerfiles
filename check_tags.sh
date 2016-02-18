@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  Author: Hari Sekhon
+#  Date: 2016-02-18 00:02:54 +0000 (Thu, 18 Feb 2016)
+#
+#  https://github.com/harisekhon/nagios-plugins
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+set -euo pipefail
+[ -n "${DEBUG:-}" ] && set -x
+
+srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd "$srcdir"
+
+for x in *; do
+    [ -d "$x" ] || continue
+    grep -q -e "^TAG=harisekhon/$x" -e "^TAG=harisekhon/${x#*-}" "$x/Makefile" ||
+        { echo "$x TAG mismatch!"; exit 1; }
+done

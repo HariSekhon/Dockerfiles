@@ -13,6 +13,8 @@
 
 # can't base off official Riak as it's missing deps to run the tools
 #FROM riak
+#FROM centos
+# this is so that the nagios-plugin deps are available to mount new versions calling local programs eg. riak-admin
 FROM harisekhon/nagios-plugins
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 

@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install sudo openssh-server -y && apt-get clean
 #RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
 #    cp -v /spark/conf/spark-env.sh.template /spark/conf/spark-env.sh && \
 
-EXPOSE 4040 8080 8081
+EXPOSE 4040 7077 8080 8081
 
 #ENTRYPOINT ["/entrypoint.sh"]
 CMD /spark/bin/spark-shell

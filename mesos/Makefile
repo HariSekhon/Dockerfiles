@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-MESOS_VERSION=0.23.0
+MESOS_VERSION=0.24.0
 
 TAG=harisekhon/mesos
 

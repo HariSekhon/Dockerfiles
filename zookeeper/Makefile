@@ -24,7 +24,7 @@ build:
 	[ -d zookeeper-$(ZOOKEEPER_VERSION) ] || wget -O zookeeper-$(ZOOKEEPER_VERSION).tar.gz http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-$(ZOOKEEPER_VERSION)/zookeeper-$(ZOOKEEPER_VERSION).tar.gz
 	[ -d zookeeper-$(ZOOKEEPER_VERSION) ] || tar zxvf zookeeper-$(ZOOKEEPER_VERSION).tar.gz
 	# makes build slightly quicker but doesn't make image any smaller
-	#rm -f zookeeper-$(ZOOKEEPER_VERSION).tar.gz
+	rm -f "zookeeper-$(ZOOKEEPER_VERSION).tar.gz"
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg ZOOKEEPER_VERSION=$(ZOOKEEPER_VERSION) -t $(TAG):$(ZOOKEEPER_VERSION) . && docker tag -f $(TAG):$(ZOOKEEPER_VERSION) $(TAG):latest
 

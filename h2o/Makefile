@@ -22,6 +22,8 @@ all:
 
 .PHONY: build
 build:
+	# 2.6.1.5
+	#[ -d "h2o-$(H2O_VERSION)" ] || wget -c http://h2o-release.s3.amazonaws.com/h2o/rel-lambert/5/h2o-$(H2O_VERSION).zip -O h2o-$(H2O_VERSION).zip
 	[ -d "h2o-$(H2O_VERSION)" ] || wget -c http://download.h2o.ai/download/h2o-$(H2O_VERSION) -O h2o-$(H2O_VERSION).zip
 	[ -d "h2o-$(H2O_VERSION)" ] || unzip h2o-$(H2O_VERSION).zip
 	rm -fv h2o-$(H2O_VERSION).zip

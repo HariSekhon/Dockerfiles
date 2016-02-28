@@ -11,6 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+#H2O_VERSION=2.6.1.5
 H2O_VERSION=3.8.0.4
 
 TAG=harisekhon/h2o

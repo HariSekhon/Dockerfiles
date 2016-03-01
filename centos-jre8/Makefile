@@ -15,7 +15,7 @@ TAG=harisekhon/centos-jre8
 
 .PHONY: all
 all:
-	make build push
+	make build
 
 .PHONY: build
 build:

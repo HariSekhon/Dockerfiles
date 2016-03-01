@@ -18,7 +18,7 @@ TAG=harisekhon/h2o
 
 .PHONY: all
 all:
-	make build push
+	make build
 
 .PHONY: build
 build:

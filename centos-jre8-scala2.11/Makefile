@@ -16,7 +16,7 @@ SCALA_VERSION=2.11.7
 
 .PHONY: all
 all:
-	make build push
+	make build
 
 .PHONY: build
 build:

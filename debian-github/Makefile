@@ -15,7 +15,7 @@ TAG=harisekhon/debian-github
 
 .PHONY: all
 all:
-	make build push
+	make build
 
 .PHONY: build
 build:

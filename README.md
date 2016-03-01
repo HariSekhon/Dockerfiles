@@ -17,14 +17,18 @@ then select one and pull / run it as usual:
 
 ##### Build from Dockerfiles #####
 
-```git clone https://github/harisekhon/Dockerfiles
+```
+git clone https://github/harisekhon/Dockerfiles
 
-cd Dockerfiles```
+cd Dockerfiles
+```
 
 To build images from source Dockerfiles, either
 
-```cd nagios-plugins
+```
+cd nagios-plugins
 
-make```
+make
+```
 
 or to build all images locally, run ```make``` at the top level.

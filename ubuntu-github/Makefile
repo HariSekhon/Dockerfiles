@@ -15,7 +15,7 @@ TAG=harisekhon/ubuntu-github
 
 .PHONY: all
 all:
-	make build push
+	make build
 
 .PHONY: build
 build:

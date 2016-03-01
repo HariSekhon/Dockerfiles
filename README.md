@@ -1,9 +1,12 @@
-Hari Sekhon Dockerfiles
-=======================
+Hari Sekhon Docker Images
+=========================
 
-#### Docker Images of my GitHub repos with all dependencies pre-built, as well as functional test suite images for 3rd party and NoSQL systems ####
+#### Docker Images containing:
 
-These images are all available pre-built on [my DockerHub](https://hub.docker.com/u/harisekhon/).
+* [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
+* NoSQL, RDBMS, OS images used for development and functional test suites
+
+These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
 
 ##### Ready to run Docker images #####
 

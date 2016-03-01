@@ -1,4 +1,4 @@
-Hari Sekhon Docker Images
+Hari Sekhon Docker
 =========================
 
 #### Docker Images containing:

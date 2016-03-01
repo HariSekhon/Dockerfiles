@@ -26,7 +26,7 @@ all:
 
 .PHONY: build
 build:
-	for x in *; do [ -d $$x ] || continue; pushd $$x; make; popd; done
+	for x in *; do [ -d $$x ] || continue; pushd $$x; make build; popd; done
 
 .PHONY: nocache
 nocache:

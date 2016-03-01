@@ -15,7 +15,7 @@ TAG=harisekhon/centos-dev
 
 .PHONY: all
 all:
-	make build push
+	make build
 
 .PHONY: build
 build:

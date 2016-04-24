@@ -14,7 +14,7 @@
 FROM harisekhon/centos-jre8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SCALA_VERSION
+ARG SCALA_VERSION=2.10.6
 
 LABEL Description="CentOS, OpenJRE 8, Scala 2.10"
 

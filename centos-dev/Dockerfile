@@ -50,9 +50,11 @@ RUN yum install -y \
     epel-release && \
     yum install -y jwhois && \
     curl https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
-    yum install -y sbt && \
+    yum install -y --nogpgcheck sbt && \
     yum clean all && \
     # workaround for CentOS (found via strace) otherwise incorrectly states "Warning: You do not have write permission for Perl library directories." and local::lib hits use of uninitialized variables errors in base modules like even core File::Basename :-/
     mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
+
+COPY java.sh /etc/profile.d/
 
 CMD /bin/bash

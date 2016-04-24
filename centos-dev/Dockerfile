@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-jre7
+FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS Dev Build"
@@ -31,6 +31,7 @@ RUN yum install -y \
     python-pip \
     ruby \
     ruby-devel \
+    java-1.7.0-openjdk \
     openssl-devel \
     mysql-devel \
     net-tools \
@@ -53,5 +54,7 @@ RUN yum install -y \
     yum clean all && \
     # workaround for CentOS (found via strace) otherwise incorrectly states "Warning: You do not have write permission for Perl library directories." and local::lib hits use of uninitialized variables errors in base modules like even core File::Basename :-/
     mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
+
+COPY java.sh /etc/profile.d/
 
 CMD /bin/bash

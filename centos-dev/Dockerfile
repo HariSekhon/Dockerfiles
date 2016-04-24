@@ -11,6 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# not using harisekhon/centos-jre7 because we want JDK not JRE
 FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 

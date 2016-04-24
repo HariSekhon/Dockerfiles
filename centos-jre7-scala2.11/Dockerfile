@@ -14,7 +14,7 @@
 FROM harisekhon/centos-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SCALA_VERSION
+ARG SCALA_VERSION=2.11.7
 
 LABEL Description="CentOS, OpenJRE 7, Scala 2.11"
 

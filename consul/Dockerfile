@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM busybox
+# busybox wget doesn't support SSL, no curl available :-(
+#FROM busybox
+FROM debian
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG CONSUL_VERSION=0.6.3
@@ -24,11 +26,18 @@ LABEL Description="HashiCorp's Consul minimal" \
 # faster, cached
 #COPY consul /
 
+#ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
+
 RUN \
-    curl https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > /consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    apt-get update && \
+    apt-get install -y curl unzip && \
     cd / && \
-    unzip -o consul_${CONSUL_VERSION}_linux_amd64.zip && \
-    rm -f consul_${CONSUL_VERSION}_linux_amd64.zip
+    curl https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > /consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    unzip consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    rm -fv consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    apt-get purge -y curl unzip && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 #COPY entrypoint.sh /
 

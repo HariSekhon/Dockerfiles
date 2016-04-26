@@ -41,8 +41,8 @@ then select one and pull / run it as usual:
 ##### My GitHub Repos:
 
 - Nagios Plugins ([Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) pre-built)
-- Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) repo pre-built)
-- PyTools CLI tools ([PyTools](https://github.com/harisekhon/pytools) repo pre-built)
+- Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) pre-built)
+- PyTools CLI tools ([PyTools](https://github.com/harisekhon/pytools) pre-built)
 
 
 - CentOS + all Github repos pre-built

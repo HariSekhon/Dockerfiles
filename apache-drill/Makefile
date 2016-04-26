@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-DRILL_VERSION=1.4.0
+DRILL_VERSION=1.6.0
 DRILL_HEAP=900M
 # use this name in container linking
 ZOOKEEPER_HOST=zookeeper

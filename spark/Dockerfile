@@ -18,20 +18,31 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SPARK_VERSION=1.5.2
 ARG HADOOP_VERSION=2.6
+ARG TAR=spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 ENV PATH $PATH:/spark/bin
 
 LABEL Description="Apache Spark" \
       "Spark Version"="$SPARK_VERSION"
 
-COPY spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION /spark
-COPY entrypoint.sh /
+#COPY spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION /spark
+#ADD "http://d3kbcqa49mib13.cloudfront.net/${TAR}"
 
 #RUN yum install -y sudo openssh-server && yum clean all
-RUN apt-get update && apt-get install sudo openssh-server -y && apt-get clean
+RUN \
+    apt-get update && \
+    apt-get install -y sudo openssh-server curl tar && \
+    curl "http://d3kbcqa49mib13.cloudfront.net/${TAR}" > "${TAR}" && \
+    tar zxvf "${TAR}" && \
+    rm -fv "${TAR}" && \
+    apt-get purge -y curl && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 #RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
 #    cp -v /spark/conf/spark-env.sh.template /spark/conf/spark-env.sh && \
+
+COPY entrypoint.sh /
 
 EXPOSE 4040 7077 8080 8081
 

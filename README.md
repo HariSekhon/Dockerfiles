@@ -10,7 +10,7 @@ Docker Images containing hundreds of my published tools and the supporting techn
 
 These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
 
-##### Ready to run Docker images #####
+### Ready to run Docker images
 
 To see all my available Docker images:
 
@@ -56,7 +56,7 @@ then select one and pull / run it as usual:
 - Debian latest with Java OpenJRE 7
 - Ubuntu 14.04 with Java OpenJRE 7
 
-##### To Build from Dockerfile + source yourself #####
+### To Build from Dockerfile + source yourself
 
 ```
 git clone https://github/harisekhon/Dockerfiles

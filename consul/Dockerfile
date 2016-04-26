@@ -32,9 +32,9 @@ RUN \
     apt-get update && \
     apt-get install -y curl unzip && \
     cd / && \
-    curl https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > /consul_${CONSUL_VERSION}_linux_amd64.zip && \
-    unzip consul_${CONSUL_VERSION}_linux_amd64.zip && \
-    rm -fv consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    curl -L "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" > "/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
+    unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
+    rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     apt-get purge -y curl unzip && \
     apt-get autoremove -y && \
     apt-get clean

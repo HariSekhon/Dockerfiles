@@ -13,7 +13,7 @@
 
 # can't base off Cassandra as it's missing deps to run the tools
 #FROM cassandra
-FROM harisekhon/centos-dev
+FROM harisekhon/nagios-plugins
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG CASSANDRA_VERSION
@@ -24,10 +24,10 @@ COPY datastax.repo /etc/yum.repos.d/datastax.repo
 
 RUN yum install -y make git cassandra$CASSANDRA_VERSION && yum clean all
 
-RUN git clone https://github.com/harisekhon/nagios-plugins /nagios-plugins && \
-    cd /nagios-plugins && \
-    make && \
-    yum clean all
+#RUN git clone https://github.com/harisekhon/nagios-plugins /nagios-plugins && \
+#    cd /nagios-plugins && \
+#    make && \
+#    yum clean all
 
 EXPOSE 7199 9042 9160
 

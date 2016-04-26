@@ -34,8 +34,9 @@ RUN \
     rm -fv "${TAR}" && \
     ln -s zookeeper-${ZOOKEEPER_VERSION} zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
-    apt-get purge -y wget tar && \
-    apt-get autoremove -y && \
+    # causes unmet dependencies breakage
+    #apt-get purge -y wget tar && \
+    #apt-get autoremove -y && \
     apt-get clean
 
 EXPOSE 2181 3181 4181

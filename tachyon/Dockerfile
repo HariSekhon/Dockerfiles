@@ -35,7 +35,7 @@ RUN apt-get update && \
     cd / && \
     curl -L "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" > "/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     tar zxvf "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
-    rm -fv "tachyon-$(TACHYON_VERSION)-bin.tar.gz" && \
+    rm -fv "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     cp -v /tachyon/conf/tachyon-env.sh.template /tachyon/conf/tachyon-env.sh && \
     tachyon format

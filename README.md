@@ -40,9 +40,10 @@ then select one and pull / run it as usual:
 
 ##### My GitHub Repos:
 
-- Nagios Plugins ([Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) pre-built)
-- Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) pre-built)
-- PyTools CLI tools ([PyTools](https://github.com/harisekhon/pytools) pre-built)
+- Nagios Plugins ([Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) pre-built) - all Hadoop distributions and every major NoSQL technology
+- Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) pre-built) - Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
+- PyTools CLI tools ([PyTools](https://github.com/harisekhon/pytools) pre-built) - Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython
+- Spotify Tools - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript
 
 - CentOS + all Github repos pre-built
 - Debian + all Github repos pre-built

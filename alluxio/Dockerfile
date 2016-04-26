@@ -26,8 +26,7 @@ LABEL Description="Alluxio from BDAS" \
 # use dev build it's quicker and cached
 #RUN yum install -y java-1.7.0-openjdk && yum clean all
 
-COPY alluxio-$ALLUXIO_VERSION /alluxio
-COPY entrypoint.sh /
+#COPY alluxio-$ALLUXIO_VERSION /alluxio
 
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
@@ -40,6 +39,8 @@ RUN apt-get update && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     cp -v /alluxio/conf/alluxio-env.sh.template /alluxio/conf/alluxio-env.sh && \
     alluxio format
+
+COPY entrypoint.sh /
 
 EXPOSE 19999 30000
 

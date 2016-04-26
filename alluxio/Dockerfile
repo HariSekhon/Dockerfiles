@@ -36,8 +36,9 @@ RUN apt-get update && \
     curl -L "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" > "/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxvf alluxio-${ALLUXIO_VERSION}-bin.tar.gz && \
     rm -fv alluxio-$(ALLUXIO_VERSION)-bin.tar.gz && \
-    mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
+    ln -sv "alluxio-$(ALLUXIO_VERSION)" alluxio && \
     cp -v /alluxio/conf/alluxio-env.sh.template /alluxio/conf/alluxio-env.sh && \
+    mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     alluxio format
 
 COPY entrypoint.sh /

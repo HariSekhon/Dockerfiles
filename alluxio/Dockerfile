@@ -30,10 +30,9 @@ LABEL Description="Alluxio from BDAS" \
 
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
-    apt-get install -y sudo openssh-server curl tar && \
+    apt-get install -y sudo openssh-server wget tar && \
     apt-get clean && \
-    cd / && \
-    curl -L "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" > "/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
+    wget -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxvf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     rm -fv "alluxio-${ALLUXIO_VERSIO}-bin.tar.gz" && \
     ln -sv "alluxio-${ALLUXIO_VERSION}" alluxio && \

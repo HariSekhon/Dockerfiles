@@ -32,10 +32,10 @@ LABEL Description="Alluxio from BDAS" \
 RUN apt-get update && \
     apt-get install sudo openssh-server -y && \
     apt-get clean && \
-	cd / && \
-	curl http://alluxio-project.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz > /alluxio-${ALLUXIO_VERSION}-bin.tar.gz && \
+    cd / && \
+    curl http://alluxio-project.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz > /alluxio-${ALLUXIO_VERSION}-bin.tar.gz && \
     tar zxvf alluxio-${ALLUXIO_VERSION}-bin.tar.gz && \
-	rm -fv alluxio-$(ALLUXIO_VERSION)-bin.tar.gz && \
+    rm -fv alluxio-$(ALLUXIO_VERSION)-bin.tar.gz && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     cp -v /alluxio/conf/alluxio-env.sh.template /alluxio/conf/alluxio-env.sh && \
     alluxio format

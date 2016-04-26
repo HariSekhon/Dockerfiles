@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM busybox
+# busybox wget doesn't support SSL, no curl available :-(
+#FROM busybox
+FROM debian
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SERF_VERSION=0.7.0
@@ -24,12 +26,17 @@ LABEL Description="HashiCorp's Serf minimal" \
 #COPY serf /
 #COPY entrypoint.sh /
 
+#ADD https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip /
+
 RUN \
-    curl https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip > /serf_${SERF_VERSION}_linux_amd64.zip && \
-    #yum install -y unzip && \
-    cd / && unzip -o serf_${SERF_VERSION}_linux_amd64.zip && \
-    #yum remove -y unzip && \
-    #yum clean all
+    apt-get update && \
+    apt-get install -y curl unzip && \
+    cd / && \
+    curl https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip > serf_${SERF_VERSION}_linux_amd64.zip && \
+    unzip serf_${SERF_VERSION}_linux_amd64.zip && \
+    rm -fv serf_${SERF_VERSION}_linux_amd64.zip && \
+    apt-get purge -y curl unzip && \
+    apt-get clean
 
 EXPOSE 7946 7373
 

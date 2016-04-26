@@ -1,0 +1,47 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2016-01-16 09:58:07 +0000 (Sat, 16 Jan 2016)
+#
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+#FROM harisekhon/centos-jre7
+# > 100MB smaller than centos
+FROM harisekhon/debian-jre7
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+
+ARG ALLUXIO_VERSION=0.8.2
+
+ENV PATH $PATH:/alluxio/bin
+
+LABEL Description="Alluxio from BDAS" \
+      "Alluxio Version"="$ALLUXIO_VERSION"
+
+# use dev build it's quicker and cached
+#RUN yum install -y java-1.7.0-openjdk && yum clean all
+
+COPY alluxio-$ALLUXIO_VERSION /alluxio
+COPY entrypoint.sh /
+
+#RUN yum install -y sudo openssh-server && yum clean all
+RUN apt-get update && \
+    apt-get install sudo openssh-server -y && \
+    apt-get clean && \
+	cd / && \
+	curl http://alluxio-project.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz > /alluxio-${ALLUXIO_VERSION}-bin.tar.gz && \
+    tar zxvf alluxio-${ALLUXIO_VERSION}-bin.tar.gz && \
+	rm -fv alluxio-$(ALLUXIO_VERSION)-bin.tar.gz && \
+    mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
+    cp -v /alluxio/conf/alluxio-env.sh.template /alluxio/conf/alluxio-env.sh && \
+    alluxio format
+
+EXPOSE 19999 30000
+
+ENTRYPOINT ["/entrypoint.sh"]
+#CMD /usr/sbin/sshd; sleep 1; alluxio-start.sh local; sleep 2; cat /alluxio/logs/*; tail -f /alluxio/logs/*

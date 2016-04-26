@@ -16,7 +16,7 @@
 FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG MESOS_VERSION
+ARG MESOS_VERSION=0.24.0
 
 ENV PATH $PATH:/mesos/bin
 

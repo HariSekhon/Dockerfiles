@@ -30,7 +30,7 @@ LABEL Description="Tachyon from BDAS" \
 
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
-    apt-get install sudo openssh-server curl tar -y && \
+    apt-get install -y sudo openssh-server curl tar && \
     apt-get clean && \
     cd / && \
     curl -L "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz > /tachyon-${TACHYON_VERSION}-bin.tar.gz" && \

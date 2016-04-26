@@ -24,11 +24,12 @@ LABEL Description="HashiCorp's Serf minimal" \
 #COPY serf /
 #COPY entrypoint.sh /
 
-RUN curl https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip > /serf_${SERF_VERSION}_linux_amd64.zip && \
-    yum install -y unzip && \
+RUN \
+    curl https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip > /serf_${SERF_VERSION}_linux_amd64.zip && \
+    #yum install -y unzip && \
     cd / && unzip -o serf_${SERF_VERSION}_linux_amd64.zip && \
-    yum remove -y unzip && \
-    yum clean all
+    #yum remove -y unzip && \
+    #yum clean all
 
 EXPOSE 7946 7373
 

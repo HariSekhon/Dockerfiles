@@ -21,8 +21,8 @@ all:
 
 .PHONY: build
 build:
-	[ -f consul ] || wget -c https://releases.hashicorp.com/consul/$(CONSUL_VERSION)/consul_$(CONSUL_VERSION)_linux_amd64.zip
-	[ -f consul ] || unzip -o consul_$(CONSUL_VERSION)_linux_amd64.zip
+	#[ -f consul ] || wget -c https://releases.hashicorp.com/consul/$(CONSUL_VERSION)/consul_$(CONSUL_VERSION)_linux_amd64.zip
+	#[ -f consul ] || unzip -o consul_$(CONSUL_VERSION)_linux_amd64.zip
 	# makes build slightly quicker but doesn't make image any smaller
 	#rm -f consul_$(CONSUL_VERSION)_linux_amd64.zip
 	# multiple tags should arrive in Docker 1.10+

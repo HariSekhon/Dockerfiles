@@ -26,8 +26,7 @@ LABEL Description="Tachyon from BDAS" \
 # use dev build it's quicker and cached
 #RUN yum install -y java-1.7.0-openjdk && yum clean all
 
-COPY tachyon-$TACHYON_VERSION /tachyon
-COPY entrypoint.sh /
+#COPY tachyon-$TACHYON_VERSION /tachyon
 
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
@@ -40,6 +39,8 @@ RUN apt-get update && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     cp -v /tachyon/conf/tachyon-env.sh.template /tachyon/conf/tachyon-env.sh && \
     tachyon format
+
+COPY entrypoint.sh /
 
 EXPOSE 19999 30000
 

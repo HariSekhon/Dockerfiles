@@ -16,7 +16,7 @@
 FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ZOOKEEPER_VERSION
+ARG ZOOKEEPER_VERSION=3.4.6
 
 #ENV PATH $PATH:/zookeeper-$ZOOKEEPER_VERSION
 

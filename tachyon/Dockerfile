@@ -30,15 +30,17 @@ LABEL Description="Tachyon from BDAS" \
 
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
-    apt-get install -y sudo openssh-server curl tar && \
-    apt-get clean && \
+    apt-get install -y sudo openssh-server wget tar && \
     wget -O "tachyon-${TACHYON_VERSION}-bin.tar.gz" "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     tar zxvf "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     rm -fv "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     ln -sv "tachyon-${TACHYON_VERSION}" tachyon && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     cp -v /tachyon/conf/tachyon-env.sh.template /tachyon/conf/tachyon-env.sh && \
-    tachyon format
+    tachyon format && \
+    apt-get remove -y wget && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 COPY entrypoint.sh /
 

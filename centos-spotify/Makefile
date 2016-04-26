@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/spotify
+TAG=harisekhon/spotify-tools
 
 .PHONY: all
 all:

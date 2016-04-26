@@ -19,8 +19,8 @@ ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
 
-LABEL Description="HDFS Dev", \
-      "HDFS Version"="$HADOOP_VERSION"
+LABEL Description="Hadoop Dev", \
+      "Hadoop Version"="$HADOOP_VERSION"
 
 WORKDIR /
 

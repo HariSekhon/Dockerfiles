@@ -36,7 +36,7 @@ RUN \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s spark-spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION spark && \
-    apt-get purge -y curl && \
+    apt-get purge -y curl tar && \
     apt-get autoremove -y && \
     apt-get clean
 

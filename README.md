@@ -50,9 +50,9 @@ then select one and pull / run it as usual:
 
 ##### Base Images:
 
-- CentOS latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make, EPEL etc.
-- Debian latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc.
-- Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc.
+- CentOS latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make, EPEL etc
+- Debian latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc
+- Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc
 
 - CentOS latest combinations of Java OpenJRE 7/8 and Scala 2.10/2.11
 - Debian latest with Java OpenJRE 7

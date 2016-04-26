@@ -24,10 +24,10 @@ all:
 
 .PHONY: build
 build:
-	[ -d "kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)" ] || wget -c 'https://www.apache.org/dyn/closer.cgi?filename=/kafka/$(KAFKA_VERSION)/kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz&action=download' -O 'kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz'
-	[ -d "kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)" ] || tar zxvf kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz
-	rm -fv kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz
-	perl -pi.orig -e 's/\s*#?\s*advertised.host.name.*/advertised.host.name=$(ADVERTISED_HOSTNAME)/' 'kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)/config/server.properties'
+	#[ -d "kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)" ] || wget -c 'https://www.apache.org/dyn/closer.cgi?filename=/kafka/$(KAFKA_VERSION)/kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz&action=download' -O 'kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz'
+	#[ -d "kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)" ] || tar zxvf kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz
+	#rm -fv kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz
+	#perl -pi.orig -e 's/\s*#?\s*advertised.host.name.*/advertised.host.name=$(ADVERTISED_HOSTNAME)/' 'kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)/config/server.properties'
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg SCALA_VERSION=$(SCALA_VERSION) --build-arg KAFKA_VERSION=$(KAFKA_VERSION) -t $(TAG):$(KAFKA_VERSION) . && docker tag -f $(TAG):$(KAFKA_VERSION) $(TAG):latest
 

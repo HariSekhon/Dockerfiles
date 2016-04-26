@@ -35,7 +35,8 @@ RUN \
     unzip h2o-${H2O_VERSION}.zip && \
     rm h2o-${H2O_VERSION}.zip && \
     apt-get purge -y wget unzip && \
-    apt-get autoremove -y
+    apt-get autoremove -y && \
+    apt-get clean
 
 EXPOSE 54321
 

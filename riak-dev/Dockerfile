@@ -28,7 +28,7 @@ LABEL Description="Riak Dev"
 #RUN yum install -y http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm && \
 #    yum install -y riak-$RIAK_VERSION && \
 # Riak 2.x
-RUN yum install -y http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm && \
+RUN yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
     yum clean all
 
 # make HTTP listen on 0.0.0.0 not 127.0.0.1

@@ -66,12 +66,15 @@ git clone https://github/harisekhon/Dockerfiles
 cd Dockerfiles
 ```
 
-To build specific Docker image, cd to it's directory and run make:
+To build all Docker images:
+```
+make
+```
+
+To build a specific Docker image, cd to it's directory and run make:
 
 ```
 cd nagios-plugins
 
 make
 ```
-
-To build all Docker images, simply run ```make``` at the top level which will iterate through all the directories running ```make``` in each one.

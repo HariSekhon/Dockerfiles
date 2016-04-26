@@ -31,14 +31,16 @@ LABEL Description="Alluxio from BDAS" \
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
     apt-get install -y sudo openssh-server wget tar && \
-    apt-get clean && \
     wget -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxvf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     rm -fv "alluxio-${ALLUXIO_VERSIO}-bin.tar.gz" && \
     ln -sv "alluxio-${ALLUXIO_VERSION}" alluxio && \
     cp -v /alluxio/conf/alluxio-env.sh.template /alluxio/conf/alluxio-env.sh && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
-    alluxio format
+    alluxio format && \
+    apt-get remove -y wget && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 COPY entrypoint.sh /
 

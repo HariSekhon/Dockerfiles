@@ -33,7 +33,7 @@ RUN apt-get update && \
     apt-get install sudo openssh-server curl tar -y && \
     apt-get clean && \
     cd / && \
-    curl "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" > "/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
+    curl -L "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" > "/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxvf alluxio-${ALLUXIO_VERSION}-bin.tar.gz && \
     rm -fv alluxio-$(ALLUXIO_VERSION)-bin.tar.gz && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \

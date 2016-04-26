@@ -30,7 +30,6 @@ LABEL Description="H2O" \
 RUN \
     apt-get update && \
     apt-get install -y wget unzip && \
-    cd / && \
     wget http://download.h2o.ai/versions/h2o-${H2O_VERSION}.zip && \
     unzip h2o-${H2O_VERSION}.zip && \
     rm h2o-${H2O_VERSION}.zip && \

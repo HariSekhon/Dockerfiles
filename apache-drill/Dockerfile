@@ -14,8 +14,9 @@
 FROM harisekhon/centos-dev
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG DRILL_VERSION=1.4.0
+ARG DRILL_VERSION=1.6.0
 ARG DRILL_HEAP=900M
+ARG TAR=apache-drill-${DRILL_VERSION}.tar.gz
 # use this name in container linking
 ARG ZOOKEEPER_HOST=zookeeper
 
@@ -29,13 +30,14 @@ LABEL Description="Apache Drill" \
 #COPY drill.ini /etc/supervisord.d/
 
 RUN \
-    curl 'http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/apache-drill-${DRILL_VERSION}.tar.gz&action=download' > "apache-drill-${DRILL_VERSION}.tar.gz" && \
-    tar zxvf apache-drill-$(DRILL_VERSION).tar.gz && \
+    curl -L "http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/${TAR}&action=download" > "${TAR}" && \
+    tar zxvf "${TAR}" && \
+    rm -fv "${TAR}" && \
     perl -pi -e "s/^DRILL_HEAP=\".+\"/DRILL_HEAP=\"${DRILL_HEAP}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-env.sh" && \
     perl -pi -e "s/^(\s*)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf" && \
-    rm -fv apache-drill-$(DRILL_VERSION).tar.gz && \
-    yum install -y supervisor && \
-    yum clean all
+    :
+    #yum install -y supervisor && \
+    #yum clean all
 
 EXPOSE 8047
 

@@ -24,6 +24,7 @@ then select one and pull / run it as usual:
 
 ##### Official Technologies:
 
+- Alluxio
 - Apache Drill
 - Cassandra (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Consul

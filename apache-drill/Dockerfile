@@ -33,6 +33,7 @@ RUN \
     curl -L "http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/${TAR}&action=download" > "${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
+    ln -sv "apache-drill-${DRILL_VERSION}" apache-drill && \
     perl -pi -e "s/^DRILL_HEAP=\".+\"/DRILL_HEAP=\"${DRILL_HEAP}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-env.sh" && \
     perl -pi -e "s/^(\s*)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf" && \
     :

@@ -30,8 +30,8 @@ LABEL Description="Apache Kafka by LinkedIn" \
 #COPY kafka_$SCALA_VERSION-$KAFKA_VERSION /kafka
 
 RUN apt-get update && \
-    apt-get install -y curl tar && \
-    curl -L "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" > "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
+    apt-get install -y wget tar && \
+    wget -O "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" && \
     tar zxvf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     ln -sv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}" kafka && \

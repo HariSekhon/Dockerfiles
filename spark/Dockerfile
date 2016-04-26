@@ -16,8 +16,8 @@
 FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SPARK_VERSION
-ARG HADOOP_VERSION
+ARG SPARK_VERSION=1.5.2
+ARG HADOOP_VERSION=2.6
 
 ENV PATH $PATH:/spark/bin
 

@@ -16,7 +16,7 @@
 FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ALLUXIO_VERSION=0.8.2
+ARG ALLUXIO_VERSION=1.0.1
 
 ENV PATH $PATH:/alluxio/bin
 

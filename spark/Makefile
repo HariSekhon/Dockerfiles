@@ -16,8 +16,8 @@ HADOOP_VERSION=2.6
 
 TAG=harisekhon/spark
 
-DIR="spark-$(SPARK_VERSION)-bin-hadoop$(HADOOP_VERSION)"
-TAR="$(DIR).tgz"
+#DIR="spark-$(SPARK_VERSION)-bin-hadoop$(HADOOP_VERSION)"
+#TAR="$(DIR).tgz"
 
 .PHONY: all
 all:
@@ -25,9 +25,9 @@ all:
 
 .PHONY: build
 build:
-	[ -d "$(DIR)" ] || wget -c "http://d3kbcqa49mib13.cloudfront.net/$(TAR)" -O "$(TAR)"
-	[ -d "$(DIR)" ] || tar zxvf "$(TAR)"
-	rm -fv "$(TAR)"
+	#[ -d "$(DIR)" ] || wget -c "http://d3kbcqa49mib13.cloudfront.net/$(TAR)" -O "$(TAR)"
+	#[ -d "$(DIR)" ] || tar zxvf "$(TAR)"
+	#rm -fv "$(TAR)"
 	# multiple tags should arrive in Docker 1.10+
 	docker build --build-arg SPARK_VERSION=$(SPARK_VERSION) --build-arg HADOOP_VERSION=$(HADOOP_VERSION) -t $(TAG):$(SPARK_VERSION) . && docker tag -f $(TAG):$(SPARK_VERSION) $(TAG):latest
 

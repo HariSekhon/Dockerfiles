@@ -26,17 +26,21 @@ LABEL Description="ZooKeeper" \
 
 #COPY zookeeper-$ZOOKEEPER_VERSION /zookeeper
 
+# less layers and slightly smaller image doing wget
+#ADD "http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" /
+
 RUN \
     apt-get update && \
     apt-get install -y wget tar && \
     wget -O "${TAR}" "http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
-    ln -s zookeeper-${ZOOKEEPER_VERSION} zookeeper && \
+    ln -sv zookeeper-${ZOOKEEPER_VERSION} zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
     # causes unmet dependencies breakage
-    #apt-get purge -y wget tar && \
-    #apt-get autoremove -y && \
+    #apt-get purge -y tar && \
+    apt-get purge -y wget && \
+    apt-get autoremove -y && \
     apt-get clean
 
 EXPOSE 2181 3181 4181

@@ -25,14 +25,14 @@ then select one and pull / run it as usual:
 ##### Official Technologies:
 
 - Apache Drill
-- Cassandra (Dev with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- Cassandra (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Consul
 - H2O by 0xdata
 - HBase
 - Kafka
 - Mesos
 - Riak
-- Riak (Dev with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- Riak (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Serf
 - Spark
 - Tachyon

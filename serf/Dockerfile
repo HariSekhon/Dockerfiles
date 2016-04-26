@@ -36,6 +36,7 @@ RUN \
     unzip serf_${SERF_VERSION}_linux_amd64.zip && \
     rm -fv serf_${SERF_VERSION}_linux_amd64.zip && \
     apt-get purge -y curl unzip && \
+    apt-get autoremove -y && \
     apt-get clean
 
 EXPOSE 7946 7373

@@ -23,7 +23,8 @@ LABEL Description="HBase Dev", \
 
 WORKDIR /
 
-RUN curl -L "http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz" > "hbase-$HBASE_VERSION-bin.tar.gz" && \
+RUN \
+    wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://mirrors.ukfast.co.uk/sites/ftp.apache.org/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz" && \
     tar zxvf hbase-$HBASE_VERSION-bin.tar.gz && \
     ln -sv hbase-$HBASE_VERSION hbase && \
     rm -fv hbase-$HBASE_VERSION-bin.tar.gz

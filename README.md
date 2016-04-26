@@ -24,7 +24,6 @@ then select one and pull / run it as usual:
 
 ##### Official Technologies:
 
-```
 - Apache Drill
 - Cassandra (Dev with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Consul
@@ -38,11 +37,9 @@ then select one and pull / run it as usual:
 - Spark
 - Tachyon
 - ZooKeeper
-```
 
 ##### My GitHub Repos:
 
-```
 - Nagios Plugins ([Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) pre-built)
 - Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) repo pre-built)
 - PyTools CLI tools ([PyTools](https://github.com/harisekhon/pytools) repo pre-built)
@@ -50,11 +47,9 @@ then select one and pull / run it as usual:
 - CentOS + all Github repos pre-built
 - Debian + all Github repos pre-built
 - Ubuntu + all Github repos pre-built
-```
 
 ##### Base Images:
 
-```
 - CentOS latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make, EPEL etc.
 - Debian latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc.
 - Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc.
@@ -62,7 +57,6 @@ then select one and pull / run it as usual:
 - CentOS latest combinations of Java OpenJRE 7/8 and Scala 2.10/2.11
 - Debian latest with Java OpenJRE 7
 - Ubuntu 14.04 with Java OpenJRE 7
-```
 
 ### To Build from Dockerfile + source yourself
 

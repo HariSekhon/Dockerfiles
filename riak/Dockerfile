@@ -16,7 +16,7 @@
 FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG RIAK_VERSION
+ARG RIAK_VERSION=2.1.3
 
 LABEL Description="Riak"
 

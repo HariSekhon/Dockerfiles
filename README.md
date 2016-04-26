@@ -39,12 +39,12 @@ then select one and pull / run it as usual:
 - Tachyon
 - ZooKeeper
 
-##### My GitHub Repos:
+##### My GitHub Repos (with all libs + deps pre-built):
 
-- Nagios Plugins ([Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) pre-built) - all Hadoop distributions and every major NoSQL technology
-- Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) pre-built) - Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
-- PyTools CLI tools ([PyTools](https://github.com/harisekhon/pytools) pre-built) - Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython
-- Spotify Tools - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript
+- [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - nagios plugins for all Hadoop distributions and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs, NoSQL APIs etc
+- [Perl Tools](https://github.com/harisekhon/tools) - Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
+- [Python Tools](https://github.com/harisekhon/pytools) - Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython
+- [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript
 
 - CentOS + all Github repos pre-built
 - Debian + all Github repos pre-built

@@ -42,4 +42,4 @@ clean:
 
 .PHONY: run
 run:
-	docker run -ti -p 8020:8020 -p 9000:9000 -p 50070:50070 -p 50075:50075 harisekhon/hdfs-dev
+	docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:10020 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 harisekhon/hdfs-dev

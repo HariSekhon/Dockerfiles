@@ -47,5 +47,7 @@ grep -q "$hostname" /root/.ssh/known_hosts ||
 sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
 
 /hadoop/sbin/start-dfs.sh
+/hadoop/sbin/start-yarn.sh
 tail -f /hadoop/logs/*
+/hadoop/sbin/stop-yarn.sh
 /hadoop/sbin/stop-dfs.sh

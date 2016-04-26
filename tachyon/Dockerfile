@@ -30,9 +30,14 @@ COPY tachyon-$TACHYON_VERSION /tachyon
 COPY entrypoint.sh /
 
 #RUN yum install -y sudo openssh-server && yum clean all
-RUN apt-get update && apt-get install sudo openssh-server -y && apt-get clean
-
-RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
+RUN apt-get update && \
+    apt-get install sudo openssh-server -y && \
+    apt-get clean && \
+	cd / && \
+	curl http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz > /tachyon-${TACHYON_VERSION}-bin.tar.gz && \
+    tar zxvf tachyon-${TACHYON_VERSION}-bin.tar.gz && \
+	rm -fv tachyon-$(TACHYON_VERSION)-bin.tar.gz && \
+    mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     cp -v /tachyon/conf/tachyon-env.sh.template /tachyon/conf/tachyon-env.sh && \
     tachyon format
 

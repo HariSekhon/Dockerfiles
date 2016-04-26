@@ -32,10 +32,10 @@ LABEL Description="Apache Spark" \
 RUN \
     apt-get update && \
     apt-get install -y sudo openssh-server curl tar && \
-    curl "http://d3kbcqa49mib13.cloudfront.net/${TAR}" > "${TAR}" && \
+    curl -L "http://d3kbcqa49mib13.cloudfront.net/${TAR}" > "${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
-    ln -s spark-spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION spark && \
+    ln -s "spark-spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \
     # causes unmet dependency breakage
     #apt-get purge -y curl tar && \
     #apt-get autoremove -y && \

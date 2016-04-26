@@ -29,7 +29,7 @@ LABEL Description="ZooKeeper" \
 RUN \
     apt-get update && \
     apt-get install -y curl tar && \
-    curl "http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" > "${TAR}" && \
+    curl -L "http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" > "${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s zookeeper-${ZOOKEEPER_VERSION} zookeeper && \

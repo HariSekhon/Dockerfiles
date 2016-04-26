@@ -32,8 +32,7 @@ LABEL Description="Tachyon from BDAS" \
 RUN apt-get update && \
     apt-get install -y sudo openssh-server curl tar && \
     apt-get clean && \
-    cd / && \
-    curl -L "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" > "/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
+    wget -O "tachyon-${TACHYON_VERSION}-bin.tar.gz" "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     tar zxvf "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     rm -fv "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     ln -sv "tachyon-${TACHYON_VERSION}" tachyon && \

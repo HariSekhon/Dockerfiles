@@ -14,14 +14,22 @@
 FROM busybox
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG CONSUL_VERSION
+ARG CONSUL_VERSION=0.6.3
 
 ENV PATH $PATH:/
 
 LABEL Description="HashiCorp's Consul minimal" \
       "Consul Version"="$CONSUL_VERSION"
 
-COPY consul /
+# faster, cached
+#COPY consul /
+
+RUN \
+    curl https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > /consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    cd / && \
+    unzip -o consul_${CONSUL_VERSION}_linux_amd64.zip && \
+    rm -f consul_${CONSUL_VERSION}_linux_amd64.zip
+
 #COPY entrypoint.sh /
 
 EXPOSE 8400 8500 8600

@@ -22,6 +22,8 @@ then select one and pull / run it as usual:
 
 ### Full Inventory:
 
+##### Official Technologies:
+
 - Apache Drill
 - Cassandra (Dev with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Consul
@@ -36,7 +38,7 @@ then select one and pull / run it as usual:
 - Tachyon
 - ZooKeeper
 
-##### GitHub Repos
+##### My GitHub Repos:
 
 - Nagios Plugins ([Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) pre-built)
 - Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) repo pre-built)

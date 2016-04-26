@@ -16,7 +16,7 @@
 FROM harisekhon/nagios-plugins
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG CASSANDRA_VERSION
+ARG CASSANDRA_VERSION=22
 
 LABEL Description="Cassandra Dev"
 

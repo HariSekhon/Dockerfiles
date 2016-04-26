@@ -36,9 +36,10 @@ RUN \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s "spark-spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \
-    # causes unmet dependency breakage
-    #apt-get purge -y wget tar && \
-    #apt-get autoremove -y && \
+    # tar causes unmet dependency breakage
+    #apt-get purge -y tar && \
+    apt-get purge -y wget && \
+    apt-get autoremove -y && \
     apt-get clean
 
 #RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \

@@ -31,8 +31,8 @@ LABEL Description="Apache Spark" \
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN \
     apt-get update && \
-    apt-get install -y sudo openssh-server curl tar && \
-    curl -L "http://d3kbcqa49mib13.cloudfront.net/${TAR}" > "${TAR}" && \
+    apt-get install -y sudo openssh-server wget tar && \
+    wget -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s "spark-spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \

@@ -34,6 +34,7 @@ RUN \
     wget http://download.h2o.ai/versions/h2o-${H2O_VERSION}.zip && \
     unzip h2o-${H2O_VERSION}.zip && \
     rm h2o-${H2O_VERSION}.zip && \
+    ln -s h2o-${H2O_VERSION} h2o && \
     apt-get purge -y wget unzip && \
     apt-get autoremove -y && \
     apt-get clean

@@ -21,8 +21,8 @@ all:
 
 .PHONY: build
 build:
-	wget -c https://releases.hashicorp.com/serf/$(SERF_VERSION)/serf_$(SERF_VERSION)_linux_amd64.zip
-	unzip -o serf_$(SERF_VERSION)_linux_amd64.zip
+	#wget -c https://releases.hashicorp.com/serf/$(SERF_VERSION)/serf_$(SERF_VERSION)_linux_amd64.zip
+	#unzip -o serf_$(SERF_VERSION)_linux_amd64.zip
 	# makes build slightly quicker but doesn't make image any smaller
 	#rm -f serf_$(SERF_VERSION)_linux_amd64.zip
 	# multiple tags should arrive in Docker 1.10+

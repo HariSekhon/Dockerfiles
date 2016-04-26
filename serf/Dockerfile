@@ -32,9 +32,9 @@ RUN \
     apt-get update && \
     apt-get install -y curl unzip && \
     cd / && \
-    curl https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip > serf_${SERF_VERSION}_linux_amd64.zip && \
-    unzip serf_${SERF_VERSION}_linux_amd64.zip && \
-    rm -fv serf_${SERF_VERSION}_linux_amd64.zip && \
+    curl -L "https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip" > "serf_${SERF_VERSION}_linux_amd64.zip" && \
+    unzip "serf_${SERF_VERSION}_linux_amd64.zip" && \
+    rm -fv "serf_${SERF_VERSION}_linux_amd64.zip" && \
     apt-get purge -y curl unzip && \
     apt-get autoremove -y && \
     apt-get clean

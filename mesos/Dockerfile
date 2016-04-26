@@ -24,7 +24,6 @@ LABEL Description="Apache Mesos" \
       "Apache Mesos Version"="$MESOS_VERSION"
 
 RUN \
-    cd / && \
     apt-get update && \
     apt-get install -y wget && \
     # 0.23
@@ -41,8 +40,9 @@ RUN \
     apt-get install -yf && \
     dpkg -i /mesos*.deb && \
     dpkg -P wget && \
+    apt-get autoremove -y && \
     apt-get clean && \
-    rm mesos*.deb
+    rm -v mesos*.deb
 
 COPY entrypoint.sh /
 

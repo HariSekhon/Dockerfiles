@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-ALLUXIO_VERSION=0.8.2
+ALLUXIO_VERSION=1.0.1
 
 TAG=harisekhon/alluxio
 

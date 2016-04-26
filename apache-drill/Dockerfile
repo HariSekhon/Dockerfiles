@@ -14,20 +14,28 @@
 FROM harisekhon/centos-dev
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG DRILL_VERSION
+ARG DRILL_VERSION=1.4.0
+ARG DRILL_HEAP=900M
+# use this name in container linking
+ARG ZOOKEEPER_HOST=zookeeper
 
 ENV PATH $PATH:/apache-drill/bin
 
 LABEL Description="Apache Drill" \
       "Apache Drill Version"="$DRILL_VERSION"
 
-# use dev build it's quicker and cached
-#RUN yum install -y java-1.7.0-openjdk && yum clean all
+# faster cached
+#COPY apache-drill-$DRILL_VERSION /apache-drill
+#COPY drill.ini /etc/supervisord.d/
 
-RUN yum install -y supervisor && yum clean all
-
-COPY apache-drill-$DRILL_VERSION /apache-drill
-COPY drill.ini /etc/supervisord.d/
+RUN \
+    curl 'http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/apache-drill-${DRILL_VERSION}.tar.gz&action=download' > "apache-drill-${DRILL_VERSION}.tar.gz" && \
+    tar zxvf apache-drill-$(DRILL_VERSION).tar.gz && \
+    perl -pi -e "s/^DRILL_HEAP=\".+\"/DRILL_HEAP=\"${DRILL_HEAP}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-env.sh" && \
+    perl -pi -e "s/^(\s*)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf" && \
+    rm -fv apache-drill-$(DRILL_VERSION).tar.gz && \
+    yum install -y supervisor && \
+    yum clean all
 
 EXPOSE 8047
 

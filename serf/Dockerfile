@@ -14,15 +14,21 @@
 FROM busybox
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SERF_VERSION
+ARG SERF_VERSION=0.7.0
 
 ENV PATH $PATH:/
 
 LABEL Description="HashiCorp's Serf minimal" \
       "Serf Version"="$SERF_VERSION"
 
-COPY serf /
+#COPY serf /
 #COPY entrypoint.sh /
+
+RUN curl https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip > /serf_${SERF_VERSION}_linux_amd64.zip && \
+    yum install -y unzip && \
+    cd / && unzip -o serf_${SERF_VERSION}_linux_amd64.zip && \
+    yum remove -y unzip && \
+    yum clean all
 
 EXPOSE 7946 7373
 

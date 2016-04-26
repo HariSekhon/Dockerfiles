@@ -16,8 +16,9 @@
 FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SCALA_VERSION
-ARG KAFKA_VERSION
+ARG SCALA_VERSION=2.10
+ARG KAFKA_VERSION=0.8.2.2
+ARG ADVERTISED_HOSTNAME=192.168.99.100
 
 ENV PATH $PATH:/kafka/bin
 
@@ -25,10 +26,14 @@ LABEL Description="Apache Kafka by LinkedIn" \
       "Scala Version"="$SCALA_VERSION" \
       "Kafka Version"="$KAFKA_VERSION"
 
-# use dev build it's quicker and cached
-#RUN yum install -y java-1.7.0-openjdk && yum clean all
+# quicker cached
+#COPY kafka_$SCALA_VERSION-$KAFKA_VERSION /kafka
 
-COPY kafka_$SCALA_VERSION-$KAFKA_VERSION /kafka
+RUN \
+    curl 'https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download' > 'kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz' && \
+    tar zxvf kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && \
+    rm -fv kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz && \
+    perl -pi.orig -e 's/\s*#?\s*advertised.host.name.*/advertised.host.name=${ADVERTISED_HOSTNAME}/' 'kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/server.properties'
 
 EXPOSE 2181 9092
 

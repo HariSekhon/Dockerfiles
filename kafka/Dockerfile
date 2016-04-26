@@ -29,11 +29,13 @@ LABEL Description="Apache Kafka by LinkedIn" \
 # quicker cached
 #COPY kafka_$SCALA_VERSION-$KAFKA_VERSION /kafka
 
-RUN \
+RUN apt-get update && \
+    apt-get install -y curl tar && \
     curl -L "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" > "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     tar zxvf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_$(SCALA_VERSION)-$(KAFKA_VERSION).tgz" && \
-    perl -pi.orig -e "s/\s*#?\s*advertised.host.name.*/advertised.host.name=${ADVERTISED_HOSTNAME}/" "kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/server.properties"
+    perl -pi.orig -e "s/\s*#?\s*advertised.host.name.*/advertised.host.name=${ADVERTISED_HOSTNAME}/" "kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/server.properties" && \
+    apt-get clean
 
 EXPOSE 2181 9092
 

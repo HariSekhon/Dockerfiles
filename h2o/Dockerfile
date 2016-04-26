@@ -16,7 +16,8 @@
 FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG H2O_VERSION
+#ARG H2O_VERSION=2.6.1.5
+ARG H2O_VERSION=3.8.0.4
 
 ENV PATH $PATH:/h2o/bin
 

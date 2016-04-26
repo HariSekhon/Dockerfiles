@@ -71,7 +71,7 @@ To build all Docker images:
 make
 ```
 
-To build a specific Docker image, cd to it's directory and run make:
+To build a specific Docker image, enter it's directory and run make:
 
 ```
 cd nagios-plugins

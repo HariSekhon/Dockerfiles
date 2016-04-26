@@ -17,14 +17,26 @@ FROM harisekhon/debian-jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG ZOOKEEPER_VERSION=3.4.6
+ARG TAR=zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
-#ENV PATH $PATH:/zookeeper-$ZOOKEEPER_VERSION
+ENV PATH $PATH:/zookeeper/bin
 
 LABEL Description="ZooKeeper" \
       "ZooKeeper Version"="$ZOOKEEPER_VERSION"
 
-COPY zookeeper-$ZOOKEEPER_VERSION /zookeeper
-RUN cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg
+#COPY zookeeper-$ZOOKEEPER_VERSION /zookeeper
+
+RUN \
+    apt-get update && \
+    apt-get install -y curl tar && \
+	curl "http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" > "${TAR}" && \
+	tar zxvf "${TAR}" && \
+	rm -fv "${TAR}" && \
+    ln -s zookeeper-${ZOOKEEPER_VERSION} zookeeper && \
+    cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
+    apt-get purge -y curl tar && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 EXPOSE 2181 3181 4181
 

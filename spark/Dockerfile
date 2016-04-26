@@ -35,6 +35,7 @@ RUN \
     curl "http://d3kbcqa49mib13.cloudfront.net/${TAR}" > "${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
+    ln -s /spark-spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION /spark && \
     apt-get purge -y curl && \
     apt-get autoremove -y && \
     apt-get clean

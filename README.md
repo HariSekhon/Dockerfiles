@@ -29,6 +29,7 @@ then select one and pull / run it as usual:
 - Cassandra (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Consul
 - H2O by 0xdata
+- Hadoop (HDFS + Yarn)
 - HBase
 - Kafka
 - Mesos

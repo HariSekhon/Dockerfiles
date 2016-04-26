@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG HBASE_VERSION=1.2.1
 
-ENV PATH $PATH:/HBASE/bin
+ENV PATH $PATH:/hbase/bin
 
 LABEL Description="HBase Dev", \
       "HBase Version"="$HBASE_VERSION"

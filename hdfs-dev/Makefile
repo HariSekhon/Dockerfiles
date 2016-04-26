@@ -1,0 +1,45 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2016-04-24 21:32:37 +0100 (Sun, 24 Apr 2016)
+#
+#  vim:ts=4:sts=4:sw=4:noet
+#
+#  https://github.com/harisekhon/Dockerfiles/hbase-dev
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+HADOOP_VERSION=2.7.2
+
+TAG=harisekhon/hdfs-dev
+
+.PHONY: all
+all:
+	make build
+
+.PHONY: build
+build:
+	docker build --build-arg HADOOP_VERSION=$(HADOOP_VERSION) -t $(TAG):$(HADOOP_VERSION) . && docker tag -f $(TAG):$(HADOOP_VERSION) $(TAG):latest
+
+.PHONY: nocache
+nocache:
+	docker build --no-cache --build-arg HADOOP_VERSION=$(HADOOP_VERSION) -t $(TAG):$(HADOOP_VERSION) . && docker tag -f $(TAG):$(HADOOP_VERSION) $(TAG):latest
+
+.PHONY: push
+push:
+	docker push $(TAG)
+
+.PHONY: clean
+clean:
+	@echo Nothing to clean
+
+#.PHONY: test
+#test:
+#	cd .. && make test deps
+#	docklint Dockerfile
+
+.PHONY: run
+run:
+	docker run -ti -p 8020:8020 -p 9000:9000 -p 50070:50070 -p 50075:50075 harisekhon/hdfs-dev

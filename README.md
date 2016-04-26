@@ -66,7 +66,7 @@ git clone https://github/harisekhon/Dockerfiles
 cd Dockerfiles
 ```
 
-To build images from source Dockerfiles, either
+To build specific Docker image, cd to it's directory and run make:
 
 ```
 cd nagios-plugins
@@ -74,4 +74,4 @@ cd nagios-plugins
 make
 ```
 
-or to build all images locally, run ```make``` at the top level.
+To build all Docker images, simply run ```make``` at the top level which will iterate through all the directories running ```make``` in each one.

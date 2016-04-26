@@ -1,7 +1,7 @@
 Hari Sekhon Docker
 =========================
 
-Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites on them.
+Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
 ### Contains:
 
@@ -36,15 +36,17 @@ then select one and pull / run it as usual:
 - Tachyon
 - ZooKeeper
 
+##### GitHub Repos
+
 - Nagios Plugins ([Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) pre-built)
 - Perl CLI Tools ([Tools](https://github.com/harisekhon/tools) repo pre-built)
 - PyTools CLI tools ([PyTools](https://github.com/harisekhon/pytools) repo pre-built)
 
-- CentOS latest with all my github repos pre-built (based on harisekhon/centos-dev)
-- Debian latest with all my github repos pre-built (based on harisekhon/debian-dev)
-- Ubuntu latest with all my github repos pre-built (based on harisekhon/ubuntu-dev)
+- CentOS + all Github repos pre-built
+- Debian + all Github repos pre-built
+- Ubuntu + all Github repos pre-built
 
-#### Base Images:
+##### Base Images:
 
 - CentOS latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make, EPEL etc.
 - Debian latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc.

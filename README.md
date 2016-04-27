@@ -59,7 +59,7 @@ then select one and pull / run it as usual:
 
 - CentOS latest combinations of Java OpenJRE 7/8 and Scala 2.10/2.11
 - Debian latest with Java OpenJRE 7
-- Ubuntu 14.04 with Java OpenJRE 7
+- Ubuntu 14.04 with Java OpenJRE 7, 8, 9
 
 ### To Build from Dockerfile + source yourself
 

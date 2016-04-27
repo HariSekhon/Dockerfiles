@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SCALA_VERSION=2.10.6
 
-LABEL Description="CentOS, OpenJRE 7, Scala 2.10"
+LABEL Description="Java 7 + Scala 2.10 on CentOS (OpenJRE)"
 
 RUN rpm -ivh http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm
 

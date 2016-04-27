@@ -57,9 +57,9 @@ then select one and pull / run it as usual:
 - Debian latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc.
 - Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, GCC, Maven, SBT, Make etc.
 
-- CentOS latest combinations of Java OpenJRE 7/8 and Scala 2.10/2.11
-- Debian latest with Java OpenJRE 7
-- Ubuntu 14.04 with Java OpenJRE 7, 8, 9
+- CentOS latest combinations of Java 7/8 (OpenJRE) and Scala 2.10/2.11
+- Debian latest with Java 7 (OpenJRE)
+- Ubuntu 14.04 with Java 7, Ubuntu latest with Java 8, 9 (OpenJRE)
 
 ### To Build from Dockerfile + source yourself
 

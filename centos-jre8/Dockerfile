@@ -14,7 +14,7 @@
 FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="CentOS + OpenJRE 8"
+LABEL Description="Java 8 on CentOS (OpenJRE)"
 
 RUN yum install -y \
     java-1.8.0-openjdk-headless \

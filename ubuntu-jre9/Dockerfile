@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM ubuntu:14.04
+FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Java 9 on Ubuntu 14.04 (OpenJRE)"
+LABEL Description="Java 9 on Ubuntu latest (OpenJRE)"
 
 RUN apt-get update && \
     apt-get install -y openjdk-9-jre-headless && \

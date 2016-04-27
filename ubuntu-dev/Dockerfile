@@ -26,7 +26,7 @@ RUN apt-get update && \
                        python-pip \
                        ruby \
                        ruby-dev \
-                       openjdk-9-jdk \
+                       openjdk-8-jdk \
                        libexpat1-dev \
                        libssl-dev \
                        libsasl2-dev \

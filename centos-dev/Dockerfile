@@ -33,6 +33,7 @@ RUN yum install -y \
     ruby \
     ruby-devel \
     java-1.7.0-openjdk \
+    groovy \
     openssl-devel \
     mysql-devel \
     net-tools \

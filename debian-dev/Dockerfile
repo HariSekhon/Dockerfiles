@@ -28,6 +28,7 @@ RUN apt-get update && \
                        ruby-dev \
                        openjdk-7-jdk \
                        groovy2 \
+                       gradle \
                        libexpat1-dev \
                        libssl-dev \
                        libsasl2-dev \

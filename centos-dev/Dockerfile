@@ -45,8 +45,10 @@ RUN yum install -y \
     cyrus-sasl-devel \
     yum-security \
     yum-plugin-security \
+    vim-enhanced \
     wget \
     tar \
+    unzip \
     which \
     vim-enhanced \
     epel-release && \
@@ -54,9 +56,12 @@ RUN yum install -y \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y --nogpgcheck sbt && \
     yum clean all && \
+    # Gradle doesn't have an RPM :-(
+    cd /opt && wget https://services.gradle.org/distributions/gradle-2.13-bin.zip && unzip gradle-2.13-bin.zip && ln -sv gradle-2.13 gradle && rm -f gradle-2.13-bin.zip && cd - && \
     # workaround for CentOS (found via strace) otherwise incorrectly states "Warning: You do not have write permission for Perl library directories." and local::lib hits use of uninitialized variables errors in base modules like even core File::Basename :-/
     mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
 
 COPY java.sh /etc/profile.d/
+COPY grails.sh /etc/profile.d/
 
 CMD /bin/bash

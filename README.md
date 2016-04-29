@@ -25,20 +25,20 @@ then select one and pull / run it as usual:
 ##### Official Technologies:
 
 - Alluxio
-- Apache Drill
-- Cassandra (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- Apache Drill (embedded, opens Drill shell)
+- Cassandra (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins), opens CQL shell)
 - Consul
 - H2O by 0xdata
-- Hadoop (HDFS + Yarn)
-- HBase
+- Hadoop (HDFS + Yarn, pseudo-distributed)
+- HBase (pseudo-distributed, opens HBase shell)
 - Kafka
 - Mesos
 - Riak
 - Riak (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Serf
-- Spark
+- Spark (opens Spark shell)
 - Tachyon
-- ZooKeeper
+- ZooKeeper (opens ZK shell)
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 

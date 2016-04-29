@@ -62,6 +62,6 @@ RUN yum install -y \
     mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
 
 COPY java.sh /etc/profile.d/
-COPY grails.sh /etc/profile.d/
+COPY gradle.sh /etc/profile.d/
 
 CMD /bin/bash

@@ -17,7 +17,9 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS Dev Build"
 
-RUN yum install -y \
+RUN \
+    yum update && \
+    yum install -y \
     git \
     make \
     gcc \

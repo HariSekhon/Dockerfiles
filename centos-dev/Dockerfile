@@ -53,6 +53,7 @@ RUN \
     unzip \
     which \
     vim-enhanced \
+    zip \
     epel-release && \
     yum install -y jwhois && \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \

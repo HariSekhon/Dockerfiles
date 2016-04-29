@@ -39,9 +39,9 @@ RUN \
                        libkrb5-dev \
                        libev4 \
                        libsnappy-dev \
-                       unzip && \
-                       vim && \
-                       wget && \
+                       unzip \
+                       vim \
+                       wget \
                        zip && \
     # for sbt https repo
     apt-get install -y apt-transport-https && \

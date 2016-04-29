@@ -31,4 +31,6 @@ RUN yum install -y make git cassandra$CASSANDRA_VERSION && yum clean all
 
 EXPOSE 7199 9042 9160
 
-CMD ["/usr/sbin/cassandra", "-f"]
+COPY entrypoint.sh /
+
+CMD /entrypoint.sh

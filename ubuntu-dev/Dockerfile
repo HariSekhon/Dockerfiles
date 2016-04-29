@@ -39,8 +39,10 @@ RUN \
                        libkrb5-dev \
                        libev4 \
                        libsnappy-dev \
-                       vim \
+                       unzip && \
+                       vim && \
                        wget && \
+                       zip && \
     # for sbt https repo
     apt-get install -y apt-transport-https && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \

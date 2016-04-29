@@ -17,6 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Debian Dev Build"
 
 RUN apt-get update && \
+    apt-get upgrade && \
     apt-get install -y build-essential \
                        git \
                        make \
@@ -28,7 +29,7 @@ RUN apt-get update && \
                        ruby-dev \
                        openjdk-7-jdk \
                        groovy2 \
-                       gradle \
+                       #gradle \
                        libexpat1-dev \
                        libssl-dev \
                        libsasl2-dev \

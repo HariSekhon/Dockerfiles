@@ -16,7 +16,9 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu Dev Build"
 
-RUN apt-get update && \
+RUN \
+    apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y build-essential \
                        git \
                        make \
@@ -27,6 +29,8 @@ RUN apt-get update && \
                        ruby \
                        ruby-dev \
                        openjdk-8-jdk \
+                       groovy \
+                       gradle \
                        libexpat1-dev \
                        libssl-dev \
                        libsasl2-dev \
@@ -35,8 +39,10 @@ RUN apt-get update && \
                        libkrb5-dev \
                        libev4 \
                        libsnappy-dev \
+                       unzip \
                        vim \
-                       wget && \
+                       wget \
+                       zip && \
     # for sbt https repo
     apt-get install -y apt-transport-https && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \

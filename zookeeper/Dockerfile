@@ -45,4 +45,6 @@ RUN \
 
 EXPOSE 2181 3181 4181
 
-CMD /zookeeper/bin/zkServer.sh start-foreground
+COPY entrypoint.sh /
+
+CMD /entrypoint.sh

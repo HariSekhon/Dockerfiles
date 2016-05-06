@@ -20,34 +20,38 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 export JAVA_HOME="${JAVA_HOME:-/usr}"
 
-if ! [ -f /root/.ssh/authorized_keys ]; then
-    ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""
-    cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
-    chmod -v 0400 /root/.ssh/authorized_keys
+if [ $# -gt 0 ]; then
+    exec $@
+else
+    if ! [ -f /root/.ssh/authorized_keys ]; then
+        ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""
+        cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
+        chmod -v 0400 /root/.ssh/authorized_keys
+    fi
+
+    if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
+        /usr/sbin/sshd-keygen
+    fi
+
+    if ! pgrep -x sshd &>/dev/null; then
+        /usr/sbin/sshd
+        sleep 1
+    fi
+    if ! [ -f /root/.ssh/known_hosts ]; then
+        ssh-keyscan localhost | tee -a /root/.ssh/known_hosts
+        ssh-keyscan 0.0.0.0 | tee -a /root/.ssh/known_hosts
+    fi
+    hostname=$(hostname -f)
+    grep -q "$hostname" /root/.ssh/known_hosts ||
+        ssh-keyscan $hostname | tee -a /root/.ssh/known_hosts
+
+    #mkdir /hadoop/logs
+
+    sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
+
+    /hadoop/sbin/start-dfs.sh
+    /hadoop/sbin/start-yarn.sh
+    tail -f /hadoop/logs/*
+    /hadoop/sbin/stop-yarn.sh
+    /hadoop/sbin/stop-dfs.sh
 fi
-
-if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-    /usr/sbin/sshd-keygen
-fi
-
-if ! pgrep -x sshd &>/dev/null; then
-    /usr/sbin/sshd
-    sleep 1
-fi
-if ! [ -f /root/.ssh/known_hosts ]; then
-    ssh-keyscan localhost | tee -a /root/.ssh/known_hosts
-    ssh-keyscan 0.0.0.0 | tee -a /root/.ssh/known_hosts
-fi
-hostname=$(hostname -f)
-grep -q "$hostname" /root/.ssh/known_hosts ||
-    ssh-keyscan $hostname | tee -a /root/.ssh/known_hosts
-
-#mkdir /hadoop/logs
-
-sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
-
-/hadoop/sbin/start-dfs.sh
-/hadoop/sbin/start-yarn.sh
-tail -f /hadoop/logs/*
-/hadoop/sbin/stop-yarn.sh
-/hadoop/sbin/stop-dfs.sh

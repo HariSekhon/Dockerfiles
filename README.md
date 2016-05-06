@@ -59,7 +59,7 @@ then select one and pull / run it as usual:
 
 ###### Base Images + Java / Scala:
 
-All builds use OpenJDK for dev / OpenJRE for run. See this for why not Oracle Java:
+All builds use OpenJDK for dev / OpenJRE for run. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
 
 https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
 

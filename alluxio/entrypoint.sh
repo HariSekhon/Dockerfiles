@@ -16,24 +16,23 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-if ! [ -f /root/.ssh/authorized_keys ]; then
-    ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""
-    cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
-    chmod -v 0400 /root/.ssh/authorized_keys
-fi
-
-if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-    /usr/sbin/sshd-keygen
-fi
-
-if ! pgrep -x sshd &>/dev/null; then
-    /usr/sbin/sshd
-    sleep 1
-fi
-
 if [ $# -gt 0 ]; then
     exec $@
 else
+    if ! [ -f /root/.ssh/authorized_keys ]; then
+        ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""
+        cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
+        chmod -v 0400 /root/.ssh/authorized_keys
+    fi
+
+    if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
+        /usr/sbin/sshd-keygen
+    fi
+
+    if ! pgrep -x sshd &>/dev/null; then
+        /usr/sbin/sshd
+        sleep 1
+    fi
     /alluxio/bin/alluxio-start.sh local
     sleep 2
     cat /alluxio/logs/*

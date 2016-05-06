@@ -57,7 +57,7 @@ then select one and pull / run it as usual:
 - Debian latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
 - Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
 
-###### Java:
+###### Base Images + Java / Scala:
 
 All builds use OpenJDK for dev / OpenJRE for run. See this for why not Oracle Java:
 

@@ -57,6 +57,12 @@ then select one and pull / run it as usual:
 - Debian latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
 - Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
 
+###### Java:
+
+All builds use OpenJDK for dev / OpenJRE for run. See this for why not Oracle Java:
+
+https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
+
 - CentOS latest combinations of Java 7/8 (OpenJRE) and Scala 2.10/2.11
 - Debian latest with Java 7 (OpenJRE)
 - Ubuntu 14.04 with Java 7, Ubuntu latest with Java 8, 9 (OpenJRE)

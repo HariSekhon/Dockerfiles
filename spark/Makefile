@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-SPARK_VERSION=1.5.2
+SPARK_VERSION=1.6.1
 HADOOP_VERSION=2.6
 
 TAG=harisekhon/spark

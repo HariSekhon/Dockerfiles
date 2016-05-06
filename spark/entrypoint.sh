@@ -35,8 +35,9 @@ if [ $# -gt 0 ]; then
     exec $@
 else
     /spark/sbin/start-all.sh local
-    sleep 2
+    sleep 3
     cat /spark/logs/*
     echo "================="
-    tail -f /spark/logs/*
+    #tail -f /spark/logs/*
+    /spark/bin/spark-shell --master spark://$(hostname -f):7077
 fi

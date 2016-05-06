@@ -19,24 +19,27 @@ set -euo pipefail
 if [ $# -gt 0 ]; then
     exec $@
 else
-    if ! [ -f /root/.ssh/authorized_keys ]; then
-        ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""
-        cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
-        chmod -v 0400 /root/.ssh/authorized_keys
-    fi
-
-    if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-        /usr/sbin/sshd-keygen
-    fi
-
-    if ! pgrep -x sshd &>/dev/null; then
-        /usr/sbin/sshd
-        sleep 1
-    fi
-    /spark/sbin/start-all.sh local
-    sleep 3
-    cat /spark/logs/*
-    echo "================="
-    #tail -f /spark/logs/*
-    /spark/bin/spark-shell --master spark://$(hostname -f):7077
+#    if ! [ -f /root/.ssh/authorized_keys ]; then
+#        ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""
+#        cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
+#        chmod -v 0400 /root/.ssh/authorized_keys
+#    fi
+#
+#    if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
+#        /usr/sbin/sshd-keygen
+#    fi
+#
+#    if ! pgrep -x sshd &>/dev/null; then
+#        /usr/sbin/sshd
+#        sleep 1
+#    fi
+#    mkdir -v /spark/logs
+#    /spark/sbin/start-all.sh local
+#    sleep 3
+#    cat /spark/logs/*
+#    echo "================="
+#    #tail -f /spark/logs/*
+    # spark-shell is hanging :-(
+    #/spark/bin/spark-shell --master spark://$(hostname -f):7077
+    /spark/bin/spark-shell
 fi

@@ -14,7 +14,7 @@
 FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Java + Debian Base Build"
+LABEL Description="Java + Debian (OpenJDK)"
 
 RUN apt-get update && \
     apt-get install -y openjdk-7-jre-headless && \

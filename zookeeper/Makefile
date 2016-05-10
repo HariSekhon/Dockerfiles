@@ -23,21 +23,8 @@ build:
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -fr zookeeper-*.tar.gz zookeeper-*
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -p 2181:2181 harisekhon/zookeeper
+	docker run -ti -p 2181:2181 harisekhon/zookeeper

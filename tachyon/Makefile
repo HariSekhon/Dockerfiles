@@ -23,21 +23,8 @@ build:
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -rf tachyon-$(TACHYON_VERSION)-bin*
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -t -p 19999:19999 -p 30000:30000 harisekhon/tachyon
+	docker run -ti -p 19999:19999 -p 30000:30000 harisekhon/tachyon

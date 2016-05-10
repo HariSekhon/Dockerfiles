@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/kafka_scala-$(SCALA_VERSION)
+TAG=harisekhon/kafka
 
 .PHONY: all
 all:

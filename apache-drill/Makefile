@@ -23,7 +23,7 @@ build:
 
 .PHONY: nocache
 nocache:
-	make build
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: push
 push:

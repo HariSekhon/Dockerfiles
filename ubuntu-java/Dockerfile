@@ -17,7 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Java + Ubuntu (OpenJDK)"
 
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jre-headless && \
+    apt-get install -y openjdk-9-jdk && \
     apt-get clean
 
 CMD /bin/bash

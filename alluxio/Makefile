@@ -27,4 +27,4 @@ nocache:
 
 .PHONY: run
 run:
-	docker run -t -p 19999:19999 -p 30000:30000 harisekhon/alluxio
+	docker run -ti -p 19999:19999 -p 30000:30000 harisekhon/alluxio

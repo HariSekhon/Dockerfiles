@@ -11,12 +11,12 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos-jre7
+#FROM harisekhon/centos:jre7
 # > 100MB smaller than centos
-FROM harisekhon/debian-jre7
+FROM harisekhon/debian:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SPARK_VERSION=1.6.1
+ARG SPARK_VERSION=1.3.1
 ARG HADOOP_VERSION=2.6
 ARG TAR=spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 

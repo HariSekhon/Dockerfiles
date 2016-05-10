@@ -16,7 +16,7 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ZOOKEEPER_VERSION=3.3.6
+ARG ZOOKEEPER_VERSION=3.4.6
 ARG TAR=zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
 ENV PATH $PATH:/zookeeper/bin

@@ -23,15 +23,7 @@ build:
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -rf "$(DIR)" "$(TAR)"
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: run
 run:

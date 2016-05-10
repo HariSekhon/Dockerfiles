@@ -23,17 +23,4 @@ build:
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	@echo Nothing to clean
-
-#.PHONY: test
-#test:
-#	cd .. && make test deps
-#	docklint Dockerfile
+	docker build -t $(TAG) --no-cache .

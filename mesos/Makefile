@@ -23,21 +23,8 @@ build:
 
 .PHONY: nocache
 nocache:
-	make build
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -rf mesos-$(MESOS_VERSION)*
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -t -p 5050-5051:5050-5051 harisekhon/mesos
+	docker run -ti -p 5050-5051:5050-5051 harisekhon/mesos

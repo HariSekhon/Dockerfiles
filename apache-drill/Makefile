@@ -27,4 +27,4 @@ nocache:
 
 .PHONY: run
 run:
-	docker run -t -p 8047:8047 harisekhon/apache-drill
+	docker run -ti -p 8047:8047 harisekhon/apache-drill

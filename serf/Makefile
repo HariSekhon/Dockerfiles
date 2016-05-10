@@ -23,17 +23,8 @@ build:
 
 .PHONY: nocache
 nocache:
-	make build
+	docker build -t $(TAG) --no-cache .
 
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm serf_*_linux_amd64.zip serf
-
-#.PHONY: all
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+.PHONY: run
+run:
+	docker run -ti -p 7946:7946 -p 7373:7373 harisekhon/serf

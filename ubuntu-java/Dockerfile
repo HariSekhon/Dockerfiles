@@ -14,10 +14,10 @@
 FROM ubuntu:14.04
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Java 7 on Ubuntu 14.04 (OpenJRE)"
+LABEL Description="Java + Ubuntu 14.04 (OpenJDK)"
 
 RUN apt-get update && \
-    apt-get install -y openjdk-7-jre-headless && \
+    apt-get install -y openjdk-7-jdk && \
     apt-get clean
 
 CMD /bin/bash

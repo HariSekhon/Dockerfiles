@@ -11,8 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-HADOOP_VERSION=2.7.2
-
 TAG=harisekhon/hadoop-dev
 
 .PHONY: all
@@ -21,11 +19,11 @@ all:
 
 .PHONY: build
 build:
-	docker build --build-arg HADOOP_VERSION=$(HADOOP_VERSION) -t $(TAG):$(HADOOP_VERSION) . && docker tag -f $(TAG):$(HADOOP_VERSION) $(TAG):latest
+	docker build -t $(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache --build-arg HADOOP_VERSION=$(HADOOP_VERSION) -t $(TAG):$(HADOOP_VERSION) . && docker tag -f $(TAG):$(HADOOP_VERSION) $(TAG):latest
+	docker build --no-cache -t $(TAG) .
 
 .PHONY: push
 push:

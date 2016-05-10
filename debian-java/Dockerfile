@@ -14,10 +14,10 @@
 FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Debian + OpenJRE 7"
+LABEL Description="Java + Debian Base Build"
 
 RUN apt-get update && \
-    apt-get install -y openjdk-7-jre-headless && \
+    apt-get install -y openjdk-7-jdk && \
     apt-get clean
 
 CMD /bin/bash

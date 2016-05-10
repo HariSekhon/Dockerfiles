@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos-jre7
+#FROM harisekhon/centos:jre7
 # > 100MB smaller than centos
-FROM harisekhon/debian-jre7
+FROM harisekhon/debian:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG TACHYON_VERSION=0.8.2

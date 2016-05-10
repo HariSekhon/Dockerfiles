@@ -14,10 +14,10 @@
 FROM harisekhon/centos-java:jre8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SCALA_VERSION=2.11.7
+ARG SCALA_VERSION=2.10.6
 
 LABEL Description="Scala + CentOS (+OpenJDK)"
 
-RUN rpm -ivh http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm
+RUN rpm -ivh http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm
 
 CMD /bin/bash

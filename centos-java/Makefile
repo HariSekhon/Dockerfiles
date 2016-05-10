@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/centos-jre7
+TAG=harisekhon/centos-java
 
 .PHONY: all
 all:

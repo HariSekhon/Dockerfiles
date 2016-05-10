@@ -14,10 +14,10 @@
 FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Java 7 on CentOS (OpenJRE)"
+LABEL Description="Java + CentOS Base Build"
 
 RUN yum install -y \
-    java-1.7.0-openjdk-headless \
+    java-1.7.0-openjdk-headless; \
     yum clean all
 
 COPY java.sh /etc/profile.d/

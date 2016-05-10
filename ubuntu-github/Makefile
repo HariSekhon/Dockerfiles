@@ -19,9 +19,9 @@ all:
 
 .PHONY: build
 build:
-	@date > invalidate_cache
+	#@date > invalidate_cache
 	docker build -t $(TAG) .
-	@rm -f invalidate_cache
+	#@rm -f invalidate_cache
 
 .PHONY: nocache
 nocache:

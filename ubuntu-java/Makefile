@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/ubuntu-jre7
+TAG=harisekhon/ubuntu-java
 
 .PHONY: all
 all:

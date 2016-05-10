@@ -11,13 +11,13 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM ubuntu:14.04
+FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Java + Ubuntu 14.04 (OpenJDK)"
+LABEL Description="Java + Ubuntu (OpenJDK)"
 
 RUN apt-get update && \
-    apt-get install -y openjdk-9-jre-headless && \
+    apt-get install -y openjdk-8-jdk && \
     apt-get clean
 
 CMD /bin/bash

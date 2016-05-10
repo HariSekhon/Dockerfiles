@@ -11,8 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-HBASE_VERSION=1.2.1
-
 TAG=harisekhon/hbase-dev
 
 .PHONY: all
@@ -21,11 +19,11 @@ all:
 
 .PHONY: build
 build:
-	docker build --build-arg HBASE_VERSION=$(HBASE_VERSION) -t $(TAG):$(HBASE_VERSION) . && docker tag -f $(TAG):$(HBASE_VERSION) $(TAG):latest
+	docker build -t $(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache --build-arg HBASE_VERSION=$(HBASE_VERSION) -t $(TAG):$(HBASE_VERSION) . && docker tag -f $(TAG):$(HBASE_VERSION) $(TAG):latest
+	docker build --no-cache -t $(TAG) .
 
 .PHONY: push
 push:

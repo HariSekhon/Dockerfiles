@@ -16,7 +16,7 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG MESOS_VERSION=0.24.0
+ARG MESOS_VERSION=0.23.0
 
 ENV PATH $PATH:/mesos/bin
 
@@ -27,9 +27,9 @@ RUN \
     apt-get update && \
     apt-get install -y wget && \
     # 0.23
-    #wget http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.debian81_amd64.deb && \
+    wget http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.debian81_amd64.deb && \
     # 0.24
-    wget http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.33.debian81_amd64.deb && \
+    #wget http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.33.debian81_amd64.deb && \
     # 0.25
     #wget http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.70.debian81_amd64.deb && \
     # 0.26

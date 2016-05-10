@@ -27,4 +27,4 @@ nocache:
 
 .PHONY: run
 run:
-	docker run -p 8500:8500 harisekhon/consul agent -dev -data-dir /tmp -client 0.0.0.0
+	docker run -ti -p 8500:8500 harisekhon/consul agent -dev -data-dir /tmp -client 0.0.0.0

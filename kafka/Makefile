@@ -23,21 +23,8 @@ build:
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -rf kafka_$(SCALA_VERSION)-$(KAFKA_VERSION)*
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -t -p 2181:2181 -p 9092:9092 $(TAG)
+	docker run -ti -p 2181:2181 -p 9092:9092 $(TAG)

@@ -11,8 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-ALLUXIO_VERSION=1.0.1
-
 TAG=harisekhon/alluxio
 
 .PHONY: all
@@ -21,12 +19,7 @@ all:
 
 .PHONY: build
 build:
-	# done in Docker now
-	#[ -d "alluxio-$(ALLUXIO_VERSION)" ] || wget -c http://alluxio-project.org/downloads/files/$(ALLUXIO_VERSION)/alluxio-$(ALLUXIO_VERSION)-bin.tar.gz
-	#[ -d "alluxio-$(ALLUXIO_VERSION)" ] || tar zxvf alluxio-$(ALLUXIO_VERSION)-bin.tar.gz
-	#rm -fv alluxio-$(ALLUXIO_VERSION)-bin.tar.gz
-	# multiple tags should arrive in Docker 1.10+
-	docker build --build-arg ALLUXIO_VERSION=$(ALLUXIO_VERSION) -t $(TAG):$(ALLUXIO_VERSION) . && docker tag -f $(TAG):$(ALLUXIO_VERSION) $(TAG):latest
+	docker build -t $(TAG) .
 
 .PHONY: nocache
 nocache:

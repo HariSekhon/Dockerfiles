@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/debian-jre7
+TAG=harisekhon/debian-java
 
 .PHONY: all
 all:

@@ -11,8 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/centos-jre7-scala2.10
-SCALA_VERSION=2.10.6
+TAG=harisekhon/centos-scala
 
 .PHONY: all
 all:
@@ -20,7 +19,7 @@ all:
 
 .PHONY: build
 build:
-	docker build --build-arg SCALA_VERSION=$(SCALA_VERSION) -t $(TAG):$(SCALA_VERSION) . && docker tag -f $(TAG):$(SCALA_VERSION) $(TAG):latest
+	docker build -t $(TAG) .
 
 .PHONY: nocache
 nocache:

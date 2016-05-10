@@ -14,7 +14,7 @@
 FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Java + CentOS Base Build"
+LABEL Description="Java + CentOS (OpenJDK)"
 
 RUN yum install -y \
     java-1.8.0-openjdk-headless && \

@@ -23,16 +23,8 @@ build:
 
 .PHONY: nocache
 nocache:
-	make build
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -rf h2o-$(H2O_VERSION)*
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -t -p 54321:54321 harisekhon/h2o
+	docker run -ti -p 54321:54321 harisekhon/h2o

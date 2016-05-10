@@ -23,20 +23,7 @@ build:
 
 .PHONY: nocache
 nocache:
-	make build
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm consul_*_linux_amd64.zip consul
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(TAG) --no-cache .
 
 .PHONY: run
 run:

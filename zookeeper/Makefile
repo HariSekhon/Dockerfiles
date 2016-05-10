@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-ZOOKEEPER_VERSION=3.4.6
+#ZOOKEEPER_VERSION=3.4.6
 
 TAG=harisekhon/zookeeper
 
@@ -26,7 +26,8 @@ build:
 	# makes build slightly quicker but doesn't make image any smaller
 	#rm -f "zookeeper-$(ZOOKEEPER_VERSION).tar.gz"
 	# multiple tags should arrive in Docker 1.10+
-	docker build --build-arg ZOOKEEPER_VERSION=$(ZOOKEEPER_VERSION) -t $(TAG):$(ZOOKEEPER_VERSION) . && docker tag -f $(TAG):$(ZOOKEEPER_VERSION) $(TAG):latest
+	#docker build --build-arg ZOOKEEPER_VERSION=$(ZOOKEEPER_VERSION) -t $(TAG):$(ZOOKEEPER_VERSION) . && docker tag -f $(TAG):$(ZOOKEEPER_VERSION) $(TAG):latest
+	docker build -t $(TAG) .
 
 .PHONY: nocache
 nocache:

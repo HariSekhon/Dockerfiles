@@ -17,7 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Java + CentOS Base Build"
 
 RUN yum install -y \
-    java-1.7.0-openjdk-devel; \
+    java-1.8.0-openjdk-devel; \
     yum clean all
 
 COPY java.sh /etc/profile.d/

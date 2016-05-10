@@ -25,19 +25,6 @@ build:
 nocache:
 	docker build -t $(TAG) --no-cache .
 
-#.PHONY: push
-#push:
-#	docker push $(TAG)
-
-#.PHONY: clean
-#clean:
-#	rm -rf apache-drill-$(DRILL_VERSION)-bin*
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
-
 .PHONY: run
 run:
 	docker run -t -p 8047:8047 harisekhon/apache-drill

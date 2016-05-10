@@ -11,8 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-MESOS_VERSION=0.24.0
-
 TAG=harisekhon/mesos
 
 .PHONY: all
@@ -21,12 +19,7 @@ all:
 
 .PHONY: build
 build:
-	#[ -d "mesos-$(MESOS_VERSION)" ] || wget -c http://archive.apache.org/dist/mesos/$(MESOS_VERSION)/mesos-$(MESOS_VERSION).tar.gz
-	#[ -d "mesos-$(MESOS_VERSION)" ] || tar zxvf mesos-$(MESOS_VERSION).tar.gz
-	#rm -fv mesos-$(MESOS_VERSION).tar.gz
-	#wget -c http://downloads.mesosphere.io/master/debian/8/mesos_$(MESOS_VERSION)-0.2.190.debian81_amd64.deb
-	# multiple tags should arrive in Docker 1.10+
-	docker build --build-arg MESOS_VERSION=$(MESOS_VERSION) -t $(TAG):$(MESOS_VERSION) . && docker tag -f $(TAG):$(MESOS_VERSION) $(TAG):latest
+	docker build -t $(TAG) .
 
 .PHONY: nocache
 nocache:

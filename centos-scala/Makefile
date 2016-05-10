@@ -23,12 +23,4 @@ build:
 
 .PHONY: nocache
 nocache:
-	make build
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	@echo Nothing to clean
+	docker build -t $(TAG) --no-cache .

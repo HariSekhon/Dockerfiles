@@ -25,13 +25,13 @@ build:
 nocache:
 	docker build -t $(TAG) --no-cache .
 
-.PHONY: push
-push:
-	docker push $(TAG)
+#.PHONY: push
+#push:
+#	docker push $(TAG)
 
-.PHONY: clean
-clean:
-	rm -rf apache-drill-$(DRILL_VERSION)-bin*
+#.PHONY: clean
+#clean:
+#	rm -rf apache-drill-$(DRILL_VERSION)-bin*
 
 #.PHONY: test
 #test:

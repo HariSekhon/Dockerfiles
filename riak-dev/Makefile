@@ -11,8 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-RIAK_VERSION=2.1.3
-
 TAG=harisekhon/riak-dev
 
 .PHONY: all
@@ -21,11 +19,11 @@ all:
 
 .PHONY: build
 build:
-	docker build --build-arg RIAK_VERSION=$(RIAK_VERSION) -t $(TAG):$(RIAK_VERSION) . && docker tag -f $(TAG):$(RIAK_VERSION) $(TAG):latest
+	docker build -t $(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache --build-arg RIAK_VERSION=$(RIAK_VERSION) -t $(TAG):$(RIAK_VERSION) . && docker tag -f $(TAG):$(RIAK_VERSION) $(TAG):latest
+	docker build --no-cache -t $(TAG) .
 
 .PHONY: push
 push:

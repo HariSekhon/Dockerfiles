@@ -14,7 +14,7 @@
 FROM harisekhon/centos-java:jre8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SCALA_VERSION=2.10.7
+ARG SCALA_VERSION=2.11.7
 
 LABEL Description="Scala + CentOS (+OpenJDK)"
 

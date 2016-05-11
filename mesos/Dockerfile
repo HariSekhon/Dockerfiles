@@ -41,7 +41,7 @@ RUN \
     dpkg -i /mesos*.deb; \
     apt-get install -yf && \
     dpkg -i /mesos*.deb && \
-    dpkg -P wget && \
+    apt-get purge -y wget && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -v mesos*.deb

@@ -52,6 +52,7 @@ RUN apt-get update && \
     #echo deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main >> /etc/apt/sources.list && \
     #apt-get update && \
     #apt-get install -y maven && \
+    apt-get autoremove -y && \
     apt-get clean
 
 CMD /bin/bash

@@ -37,8 +37,7 @@ RUN \
     rm -fv "${TAR}" && \
     ln -sv zookeeper-${ZOOKEEPER_VERSION} zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
-    # causes unmet dependencies breakage
-    #apt-get purge -y tar && \
+    # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \
     apt-get clean

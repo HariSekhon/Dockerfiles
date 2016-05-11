@@ -24,11 +24,6 @@ COPY datastax.repo /etc/yum.repos.d/datastax.repo
 
 RUN yum install -y make git cassandra$CASSANDRA_VERSION && yum clean all
 
-#RUN git clone https://github.com/harisekhon/nagios-plugins /nagios-plugins && \
-#    cd /nagios-plugins && \
-#    make && \
-#    yum clean all
-
 EXPOSE 7199 9042 9160
 
 COPY entrypoint.sh /

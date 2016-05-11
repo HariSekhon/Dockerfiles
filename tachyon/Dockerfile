@@ -38,6 +38,7 @@ RUN apt-get update && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     cp -v /tachyon/conf/tachyon-env.sh.template /tachyon/conf/tachyon-env.sh && \
     tachyon format && \
+    # attempting to remove tar causes unmet dependency breakage
     apt-get remove -y wget && \
     apt-get autoremove -y && \
     apt-get clean

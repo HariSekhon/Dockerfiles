@@ -18,4 +18,4 @@ set -euo pipefail
 
 /usr/sbin/cassandra
 sleep 2
-/usr/bin/cql
+/usr/bin/cqlsh

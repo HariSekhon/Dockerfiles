@@ -22,7 +22,11 @@ LABEL Description="Cassandra Dev"
 
 COPY datastax.repo /etc/yum.repos.d/datastax.repo
 
-RUN yum install -y make git cassandra$CASSANDRA_VERSION && yum clean all
+RUN \
+    #yum install -y make git && \
+    yum install -y cassandra$CASSANDRA_VERSION && \
+    yum autoremove -y && \
+    yum clean all
 
 EXPOSE 7199 9042 9160
 

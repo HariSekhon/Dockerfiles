@@ -12,8 +12,8 @@
 #
 
 # busybox wget doesn't support SSL, no curl available :-(
-#FROM busybox
-FROM debian
+#FROM busybox:latest
+FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SERF_VERSION=0.7.0

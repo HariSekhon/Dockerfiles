@@ -31,7 +31,9 @@ RUN \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
-    /hadoop/bin/hdfs namenode -format
+    /hadoop/bin/hdfs namenode -format && \
+    yum autoremove -y && \
+    yum clean all
 
 COPY entrypoint.sh /
 COPY core-site.xml /hadoop/etc/hadoop/

@@ -23,6 +23,8 @@ export JAVA_HOME="${JAVA_HOME:-/usr}"
 # shell breaks and doesn't run zookeeper without this
 mkdir /hbase/logs
 
+# tries to run zookeepers.sh distributed via SSH, run zookeeper manually instead now
+#RUN sed -i 's/# export HBASE_MANAGES_ZK=true/export HBASE_MANAGES_ZK=true/' /hbase/conf/hbase-env.sh
 /hbase/bin/hbase zookeeper &>/hbase/logs/zookeeper.log &
 /hbase/bin/start-hbase.sh
 /hbase/bin/hbase-daemon.sh start rest

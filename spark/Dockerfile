@@ -36,8 +36,7 @@ RUN \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s "spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \
-    # tar causes unmet dependency breakage
-    #apt-get purge -y tar && \
+    # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \
     apt-get clean

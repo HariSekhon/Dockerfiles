@@ -24,7 +24,6 @@ LABEL Description="HashiCorp's Serf minimal" \
       "Serf Version"="$SERF_VERSION"
 
 #COPY serf /
-#COPY entrypoint.sh /
 
 #ADD https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip /
 
@@ -39,6 +38,8 @@ RUN \
     apt-get clean
 
 EXPOSE 7946 7373
+
+#COPY entrypoint.sh /
 
 ENTRYPOINT ["/serf"]
 #ENTRYPOINT ["/entrypoint.sh"]

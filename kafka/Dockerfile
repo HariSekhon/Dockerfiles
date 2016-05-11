@@ -36,6 +36,9 @@ RUN apt-get update && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     ln -sv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}" kafka && \
     perl -pi.orig -e "s/\s*#?\s*advertised.host.name.*/advertised.host.name=${ADVERTISED_HOSTNAME}/" "kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/server.properties" && \
+    # attempting to remove tar causes unmet dependency breakage
+    apt-get purge -y wget && \
+    apt-get autoremove -y && \
     apt-get clean
 
 EXPOSE 2181 9092

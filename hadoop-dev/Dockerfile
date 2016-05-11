@@ -18,6 +18,7 @@ ARG HADOOP_VERSION=2.7.2
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
+ENV JAVA_HOME /usr
 
 LABEL Description="Hadoop Dev", \
       "Hadoop Version"="$HADOOP_VERSION"
@@ -30,7 +31,7 @@ RUN \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
-    JAVA_HOME=${JAVA_HOME:-/usr} /hadoop/bin/hdfs namenode -format
+    /hadoop/bin/hdfs namenode -format
 
 COPY entrypoint.sh /
 COPY core-site.xml /hadoop/etc/hadoop/

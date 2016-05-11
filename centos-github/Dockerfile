@@ -35,6 +35,7 @@ RUN for x in lib-java;          do git clone https://github.com/harisekhon/$x /g
 RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum clean all
 
 # trick to invalidate cache at this point to pull latest updates
+# not needed any more since DockerHub does the build now and doesn't cache anyway
 #COPY invalidate_cache /tmp
 # pull updates
 #RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh && yum clean all

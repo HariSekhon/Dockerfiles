@@ -12,8 +12,8 @@
 #
 
 # can't base off Cassandra as it's missing deps to run the tools
-#FROM cassandra
-FROM harisekhon/nagios-plugins
+#FROM cassandra:latest
+FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG CASSANDRA_VERSION=22

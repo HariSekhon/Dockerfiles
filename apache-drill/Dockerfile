@@ -25,23 +25,26 @@ ENV PATH $PATH:/apache-drill/bin
 LABEL Description="Apache Drill" \
       "Apache Drill Version"="$DRILL_VERSION"
 
-# faster cached
+# faster than pulling each time
 #COPY apache-drill-$DRILL_VERSION /apache-drill
+
+RUN \
+    # used by nagios checks
+    yum install -y supervisor && \
+    yum clean all
 
 RUN \
     wget -O "${TAR}" "http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/${TAR}&action=download" && \
     tar xvf "${TAR}" && \
-    rm -fv "${TAR}" && \
+    rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${DRILL_VERSION}" apache-drill && \
     perl -pi -e "s/^DRILL_HEAP=\".+\"/DRILL_HEAP=\"${DRILL_HEAP}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-env.sh" && \
-    perl -pi -e "s/^(\s*)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf" && \
-    # used by nagios checks
-    yum install -y supervisor && \
-    yum clean all
+    perl -pi -e "s/^(\s*)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf"
 
 COPY drill.ini /etc/supervisord.d/
 
 EXPOSE 8047
 
+# for daemon do
 #CMD /usr/bin/supervisord -n
 CMD /apache-drill/bin/drill-embedded

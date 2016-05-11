@@ -29,8 +29,6 @@ RUN \
     ln -sv hbase-$HBASE_VERSION hbase && \
     rm -fv hbase-$HBASE_VERSION-bin.tar.gz
 
-# tries to run zookeepers.sh distributed via SSH, run manually in entrypoint.sh now
-#RUN sed -i 's/# export HBASE_MANAGES_ZK=true/export HBASE_MANAGES_ZK=true/' /hbase/conf/hbase-env.sh
 COPY entrypoint.sh /
 COPY hbase-site.xml /hbase/conf/
 

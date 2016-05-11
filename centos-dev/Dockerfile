@@ -34,7 +34,7 @@ RUN \
     python-pip \
     ruby \
     ruby-devel \
-    java-1.7.0-openjdk \
+    java-1.8.0-openjdk \
     groovy \
     openssl-devel \
     mysql-devel \

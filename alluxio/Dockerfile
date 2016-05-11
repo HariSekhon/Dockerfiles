@@ -23,12 +23,8 @@ ENV PATH $PATH:/alluxio/bin
 LABEL Description="Alluxio from BDAS" \
       "Alluxio Version"="$ALLUXIO_VERSION"
 
-# use dev build it's quicker and cached
-#RUN yum install -y java-1.7.0-openjdk && yum clean all
-
 #COPY alluxio-$ALLUXIO_VERSION /alluxio
 
-#RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
     apt-get install -y sudo openssh-server wget tar && \
     wget -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \

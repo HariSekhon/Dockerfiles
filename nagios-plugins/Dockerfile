@@ -14,7 +14,7 @@
 FROM harisekhon/centos-dev:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="CentOS 7 with my Nagios Plugins pre-built"
+LABEL Description="CentOS + Adv Nagios Plugins pre-built"
 
 ENV PATH $PATH:/github/nagios-plugins
 

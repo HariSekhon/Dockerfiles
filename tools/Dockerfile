@@ -14,7 +14,7 @@
 FROM harisekhon/centos-dev:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="CentOS + Perl Tools repo pre-built"
+LABEL Description="Perl Tools repo pre-built on CentOS"
 
 ENV PATH $PATH:/github/tools
 

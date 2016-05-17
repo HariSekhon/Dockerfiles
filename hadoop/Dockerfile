@@ -14,7 +14,7 @@
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HADOOP_VERSION=1.2.1
+ARG HADOOP_VERSION=2.5.2
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin

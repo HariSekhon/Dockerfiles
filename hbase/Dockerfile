@@ -16,8 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG HBASE_VERSION=0.94.27
 #ARG HBASE_VERSION=0.96.2
-ARG HBASE_VERSION=0.98.19
-#ARG HBASE_VERSION=1.0.3
+#ARG HBASE_VERSION=0.98.19
+ARG HBASE_VERSION=1.0.3
 #ARG HBASE_VERSION=1.1.4
 #ARG HBASE_VERSION=1.2.1
 
@@ -36,9 +36,9 @@ RUN \
     # usually missing from mirrors, have to use apache archive
     #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz" && \
     # HBase 0.98
-    wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download" && \
+    #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download" && \
     # HBase 1.0
-    #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"
+    wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download" && \
     # HBase 1.1+
     #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download" && \
     tar zxvf hbase-$HBASE_VERSION-bin.tar.gz && \

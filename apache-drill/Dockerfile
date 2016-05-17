@@ -29,8 +29,12 @@ LABEL Description="Apache Drill" \
 #COPY apache-drill-$DRILL_VERSION /apache-drill
 
 RUN \
+    # required for supervisord
+    yum install -y epel-release && \
     # used by nagios checks
     yum install -y supervisor && \
+    yum remove -y epel-release && \
+    yum autoremove -y && \
     yum clean all
 
 RUN \
@@ -39,8 +43,8 @@ RUN \
     tar xvf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${DRILL_VERSION}" apache-drill && \
-    perl -pi -e "s/^DRILL_HEAP=\".+\"/DRILL_HEAP=\"${DRILL_HEAP}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-env.sh" && \
-    perl -pi -e "s/^(\s*)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf" &&
+    sed -i -e "s/^DRILL_HEAP=\".+\"/DRILL_HEAP=\"${DRILL_HEAP}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-env.sh" && \
+    sed -i -e "s/^\([[:space:]]*\)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf" && \
     yum remove -y wget tar && \
     yum autoremove -y && \
     yum clean all

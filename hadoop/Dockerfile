@@ -26,12 +26,14 @@ LABEL Description="Hadoop Dev", \
 WORKDIR /
 
 RUN \
-    yum install -y openssh-server && \
+    yum install -y openssh-server wget tar which && \
     wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
+    rm -fr /hadoop/share/doc && \
     /hadoop/bin/hdfs namenode -format && \
+    yum remove -y wget tar && \
     yum autoremove -y && \
     yum clean all
 

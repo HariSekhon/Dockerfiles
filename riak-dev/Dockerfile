@@ -19,7 +19,7 @@ FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG RIAK_VERSION=1.4.9
-ARG RIAK_VERSION=2.1.3
+ARG RIAK_VERSION=2.1.4
 
 LABEL Description="Riak Dev"
 

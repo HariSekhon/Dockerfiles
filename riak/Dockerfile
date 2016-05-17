@@ -18,8 +18,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG RIAK_VERSION=1.4.9
 # LTS release
-#ARG RIAK_VERSION=2.0.6
-ARG RIAK_VERSION=2.1.4
+ARG RIAK_VERSION=2.0.6
+#ARG RIAK_VERSION=2.1.4
 
 LABEL Description="Riak"
 
@@ -31,7 +31,7 @@ LABEL Description="Riak"
 #    yum autoremove -y && \
 #    yum clean all
 # Riak 2.x
-RUN yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/7/riak-$RIAK_VERSION-1.el7.x86_64.rpm" && \
+RUN yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
     yum autoremove -y && \
     yum clean all
 

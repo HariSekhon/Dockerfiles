@@ -31,6 +31,7 @@ RUN \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
+    rm -fr /hadoop/share/doc && \
     /hadoop/bin/hdfs namenode -format && \
     yum autoremove -y && \
     yum clean all

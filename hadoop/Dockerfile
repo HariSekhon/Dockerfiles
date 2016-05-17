@@ -14,8 +14,8 @@
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HADOOP_VERSION=1.2.1
-#ARG HADOOP_VERSION=2.5.2
+#ARG HADOOP_VERSION=1.2.1
+ARG HADOOP_VERSION=2.5.2
 #ARG HADOOP_VERSION=2.6.4
 #ARG HADOOP_VERSION=2.7.2
 

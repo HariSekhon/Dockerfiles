@@ -27,7 +27,7 @@ RUN apt-get update && \
                        python-pip \
                        ruby \
                        ruby-dev \
-                       openjdk-8-jdk \
+                       openjdk-7-jdk \
                        groovy2 \
                        #gradle \
                        libexpat1-dev \

@@ -16,9 +16,9 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG H2O_VERSION=2.6.1.5
+ARG H2O_VERSION=2.6.1.5
 #ARG H2O_VERSION=3.8.0.4
-ARG H2O_VERSION=3.8.2.3
+#ARG H2O_VERSION=3.8.2.3
 
 ENV PATH $PATH:/h2o/bin
 
@@ -31,9 +31,9 @@ RUN \
     apt-get update && \
     apt-get install -y wget unzip && \
     # 2.6.1.5
-    #wget http://h2o-release.s3.amazonaws.com/h2o/rel-lambert/5/h2o-$(H2O_VERSION).zip && \
+    wget http://h2o-release.s3.amazonaws.com/h2o/rel-lambert/5/h2o-${H2O_VERSION}.zip && \
     # 3.x url has changed
-    wget http://download.h2o.ai/versions/h2o-${H2O_VERSION}.zip && \
+    #wget http://download.h2o.ai/versions/h2o-${H2O_VERSION}.zip && \
     unzip h2o-${H2O_VERSION}.zip && \
     rm h2o-${H2O_VERSION}.zip && \
     ln -s h2o-${H2O_VERSION} h2o && \

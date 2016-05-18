@@ -46,6 +46,6 @@ COPY hdfs-site.xml /hadoop/etc/hadoop/
 COPY yarn-site.xml /hadoop/etc/hadoop/
 COPY mapred-site.xml /hadoop/etc/hadoop/
 
-EXPOSE 8020 8032 8088 9000 10020 19888 50010 50020 50070 50075 50090
+EXPOSE 8020 8042 8088 9000 10020 19888 50010 50020 50070 50075 50090
 
 CMD "/entrypoint.sh"

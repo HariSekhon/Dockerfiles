@@ -1,4 +1,4 @@
-Hari Sekhon Docker
+Hari Sekhon Docker [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
 =========================
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.

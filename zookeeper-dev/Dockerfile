@@ -15,7 +15,7 @@ FROM harisekhon/debian-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG ZOOKEEPER_VERSION=3.3.6
-#ARG ZOOKEEPER_VERSION=3.4.6
+#ARG ZOOKEEPER_VERSION=3.4.8
 ARG TAR="zookeeper-${ZOOKEEPER_VERSION}.tar.gz"
 
 ENV PATH $PATH:/zookeeper/bin
@@ -26,9 +26,7 @@ LABEL Description="ZooKeeper" \
 WORKDIR /
 
 RUN \
-    apt-get update && \
-    apt-get install -y wget tar && \
-    wget -O "${TAR}" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
+    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \

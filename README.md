@@ -43,6 +43,7 @@ docker run -ti harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 - Riak
 - Riak (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Serf
+- SolrCloud
 - Spark (opens Spark shell)
 - Tachyon
 - ZooKeeper (opens ZK shell)

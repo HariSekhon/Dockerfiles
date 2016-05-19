@@ -41,6 +41,7 @@ RUN \
                        libsnappy-dev \
                        unzip \
                        vim \
+                       curl \
                        wget \
                        zip && \
     # for sbt https repo

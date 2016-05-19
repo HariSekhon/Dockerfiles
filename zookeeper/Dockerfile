@@ -25,11 +25,6 @@ ENV PATH $PATH:/zookeeper/bin
 LABEL Description="ZooKeeper" \
       "ZooKeeper Version"="$ZOOKEEPER_VERSION"
 
-#COPY zookeeper-$ZOOKEEPER_VERSION /zookeeper
-
-# less layers and slightly smaller image doing wget
-#ADD "http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" /
-
 WORKDIR /
 
 RUN \

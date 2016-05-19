@@ -14,22 +14,26 @@
 FROM harisekhon/debian-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ZOOKEEPER_VERSION=3.4.6
-ARG TAR=zookeeper-${ZOOKEEPER_VERSION}.tar.gz
+ARG ZOOKEEPER_VERSION=3.3.6
+#ARG ZOOKEEPER_VERSION=3.4.6
+ARG TAR="zookeeper-${ZOOKEEPER_VERSION}.tar.gz"
 
 ENV PATH $PATH:/zookeeper/bin
 
 LABEL Description="ZooKeeper" \
       "ZooKeeper Version"="$ZOOKEEPER_VERSION"
 
+WORKDIR /
+
 RUN \
     apt-get update && \
     apt-get install -y wget tar && \
-    wget -O "${TAR}" "http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" && \
+    wget -O "${TAR}" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
-    ln -sv zookeeper-${ZOOKEEPER_VERSION} zookeeper && \
+    ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
+    rm -fr /zookeeper/{src,docs} && \
     # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \

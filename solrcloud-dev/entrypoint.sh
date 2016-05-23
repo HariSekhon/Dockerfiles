@@ -30,5 +30,9 @@ else
     # exits with 141 for pipefail breaking yes stdout
     set +o pipefail
     yes "" | solr -e cloud
-    tail -f /solr/example/cloud/node*/logs/*
+    if ls -d /solr-4* &>/dev/null; then
+        tail -f /solr/node*/logs/*
+    else
+        tail -f /solr/example/cloud/node*/logs/*
+    fi
 fi

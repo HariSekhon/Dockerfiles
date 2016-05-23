@@ -21,9 +21,14 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 export JAVA_HOME="${JAVA_HOME:-/usr}"
 
+# solr -e cloud fails if not called from $SOLR_HOME
+cd /solr
+
 if [ $# -gt 0 ]; then
     exec $@
 else
-    yes "" | solr -e cloud || :
-    tail -f /solr/node*/logs/*
+    # exits with 141 for pipefail breaking yes stdout
+    set +o pipefail
+    yes "" | solr -e cloud
+    tail -f /solr/example/cloud/node*/logs/*
 fi

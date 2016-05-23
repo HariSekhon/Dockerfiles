@@ -30,7 +30,7 @@ LABEL Description="HashiCorp's Consul minimal" \
 
 RUN \
     apt-get update && \
-    apt-get install -y wget unzip && \
+    apt-get install -y --no-install-recommends wget unzip && \
     wget -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \

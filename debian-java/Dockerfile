@@ -17,7 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Java + Debian (OpenJDK)"
 
 RUN apt-get update && \
-    apt-get install -y openjdk-7-jre-headless && \
+    apt-get install -y --no-install-recommends openjdk-7-jre-headless && \
     apt-get clean
 
 CMD /bin/bash

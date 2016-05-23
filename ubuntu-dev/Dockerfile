@@ -19,7 +19,8 @@ LABEL Description="Ubuntu Dev Build"
 RUN \
     apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y build-essential \
+    apt-get install -y --no-install-recommends \
+                       build-essential \
                        git \
                        make \
                        maven \
@@ -45,11 +46,11 @@ RUN \
                        wget \
                        zip && \
     # for sbt https repo
-    apt-get install -y apt-transport-https && \
+    apt-get install -y --no-install-recommends apt-transport-https && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
-    apt-get install -y sbt && \
+    apt-get install -y --no-install-recommends sbt && \
     # for Maven 3
     #echo deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main >> /etc/apt/sources.list && \
     #apt-get update && \

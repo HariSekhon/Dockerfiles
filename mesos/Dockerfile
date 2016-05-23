@@ -25,7 +25,7 @@ LABEL Description="Apache Mesos" \
 
 RUN \
     apt-get update && \
-    apt-get install -y wget && \
+    apt-get install -y --no-install-recommends wget && \
     # 0.23
     #wget http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.debian81_amd64.deb && \
     # 0.24

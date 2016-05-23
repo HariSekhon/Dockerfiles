@@ -12,7 +12,8 @@
 #
 
 # not basing on official solr as it doesn't have SolrCloud 4.x which I want to keep using for my test suite
-FROM harisekhon/debian-java:latest
+# newer Solr complains about Java major minor version, obviously needs newer JDK which centos-java has so not using debian-java
+FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG SOLR_VERSION=4.10.4
@@ -29,11 +30,14 @@ LABEL Description="SolrCloud", \
 WORKDIR /
 
 RUN \
+    # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
+    yum install -y wget tar lsof && \
     wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv solr-$SOLR_VERSION solr && \
     rm -fv "$TAR" && \
     rm -fr /solr/doc && \
+    yum remove -y wget tar && \
     yum autoremove -y && \
     yum clean all
 

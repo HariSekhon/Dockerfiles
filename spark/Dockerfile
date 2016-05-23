@@ -30,7 +30,7 @@ LABEL Description="Apache Spark" \
 
 RUN \
     apt-get update && \
-    apt-get install -y sudo openssh-server wget tar && \
+    apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
     wget -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \

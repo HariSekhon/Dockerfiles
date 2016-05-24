@@ -28,10 +28,6 @@ cd "$SOLR_HOME"
 if [ $# -gt 0 ]; then
     exec $@
 else
-    if ls -d "$SOLR_HOME-3"* &>/dev/null; then
-        cd "$SOLR_HOME/example"
-        java -jar start.jar
-    else
-        solr
-    fi
+    cd "$SOLR_HOME/example"
+    java -jar start.jar
 fi

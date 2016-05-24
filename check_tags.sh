@@ -22,6 +22,6 @@ cd "$srcdir"
 
 for x in *; do
     [ -d "$x" ] || continue
-    grep -q -e "^TAG=harisekhon/$x" -e "^TAG=harisekhon/${x#*-}" "$x/Makefile" ||
-        { echo "$x TAG mismatch!"; exit 1; }
+    grep -q -e "^REPO=harisekhon/$x" -e "^REPO=harisekhon/${x#*-}" "$x/Makefile" ||
+        { echo "$x REPO mismatch!"; exit 1; }
 done

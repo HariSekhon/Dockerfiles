@@ -16,8 +16,8 @@
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SOLR_VERSION=3.1.0
-#ARG SOLR_VERSION=3.6.2
+#ARG SOLR_VERSION=3.1.0
+ARG SOLR_VERSION=3.6.2
 #ARG SOLR_VERSION=4.10.4
 #ARG SOLR_VERSION=5.5.0
 #ARG SOLR_VERSION=6.0.0

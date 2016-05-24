@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/serf
+REPO=harisekhon/serf
 
-VERSION=$(shell awk -F= '/^ARG [[:alnum:]]*_VERSION/{sub(/\.[[:digit:]]+$$/, "", $$2); print $$2}' Dockerfile)
+TAG=$(shell awk -F= '/^ARG [[:alnum:]]*_VERSION/{sub(/\.[[:digit:]]+$$/, "", $$2); print $$2}' Dockerfile)
 
 .PHONY: all
 all:
@@ -21,12 +21,12 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG):$(VERSION) .
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(TAG):$(VERSION) --no-cache .
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -ti -p 7946:7946 -p 7373:7373 $(TAG):$(VERSION)
+	docker run -ti -p 7946:7946 -p 7373:7373 $(REPO):$(TAG)

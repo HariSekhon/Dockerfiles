@@ -16,9 +16,9 @@
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG SOLR_VERSION=3.1.0
+ARG SOLR_VERSION=3.1.0
 #ARG SOLR_VERSION=3.6.2
-ARG SOLR_VERSION=4.10.4
+#ARG SOLR_VERSION=4.10.4
 #ARG SOLR_VERSION=5.5.0
 #ARG SOLR_VERSION=6.0.0
 
@@ -33,12 +33,13 @@ WORKDIR /
 
 RUN \
     # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
-    yum install -y wget tar lsof && \
+    # Solr start script needs jar or unzip to extract war
+    yum install -y wget tar lsof unzip && \
     # Solr 3.x
     # not found, using Apache archive instead
-    #wget -O "$TAR" "http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/apache-solr-$SOLR_VERSION.tgz" && \
+    wget -O "$TAR" "http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/apache-solr-$SOLR_VERSION.tgz" && \
     # Solr 4.x +
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
+    #wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
     tar zxvf "$TAR" && \
     # normalize apache-solr-3.x => solr-<version> like newer versions
     if [ -d apache-solr-$SOLR_VERSION ]; then mv -iv apache-solr-$SOLR_VERSION solr-$SOLR_VERSION; fi && \

@@ -13,18 +13,20 @@
 
 TAG=harisekhon/apache-drill
 
+VERSION=$(shell awk -F= '/^ARG [[:alnum:]]*_VERSION/{sub(/\.[[:digit:]]+$$/, "", $$2); print $$2}' Dockerfile)
+
 .PHONY: all
 all:
 	make build
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build -t $(TAG):$(VERSION) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(TAG) --no-cache .
+	docker build -t $(TAG):$(VERSION) --no-cache .
 
 .PHONY: run
 run:
-	docker run -ti -p 8047:8047 harisekhon/apache-drill
+	docker run -ti -p 8047:8047 $(TAG):$(VERSION)

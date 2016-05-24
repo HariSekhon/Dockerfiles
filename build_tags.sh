@@ -28,6 +28,7 @@ tags=$(git tag)
 
 for tag in $tags; do
     tag_base="${tag%%-[[:digit:]]*}"
+    tag_version="${tag##*[[:alpha:]]-}"
     [ -n "$selection" -a "$selection" != "$tag_base" ] && continue
     echo "checking out tag $tag"
     git checkout "$tag"
@@ -36,7 +37,7 @@ for tag in $tags; do
         directory="${directory##*/}"
         if [ "$directory" = "$tag_base" ]; then
             pushd "$directory" &>/dev/null
-            make
+            docker build -t "harisekhon/$tag_base:$tag_version" .
             popd &>/dev/null
         fi
     done

@@ -24,7 +24,7 @@ To see DockerHub tags in general you can use dockerhub_show_tags.py tool from my
 
 eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
 ```
-docker run -ti harisekhon/pytools dockerhub_show_tags.py centos ubuntu
+docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
 
 ### Full Inventory:

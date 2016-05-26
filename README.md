@@ -27,6 +27,8 @@ eg. to see an organized list of all tags for the official CentOS & Ubuntu repos 
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
 
+Repos suffixed with ```-dev``` are the official technologies + my github repos with all dependencies pre-built, intended for development.
+
 ### Full Inventory:
 
 ##### Official Technologies:

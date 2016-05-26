@@ -14,12 +14,12 @@
 FROM harisekhon/centos-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG HBASE_VERSION=0.94.27
+ARG HBASE_VERSION=0.94.27
 #ARG HBASE_VERSION=0.96.2
 #ARG HBASE_VERSION=0.98.19
 #ARG HBASE_VERSION=1.0.3
 #ARG HBASE_VERSION=1.1.5
-ARG HBASE_VERSION=1.2.1
+#ARG HBASE_VERSION=1.2.1
 
 ENV PATH $PATH:/hbase/bin
 
@@ -31,22 +31,27 @@ WORKDIR /
 RUN \
     yum install -y wget tar && \
     # HBase 0.94
-    #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download" && \
-    # HBase 0.96
-    # usually missing from mirrors, have to use apache archive
-    #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz" && \
+    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
+    # HBase 0.96 usually missing from mirrors, have to use apache archive
+    elif [ "${HBASE_VERSION:0:4}" = "0.96" ]; then url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98
-    #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download" && \
+    elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
     # HBase 1.0
-    #wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download" && \
+    elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
     # HBase 1.1+
-    wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download" && \
-    tar zxvf hbase-$HBASE_VERSION-bin.tar.gz && \
+    elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
+    else echo "unrecognized HBase version"; exit 1; \
+    fi && \
+    wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
+    mkdir hbase-$HBASE_VERSION && \
+    tar zxvf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
     ln -sv hbase-$HBASE_VERSION hbase && \
     rm -fv hbase-$HBASE_VERSION-bin.tar.gz && \
     rm -fr /hbase/docs /hbase/src && \
     yum remove -y wget tar && \
     yum autoremove -y && \
+    # removes 'hostname', 'yum install' marking doesn't work, nor does --exclude
+    yum install hostname -y && \
     yum clean all
 
 COPY entrypoint.sh /

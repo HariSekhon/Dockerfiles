@@ -16,10 +16,10 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-cassandra
+su cassandra $(which cassandra)
 count=0
 while true; do
-    grep 'Starting listening for CQL clients' /var/log/cassandra/system.log && break
+    grep 'Starting listening for CQL clients' /cassandra/logs/system.log && break
     let count+=1
     if [ $count -gt 20 ]; then
         echo
@@ -32,4 +32,4 @@ while true; do
 done
 echo
 echo
-cqlsh
+su cassandra $(which cqlsh)

@@ -14,7 +14,11 @@
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG DRILL_VERSION=1.6.0
+#ARG DRILL_VERSION=1.3.0
+#ARG DRILL_VERSION=1.4.0
+ARG DRILL_VERSION=1.5.0
+#ARG DRILL_VERSION=1.6.0
+
 ARG DRILL_HEAP=900M
 ARG TAR=apache-drill-${DRILL_VERSION}.tar.gz
 # use this name in container linking
@@ -39,7 +43,10 @@ RUN \
 
 RUN \
     yum install -y wget tar && \
-    wget -O "${TAR}" "http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/${TAR}&action=download" && \
+    if   [ "${DRILL_VERSION:0:3}" = "1.5" -o "${DRILL_VERSION:0:3}" = "1.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/${TAR}&action=download"; \
+    else url="http://archive.apache.org/drill/drill-${DRILL_VERSION}/${TAR}"; \
+    fi && \
+    wget -O "${TAR}" "$url" && \
     tar xvf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${DRILL_VERSION}" apache-drill && \
@@ -47,6 +54,7 @@ RUN \
     sed -i -e "s/^\([[:space:]]*\)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" "apache-drill-${DRILL_VERSION}/conf/drill-override.conf" && \
     yum remove -y wget tar && \
     yum autoremove -y && \
+    yum install hostname -y && \
     yum clean all
 
 COPY drill.ini /etc/supervisord.d/

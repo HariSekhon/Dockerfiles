@@ -20,7 +20,7 @@ then select one and pull / run it as usual:
 
 ```docker run -ti harisekhon/nagios-plugins```
 
-To see DockerHub tags in general you can use the ```dockerhub_show_tags.py``` tool from my [PyTools repo](https://github.com/harisekhon/pytools), a docker image of which is also supplied:
+There are lots of tagged versions - docker cli doesn't support showing tags yet ([docker ticket](https://github.com/docker/docker/issues/17238)) so to see DockerHub tags in general you use the ```dockerhub_show_tags.py``` tool from my [PyTools repo](https://github.com/harisekhon/pytools), a docker image of which is also supplied:
 
 eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
 ```

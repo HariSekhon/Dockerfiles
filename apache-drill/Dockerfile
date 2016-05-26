@@ -14,23 +14,10 @@
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG DRILL_VERSION=1.3.0
-#ARG DRILL_VERSION=1.4.0
-#ARG DRILL_VERSION=1.5.0
-ARG DRILL_VERSION=1.6.0
-
-ARG DRILL_HEAP=900M
-ARG TAR=apache-drill-${DRILL_VERSION}.tar.gz
-# use this name in container linking
-ARG ZOOKEEPER_HOST=zookeeper
-
 ENV PATH $PATH:/apache-drill/bin
 
 LABEL Description="Apache Drill" \
       "Apache Drill Version"="$DRILL_VERSION"
-
-# faster than pulling each time
-#COPY apache-drill-$DRILL_VERSION /apache-drill
 
 RUN \
     # required for supervisord
@@ -41,10 +28,26 @@ RUN \
     yum autoremove -y && \
     yum clean all
 
+ARG DRILL_VERSION=0.7.0
+#ARG DRILL_VERSION=0.8.0
+#ARG DRILL_VERSION=0.9.0
+#ARG DRILL_VERSION=1.0.0
+#ARG DRILL_VERSION=1.1.0
+#ARG DRILL_VERSION=1.2.0
+#ARG DRILL_VERSION=1.3.0
+#ARG DRILL_VERSION=1.4.0
+#ARG DRILL_VERSION=1.5.0
+#ARG DRILL_VERSION=1.6.0
+
+ARG DRILL_HEAP=900M
+ARG TAR=apache-drill-${DRILL_VERSION}.tar.gz
+# zookeeper hostname embedded in configuration file for distributed cluster - use this name in container linking
+ARG ZOOKEEPER_HOST=zookeeper
+
 RUN \
     yum install -y wget tar && \
     if   [ "${DRILL_VERSION:0:3}" = "1.5" -o "${DRILL_VERSION:0:3}" = "1.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/${TAR}&action=download"; \
-    else url="http://archive.apache.org/drill/drill-${DRILL_VERSION}/${TAR}"; \
+    else url="http://archive.apache.org/dist/drill/drill-${DRILL_VERSION}/${TAR}"; \
     fi && \
     wget -O "${TAR}" "$url" && \
     tar xvf "${TAR}" && \

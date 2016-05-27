@@ -18,6 +18,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SCALA_VERSION=2.10
 ARG KAFKA_VERSION=0.8.2.2
+#ARG KAFKA_VERSION=0.9.0.1
+#ARG KAFKA_VERSION=0.10.0.0
 ARG ADVERTISED_HOSTNAME=192.168.99.100
 
 ENV PATH $PATH:/kafka/bin
@@ -47,6 +49,6 @@ CMD zookeeper-server-start.sh /kafka/config/zookeeper.properties & \
     echo "*** waiting for 10 secs to give ZooKeeper time to start up"; \
     sleep 10; \
     echo "# ============================================================================ #"; \
-    echo " S t a r t i n g   K a f k a"; \
+    echo "                         S t a r t i n g   K a f k a"; \
     echo "# ============================================================================ #"; \
     kafka-server-start.sh /kafka/config/server.properties

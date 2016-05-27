@@ -17,7 +17,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 # 3.3 fails to start the first time with this dir
-mkdir /tmp/zookeeper
+mkdir -p /tmp/zookeeper
 zkServer.sh start
 sleep 2
 zkCli.sh

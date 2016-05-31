@@ -16,7 +16,9 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-su cassandra $(which cassandra)
+# hangs on Cassandra 2.1
+#su cassandra $(which cassandra)
+cassandra
 count=0
 while true; do
     logfile="/cassandra/logs/system.log"
@@ -35,4 +37,5 @@ while true; do
 done
 echo
 echo
-su cassandra $(which cqlsh)
+#su cassandra $(which cqlsh)
+cqlsh

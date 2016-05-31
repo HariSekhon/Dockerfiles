@@ -18,21 +18,19 @@ docker search harisekhon
 docker run -ti harisekhon/nagios-pluginsi
 ```
 
-To see more than 25 results ```docker search``` allows ([docker issue](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
+To see more than the 25 DockerHub repos limited by ```docker search``` ([docker issue 23055](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
 ```
 docker run harisekhon/pytools dockerhub_search.py harisekhon
 ```
 
 There are lots of tagged versions of official software in my repos to allow development testing across multiple versions.
 
-DockerHub tags are not shown by ```docker search``` ([docker issue](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
+DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
 
 eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
 ```
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
-
-Repos suffixed with ```-dev``` are the official technologies + my github repos with all dependencies pre-built, intended for development.
 
 ### Full Inventory:
 
@@ -55,6 +53,8 @@ Repos suffixed with ```-dev``` are the official technologies + my github repos w
 - Spark (opens Spark shell)
 - Tachyon
 - ZooKeeper (opens ZK shell)
+
+Repos suffixed with ```-dev``` are the official technologies + my github repos with all dependencies pre-built, intended for development.
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 

@@ -16,10 +16,15 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + CentOS (OpenJDK)"
 
+ENV JAVA_HOME=/usr
+
 RUN yum install -y \
-    java-1.8.0-openjdk-headless && \
+    java-1.7.0-openjdk-devel && \
+    #java-1.7.0-openjdk-headless && \
+    #java-1.8.0-openjdk-devel && \
+    #java-1.8.0-openjre-headless && \
     yum clean all
 
-COPY java.sh /etc/profile.d/
+#COPY java.sh /etc/profile.d/
 
 CMD /bin/bash

@@ -12,9 +12,11 @@ These images are all available pre-built on [My DockerHub](https://hub.docker.co
 
 ### Ready to run Docker images
 
-```docker search harisekhon
+```
+docker search harisekhon
 
-docker run -ti harisekhon/nagios-plugins```
+docker run -ti harisekhon/nagios-pluginsi
+```
 
 To see more than 25 results ```docker search``` allows ([docker issue](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
 ```

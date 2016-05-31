@@ -22,7 +22,7 @@ To see more than the 25 DockerHub repos limited by ```docker search``` ([docker 
 docker run harisekhon/pytools dockerhub_search.py harisekhon
 ```
 
-There are lots of tagged versions of official software in my repos to allow development testing across multiple versions.
+There are lots of tagged versions of official software in my repos to allow development testing across multiple versions, usually more versions than available from the official repos.
 
 DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
 

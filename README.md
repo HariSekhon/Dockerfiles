@@ -13,14 +13,17 @@ These images are all available pre-built on [My DockerHub](https://hub.docker.co
 ### Ready to run Docker images
 
 ```docker search harisekhon
+
 docker run -ti harisekhon/nagios-plugins```
 
-To see all my DockerHub repos, docker search cli doesn't yet support more than 25 results ([docker issue](https://github.com/docker/docker/issues/23055)) so I wrote a generic python tool to show more DockerHub results using the DockerHub API (50 results by default, configurable with --num), available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
+To see more than 25 results ```docker search``` allows ([docker issue](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
 ```
 docker run harisekhon/pytools dockerhub_search.py harisekhon
 ```
 
-There are lots of tagged versions of official software - docker cli doesn't support showing tags yet ([docker issue](https://github.com/docker/docker/issues/17238)) so I wrote a generic python tool to show DockerHub tags ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
+There are lots of tagged versions of official software in my repos to allow development testing across multiple versions.
+
+DockerHub tags are not shown by ```docker search``` ([docker issue](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
 
 eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
 ```

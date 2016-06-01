@@ -14,23 +14,23 @@
 FROM harisekhon/centos-github
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG SOLR_VERSION=4.10.4
-#ARG SOLR_VERSION=5.5.1
-ARG SOLR_VERSION=6.0.1
+ARG SOLRCLOUD_VERSION=4.10.4
+#ARG SOLRCLOUD_VERSION=5.5.1
+#ARG SOLRCLOUD_VERSION=6.0.1
 
-ARG TAR="solr-$SOLR_VERSION.tgz"
+ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 
 ENV PATH $PATH:/solr/bin
 
 LABEL Description="SolrCloud", \
-      "Solr Version"="$SOLR_VERSION"
+      "Solr Version"="$SOLRCLOUD_VERSION"
 
 WORKDIR /
 
 RUN \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
+    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLRCLOUD_VERSION}/$TAR&action=download" && \
     tar zxvf "$TAR" && \
-    ln -sv solr-$SOLR_VERSION solr && \
+    ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \
     rm -fr /solr/doc && \
     yum autoremove -y && \

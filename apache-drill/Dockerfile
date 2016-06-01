@@ -17,7 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 ENV PATH $PATH:/apache-drill/bin
 
 LABEL Description="Apache Drill" \
-      "Apache Drill Version"="$DRILL_VERSION"
+      "Apache Drill Version"="$APACHE_DRILL_VERSION"
 
 RUN \
     # required for supervisord
@@ -28,31 +28,31 @@ RUN \
     yum autoremove -y && \
     yum clean all
 
-#ARG DRILL_VERSION=0.7.0
-#ARG DRILL_VERSION=0.8.0
-#ARG DRILL_VERSION=0.9.0
-#ARG DRILL_VERSION=1.0.0
-#ARG DRILL_VERSION=1.1.0
-#ARG DRILL_VERSION=1.2.0
-#ARG DRILL_VERSION=1.3.0
-#ARG DRILL_VERSION=1.4.0
-#ARG DRILL_VERSION=1.5.0
-ARG DRILL_VERSION=1.6.0
+ARG APACHE_DRILL_VERSION=0.7.0
+#ARG APACHE_DRILL_VERSION=0.8.0
+#ARG APACHE_DRILL_VERSION=0.9.0
+#ARG APACHE_DRILL_VERSION=1.0.0
+#ARG APACHE_DRILL_VERSION=1.1.0
+#ARG APACHE_DRILL_VERSION=1.2.0
+#ARG APACHE_DRILL_VERSION=1.3.0
+#ARG APACHE_DRILL_VERSION=1.4.0
+#ARG APACHE_DRILL_VERSION=1.5.0
+#ARG APACHE_DRILL_VERSION=1.6.0
 
 ARG DRILL_HEAP=900M
-ARG TAR=apache-drill-${DRILL_VERSION}.tar.gz
+ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 # zookeeper hostname embedded in configuration file for distributed cluster - use this name in container linking
 ARG ZOOKEEPER_HOST=zookeeper
 
 RUN \
     yum install -y wget tar which && \
-    if   [ "${DRILL_VERSION:0:3}" = "1.5" -o "${DRILL_VERSION:0:3}" = "1.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${DRILL_VERSION}/${TAR}&action=download"; \
-    else url="http://archive.apache.org/dist/drill/drill-${DRILL_VERSION}/${TAR}"; \
+    if   [ "${APACHE_DRILL_VERSION:0:3}" = "1.5" -o "${APACHE_DRILL_VERSION:0:3}" = "1.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
+    else url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
     fi && \
     wget -O "${TAR}" "$url" && \
     tar xvf "${TAR}" && \
     rm -fv  "${TAR}" && \
-    ln -sv "apache-drill-${DRILL_VERSION}" apache-drill && \
+    ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \
     # for older versions
     sed -i -e "s/-Xms1G/-Xms\$DRILL_MAX_HEAP/" apache-drill/conf/drill-env.sh && \
     sed -i -e "s/^DRILL_MAX_HEAP=.*/DRILL_MAX_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh && \

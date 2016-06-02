@@ -75,7 +75,7 @@ Repos suffixed with ```-dev``` are the official technologies + my github repos w
 
 ###### Base Images + Java / Scala:
 
-All builds use OpenJDK with ```jre``` and ```jdk``` tags. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
+All builds use OpenJDK with ```jre``` and ```jdk``` numbered tags. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
 
 https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
 

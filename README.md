@@ -44,6 +44,7 @@ docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 - HBase (pseudo-distributed, opens HBase shell)
 - Kafka
 - Mesos
+- Nifi
 - Riak
 - Riak (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Serf

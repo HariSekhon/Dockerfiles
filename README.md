@@ -3,7 +3,7 @@ Hari Sekhon Docker [![DockerHub](https://img.shields.io/badge/docker-available-b
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-### Contains:
+### Contains 37 repos with 139 tags including many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
 
 * [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
 * NoSQL, RDBMS & OS images used for development and functional test suites

@@ -75,13 +75,14 @@ Repos suffixed with ```-dev``` are the official technologies + my github repos w
 
 ###### Base Images + Java / Scala:
 
-All builds use OpenJDK for dev / OpenJRE for run. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
+All builds use OpenJDK with ```jre``` and ```jdk``` tags. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
 
 https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
 
-- CentOS latest combinations of Java 7/8 (OpenJRE) and Scala 2.10/2.11
-- Debian latest with Java 7 (OpenJRE)
-- Ubuntu 14.04 with Java 7, Ubuntu latest with Java 8, 9 (OpenJRE)
+- CentOS latest combinations of Java 7/8 and Scala 2.10/2.11
+- Debian latest with Java 7
+- Ubuntu 14.04 with Java 7
+- Ubuntu latest with Java 8, 9
 
 ### To Build from Dockerfile + source yourself
 

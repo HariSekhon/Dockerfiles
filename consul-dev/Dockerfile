@@ -40,7 +40,7 @@ WORKDIR /
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends wget unzip ca-certificates && \
-    wget -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
+    wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     apt-get purge -y wget unzip ca-certificates && \

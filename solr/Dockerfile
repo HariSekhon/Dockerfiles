@@ -39,7 +39,7 @@ RUN \
     # not found, using Apache archive instead
     #wget -O "$TAR" "http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/apache-solr-$SOLR_VERSION.tgz" && \
     # Solr 4.x +
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
+    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
     tar zxvf "$TAR" && \
     # normalize apache-solr-3.x => solr-<version> like newer versions
     if [ -d apache-solr-$SOLR_VERSION ]; then mv -iv apache-solr-$SOLR_VERSION solr-$SOLR_VERSION; fi && \

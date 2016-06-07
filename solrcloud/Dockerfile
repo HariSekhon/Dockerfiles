@@ -32,7 +32,7 @@ WORKDIR /
 RUN \
     # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
     yum install -y wget tar lsof && \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLRCLOUD_VERSION}/$TAR&action=download" && \
+    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLRCLOUD_VERSION}/$TAR&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \

@@ -37,7 +37,7 @@ RUN \
     yum install -y wget tar lsof unzip && \
     # Solr 3.x
     # not found, using Apache archive instead
-    #wget -O "$TAR" "http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/apache-solr-$SOLR_VERSION.tgz" && \
+    #wget -t 100 --retry-connrefused -O "$TAR" "http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/apache-solr-$SOLR_VERSION.tgz" && \
     # Solr 4.x +
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
     tar zxvf "$TAR" && \

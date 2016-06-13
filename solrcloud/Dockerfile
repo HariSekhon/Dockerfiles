@@ -33,7 +33,12 @@ WORKDIR /
 RUN \
     # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
     yum install -y wget tar lsof && \
-    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLRCLOUD_VERSION}/$TAR&action=download" && \
+    # Solr 4.x
+    # no longer on mirrors, use Apache archive instead
+    if [ "${SOLRCLOUD_VERSION:0:1}" = 4 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz"; \
+    else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz&action=download"; \
+    fi && \
+    for((i=0;i<10;i++)); do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
     tar zxvf "$TAR" && \
     ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \

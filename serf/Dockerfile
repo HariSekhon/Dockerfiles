@@ -36,7 +36,7 @@ LABEL Description="HashiCorp's Serf minimal" \
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends wget unzip ca-certificates && \
-    wget -O "serf_${SERF_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip" && \
+    wget -t 100 --retry-connrefused -O "serf_${SERF_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip" && \
     unzip "serf_${SERF_VERSION}_linux_amd64.zip" && \
     rm -fv "serf_${SERF_VERSION}_linux_amd64.zip" && \
     apt-get purge -y wget unzip ca-certificates && \

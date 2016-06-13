@@ -17,12 +17,12 @@
 FROM harisekhon/debian-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG CONSUL_VERSION=0.1.0
+#ARG CONSUL_VERSION=0.1.0
 #ARG CONSUL_VERSION=0.2.1
 #ARG CONSUL_VERSION=0.3.1
 #ARG CONSUL_VERSION=0.4.1
 #ARG CONSUL_VERSION=0.5.2
-#ARG CONSUL_VERSION=0.6.4
+ARG CONSUL_VERSION=0.6.4
 #ARG CONSUL_VERSION=0.7.0
 
 ENV PATH $PATH:/
@@ -39,10 +39,11 @@ WORKDIR /
 
 RUN \
     apt-get update && \
-    apt-get install -y --no-install-recommends wget unzip && \
-    wget -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
+    apt-get install -y --no-install-recommends wget unzip ca-certificates && \
+    wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
+    # can't remove ca-cacertificates, ca-certificates-java is required by openjdk
     apt-get purge -y wget unzip && \
     apt-get autoremove -y && \
     apt-get clean

@@ -18,8 +18,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG RIAK_VERSION=1.4.9
 # LTS release
-#ARG RIAK_VERSION=2.0.6
-ARG RIAK_VERSION=2.1.4
+ARG RIAK_VERSION=2.0.6
+#ARG RIAK_VERSION=2.1.4
 
 LABEL Description="Riak"
 

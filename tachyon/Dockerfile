@@ -16,6 +16,7 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
+#ARG TACHYON_VERSION=0.7.1
 ARG TACHYON_VERSION=0.8.2
 
 ENV PATH $PATH:/tachyon/bin
@@ -30,8 +31,8 @@ LABEL Description="Tachyon from BDAS" \
 
 #RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
-    apt-get install -y sudo openssh-server wget tar && \
-    wget -O "tachyon-${TACHYON_VERSION}-bin.tar.gz" "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
+    apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
+    wget -t 100 --retry-connrefused -O "tachyon-${TACHYON_VERSION}-bin.tar.gz" "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     tar zxvf "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     rm -fv "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     ln -sv "tachyon-${TACHYON_VERSION}" tachyon && \

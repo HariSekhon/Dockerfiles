@@ -48,6 +48,7 @@ RUN \
     yum-security \
     yum-plugin-security \
     vim-enhanced \
+    curl \
     wget \
     tar \
     unzip \
@@ -66,7 +67,7 @@ RUN \
 # Gradle doesn't have an RPM :-(
 RUN \
     cd /opt && \
-    wget https://services.gradle.org/distributions/gradle-2.13-bin.zip && \
+    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-2.13-bin.zip && \
     unzip gradle-2.13-bin.zip && \
     ln -sv gradle-2.13 gradle && \
     rm -f gradle-2.13-bin.zip

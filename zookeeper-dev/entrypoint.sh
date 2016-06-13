@@ -2,7 +2,7 @@
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
-#  Date: 2016-02-18 00:02:54 +0000 (Thu, 18 Feb 2016)
+#  Date: 2016-04-29 16:46:30 +0100 (Fri, 29 Apr 2016)
 #
 #  https://github.com/harisekhon/Dockerfiles
 #
@@ -16,12 +16,8 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-cd "$srcdir"
-
-for x in *; do
-    [ -d "$x" ] || continue
-    grep -q -e "^TAG=harisekhon/$x" -e "^TAG=harisekhon/${x#*-}" "$x/Makefile" ||
-        { echo "$x TAG mismatch!"; exit 1; }
-done
+# 3.3 fails to start the first time with this dir
+mkdir -p /tmp/zookeeper
+zkServer.sh start
+sleep 2
+zkCli.sh

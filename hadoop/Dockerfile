@@ -16,8 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG HADOOP_VERSION=1.2.1
 #ARG HADOOP_VERSION=2.5.2
-ARG HADOOP_VERSION=2.6.4
-#ARG HADOOP_VERSION=2.7.2
+#ARG HADOOP_VERSION=2.6.4
+ARG HADOOP_VERSION=2.7.2
 
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
@@ -31,11 +31,14 @@ WORKDIR /
 
 RUN \
     yum install -y openssh-server wget tar which && \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
+    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
     rm -fr /hadoop/share/doc && \
+    # Hadoop 1.x
+    #/hadoop/bin/hadoop namenode -format && \
+    # Hadoop 2.x
     /hadoop/bin/hdfs namenode -format && \
     yum remove -y wget tar && \
     yum autoremove -y && \

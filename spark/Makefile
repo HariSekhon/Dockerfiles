@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/spark
+REPO=harisekhon/spark
+
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -19,12 +21,12 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(TAG) --no-cache .
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 harisekhon/spark
+	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 $(REPO):$(TAG)

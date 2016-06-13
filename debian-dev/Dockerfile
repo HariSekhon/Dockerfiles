@@ -17,8 +17,9 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Debian Dev Build"
 
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y build-essential \
+    apt-get upgrade -y --no-install-recommends && \
+    apt-get install -y --no-install-recommends \
+                       build-essential \
                        git \
                        make \
                        maven \
@@ -40,6 +41,7 @@ RUN apt-get update && \
                        libsnappy-dev \
                        unzip \
                        vim \
+                       curl \
                        wget \
                        zip && \
     # for sbt https repo

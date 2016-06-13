@@ -16,6 +16,26 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-/usr/sbin/cassandra
-sleep 2
-/usr/bin/cqlsh
+# hangs on Cassandra 2.1
+#su cassandra $(which cassandra)
+cassandra
+count=0
+while true; do
+    logfile="/cassandra/logs/system.log"
+    [ -f "/var/log/cassandra/system.log" ] &&
+        logfile="/var/log/cassandra/system.log"
+    grep 'Starting listening for CQL clients' "$logfile" && break
+    let count+=1
+    if [ $count -gt 20 ]; then
+        echo
+        echo
+        echo "Didn't find CQL startup in cassandra system.log, trying CQL anyway"
+        break
+    fi
+    echo -n .
+    sleep 1
+done
+echo
+echo
+#su cassandra $(which cqlsh)
+cqlsh

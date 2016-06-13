@@ -16,19 +16,45 @@
 FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG CASSANDRA_VERSION=22
+ENV PATH $PATH:/cassandra/bin
 
-LABEL Description="Cassandra Dev"
+#ARG CASSANDRA_VERSION=1.2.9
+#ARG CASSANDRA_VERSION=2.0.9
+#ARG CASSANDRA_VERSION=2.1.14
+#ARG CASSANDRA_VERSION=2.2.6
+#ARG CASSANDRA_VERSION=3.0.6
+ARG CASSANDRA_VERSION=3.5
 
-COPY datastax.repo /etc/yum.repos.d/datastax.repo
+ARG TAR="apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz"
+
+LABEL Description="Cassandra Dev", \
+      "Cassandra Version"="$CASSANDRA_VERSION"
+
+WORKDIR /
 
 RUN \
-    #yum install -y make git && \
-    yum install -y cassandra$CASSANDRA_VERSION && \
+    # cassandra refuses to run as root without -R, just run as regular user
+    groupadd -r cassandra --gid=501 && useradd -r -g cassandra --uid=501 cassandra && \
+    if   [ "${CASSANDRA_VERSION:0:3}" = "1.2" -o "${CASSANDRA_VERSION:0:3}" = "2.0" ]; then url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
+    else url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
+    fi && \
+    wget -t 100 --retry-connrefused -O "$TAR" "$url" && \
+    tar xvf "${TAR}" && \
+    rm -fv  "${TAR}" && \
+    ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
+    rm -fr "cassandra/doc" "cassandra/javadoc" && \
+    sed -i 's/-Xss180k/-Xss228k/' /cassandra/conf/cassandra-env.sh && \
+    mkdir /home/cassandra /var/lib/cassandra /var/log/cassandra && \
+    chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \
     yum autoremove -y && \
     yum clean all
 
-EXPOSE 7199 9042 9160
+# 7000: intra-node communication
+# 7001: TLS intra-node communication
+# 7199: JMX
+# 9042: CQL
+# 9160: thrift service
+EXPOSE 7000 7001 7199 9042 9160
 
 COPY entrypoint.sh /
 

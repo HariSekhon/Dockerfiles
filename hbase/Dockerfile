@@ -15,11 +15,11 @@ FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG HBASE_VERSION=0.94.27
-ARG HBASE_VERSION=0.96.2
+#ARG HBASE_VERSION=0.96.2
 #ARG HBASE_VERSION=0.98.19
 #ARG HBASE_VERSION=1.0.3
 #ARG HBASE_VERSION=1.1.5
-#ARG HBASE_VERSION=1.2.1
+ARG HBASE_VERSION=1.2.1
 
 ENV PATH $PATH:/hbase/bin
 
@@ -42,7 +42,7 @@ RUN \
     elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
     else echo "unrecognized HBase version"; exit 1; \
     fi && \
-    wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
+    wget -t 100 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
     mkdir hbase-$HBASE_VERSION && \
     tar zxvf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
     ln -sv hbase-$HBASE_VERSION hbase && \

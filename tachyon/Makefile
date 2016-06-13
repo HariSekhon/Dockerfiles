@@ -13,7 +13,7 @@
 
 REPO=harisekhon/tachyon
 
-TAG=$(shell awk -F= '/^ARG [[:alnum:]]*_VERSION/{sub(/\.[[:digit:]]+$$/, "", $$2); print $$2}' Dockerfile)
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:

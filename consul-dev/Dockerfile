@@ -13,7 +13,8 @@
 
 # busybox wget doesn't support SSL, no curl available :-(
 #FROM busybox:latest
-FROM debian:latest
+# -dev version allows testing of local consul command utils like check_consul_version.py
+FROM harisekhon/debian-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG CONSUL_VERSION=0.1.0
@@ -26,8 +27,10 @@ ARG CONSUL_VERSION=0.6.4
 
 ENV PATH $PATH:/
 
-LABEL Description="HashiCorp's Consul minimal" \
+LABEL Description="HashiCorp's Consul + Dev tools" \
       "Consul Version"="$CONSUL_VERSION"
+
+WORKDIR /
 
 # faster, cached
 #COPY consul /
@@ -40,7 +43,8 @@ RUN \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
-    apt-get purge -y wget unzip ca-certificates && \
+    # can't remove ca-cacertificates, ca-certificates-java is required by openjdk
+    apt-get purge -y wget unzip && \
     apt-get autoremove -y && \
     apt-get clean
 
@@ -48,5 +52,4 @@ RUN \
 
 EXPOSE 8400 8500 8600
 
-#ENTRYPOINT ["/entrypoint.sh"]
-ENTRYPOINT ["/consul"]
+CMD /consul agent -dev -data-dir /tmp -client 0.0.0.0

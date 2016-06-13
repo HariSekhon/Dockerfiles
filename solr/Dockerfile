@@ -37,9 +37,9 @@ RUN \
     yum install -y wget tar lsof unzip && \
     # Solr 3.x / 4.x
     # no longer on mirrors, use Apache archive instead
-    if [ "${SOLR_VERSION:0:1}" = 3 ]; then url="http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/apache-solr-$SOLR_VERSION.tgz"; \
-    elif [ "${SOLR_VERSION:0:1}" = 4 ]; then url="http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz"; \
-    else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download"; \
+    if [ "${SOLR_VERSION:0:1}" = 3 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz"; \
+    elif [ "${SOLR_VERSION:0:1}" = 4 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"; \
+    else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz&action=download"; \
     fi && \
     for((i=0;i<10;i++)); do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
     tar zxvf "$TAR" && \

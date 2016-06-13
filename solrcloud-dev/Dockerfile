@@ -14,23 +14,28 @@
 FROM harisekhon/centos-github
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG SOLR_VERSION=4.10.4
-#ARG SOLR_VERSION=5.5.0
-ARG SOLR_VERSION=6.0.0
+#ARG SOLRCLOUD_VERSION=4.10.4
+#ARG SOLRCLOUD_VERSION=5.5.1
+ARG SOLRCLOUD_VERSION=6.0.1
 
-ARG TAR="solr-$SOLR_VERSION.tgz"
+ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 
 ENV PATH $PATH:/solr/bin
 
 LABEL Description="SolrCloud", \
-      "Solr Version"="$SOLR_VERSION"
+      "Solr Version"="$SOLRCLOUD_VERSION"
 
 WORKDIR /
 
 RUN \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=lucene/solr/${SOLR_VERSION}/solr-$SOLR_VERSION.tgz&action=download" && \
+    # Solr 4.x
+    # no longer on mirrors, use Apache archive instead
+    if [ "${SOLRCLOUD_VERSION:0:1}" = 4 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz"; \
+    else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz&action=download"; \
+    fi && \
+    for((i=0;i<10;i++)); do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
     tar zxvf "$TAR" && \
-    ln -sv solr-$SOLR_VERSION solr && \
+    ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \
     rm -fr /solr/doc && \
     yum autoremove -y && \

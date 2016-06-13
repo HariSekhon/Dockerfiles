@@ -26,7 +26,7 @@ LABEL Description="ZooKeeper" \
 WORKDIR /
 
 RUN \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
+    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \

@@ -38,7 +38,7 @@ RUN \
     if   [ "${CASSANDRA_VERSION:0:3}" = "1.2" -o "${CASSANDRA_VERSION:0:3}" = "2.0" ]; then url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
     else url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     fi && \
-    wget -O "$TAR" "$url" && \
+    wget -t 100 --retry-connrefused -O "$TAR" "$url" && \
     tar xvf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \

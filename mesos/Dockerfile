@@ -33,12 +33,12 @@ WORKDIR /
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends wget && \
-    if   [ "${MESOS_VERSION:0:3}" = "0.23" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.debian81_amd64.deb"; \
-    elif [ "${MESOS_VERSION:0:3}" = "0.24" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.33.debian81_amd64.deb"; \
-    elif [ "${MESOS_VERSION:0:3}" = "0.25" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.70.debian81_amd64.deb"; \
-    elif [ "${MESOS_VERSION:0:3}" = "0.26" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.145.debian81_amd64.deb"; \
-    elif [ "${MESOS_VERSION:0:3}" = "0.27" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.190.debian81_amd64.deb"; \
-    elif [ "${MESOS_VERSION:0:3}" = "0.28" ]; then url="http://repos.mesosphere.com/debian/pool/main/m/mesos/mesos_0.28.0-2.0.16.debian81_amd64.deb"; \
+    if   [ "${MESOS_VERSION:0:4}" = "0.23" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.24" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.33.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.25" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.70.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.26" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.145.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.27" ]; then url="http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.190.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.28" ]; then url="http://repos.mesosphere.com/debian/pool/main/m/mesos/mesos_$MESOS_VERSION-2.0.16.debian81_amd64.deb"; \
     else echo "unexpected mesos version"; exit 1; fi && \
     wget -t 10 --retry-connrefused "$url" && \
     dpkg -i mesos*.deb; \

@@ -42,7 +42,7 @@ RUN \
     elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
     else echo "unrecognized HBase version"; exit 1; \
     fi && \
-    wget -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
+    wget -t 100 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
     mkdir hbase-$HBASE_VERSION && \
     tar zxvf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
     ln -sv hbase-$HBASE_VERSION hbase && \

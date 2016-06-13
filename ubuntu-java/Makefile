@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/ubuntu-java
+REPO=harisekhon/ubuntu-java
 
 .PHONY: all
 all:
@@ -19,16 +19,8 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build -t $(REPO) .
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	@echo Nothing to clean
+	docker build -t $(REPO) --no-cache .

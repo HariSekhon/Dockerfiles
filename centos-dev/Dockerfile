@@ -34,7 +34,7 @@ RUN \
     python-pip \
     ruby \
     ruby-devel \
-    java-1.7.0-openjdk \
+    java-1.8.0-openjdk \
     groovy \
     openssl-devel \
     mysql-devel \
@@ -48,6 +48,7 @@ RUN \
     yum-security \
     yum-plugin-security \
     vim-enhanced \
+    curl \
     wget \
     tar \
     unzip \
@@ -58,11 +59,18 @@ RUN \
     yum install -y jwhois && \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y --nogpgcheck sbt && \
+    yum autoremove -y && \
     yum clean all && \
-    # Gradle doesn't have an RPM :-(
-    cd /opt && wget https://services.gradle.org/distributions/gradle-2.13-bin.zip && unzip gradle-2.13-bin.zip && ln -sv gradle-2.13 gradle && rm -f gradle-2.13-bin.zip && cd - && \
     # workaround for CentOS (found via strace) otherwise incorrectly states "Warning: You do not have write permission for Perl library directories." and local::lib hits use of uninitialized variables errors in base modules like even core File::Basename :-/
     mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
+
+# Gradle doesn't have an RPM :-(
+RUN \
+    cd /opt && \
+    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-2.13-bin.zip && \
+    unzip gradle-2.13-bin.zip && \
+    ln -sv gradle-2.13 gradle && \
+    rm -f gradle-2.13-bin.zip
 
 COPY java.sh /etc/profile.d/
 COPY gradle.sh /etc/profile.d/

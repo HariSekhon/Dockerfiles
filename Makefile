@@ -28,6 +28,9 @@ all:
 build:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make build; popd; done
 
+tags:
+	./build_tags.sh
+
 .PHONY: nocache
 nocache:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done

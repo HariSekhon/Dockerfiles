@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TACHYON_VERSION=0.8.2
+REPO=harisekhon/tachyon
 
-TAG=harisekhon/tachyon
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -21,30 +21,12 @@ all:
 
 .PHONY: build
 build:
-	# done in Docker now
-	#[ -d "tachyon-$(TACHYON_VERSION)" ] || wget -c http://tachyon-project.org/downloads/files/$(TACHYON_VERSION)/tachyon-$(TACHYON_VERSION)-bin.tar.gz
-	#[ -d "tachyon-$(TACHYON_VERSION)" ] || tar zxvf tachyon-$(TACHYON_VERSION)-bin.tar.gz
-	#rm -fv tachyon-$(TACHYON_VERSION)-bin.tar.gz
-	# multiple tags should arrive in Docker 1.10+
-	docker build --build-arg TACHYON_VERSION=$(TACHYON_VERSION) -t $(TAG):$(TACHYON_VERSION) . && docker tag -f $(TAG):$(TACHYON_VERSION) $(TAG):latest
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	make build
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -rf tachyon-$(TACHYON_VERSION)-bin*
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -t -p 19999:19999 -p 30000:30000 harisekhon/tachyon
+	docker run -ti -p 19999:19999 -p 30000:30000 $(REPO):$(TAG)

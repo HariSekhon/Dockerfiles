@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-RIAK_VERSION=2.1.3
+REPO=harisekhon/riak-dev
 
-TAG=harisekhon/riak-dev
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -21,25 +21,12 @@ all:
 
 .PHONY: build
 build:
-	docker build --build-arg RIAK_VERSION=$(RIAK_VERSION) -t $(TAG):$(RIAK_VERSION) . && docker tag -f $(TAG):$(RIAK_VERSION) $(TAG):latest
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache --build-arg RIAK_VERSION=$(RIAK_VERSION) -t $(TAG):$(RIAK_VERSION) . && docker tag -f $(TAG):$(RIAK_VERSION) $(TAG):latest
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	@echo Nothing to clean
-
-#.PHONY: test
-#test:
-#	cd .. && make test deps
-#	docklint Dockerfile
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -ti -p 8098:8098 harisekhon/riak-dev
+	docker run -ti -p 8098:8098 $(REPO):$(TAG)

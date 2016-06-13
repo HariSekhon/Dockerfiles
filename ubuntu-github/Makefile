@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/ubuntu-github
+REPO=harisekhon/ubuntu-github
 
 .PHONY: all
 all:
@@ -19,23 +19,8 @@ all:
 
 .PHONY: build
 build:
-	#@date > invalidate_cache
-	docker build -t $(TAG) .
-	#@rm -f invalidate_cache
+	docker build -t $(REPO) .
 
 .PHONY: nocache
 nocache:
-	docker build --no-cache -t $(TAG) .
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm invalidate_cache
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(REPO) --no-cache .

@@ -11,13 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-SPARK_VERSION=1.6.1
-HADOOP_VERSION=2.6
+REPO=harisekhon/spark
 
-TAG=harisekhon/spark
-
-#DIR="spark-$(SPARK_VERSION)-bin-hadoop$(HADOOP_VERSION)"
-#TAR="$(DIR).tgz"
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -25,24 +21,12 @@ all:
 
 .PHONY: build
 build:
-	#[ -d "$(DIR)" ] || wget -c "http://d3kbcqa49mib13.cloudfront.net/$(TAR)" -O "$(TAR)"
-	#[ -d "$(DIR)" ] || tar zxvf "$(TAR)"
-	#rm -fv "$(TAR)"
-	# multiple tags should arrive in Docker 1.10+
-	docker build --build-arg SPARK_VERSION=$(SPARK_VERSION) --build-arg HADOOP_VERSION=$(HADOOP_VERSION) -t $(TAG):$(SPARK_VERSION) . && docker tag -f $(TAG):$(SPARK_VERSION) $(TAG):latest
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	make build
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -rf "$(DIR)" "$(TAR)"
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 harisekhon/spark
+	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 $(REPO):$(TAG)

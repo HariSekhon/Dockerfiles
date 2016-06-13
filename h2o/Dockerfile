@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos:jre7
+#FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
-FROM harisekhon/debian:jre7
+FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG H2O_VERSION=2.6.1.5
@@ -29,8 +29,11 @@ LABEL Description="H2O" \
 
 RUN \
     apt-get update && \
-    apt-get install -y wget unzip && \
-    wget http://download.h2o.ai/versions/h2o-${H2O_VERSION}.zip && \
+    apt-get install -y --no-install-recommends wget unzip && \
+    # 2.6.1.5
+    #wget -t 100 --retry-connrefused http://h2o-release.s3.amazonaws.com/h2o/rel-lambert/5/h2o-${H2O_VERSION}.zip && \
+    # 3.x url has changed
+    wget -t 100 --retry-connrefused http://download.h2o.ai/versions/h2o-${H2O_VERSION}.zip && \
     unzip h2o-${H2O_VERSION}.zip && \
     rm h2o-${H2O_VERSION}.zip && \
     ln -s h2o-${H2O_VERSION} h2o && \

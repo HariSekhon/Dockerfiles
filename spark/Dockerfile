@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos-jre7
+#FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
-FROM harisekhon/debian-jre7
+FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SPARK_VERSION=1.6.1
@@ -28,16 +28,14 @@ LABEL Description="Apache Spark" \
 #COPY spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION /spark
 #ADD "http://d3kbcqa49mib13.cloudfront.net/${TAR}"
 
-#RUN yum install -y sudo openssh-server && yum clean all
 RUN \
     apt-get update && \
-    apt-get install -y sudo openssh-server wget tar && \
-    wget -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
+    apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
+    wget -t 100 --retry-connrefused -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
     tar zxvf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s "spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \
-    # tar causes unmet dependency breakage
-    #apt-get purge -y tar && \
+    # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \
     apt-get clean

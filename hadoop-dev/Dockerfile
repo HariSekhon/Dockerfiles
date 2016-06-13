@@ -11,13 +11,18 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev
+FROM harisekhon/centos-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
+#ARG HADOOP_VERSION=1.2.1
+#ARG HADOOP_VERSION=2.5.2
+#ARG HADOOP_VERSION=2.6.4
 ARG HADOOP_VERSION=2.7.2
+
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
+ENV JAVA_HOME /usr
 
 LABEL Description="Hadoop Dev", \
       "Hadoop Version"="$HADOOP_VERSION"
@@ -26,11 +31,17 @@ WORKDIR /
 
 RUN \
     yum install -y openssh-server && \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
+    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
-    JAVA_HOME=${JAVA_HOME:-/usr} /hadoop/bin/hdfs namenode -format
+    rm -fr /hadoop/share/doc && \
+    # Hadoop 1.x
+    #/hadoop/bin/hadoop namenode -format && \
+    # Hadoop 2.x
+    /hadoop/bin/hdfs namenode -format && \
+    yum autoremove -y && \
+    yum clean all
 
 COPY entrypoint.sh /
 COPY core-site.xml /hadoop/etc/hadoop/
@@ -38,6 +49,6 @@ COPY hdfs-site.xml /hadoop/etc/hadoop/
 COPY yarn-site.xml /hadoop/etc/hadoop/
 COPY mapred-site.xml /hadoop/etc/hadoop/
 
-EXPOSE 8020 8032 8088 9000 10020 19888 50010 50020 50070 50075 50090
+EXPOSE 8020 8042 8088 9000 10020 19888 50010 50020 50070 50075 50090
 
 CMD "/entrypoint.sh"

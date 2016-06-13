@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#ZOOKEEPER_VERSION=3.4.6
+REPO=harisekhon/zookeeper
 
-TAG=harisekhon/zookeeper
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -21,31 +21,12 @@ all:
 
 .PHONY: build
 build:
-	#[ -d zookeeper-$(ZOOKEEPER_VERSION) ] || wget -O zookeeper-$(ZOOKEEPER_VERSION).tar.gz http://www.mirrorservice.org/sites/ftp.apache.org/zookeeper/zookeeper-$(ZOOKEEPER_VERSION)/zookeeper-$(ZOOKEEPER_VERSION).tar.gz
-	#[ -d zookeeper-$(ZOOKEEPER_VERSION) ] || tar zxvf zookeeper-$(ZOOKEEPER_VERSION).tar.gz
-	# makes build slightly quicker but doesn't make image any smaller
-	#rm -f "zookeeper-$(ZOOKEEPER_VERSION).tar.gz"
-	# multiple tags should arrive in Docker 1.10+
-	#docker build --build-arg ZOOKEEPER_VERSION=$(ZOOKEEPER_VERSION) -t $(TAG):$(ZOOKEEPER_VERSION) . && docker tag -f $(TAG):$(ZOOKEEPER_VERSION) $(TAG):latest
-	docker build -t $(TAG) .
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	make build
-
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm -fr zookeeper-*.tar.gz zookeeper-*
-
-#.PHONY: test
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -p 2181:2181 harisekhon/zookeeper
+	docker run -ti -p 2181:2181 $(REPO):$(TAG)

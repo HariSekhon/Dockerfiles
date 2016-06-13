@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos:jre7
+#FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
-FROM harisekhon/debian:jre7
+FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG ALLUXIO_VERSION=1.0.1
@@ -23,21 +23,18 @@ ENV PATH $PATH:/alluxio/bin
 LABEL Description="Alluxio from BDAS" \
       "Alluxio Version"="$ALLUXIO_VERSION"
 
-# use dev build it's quicker and cached
-#RUN yum install -y java-1.7.0-openjdk && yum clean all
-
 #COPY alluxio-$ALLUXIO_VERSION /alluxio
 
-#RUN yum install -y sudo openssh-server && yum clean all
 RUN apt-get update && \
-    apt-get install -y sudo openssh-server wget tar && \
-    wget -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
+    apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
+    wget -t 100 --retry-connrefused -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxvf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     rm -fv "alluxio-${ALLUXIO_VERSIO}-bin.tar.gz" && \
     ln -sv "alluxio-${ALLUXIO_VERSION}" alluxio && \
     cp -v /alluxio/conf/alluxio-env.sh.template /alluxio/conf/alluxio-env.sh && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     alluxio format && \
+    # attempting to remove tar causes unmet dependency breakage
     apt-get remove -y wget && \
     apt-get autoremove -y && \
     apt-get clean

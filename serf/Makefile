@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/serf
+REPO=harisekhon/serf
+
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -19,21 +21,12 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	make build
+	docker build -t $(REPO):$(TAG) --no-cache .
 
-.PHONY: push
-push:
-	docker push $(TAG)
-
-.PHONY: clean
-clean:
-	rm serf_*_linux_amd64.zip serf
-
-#.PHONY: all
-#test:
-#	cd .. && make test-deps
-#	docklint Dockerfile
+.PHONY: run
+run:
+	docker run -ti -p 7946:7946 -p 7373:7373 $(REPO):$(TAG)

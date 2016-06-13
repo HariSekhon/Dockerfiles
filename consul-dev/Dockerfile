@@ -43,7 +43,8 @@ RUN \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
-    apt-get purge -y wget unzip ca-certificates && \
+    # can't remove ca-cacertificates, ca-certificates-java is required by openjdk
+    apt-get purge -y wget unzip && \
     apt-get autoremove -y && \
     apt-get clean
 

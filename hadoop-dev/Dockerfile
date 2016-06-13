@@ -31,7 +31,7 @@ WORKDIR /
 
 RUN \
     yum install -y openssh-server && \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
+    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \

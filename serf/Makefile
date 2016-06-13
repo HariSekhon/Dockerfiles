@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/serf
+REPO=harisekhon/serf
+
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -19,12 +21,12 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(TAG) --no-cache .
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -ti -p 7946:7946 -p 7373:7373 harisekhon/serf
+	docker run -ti -p 7946:7946 -p 7373:7373 $(REPO):$(TAG)

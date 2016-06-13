@@ -29,7 +29,7 @@ RUN \
     if [ "${NIFI_VERSION:0:3}" = "0.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
     else url="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
     fi && \
-    wget -O "${TAR}" "$url" && \
+    wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
     tar xvf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "nifi-${NIFI_VERSION}" nifi && \

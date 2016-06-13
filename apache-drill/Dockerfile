@@ -49,7 +49,7 @@ RUN \
     if   [ "${APACHE_DRILL_VERSION:0:3}" = "1.5" -o "${APACHE_DRILL_VERSION:0:3}" = "1.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     else url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
     fi && \
-    wget -O "${TAR}" "$url" && \
+    wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
     tar xvf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \

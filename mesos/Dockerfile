@@ -16,35 +16,48 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG MESOS_VERSION=0.28.0
+#ARG MESOS_VERSION=0.23.0
+#ARG MESOS_VERSION=0.24.2
+#ARG MESOS_VERSION=0.25.1
+#ARG MESOS_VERSION=0.26.1
+#ARG MESOS_VERSION=0.27.2
+ARG MESOS_VERSION=0.28.2
+
+#ARG TAR="mesos-$MESOS_VERSION.tar.gz"
 
 ENV PATH $PATH:/mesos/bin
 
 LABEL Description="Apache Mesos" \
       "Apache Mesos Version"="$MESOS_VERSION"
 
+WORKDIR /
+
 RUN \
+    # debian uses sh -c by default which doesn't recognize the ${var:n:n}
+    bash -c '\
     apt-get update && \
+    # Apache only ships source, don't want entire dev tooling in image
+    #apt-get install -y --no-install-recommends tar wget && \
+    #wget -t 10 --retry-connrefused "http://archive.apache.org/dist/mesos/$MESOS_VERSION/$TAR" && \
+    #tar zxvf "$TAR" && \
+    #rm -v "$TAR" && \
+    #ln -sf "mesos-$MESOS_VERSION" mesos && \
     apt-get install -y --no-install-recommends wget && \
-    # 0.23
-    #wget -t 100 --retry-connrefused http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.debian81_amd64.deb && \
-    # 0.24
-    #wget -t 100 --retry-connrefused http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-1.0.33.debian81_amd64.deb && \
-    # 0.25
-    #wget -t 100 --retry-connrefused http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.70.debian81_amd64.deb && \
-    # 0.26
-    #wget -t 100 --retry-connrefused http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.145.debian81_amd64.deb && \
-    # 0.27
-    #wget -t 100 --retry-connrefused http://downloads.mesosphere.io/master/debian/8/mesos_$MESOS_VERSION-0.2.190.debian81_amd64.deb && \
-    # 0.28
-    wget -t 100 --retry-connrefused http://repos.mesosphere.com/debian/pool/main/m/mesos/mesos_0.28.0-2.0.16.debian81_amd64.deb && \
-    dpkg -i /mesos*.deb; \
+    if   [ "${MESOS_VERSION:0:4}" = "0.23" ]; then file="mesos_$MESOS_VERSION-1.0.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.24" ]; then file="mesos_$MESOS_VERSION-2.0.17.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.25" ]; then file="mesos_$MESOS_VERSION-2.0.21.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.26" ]; then file="mesos_$MESOS_VERSION-2.0.19.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.27" ]; then file="mesos_$MESOS_VERSION-2.0.15.debian81_amd64.deb"; \
+    elif [ "${MESOS_VERSION:0:4}" = "0.28" ]; then file="mesos_$MESOS_VERSION-2.0.27.debian81_amd64.deb"; \
+    else echo "unexpected mesos version"; exit 1; fi && \
+    wget -t 10 --retry-connrefused "http://repos.mesosphere.com/debian/pool/main/m/mesos/$file" && \
+    dpkg -i mesos*.deb; \
     apt-get install -yf && \
-    dpkg -i /mesos*.deb && \
+    dpkg -i mesos*.deb && \
+    # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \
-    apt-get clean && \
-    rm -v mesos*.deb
+    apt-get clean'
 
 COPY entrypoint.sh /
 

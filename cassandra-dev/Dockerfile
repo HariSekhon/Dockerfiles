@@ -23,7 +23,9 @@ ENV PATH $PATH:/cassandra/bin
 #ARG CASSANDRA_VERSION=2.1.14
 #ARG CASSANDRA_VERSION=2.2.6
 #ARG CASSANDRA_VERSION=3.0.6
-ARG CASSANDRA_VERSION=3.5
+#ARG CASSANDRA_VERSION=3.5
+#ARG CASSANDRA_VERSION=3.6
+ARG CASSANDRA_VERSION=3.7
 
 ARG TAR="apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz"
 
@@ -35,8 +37,12 @@ WORKDIR /
 RUN \
     # cassandra refuses to run as root without -R, just run as regular user
     groupadd -r cassandra --gid=501 && useradd -r -g cassandra --uid=501 cassandra && \
-    if   [ "${CASSANDRA_VERSION:0:3}" = "1.2" -o "${CASSANDRA_VERSION:0:3}" = "2.0" ]; then url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
-    else url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
+    if   [ "${CASSANDRA_VERSION:0:3}" = "1.2" \
+        -o "${CASSANDRA_VERSION:0:3}" = "2.0" \
+        -o "${CASSANDRA_VERSION:0:3}" = "3.5" ]; then \
+        url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
+    else \
+        url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     fi && \
     wget -t 100 --retry-connrefused -O "$TAR" "$url" && \
     tar xvf "${TAR}" && \

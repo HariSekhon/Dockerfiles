@@ -17,8 +17,9 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Debian Dev Build"
 
 ENV JAVA_HOME=/usr
+ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython
-ENV PATH $PATH:$JYTHON_HOME/bin
+ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends && \
@@ -61,6 +62,14 @@ RUN apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
     apt-get clean
+
+# Gradle in Debian is old 1.5 :-(
+RUN \
+    cd /opt && \
+    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-2.13-bin.zip && \
+    unzip gradle-2.13-bin.zip && \
+    ln -sv gradle-2.13 gradle && \
+    rm -f gradle-2.13-bin.zip
 
 # Jython
 COPY jython_autoinstall.exp /

@@ -22,6 +22,7 @@ RUN \
     apt-get install -y --no-install-recommends \
                        build-essential \
                        git \
+                       expect \
                        make \
                        maven \
                        python-dev \
@@ -57,5 +58,14 @@ RUN \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
     apt-get clean
+
+# Jython
+COPY jython_autoinstall.exp /
+RUN \
+    cd / && \
+    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
+    ./jython_autoinstall.exp && \
+    ln -sf /opt/jython-2.7.0 /opt/jython && \
+    rm -fv jython-installer.jar
 
 CMD /bin/bash

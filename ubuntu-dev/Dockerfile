@@ -16,6 +16,10 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu Dev Build"
 
+ENV JAVA_HOME=/usr
+ENV JYTHON_HOME=/opt/jython
+ENV PATH $PATH:$JYTHON_HOME/bin
+
 RUN \
     apt-get update && \
     apt-get upgrade -y && \

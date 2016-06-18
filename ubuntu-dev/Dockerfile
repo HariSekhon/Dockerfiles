@@ -45,6 +45,9 @@ RUN \
                        libkrb5-dev \
                        libev4 \
                        libsnappy-dev \
+                       net-tools \
+                       sysstat \
+                       dstat \
                        unzip \
                        vim \
                        curl \

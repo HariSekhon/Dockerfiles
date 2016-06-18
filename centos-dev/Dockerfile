@@ -47,6 +47,8 @@ RUN \
     openssl-devel \
     mysql-devel \
     net-tools \
+    sysstat \
+    dstat \
     perl-DBD-MySQL \
     expat-devel \
     libev \

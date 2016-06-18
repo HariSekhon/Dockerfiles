@@ -27,43 +27,43 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 RUN \
     yum update -y && \
     yum install -y \
-    git \
-    make \
+    curl \
+    cyrus-sasl-devel \
+    dstat \
+    expat-devel \
+    expect \
     gcc \
     gcc-c++ \
     git \
-    expect \
-    maven \
-    perl \
-    perl-CPAN \
-    perl-libwww-perl \
-    python-devel \
-    python-setuptools \
-    python-pip \
-    ruby \
-    ruby-devel \
-    java-1.8.0-openjdk-devel \
+    git \
     groovy \
-    openssl-devel \
-    mysql-devel \
-    net-tools \
-    sysstat \
-    dstat \
-    perl-DBD-MySQL \
-    expat-devel \
+    java-1.8.0-openjdk-devel \
     libev \
     libev-devel \
+    make \
+    maven \
+    mysql-devel \
+    net-tools \
+    openssl-devel \
+    perl \
+    perl-CPAN \
+    perl-DBD-MySQL \
+    perl-libwww-perl \
+    python-devel \
+    python-pip \
+    python-setuptools \
+    ruby \
+    ruby-devel \
     snappy-devel \
-    cyrus-sasl-devel \
-    yum-security \
-    yum-plugin-security \
-    vim-enhanced \
-    curl \
-    wget \
+    sysstat \
     tar \
     unzip \
-    which \
     vim-enhanced \
+    vim-enhanced \
+    wget \
+    which \
+    yum-plugin-security \
+    yum-security \
     zip \
     epel-release && \
     yum install -y jwhois && \

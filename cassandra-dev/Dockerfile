@@ -6,12 +6,14 @@
 #
 #  https://github.com/harisekhon/Dockerfiles
 #
-#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
+#  to help improve or steer this or other code I publish
 #
 #  https://www.linkedin.com/in/harisekhon
 #
 
 # can't base off Cassandra as it's missing deps to run the tools
+# and official Cassandra versions only go back to 2.1 and miss in between versions like 3.5, 3.6 which I still test against
 #FROM cassandra:latest
 FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)

@@ -25,32 +25,32 @@ RUN \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
                        build-essential \
-                       git \
+                       curl \
+                       dstat \
                        expect \
+                       git \
+                       gradle \
+                       groovy \
+                       libdbd-mysql-perl \
+                       libev4 \
+                       libexpat1-dev \
+                       libkrb5-dev \
+                       libmysqlclient-dev \
+                       libsasl2-dev \
+                       libsnappy-dev \
+                       libssl-dev \
                        make \
                        maven \
+                       net-tools \
+                       openjdk-8-jdk \
                        python-dev \
-                       python-setuptools \
                        python-pip \
+                       python-setuptools \
                        ruby \
                        ruby-dev \
-                       openjdk-8-jdk \
-                       groovy \
-                       gradle \
-                       libexpat1-dev \
-                       libssl-dev \
-                       libsasl2-dev \
-                       libmysqlclient-dev \
-                       libdbd-mysql-perl \
-                       libkrb5-dev \
-                       libev4 \
-                       libsnappy-dev \
-                       net-tools \
                        sysstat \
-                       dstat \
                        unzip \
                        vim \
-                       curl \
                        wget \
                        zip && \
     # for sbt https repo

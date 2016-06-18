@@ -14,7 +14,7 @@ These images are all available pre-built on [My DockerHub](https://hub.docker.co
 
 ```
 docker search harisekhon
-docker run -ti harisekhon/nagios-plugins
+docker run harisekhon/nagios-plugins
 ```
 
 To see more than the 25 DockerHub repos limited by ```docker search``` ([docker issue 23055](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
@@ -69,9 +69,9 @@ Repos suffixed with ```-dev``` are the official technologies + my github repos w
 
 ##### Base Images:
 
-- CentOS latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, EPEL etc.
-- Debian latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
-- Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
+- CentOS latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- Debian latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- Ubuntu latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images + Java / Scala:
 

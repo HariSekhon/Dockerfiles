@@ -54,7 +54,7 @@ docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 - Tachyon
 - ZooKeeper (opens ZK shell)
 
-Repos suffixed with ```-dev``` are the official technologies + my github repos with all dependencies pre-built, intended for development.
+Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 

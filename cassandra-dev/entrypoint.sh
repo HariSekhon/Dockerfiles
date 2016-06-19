@@ -16,9 +16,10 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
+# recent versions >= 3 refuse to run as root
+#cassandra
 # hangs on Cassandra 2.1
-#su cassandra $(which cassandra)
-cassandra
+su cassandra $(which cassandra)
 count=0
 while true; do
     logfile="/cassandra/logs/system.log"
@@ -37,5 +38,5 @@ while true; do
 done
 echo
 echo
-#su cassandra $(which cqlsh)
-cqlsh
+#cqlsh
+su cassandra $(which cqlsh)

@@ -54,7 +54,7 @@ docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 - Tachyon
 - ZooKeeper (opens ZK shell)
 
-Repos suffixed with ```-dev``` are the official technologies + my github repos with all dependencies pre-built, intended for development.
+Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 
@@ -69,9 +69,9 @@ Repos suffixed with ```-dev``` are the official technologies + my github repos w
 
 ##### Base Images:
 
-- CentOS latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, EPEL etc.
-- Debian latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
-- Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
+- CentOS latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- Debian latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- Ubuntu latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images + Java / Scala:
 

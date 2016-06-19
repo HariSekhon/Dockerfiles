@@ -18,6 +18,7 @@ docker run harisekhon/nagios-plugins
 ```
 
 To see more than the 25 DockerHub repos limited by ```docker search``` ([docker issue 23055](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
+
 ```
 docker run harisekhon/pytools dockerhub_search.py harisekhon
 ```
@@ -27,6 +28,7 @@ There are lots of tagged versions of official software in my repos to allow deve
 DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
 
 eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
+
 ```
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
@@ -93,6 +95,7 @@ cd Dockerfiles
 ```
 
 To build all Docker images:
+
 ```
 make
 ```

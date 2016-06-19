@@ -16,9 +16,8 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-# recent versions >= 3 refuse to run as root
+# recent versions 3.5+ refuse to run as root
 #cassandra
-# hangs on Cassandra 2.1
 su cassandra $(which cassandra)
 count=0
 while true; do

@@ -24,7 +24,7 @@ ARG TAR=nifi-${NIFI_VERSION}-bin.tar.gz
 LABEL Description="Nifi" \
       "Nifi Version"="$NIFI_VERSION"
 
-WORKDIR=/
+WORKDIR /
 
 RUN \
     yum install -y wget tar && \

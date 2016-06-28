@@ -18,7 +18,7 @@ FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG SOLRCLOUD_VERSION=4.10.4
-#ARG SOLRCLOUD_VERSION=5.5.1
+#ARG SOLRCLOUD_VERSION=5.5.2
 ARG SOLRCLOUD_VERSION=6.0.1
 #ARG SOLRCLOUD_VERSION=6.1.0
 

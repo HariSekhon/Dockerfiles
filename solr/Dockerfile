@@ -19,8 +19,9 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 #ARG SOLR_VERSION=3.1.0
 #ARG SOLR_VERSION=3.6.2
 ARG SOLR_VERSION=4.10.4
-#ARG SOLR_VERSION=5.5.1
+#ARG SOLR_VERSION=5.5.2
 #ARG SOLR_VERSION=6.0.1
+#ARG SOLR_VERSION=6.1.0
 
 ARG TAR="solr-$SOLR_VERSION.tgz"
 
@@ -39,6 +40,7 @@ RUN \
     # no longer on mirrors, use Apache archive instead
     if [ "${SOLR_VERSION:0:1}" = 3 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz"; \
     elif [ "${SOLR_VERSION:0:1}" = 4 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"; \
+    elif [ "${SOLR_VERSION:0:3}" = "6.0" ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"; \
     else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz&action=download"; \
     fi && \
     for((i=0;i<10;i++)); do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \

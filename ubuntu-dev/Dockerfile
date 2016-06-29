@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM ubuntu:latest
+FROM harisekhon/ubuntu-java:jdk8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu Dev Build"
@@ -42,7 +42,6 @@ RUN \
                        make \
                        maven \
                        net-tools \
-                       openjdk-8-jdk \
                        python-dev \
                        python-pip \
                        python-setuptools \
@@ -73,6 +72,7 @@ RUN \
     wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
     ./jython_autoinstall.exp && \
     ln -sf /opt/jython-2.7.0 /opt/jython && \
-    rm -fv jython-installer.jar
+    rm -fv jython-installer.jar && \
+    rm -fv jython_autoinstall.exp
 
 CMD /bin/bash

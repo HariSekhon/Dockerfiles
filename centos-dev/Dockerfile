@@ -54,7 +54,6 @@ RUN \
     tar \
     unzip \
     vim-enhanced \
-    vim-enhanced \
     wget \
     which \
     yum-plugin-security \

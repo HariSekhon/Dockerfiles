@@ -47,6 +47,7 @@ RUN \
                        python-setuptools \
                        ruby \
                        ruby-dev \
+                       scala \
                        sysstat \
                        unzip \
                        vim \

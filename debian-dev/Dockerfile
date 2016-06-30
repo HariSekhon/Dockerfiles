@@ -46,6 +46,8 @@ RUN apt-get update && \
                        python-setuptools \
                        ruby \
                        ruby-dev \
+                       # TODO: Scala 2.9, put newer scala on here
+                       scala \
                        sysstat \
                        unzip \
                        vim \

@@ -41,6 +41,7 @@ RUN \
     /hadoop/bin/hdfs namenode -format && \
     yum remove -y wget tar && \
     yum autoremove -y && \
+    yum install -y hostname && \
     yum clean all
 
 COPY entrypoint.sh /

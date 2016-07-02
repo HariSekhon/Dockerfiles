@@ -33,6 +33,7 @@ RUN \
     git \
     git \
     groovy \
+    hostname \
     libev \
     libev-devel \
     make \

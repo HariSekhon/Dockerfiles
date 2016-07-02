@@ -40,6 +40,7 @@ RUN \
     # Hadoop 2.x
     /hadoop/bin/hdfs namenode -format && \
     yum autoremove -y && \
+    yum install -y hostname && \
     yum clean all
 
 COPY entrypoint.sh /

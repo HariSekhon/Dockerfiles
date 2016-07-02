@@ -16,7 +16,8 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ALLUXIO_VERSION=1.0.1
+#ARG ALLUXIO_VERSION=1.0.1
+ARG ALLUXIO_VERSION=1.1.0
 
 ENV PATH $PATH:/alluxio/bin
 
@@ -26,8 +27,8 @@ LABEL Description="Alluxio from BDAS" \
 #COPY alluxio-$ALLUXIO_VERSION /alluxio
 
 RUN apt-get update && \
-    apt-get install -y sudo openssh-server wget tar && \
-    wget -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
+    apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
+    wget -t 100 --retry-connrefused -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxvf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     rm -fv "alluxio-${ALLUXIO_VERSIO}-bin.tar.gz" && \
     ln -sv "alluxio-${ALLUXIO_VERSION}" alluxio && \

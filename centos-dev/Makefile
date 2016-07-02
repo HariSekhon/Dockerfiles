@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/centos-dev
+REPO=harisekhon/centos-dev
 
 .PHONY: all
 all:
@@ -19,8 +19,12 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build -t $(REPO) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(TAG) --no-cache .
+	docker build -t $(REPO) --no-cache .
+
+.PHONY: nocache
+run:
+	docker run -ti $(REPO) bash

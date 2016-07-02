@@ -30,7 +30,7 @@ else
     fi
 
     if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-        /usr/sbin/sshd-keygen
+        /usr/sbin/sshd-keygen || :
     fi
 
     if ! pgrep -x sshd &>/dev/null; then

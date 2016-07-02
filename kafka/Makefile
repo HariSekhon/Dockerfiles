@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG=harisekhon/kafka
+REPO=harisekhon/kafka
+
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
 .PHONY: all
 all:
@@ -19,12 +21,12 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(TAG) .
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(TAG) --no-cache .
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: run
 run:
-	docker run -ti -p 2181:2181 -p 9092:9092 $(TAG)
+	docker run -ti -p 2181:2181 -p 9092:9092 $(REPO):$(TAG)

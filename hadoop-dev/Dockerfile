@@ -22,7 +22,6 @@ ARG HADOOP_VERSION=2.6.4
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
-ENV JAVA_HOME /usr
 
 LABEL Description="Hadoop Dev", \
       "Hadoop Version"="$HADOOP_VERSION"
@@ -30,12 +29,15 @@ LABEL Description="Hadoop Dev", \
 WORKDIR /
 
 RUN \
-    yum install -y openssh-server && \
-    wget -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
+    yum install -y openssh-server openssh-clients wget tar hostname && \
+    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
     rm -fr /hadoop/share/doc && \
+    # Hadoop 1.x
+    #/hadoop/bin/hadoop namenode -format && \
+    # Hadoop 2.x
     /hadoop/bin/hdfs namenode -format && \
     yum autoremove -y && \
     yum clean all

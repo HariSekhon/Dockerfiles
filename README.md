@@ -1,30 +1,34 @@
-Hari Sekhon Docker
+Hari Sekhon Docker [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
 =========================
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-### Contains:
+##### Contains 37 repos with around 120 tags (not including 'latest'), many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
 
 * [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
-* NoSQL, RDBMS & OS images used for development and functional test suites
+* Hadoop, NoSQL & OS images used for development and functional test suites
 
 These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
 
 ### Ready to run Docker images
 
-To see all my available Docker images:
-
-```docker search harisekhon```
-
-then select one and pull / run it as usual:
-
-```docker run -ti harisekhon/nagios-plugins```
-
-To see DockerHub tags in general you can use dockerhub_show_tags.py tool from my [PyTools repo](https://github.com/harisekhon/pytools), a docker image of which is also supplied:
-
-eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
 ```
-docker run -ti harisekhon/pytools dockerhub_show_tags.py centos ubuntu
+docker search harisekhon
+docker run harisekhon/nagios-plugins
+```
+
+To see more than the 25 DockerHub repos limited by ```docker search``` ([docker issue 23055](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image:
+
+```
+docker run harisekhon/pytools dockerhub_search.py harisekhon
+```
+
+There are lots of tagged versions of official software in my repos to allow development testing across multiple versions, usually more versions than available from the official repos (and new version updates available on request, just [raise a GitHub issue](https://github.com/harisekhon/Dockerfiles/issues)).
+
+DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image - eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
+
+```
+docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
 
 ### Full Inventory:
@@ -40,12 +44,17 @@ docker run -ti harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 - HBase (pseudo-distributed, opens HBase shell)
 - Kafka
 - Mesos
+- Nifi
 - Riak
 - Riak (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Serf
+- Solr
+- SolrCloud
 - Spark (opens Spark shell)
 - Tachyon
 - ZooKeeper (opens ZK shell)
+
+Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 
@@ -60,19 +69,20 @@ docker run -ti harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 
 ##### Base Images:
 
-- CentOS latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, EPEL etc.
-- Debian latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
-- Ubuntu latest (Dev) with Java JDK, Perl, Python, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make etc.
+- CentOS latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- Debian latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- Ubuntu latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images + Java / Scala:
 
-All builds use OpenJDK for dev / OpenJRE for run. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
+All builds use OpenJDK with ```jre``` and ```jdk``` numbered tags. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
 
 https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
 
-- CentOS latest combinations of Java 7/8 (OpenJRE) and Scala 2.10/2.11
-- Debian latest with Java 7 (OpenJRE)
-- Ubuntu 14.04 with Java 7, Ubuntu latest with Java 8, 9 (OpenJRE)
+- CentOS latest combinations of Java 7/8 and Scala 2.10/2.11
+- Debian latest with Java 7
+- Ubuntu 14.04 with Java 7
+- Ubuntu latest with Java 8, 9
 
 ### To Build from Dockerfile + source yourself
 
@@ -83,6 +93,7 @@ cd Dockerfiles
 ```
 
 To build all Docker images:
+
 ```
 make
 ```
@@ -94,3 +105,7 @@ cd nagios-plugins
 
 make
 ```
+
+### Support
+
+Please raise tickets for issues and improvements at https://github.com/harisekhon/dockerfiles/issues

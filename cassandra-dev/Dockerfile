@@ -6,12 +6,14 @@
 #
 #  https://github.com/harisekhon/Dockerfiles
 #
-#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
+#  to help improve or steer this or other code I publish
 #
 #  https://www.linkedin.com/in/harisekhon
 #
 
 # can't base off Cassandra as it's missing deps to run the tools
+# and official Cassandra versions only go back to 2.1 and miss in between versions like 3.5, 3.6 which I still test against
 #FROM cassandra:latest
 FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
@@ -23,7 +25,9 @@ ENV PATH $PATH:/cassandra/bin
 #ARG CASSANDRA_VERSION=2.1.14
 #ARG CASSANDRA_VERSION=2.2.6
 #ARG CASSANDRA_VERSION=3.0.6
-ARG CASSANDRA_VERSION=3.5
+#ARG CASSANDRA_VERSION=3.5
+#ARG CASSANDRA_VERSION=3.6
+ARG CASSANDRA_VERSION=3.7
 
 ARG TAR="apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz"
 
@@ -35,8 +39,12 @@ WORKDIR /
 RUN \
     # cassandra refuses to run as root without -R, just run as regular user
     groupadd -r cassandra --gid=501 && useradd -r -g cassandra --uid=501 cassandra && \
-    if   [ "${CASSANDRA_VERSION:0:3}" = "1.2" -o "${CASSANDRA_VERSION:0:3}" = "2.0" ]; then url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
-    else url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
+    if   [ "${CASSANDRA_VERSION:0:3}" = "1.2" \
+        -o "${CASSANDRA_VERSION:0:3}" = "2.0" \
+        -o "${CASSANDRA_VERSION:0:3}" = "3.5" ]; then \
+        url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
+    else \
+        url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     fi && \
     wget -t 100 --retry-connrefused -O "$TAR" "$url" && \
     tar xvf "${TAR}" && \

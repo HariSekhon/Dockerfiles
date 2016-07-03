@@ -36,13 +36,22 @@ RUN \
     # debian uses sh -c by default which doesn't recognize the ${var:n:n}
     bash -c '\
     apt-get update && \
+    apt-get install -y --no-install-recommends wget && \
     # Apache only ships source, don't want entire dev tooling in image
     #apt-get install -y --no-install-recommends tar wget && \
     #wget -t 10 --retry-connrefused "http://archive.apache.org/dist/mesos/$MESOS_VERSION/$TAR" && \
     #tar zxvf "$TAR" && \
     #rm -v "$TAR" && \
     #ln -sf "mesos-$MESOS_VERSION" mesos && \
-    apt-get install -y --no-install-recommends wget && \
+    #
+    # doesn't take past release version suffixes and repo is non-browseable (MESOS-5608)
+#    apt-get install -y --no-install-recommends lsb-release && \
+#    apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF && \
+#    DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]') && \
+#    CODENAME=$(lsb_release -cs) && \
+#    echo "deb http://repos.mesosphere.io/${DISTRO} ${CODENAME} main" | tee /etc/apt/sources.list.d/mesosphere.list && \
+#    apt-get update && \
+#
     if   [ "${MESOS_VERSION:0:4}" = "0.23" ]; then file="mesos_$MESOS_VERSION-1.0.debian81_amd64.deb"; \
     elif [ "${MESOS_VERSION:0:4}" = "0.24" ]; then file="mesos_$MESOS_VERSION-2.0.17.debian81_amd64.deb"; \
     elif [ "${MESOS_VERSION:0:4}" = "0.25" ]; then file="mesos_$MESOS_VERSION-2.0.21.debian81_amd64.deb"; \

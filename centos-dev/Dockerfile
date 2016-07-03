@@ -11,15 +11,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-# not using harisekhon/centos-jre7 because we want JDK not JRE
-FROM centos:latest
+FROM harisekhon/centos-scala:2.11-jdk8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS Dev Build"
 
-#COPY java.sh /etc/profile.d/
-#COPY gradle.sh /etc/profile.d/
-ENV JAVA_HOME=/usr
 ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
@@ -37,7 +33,7 @@ RUN \
     git \
     git \
     groovy \
-    java-1.8.0-openjdk-devel \
+    hostname \
     libev \
     libev-devel \
     make \
@@ -58,7 +54,6 @@ RUN \
     sysstat \
     tar \
     unzip \
-    vim-enhanced \
     vim-enhanced \
     wget \
     which \
@@ -89,6 +84,7 @@ RUN \
     wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
     ./jython_autoinstall.exp && \
     ln -sf /opt/jython-2.7.0 /opt/jython && \
-    rm -fv jython-installer.jar
+    rm -fv jython-installer.jar && \
+    rm -fv jython_autoinstall.exp
 
 CMD /bin/bash

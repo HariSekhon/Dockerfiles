@@ -30,7 +30,7 @@ if [ $# -gt 0 ]; then
 else
     # exits with 141 for pipefail breaking yes stdout
     set +o pipefail
-    yes "" | solr -e cloud
+    solr -e cloud -noprompt
     if ls -d "$SOLR_HOME"-4* &>/dev/null; then
         tail -f "$SOLR_HOME/"node*/logs/*
     else

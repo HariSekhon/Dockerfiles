@@ -30,20 +30,21 @@ else
     fi
 
     if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-        /usr/sbin/sshd-keygen
+        /usr/sbin/sshd-keygen || :
     fi
 
     if ! pgrep -x sshd &>/dev/null; then
         /usr/sbin/sshd
         sleep 1
     fi
-    if ! [ -f /root/.ssh/known_hosts ]; then
-        ssh-keyscan localhost | tee -a /root/.ssh/known_hosts
-        ssh-keyscan 0.0.0.0 | tee -a /root/.ssh/known_hosts
-    fi
+    #if ! [ -f /root/.ssh/known_hosts ]; then
+    #    ssh-keyscan localhost || :
+    #    ssh-keyscan 0.0.0.0   || :
+    #fi | tee -a /root/.ssh/known_hosts
     hostname=$(hostname -f)
-    grep -q "$hostname" /root/.ssh/known_hosts ||
-        ssh-keyscan $hostname | tee -a /root/.ssh/known_hosts
+    #if ! grep -q "$hostname" /root/.ssh/known_hosts; then
+    #    ssh-keyscan $hostname || :
+    #fi | tee -a /root/.ssh/known_hosts
 
     #mkdir /hadoop/logs
 

@@ -11,37 +11,46 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM debian:latest
+FROM harisekhon/debian-java:jdk7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Debian Dev Build"
+
+ENV GRADLE_HOME=/opt/gradle
+ENV JYTHON_HOME=/opt/jython
+ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends && \
     apt-get install -y --no-install-recommends \
                        build-essential \
+                       curl \
+                       dstat \
+                       expect \
                        git \
+                       #gradle \
+                       groovy2 \
+                       libdbd-mysql-perl \
+                       libev4 \
+                       libexpat1-dev \
+                       libkrb5-dev \
+                       libmysqlclient-dev \
+                       libsasl2-dev \
+                       libsnappy-dev \
+                       libssl-dev \
                        make \
                        maven \
+                       net-tools \
                        python-dev \
-                       python-setuptools \
                        python-pip \
+                       python-setuptools \
                        ruby \
                        ruby-dev \
-                       openjdk-7-jdk \
-                       groovy2 \
-                       #gradle \
-                       libexpat1-dev \
-                       libssl-dev \
-                       libsasl2-dev \
-                       libmysqlclient-dev \
-                       libdbd-mysql-perl \
-                       libkrb5-dev \
-                       libev4 \
-                       libsnappy-dev \
+                       # TODO: Scala 2.9, put newer scala on here
+                       scala \
+                       sysstat \
                        unzip \
                        vim \
-                       curl \
                        wget \
                        zip && \
     # for sbt https repo
@@ -56,5 +65,23 @@ RUN apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
     apt-get clean
+
+# Gradle in Debian is old 1.5 :-(
+RUN \
+    cd /opt && \
+    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-2.13-bin.zip && \
+    unzip gradle-2.13-bin.zip && \
+    ln -sv gradle-2.13 gradle && \
+    rm -f gradle-2.13-bin.zip
+
+# Jython
+COPY jython_autoinstall.exp /
+RUN \
+    cd / && \
+    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
+    ./jython_autoinstall.exp && \
+    ln -sf /opt/jython-2.7.0 /opt/jython && \
+    rm -fv jython-installer.jar && \
+    rm -fv jython_autoinstall.exp
 
 CMD /bin/bash

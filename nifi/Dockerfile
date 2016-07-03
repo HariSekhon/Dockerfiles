@@ -24,6 +24,8 @@ ARG TAR=nifi-${NIFI_VERSION}-bin.tar.gz
 LABEL Description="Nifi" \
       "Nifi Version"="$NIFI_VERSION"
 
+WORKDIR /
+
 RUN \
     yum install -y wget tar && \
     if [ "${NIFI_VERSION:0:3}" = "0.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \

@@ -21,7 +21,7 @@ LABEL Description="CentOS + my GitHub repos pre-built"
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
 ENV PATH /bin:$PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
-RUN mkdir -v /github
+RUN mkdir -vp /github
 
 WORKDIR /github
 

@@ -27,4 +27,6 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends openjdk-9-jre-headless && \
     apt-get clean
 
+COPY profile.d/java.sh /etc/profile.d/
+
 CMD /bin/bash

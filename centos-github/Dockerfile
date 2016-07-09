@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev:latest
+# inherit the nagios-plugins container for less duplication as it's the biggest project
+#FROM harisekhon/centos-dev:latest
+FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS + my GitHub repos pre-built"
@@ -19,7 +21,7 @@ LABEL Description="CentOS + my GitHub repos pre-built"
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
 ENV PATH /bin:$PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
-RUN mkdir -v /github
+RUN mkdir -vp /github
 
 WORKDIR /github
 
@@ -29,7 +31,8 @@ WORKDIR /github
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
 RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
-RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; yum autoremove -y && yum clean all
+# inherited now
+#RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; yum autoremove -y && yum clean all
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all && pip uninstall -y certifi && pip install certifi==2015.04.28
 RUN for x in lib-java;          do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all

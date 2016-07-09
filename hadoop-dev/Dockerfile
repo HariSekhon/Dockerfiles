@@ -22,7 +22,6 @@ ARG HADOOP_VERSION=2.7.2
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
-ENV JAVA_HOME /usr
 
 LABEL Description="Hadoop Dev", \
       "Hadoop Version"="$HADOOP_VERSION"
@@ -30,7 +29,7 @@ LABEL Description="Hadoop Dev", \
 WORKDIR /
 
 RUN \
-    yum install -y openssh-server && \
+    yum install -y openssh-server openssh-clients wget tar which hostname && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
     tar zxvf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
@@ -41,13 +40,15 @@ RUN \
     # Hadoop 2.x
     /hadoop/bin/hdfs namenode -format && \
     yum autoremove -y && \
+    yum install -y hostname && \
     yum clean all
 
 COPY entrypoint.sh /
-COPY core-site.xml /hadoop/etc/hadoop/
-COPY hdfs-site.xml /hadoop/etc/hadoop/
-COPY yarn-site.xml /hadoop/etc/hadoop/
-COPY mapred-site.xml /hadoop/etc/hadoop/
+COPY conf/core-site.xml /hadoop/etc/hadoop/
+COPY conf/hdfs-site.xml /hadoop/etc/hadoop/
+COPY conf/yarn-site.xml /hadoop/etc/hadoop/
+COPY conf/mapred-site.xml /hadoop/etc/hadoop/
+COPY profile.d/hadoop.sh /etc/profile.d/
 
 EXPOSE 8020 8042 8088 9000 10020 19888 50010 50020 50070 50075 50090
 

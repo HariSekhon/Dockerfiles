@@ -55,7 +55,7 @@ RUN \
     yum clean all
 
 COPY entrypoint.sh /
-COPY hbase-site.xml /hbase/conf/
+COPY conf/hbase-site.xml /hbase/conf/
 
 # Stargate  8080  / 8085
 # Thrift    9090  / 9095

@@ -26,4 +26,4 @@ WORKDIR /github
 RUN x=spotify-tools; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; yum autoremove -y && yum clean all
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD /bin/bash -c "find /github/spotify -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"
+CMD /bin/bash -c "find /github/spotify-tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"

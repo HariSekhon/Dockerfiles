@@ -23,6 +23,6 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends openjdk-7-jre-headless && \
     apt-get clean
 
-COPY java.sh /etc/profile.d/
+COPY profile.d/java.sh /etc/profile.d/
 
 CMD /bin/bash

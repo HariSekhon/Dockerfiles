@@ -64,7 +64,7 @@ RUN \
     yum install hostname -y && \
     yum clean all
 
-COPY drill.ini /etc/supervisord.d/
+COPY supervisord.d/drill.ini /etc/supervisord.d/
 
 EXPOSE 8047
 

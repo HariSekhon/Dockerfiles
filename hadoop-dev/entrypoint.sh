@@ -37,16 +37,16 @@ else
         /usr/sbin/sshd
         sleep 1
     fi
-    #if ! [ -f /root/.ssh/known_hosts ]; then
-    #    ssh-keyscan localhost || :
-    #    ssh-keyscan 0.0.0.0   || :
-    #fi | tee -a /root/.ssh/known_hosts
+    if ! [ -f /root/.ssh/known_hosts ]; then
+        ssh-keyscan localhost || :
+        ssh-keyscan 0.0.0.0   || :
+    fi | tee -a /root/.ssh/known_hosts
     hostname=$(hostname -f)
-    #if ! grep -q "$hostname" /root/.ssh/known_hosts; then
-    #    ssh-keyscan $hostname || :
-    #fi | tee -a /root/.ssh/known_hosts
+    if ! grep -q "$hostname" /root/.ssh/known_hosts; then
+        ssh-keyscan $hostname || :
+    fi | tee -a /root/.ssh/known_hosts
 
-    #mkdir /hadoop/logs
+    mkdir -v /hadoop/logs
 
     sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
 

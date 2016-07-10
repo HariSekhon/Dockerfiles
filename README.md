@@ -69,9 +69,9 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 ##### Base Images:
 
-- CentOS latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
-- Debian latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- Ubuntu latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- CentOS latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- Debian latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- Ubuntu latest (Dev) with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images + Java / Scala:
 

@@ -16,13 +16,19 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + CentOS (OpenJDK)"
 
+ARG JAVA_VERSION=8
+ARG JAVA_RELEASE=JDK
+
 ENV JAVA_HOME=/usr
 
-RUN yum install -y \
-    #java-1.7.0-openjdk-devel && \
-    #java-1.7.0-openjdk-headless && \
-    #java-1.8.0-openjdk-devel && \
-    java-1.8.0-openjdk-headless && \
+RUN \
+    pkg="java-1.$JAVA_VERSION.0-openjdk"; \
+    if [ JAVA_RELEASE = "JDK" ]; then \
+        pkg="$pkg-devel"; \
+    else \
+        pkg="$pkg-headless"; \
+    fi; \
+    yum install -y "$pkg" && \
     yum clean all
 
 COPY profile.d/java.sh /etc/profile.d/

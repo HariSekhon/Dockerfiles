@@ -40,18 +40,13 @@ RUN apt-get update && \
     tar zxvf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     ln -sv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}" kafka && \
-    perl -pi.orig -e "s/\s*#?\s*advertised.host.name.*/advertised.host.name=${ADVERTISED_HOSTNAME}/" "kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/server.properties" && \
     # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \
     apt-get clean
 
+COPY entrypoint.sh /
+
 EXPOSE 2181 9092
 
-CMD zookeeper-server-start.sh /kafka/config/zookeeper.properties & \
-    echo "*** waiting for 10 secs to give ZooKeeper time to start up"; \
-    sleep 10; \
-    echo "# ============================================================================ #"; \
-    echo "                         S t a r t i n g   K a f k a"; \
-    echo "# ============================================================================ #"; \
-    kafka-server-start.sh /kafka/config/server.properties
+CMD /entrypoint.sh

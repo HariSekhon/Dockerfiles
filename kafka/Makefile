@@ -13,7 +13,7 @@
 
 REPO=harisekhon/kafka
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)-(\d+\.\d+)/ && &{ print "$${1}_$${2}"; exit }' Dockerfile)
 
 .PHONY: all
 all:

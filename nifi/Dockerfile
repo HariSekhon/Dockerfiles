@@ -18,6 +18,7 @@ ENV PATH $PATH:/nifi/bin
 
 ARG NIFI_VERSION=0.5.1
 #ARG NIFI_VERSION=0.6.1
+#ARG NIFI_VERSION=0.7.0
 
 ARG TAR=nifi-${NIFI_VERSION}-bin.tar.gz
 
@@ -28,8 +29,10 @@ WORKDIR /
 
 RUN \
     yum install -y wget tar && \
-    if [ "${NIFI_VERSION:0:3}" = "0.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
-    else url="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
+    if [ "${NIFI_VERSION:0:3}" = "0.7" ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
+    else \
+        url="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
     fi && \
     wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
     tar xvf "${TAR}" && \

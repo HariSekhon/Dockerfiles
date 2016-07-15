@@ -38,6 +38,7 @@ ARG APACHE_DRILL_VERSION=1.2.0
 #ARG APACHE_DRILL_VERSION=1.4.0
 #ARG APACHE_DRILL_VERSION=1.5.0
 #ARG APACHE_DRILL_VERSION=1.6.0
+#ARG APACHE_DRILL_VERSION=1.7.0
 
 ARG DRILL_HEAP=900M
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
@@ -46,8 +47,10 @@ ARG ZOOKEEPER_HOST=zookeeper
 
 RUN \
     yum install -y wget tar which && \
-    if   [ "${APACHE_DRILL_VERSION:0:3}" = "1.5" -o "${APACHE_DRILL_VERSION:0:3}" = "1.6" ]; then url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
-    else url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
+    if [ "${APACHE_DRILL_VERSION:0:3}" = "1.6" -o "${APACHE_DRILL_VERSION:0:3}" = "1.7" ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
+    else \
+        url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
     fi && \
     wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
     tar xvf "${TAR}" && \

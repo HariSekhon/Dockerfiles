@@ -16,11 +16,19 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Debian (OpenJDK)"
 
+ARG JAVA_VERSION=7
+ARG JAVA_RELEASE=JRE
+
 ENV JAVA_HOME=/usr
 
 RUN apt-get update && \
-    #apt-get install -y --no-install-recommends openjdk-7-jdk && \
-    apt-get install -y --no-install-recommends openjdk-7-jre-headless && \
+    pkg="openjdk-$JAVA_VERSION"; \
+    if [ "$JAVA_RELEASE" = "JDK" ]; then \
+        pkg="$pkg-jdk-headless"; \
+    else \
+        pkg="$pkg-jre-headless"; \
+    fi; \
+    apt-get install -y --no-install-recommends "$pkg" && \
     apt-get clean
 
 COPY profile.d/java.sh /etc/profile.d/

@@ -16,15 +16,19 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Ubuntu (OpenJDK)"
 
+ARG JAVA_VERSION=8
+ARG JAVA_RELEASE=JDK
+
 ENV JAVA_HOME=/usr
 
 RUN apt-get update && \
-    #apt-get install -y --no-install-recommends openjdk-7-jdk && \
-    #apt-get install -y --no-install-recommends openjdk-7-jre-headless && \
-    #apt-get install -y --no-install-recommends openjdk-8-jdk && \
-    #apt-get install -y --no-install-recommends openjdk-8-jre-headless && \
-    #apt-get install -y --no-install-recommends openjdk-9-jdk && \
-    apt-get install -y --no-install-recommends openjdk-9-jre-headless && \
+    pkg="openjdk-$JAVA_VERSION"; \
+    if [ "$JAVA_RELEASE" = "JDK" ]; then \
+        pkg="$pkg-jdk-headless"; \
+    else \
+        pkg="$pkg-jre-headless"; \
+    fi; \
+    apt-get install -y --no-install-recommends "$pkg" && \
     apt-get clean
 
 COPY profile.d/java.sh /etc/profile.d/

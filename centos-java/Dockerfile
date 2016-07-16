@@ -23,7 +23,7 @@ ENV JAVA_HOME=/usr
 
 RUN \
     pkg="java-1.$JAVA_VERSION.0-openjdk"; \
-    if [ JAVA_RELEASE = "JDK" ]; then \
+    if [ "$JAVA_RELEASE" = "JDK" ]; then \
         pkg="$pkg-devel"; \
     else \
         pkg="$pkg-headless"; \

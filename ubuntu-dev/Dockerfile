@@ -76,7 +76,7 @@ RUN \
     rm -fv jython-installer.jar && \
     rm -fv jython_autoinstall.exp
 
-COPY profile.d/gradle.sh
-COPY profile.d/jython.sh
+COPY profile.d/gradle.sh /etc/profile.d/
+COPY profile.d/jython.sh /etc/profile.d/
 
 CMD /bin/bash

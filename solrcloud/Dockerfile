@@ -36,7 +36,7 @@ RUN \
     tar zxvf "$TAR" && \
     ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \
-    rm -fr /solr/doc && \
+    rm -rfv /solr/doc && \
     yum remove -y wget tar && \
     yum autoremove -y && \
     yum clean all

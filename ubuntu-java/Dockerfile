@@ -24,7 +24,7 @@ ENV JAVA_HOME=/usr
 RUN apt-get update && \
     pkg="openjdk-$JAVA_VERSION"; \
     if [ "$JAVA_RELEASE" = "JDK" ]; then \
-        pkg="$pkg-jdk"; \
+        pkg="$pkg-jdk-headless"; \
     else \
         pkg="$pkg-jre-headless"; \
     fi; \

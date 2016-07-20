@@ -46,7 +46,7 @@ else
         ssh-keyscan $hostname || :
     fi | tee -a /root/.ssh/known_hosts
 
-    mkdir -v /hadoop/logs
+    mkdir -pv /hadoop/logs
 
     sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
 

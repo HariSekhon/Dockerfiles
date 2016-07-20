@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/cassandra-dev
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
 #  to help improve or steer this or other code I publish
@@ -39,18 +39,16 @@ WORKDIR /
 RUN \
     # cassandra refuses to run as root without -R, just run as regular user
     groupadd -r cassandra --gid=501 && useradd -r -g cassandra --uid=501 cassandra && \
-    if   [ "${CASSANDRA_VERSION:0:3}" = "1.2" \
-        -o "${CASSANDRA_VERSION:0:3}" = "2.0" \
-        -o "${CASSANDRA_VERSION:0:3}" = "3.5" ]; then \
-        url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
-    else \
+    if [ "${CASSANDRA_VERSION:0:3}" = "3.7" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
+    else \
+        url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
     fi && \
     wget -t 100 --retry-connrefused -O "$TAR" "$url" && \
-    tar xvf "${TAR}" && \
+    tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
-    rm -fr "cassandra/doc" "cassandra/javadoc" && \
+    rm -rf "cassandra/doc" "cassandra/javadoc" && \
     sed -i 's/-Xss180k/-Xss228k/' /cassandra/conf/cassandra-env.sh && \
     mkdir /home/cassandra /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \

@@ -6,21 +6,19 @@
 #
 #  https://github.com/harisekhon/Dockerfiles/solrcloud
 #
-#  If you're using my code you're welcome to connect with me on LinkedIn
-#  and optionally send me feedback to help steer this or other code I publish
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
 #
 #  https://www.linkedin.com/in/harisekhon
 #
 
 # not basing on official solr as it doesn't have SolrCloud 4.x which I want to keep using for my test suite
-# newer Solr complains about Java major minor version, obviously needs newer JDK in centos-java not debian-java
+# newer Solr complains about Java major minor version, obviously needs newer JDK which centos-java has so not using debian-java
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG SOLRCLOUD_VERSION=4.10.4
-#ARG SOLRCLOUD_VERSION=5.5.2
+ARG SOLRCLOUD_VERSION=4.10.4
+#ARG SOLRCLOUD_VERSION=5.5.1
 #ARG SOLRCLOUD_VERSION=6.0.1
-ARG SOLRCLOUD_VERSION=6.1.0
 
 ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 

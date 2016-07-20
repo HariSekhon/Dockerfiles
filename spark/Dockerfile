@@ -47,5 +47,4 @@ COPY entrypoint.sh /
 
 EXPOSE 4040 7077 8080 8081
 
-#CMD /spark/bin/spark-shell
-ENTRYPOINT ["/entrypoint.sh"]
+CMD /entrypoint.sh

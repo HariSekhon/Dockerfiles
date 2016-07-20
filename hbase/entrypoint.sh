@@ -32,4 +32,4 @@ mkdir /hbase/logs
 #/hbase/bin/hbase-daemon.sh start thrift2
 /hbase/bin/hbase shell
 /hbase/bin/stop-hbase.sh
-pkill -f -i zookeeper
+pkill -f org.apache.hadoop.hbase.zookeeper

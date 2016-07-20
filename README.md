@@ -36,17 +36,17 @@ docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ##### Official Technologies:
 
 - Alluxio
-- Apache Drill (embedded, opens Drill shell)
-- Cassandra (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins), opens CQL shell)
+- Apache Drill (opens Drill shell)
+- Cassandra (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Consul
 - H2O by 0xdata
-- Hadoop (HDFS + Yarn, pseudo-distributed)
-- HBase (pseudo-distributed, opens HBase shell)
+- Hadoop (HDFS + Yarn)
+- HBase (opens HBase shell)
 - Kafka
 - Mesos
 - Nifi
 - Riak
-- Riak (with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- Riak (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Serf
 - Solr
 - SolrCloud

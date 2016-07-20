@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/kafka
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -22,7 +22,8 @@ ARG SCALA_VERSION=2.11
 ARG KAFKA_VERSION=0.9.0.1
 # 0.10 fails to come up
 #ARG KAFKA_VERSION=0.10.0.0
-ARG ADVERTISED_HOSTNAME=192.168.99.100
+
+ENV ADVERTISED_HOSTNAME=127.0.0.1
 
 ENV PATH $PATH:/kafka/bin
 
@@ -36,21 +37,16 @@ LABEL Description="Apache Kafka by LinkedIn" \
 RUN apt-get update && \
     apt-get install -y --no-install-recommends wget tar && \
     wget -t 100 --retry-connrefused -O "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" && \
-    tar zxvf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
+    tar zxf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     ln -sv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}" kafka && \
-    perl -pi.orig -e "s/\s*#?\s*advertised.host.name.*/advertised.host.name=${ADVERTISED_HOSTNAME}/" "kafka_${SCALA_VERSION}-${KAFKA_VERSION}/config/server.properties" && \
     # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \
     apt-get clean
 
+COPY entrypoint.sh /
+
 EXPOSE 2181 9092
 
-CMD zookeeper-server-start.sh /kafka/config/zookeeper.properties & \
-    echo "*** waiting for 10 secs to give ZooKeeper time to start up"; \
-    sleep 10; \
-    echo "# ============================================================================ #"; \
-    echo "                         S t a r t i n g   K a f k a"; \
-    echo "# ============================================================================ #"; \
-    kafka-server-start.sh /kafka/config/server.properties
+CMD /entrypoint.sh

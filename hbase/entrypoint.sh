@@ -47,11 +47,11 @@ Running non-interactively, will not open HBase shell
 
 For HBase shell start this image with 'docker -t -i' switches
 "
-    # this doesn't Control-C , get's stuck
-    #tail -f /hbase/logs/*
-
-    # this shuts down from Control-C but exits prematurely, even when +euo pipefail and doesn't shut down HBase
-    # so I rely on the sig trap handler above
-    tail -f /hbase/logs/* &
-    wait || :
 fi
+# this doesn't Control-C , get's stuck
+#tail -f /hbase/logs/*
+
+# this shuts down from Control-C but exits prematurely, even when +euo pipefail and doesn't shut down HBase
+# so I rely on the sig trap handler above
+tail -f /hbase/logs/* &
+wait || :

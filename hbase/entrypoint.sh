@@ -31,10 +31,9 @@ mkdir /hbase/logs
 /hbase/bin/hbase-daemon.sh start thrift
 #/hbase/bin/hbase-daemon.sh start thrift2
 
-# this doesn't get stopped otherwise
 trap_func(){
     echo -e "\n\nShutting down HBase:"
-    /hbase/bin/stop-hbase.sh
+    /hbase/bin/stop-hbase.sh | grep -v "ssh: command not found"
     pkill -f org.apache.hadoop.hbase.zookeeper
     sleep 1
 }
@@ -51,9 +50,8 @@ For HBase shell start this image with 'docker -t -i' switches
     # this doesn't Control-C , get's stuck
     #tail -f /hbase/logs/*
 
-    # this shuts down from Control-C but exits prematurely and doesn't shut down HBase
-    #set +euo pipefail
-    #tail -f /hbase/logs/* &
-    #wait || :
-    #set -euo pipefail
+    # this shuts down from Control-C but exits prematurely, even when +euo pipefail and doesn't shut down HBase
+    # so I rely on the sig trap handler above
+    tail -f /hbase/logs/* &
+    wait || :
 fi

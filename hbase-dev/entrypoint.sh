@@ -31,5 +31,14 @@ mkdir /hbase/logs
 /hbase/bin/hbase-daemon.sh start thrift
 #/hbase/bin/hbase-daemon.sh start thrift2
 /hbase/bin/hbase shell
-/hbase/bin/stop-hbase.sh
-pkill -f -i zookeeper
+echo -e "\n\nAutomatic shutdown upon leaving HBase shell is now avoided by default to avoid confusion for people not running this image in non-interactive mode (which immediately closes the shell via the implicit EOF)
+
+for details see https://github.com/harisekhon/Dockerfiles/issues/2\n\n"
+read -p "Press 'Y' and enter if you want to shut down HBase, otherwise will leave it running: " answer
+if [ "$answer" = "Y" ]; then
+    /hbase/bin/stop-hbase.sh
+    pkill -f org.apache.hadoop.hbase.zookeeper
+    sleep 1
+else
+    tail -f /hbase/logs/*
+fi

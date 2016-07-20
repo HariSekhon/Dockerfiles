@@ -18,6 +18,21 @@ set -euo pipefail
 
 # 3.3 fails to start the first time with this dir
 mkdir -p /tmp/zookeeper
+# zookeeper.out will be written to $PWD
+cd /tmp
 zkServer.sh start
 sleep 2
-zkCli.sh
+if [ -t 0 ]; then
+    zkCli.sh
+    echo -e "\n\nZooKeeper shell exited\n"
+else
+    echo "
+Running non-interactively, will not open ZooKeeper shell
+
+For ZooKeeper shell start this image with 'docker -t -i' switches
+"
+fi
+echo -e "\nWill tail log now to keep this container alive until killed...\n\n"
+sleep 30
+tail -f zookeeper.out &
+wait || :

@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/spark
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -32,7 +32,7 @@ RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
     wget -t 100 --retry-connrefused -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
-    tar zxvf "${TAR}" && \
+    tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s "spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \
     # attempting to remove tar causes unmet dependency breakage
@@ -47,5 +47,4 @@ COPY entrypoint.sh /
 
 EXPOSE 4040 7077 8080 8081
 
-#CMD /spark/bin/spark-shell
-ENTRYPOINT ["/entrypoint.sh"]
+CMD /entrypoint.sh

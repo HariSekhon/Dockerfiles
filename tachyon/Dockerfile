@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/tachyon
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -33,7 +33,7 @@ LABEL Description="Tachyon from BDAS" \
 RUN apt-get update && \
     apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
     wget -t 100 --retry-connrefused -O "tachyon-${TACHYON_VERSION}-bin.tar.gz" "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
-    tar zxvf "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
+    tar zxf "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     rm -fv "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     ln -sv "tachyon-${TACHYON_VERSION}" tachyon && \
     mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \

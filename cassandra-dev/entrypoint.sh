@@ -40,6 +40,7 @@ echo
 #cqlsh
 if [ -t 0 ]; then
     su cassandra $(which cqlsh)
+    echo -e "\n\nCQL shell exited"
 else
     echo "
 Running non-interactively, will not open CQL shell

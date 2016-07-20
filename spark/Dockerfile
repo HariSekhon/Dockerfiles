@@ -16,7 +16,7 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SPARK_VERSION=1.6.1
+ARG SPARK_VERSION=1.6.2
 ARG HADOOP_VERSION=2.6
 ARG TAR=spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
@@ -47,5 +47,4 @@ COPY entrypoint.sh /
 
 EXPOSE 4040 7077 8080 8081
 
-#CMD /spark/bin/spark-shell
-ENTRYPOINT ["/entrypoint.sh"]
+CMD /entrypoint.sh

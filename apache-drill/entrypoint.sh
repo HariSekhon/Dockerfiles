@@ -39,7 +39,7 @@ else
     echo "
 Running non-interactively, will not open Apache Drill shell
 
-For Apache Drill shell start this image with 'docker -t -i' switches
+For Apache Drill shell start this image with 'docker run -t -i' switches
 
 Otherwise you will need to have a separate ZooKeeper container linked (one is available from harisekhon/zookeeper) and specify:
 

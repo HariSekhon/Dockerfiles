@@ -28,18 +28,16 @@ else
     echo "export SPARK_DAEMON_MEMORY=$SPARK_DAEMON_MEMORY" >> "$SPARK_HOME/conf/spark-env.sh" >> "$SPARK_HOME/conf/spark-env.sh"
 fi
 
-echo "Starting Master"
+echo -e "\nStarting Master"
 $SPARK_HOME/bin$SPARK_HOME-class org.apache.spark.deploy.master.Master &>$SPARK_HOME/logs/master.log &
 sleep 2
-echo
 
-echo "Starting Worker"
+echo -e "\nStarting Worker"
 $SPARK_HOME/bin$SPARK_HOME-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>$SPARK_HOME/logs/worker.log &
 sleep 2
-echo
 
 if [ -t 0 ]; then
-    echo "Starting Spark Shell to connect to standalone daemons"
+    echo e "\nStarting Spark Shell to connect to standalone daemons\n"
     # less than about 480m SQLContext fails to load and gets a bunch of NPEs
     $SPARK_HOME/bin/spark-shell --driver-memory 500m --master spark://$(hostname -f):7077
     echo -e "\n\nSpark Shell exited\n\n"

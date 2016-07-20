@@ -47,7 +47,7 @@ RUN \
     tar zxvf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
     ln -sv hbase-$HBASE_VERSION hbase && \
     rm -fv hbase-$HBASE_VERSION-bin.tar.gz && \
-    rm -rfv /hbase/docs /hbase/src && \
+    rm -rf /hbase/docs /hbase/src && \
     yum remove -y wget tar && \
     yum autoremove -y && \
     # removes 'hostname', 'yum install' marking doesn't work, nor does --exclude

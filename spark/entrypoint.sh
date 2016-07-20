@@ -16,30 +16,42 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-if [ $# -gt 0 ]; then
-    exec $@
+export SPARK_DAEMON_MEMORY="${SPARK_DAEMON_MEMORY:-128M}"
+
+export SPARK_HOME="/spark"
+
+mkdir -pv "$SPARK_HOME/logs"
+
+if grep -q "^[[:space:]]*SPARK_DAEMON_MEMORY" "$SPARK_HOME/conf/spark-env.sh"; then
+    sed -i "s/^[[:space:]]SPARK_DAEMON_MEMORY.*/SPARK_DAEMON_MEMORY=$SPARK_DAEMON_MEMORY/" "$SPARK_HOME/conf/spark-env.sh"
 else
-#    if ! [ -f /root/.ssh/authorized_keys ]; then
-#        ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""
-#        cp -v /root/.ssh/{id_rsa.pub,authorized_keys}
-#        chmod -v 0400 /root/.ssh/authorized_keys
-#    fi
-#
-#    if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-#        /usr/sbin/sshd-keygen
-#    fi
-#
-#    if ! pgrep -x sshd &>/dev/null; then
-#        /usr/sbin/sshd
-#        sleep 1
-#    fi
-#    mkdir -v /spark/logs
-#    /spark/sbin/start-all.sh local
-#    sleep 3
-#    cat /spark/logs/*
-#    echo "================="
-#    #tail -f /spark/logs/*
-    # spark-shell is hanging :-(
-    #/spark/bin/spark-shell --master spark://$(hostname -f):7077
-    /spark/bin/spark-shell
+    echo "export SPARK_DAEMON_MEMORY=$SPARK_DAEMON_MEMORY" >> "$SPARK_HOME/conf/spark-env.sh" >> "$SPARK_HOME/conf/spark-env.sh"
 fi
+
+echo "Starting Master"
+$SPARK_HOME/bin$SPARK_HOME-class org.apache.spark.deploy.master.Master &>$SPARK_HOME/logs/master.log &
+sleep 2
+echo
+
+echo "Starting Worker"
+$SPARK_HOME/bin$SPARK_HOME-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>$SPARK_HOME/logs/worker.log &
+sleep 2
+echo
+
+if [ -t 0 ]; then
+    echo "Starting Spark Shell to connect to standalone daemons"
+    # less than about 480m SQLContext fails to load and gets a bunch of NPEs
+    $SPARK_HOME/bin/spark-shell --driver-memory 500m --master spark://$(hostname -f):7077
+else
+    echo -e "
+
+Spark Shell will not be opened as this container is not running in interactive mode
+
+To open Spark Shell in future start docker with the switches:
+
+docker run -t -i ...
+"
+fi
+echo -e "\n\nWill now read logs to keep container alive until killed...\n\n"
+tail -f $SPARK_HOME/logs/* &
+wait || :

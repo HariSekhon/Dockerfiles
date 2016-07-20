@@ -48,7 +48,7 @@ RUN \
     tar xvf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
-    rm -rfv "cassandra/doc" "cassandra/javadoc" && \
+    rm -rf "cassandra/doc" "cassandra/javadoc" && \
     sed -i 's/-Xss180k/-Xss228k/' /cassandra/conf/cassandra-env.sh && \
     mkdir /home/cassandra /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \

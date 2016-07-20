@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2016-04-29 16:49:24 +0100 (Fri, 29 Apr 2016)
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/cassandra-dev
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #

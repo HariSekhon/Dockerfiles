@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/solrcloud
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn
 #  and optionally send me feedback to help steer this or other code I publish
@@ -41,10 +41,10 @@ RUN \
     else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz&action=download"; \
     fi && \
     for((i=0;i<10;i++)); do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
-    tar zxvf "$TAR" && \
+    tar zxf "$TAR" && \
     ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \
-    rm -fr /solr/doc && \
+    rm -rf /solr/doc && \
     yum remove -y wget tar && \
     yum autoremove -y && \
     yum clean all

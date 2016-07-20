@@ -32,7 +32,7 @@ RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
     wget -t 100 --retry-connrefused -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
-    tar zxvf "${TAR}" && \
+    tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s "spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \
     # attempting to remove tar causes unmet dependency breakage

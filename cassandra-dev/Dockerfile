@@ -45,7 +45,7 @@ RUN \
         url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
     fi && \
     wget -t 100 --retry-connrefused -O "$TAR" "$url" && \
-    tar xvf "${TAR}" && \
+    tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
     rm -rf "cassandra/doc" "cassandra/javadoc" && \

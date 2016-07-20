@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/debian-java
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -16,11 +16,19 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Debian (OpenJDK)"
 
+ARG JAVA_VERSION=7
+ARG JAVA_RELEASE=JRE
+
 ENV JAVA_HOME=/usr
 
 RUN apt-get update && \
-    #apt-get install -y --no-install-recommends openjdk-7-jdk-headless && \
-    apt-get install -y --no-install-recommends openjdk-7-jre-headless && \
+    pkg="openjdk-$JAVA_VERSION"; \
+    if [ "$JAVA_RELEASE" = "JDK" ]; then \
+        pkg="$pkg-jdk"; \
+    else \
+        pkg="$pkg-jre-headless"; \
+    fi; \
+    apt-get install -y --no-install-recommends "$pkg" && \
     apt-get clean
 
 COPY profile.d/java.sh /etc/profile.d/

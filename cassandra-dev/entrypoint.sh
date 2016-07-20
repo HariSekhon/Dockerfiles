@@ -38,4 +38,17 @@ done
 echo
 echo
 #cqlsh
-su cassandra $(which cqlsh)
+if [ -t 0 ]; then
+    su cassandra $(which cqlsh)
+else
+    echo "
+Running non-interactively, will not open CQL shell
+
+For CQL shell start this image with 'docker -t -i' switches
+
+"
+fi
+echo -e "\n\nWill tail logs now to keep this container alive until killed...\n\n"
+sleep 30
+tail -f /cassandra/logs/* &
+wait || :

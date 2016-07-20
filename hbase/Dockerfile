@@ -44,7 +44,7 @@ RUN \
     fi && \
     wget -t 100 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
     mkdir hbase-$HBASE_VERSION && \
-    tar zxvf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
+    tar zxf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
     ln -sv hbase-$HBASE_VERSION hbase && \
     rm -fv hbase-$HBASE_VERSION-bin.tar.gz && \
     rm -rf hbase/docs hbase/src && \

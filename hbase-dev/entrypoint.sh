@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2016-04-24 21:29:46 +0100 (Sun, 24 Apr 2016)
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/hbase-dev
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
@@ -21,7 +21,7 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export JAVA_HOME="${JAVA_HOME:-/usr}"
 
 # shell breaks and doesn't run zookeeper without this
-mkdir /hbase/logs
+mkdir -pv /hbase/logs
 
 # tries to run zookeepers.sh distributed via SSH, run zookeeper manually instead now
 #RUN sed -i 's/# export HBASE_MANAGES_ZK=true/export HBASE_MANAGES_ZK=true/' /hbase/conf/hbase-env.sh
@@ -30,6 +30,28 @@ mkdir /hbase/logs
 /hbase/bin/hbase-daemon.sh start rest
 /hbase/bin/hbase-daemon.sh start thrift
 #/hbase/bin/hbase-daemon.sh start thrift2
-/hbase/bin/hbase shell
-/hbase/bin/stop-hbase.sh
-pkill -f -i zookeeper
+
+trap_func(){
+    echo -e "\n\nShutting down HBase:"
+    /hbase/bin/stop-hbase.sh | grep -v "ssh: command not found"
+    pkill -f org.apache.hadoop.hbase.zookeeper
+    sleep 1
+}
+trap trap_func INT QUIT TRAP ABRT TERM EXIT
+
+if [ -t 0 ]; then
+    /hbase/bin/hbase shell
+else
+    echo "
+Running non-interactively, will not open HBase shell
+
+For HBase shell start this image with 'docker run -t -i' switches
+"
+fi
+# this doesn't Control-C , get's stuck
+#tail -f /hbase/logs/*
+
+# this shuts down from Control-C but exits prematurely, even when +euo pipefail and doesn't shut down HBase
+# so I rely on the sig trap handler above
+tail -f /hbase/logs/* &
+wait || :

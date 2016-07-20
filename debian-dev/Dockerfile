@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/debian-dev
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -84,7 +84,7 @@ RUN \
     rm -fv jython-installer.jar && \
     rm -fv jython_autoinstall.exp
 
-COPY profile.d/gradle.sh
-COPY profile.d/jython.sh
+COPY profile.d/gradle.sh /etc/profile.d/
+COPY profile.d/jython.sh /etc/profile.d/
 
 CMD /bin/bash

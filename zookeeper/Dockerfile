@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/zookeeper
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -31,11 +31,11 @@ RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends wget tar && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
-    tar zxvf "${TAR}" && \
+    tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
-    rm -fr /zookeeper/{src,docs} && \
+    rm -rf /zookeeper/{src,docs} && \
     # attempting to remove tar causes unmet dependency breakage
     apt-get purge -y wget && \
     apt-get autoremove -y && \

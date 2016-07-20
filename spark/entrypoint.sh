@@ -42,6 +42,7 @@ if [ -t 0 ]; then
     echo "Starting Spark Shell to connect to standalone daemons"
     # less than about 480m SQLContext fails to load and gets a bunch of NPEs
     $SPARK_HOME/bin/spark-shell --driver-memory 500m --master spark://$(hostname -f):7077
+    echo -e "\n\nSpark Shell exited\n\n"
 else
     echo -e "
 

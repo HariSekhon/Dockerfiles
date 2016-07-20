@@ -29,7 +29,7 @@ else
     echo "
 Running non-interactively, will not open ZooKeeper shell
 
-For ZooKeeper shell start this image with 'docker -t -i' switches
+For ZooKeeper shell start this image with 'docker run -t -i' switches
 "
 fi
 echo -e "\nWill tail log now to keep this container alive until killed...\n\n"

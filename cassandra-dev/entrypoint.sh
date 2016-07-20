@@ -45,7 +45,7 @@ else
     echo "
 Running non-interactively, will not open CQL shell
 
-For CQL shell start this image with 'docker -t -i' switches
+For CQL shell start this image with 'docker run -t -i' switches
 
 "
 fi

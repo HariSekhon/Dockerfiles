@@ -31,7 +31,7 @@ RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends wget tar && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
-    tar zxvf "${TAR}" && \
+    tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \

@@ -45,7 +45,7 @@ else
     echo "
 Running non-interactively, will not open HBase shell
 
-For HBase shell start this image with 'docker -t -i' switches
+For HBase shell start this image with 'docker run -t -i' switches
 "
 fi
 # this doesn't Control-C , get's stuck

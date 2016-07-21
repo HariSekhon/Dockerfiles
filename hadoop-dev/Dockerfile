@@ -34,7 +34,7 @@ RUN \
     tar zxf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \
     rm -fv "$TAR" && \
-    rm -rf /hadoop/share/doc && \
+    { rm -rf hadoop/share/doc; : ; } && \
     # Hadoop 1.x
     #/hadoop/bin/hadoop namenode -format && \
     # Hadoop 2.x

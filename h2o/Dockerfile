@@ -27,6 +27,8 @@ LABEL Description="H2O" \
 
 #COPY h2o-$H2O_VERSION /h2o
 
+WORKDIR /
+
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends wget unzip && \

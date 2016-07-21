@@ -28,6 +28,8 @@ LABEL Description="Apache Spark" \
 #COPY spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION /spark
 #ADD "http://d3kbcqa49mib13.cloudfront.net/${TAR}"
 
+WORKDIR /
+
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends sudo openssh-server wget tar && \

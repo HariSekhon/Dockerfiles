@@ -33,6 +33,8 @@ LABEL Description="HashiCorp's Serf minimal" \
 
 #ADD https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip /
 
+WORKDIR /
+
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends wget unzip ca-certificates && \

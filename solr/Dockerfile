@@ -49,7 +49,7 @@ RUN \
     if [ -d apache-solr-$SOLR_VERSION ]; then mv -iv apache-solr-$SOLR_VERSION solr-$SOLR_VERSION; fi && \
     ln -sv solr-$SOLR_VERSION solr && \
     rm -fv "$TAR" && \
-    rm -rf /solr/doc && \
+    { rm -rf solr/doc; : ; } && \
     yum remove -y wget tar && \
     yum autoremove -y && \
     yum clean all

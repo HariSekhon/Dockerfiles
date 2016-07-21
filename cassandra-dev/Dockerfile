@@ -48,8 +48,8 @@ RUN \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
-    rm -rf "cassandra/doc" "cassandra/javadoc" && \
-    sed -i 's/-Xss180k/-Xss228k/' /cassandra/conf/cassandra-env.sh && \
+    { rm -rf cassandra/{doc,javadoc}; : ; } && \
+    sed -i 's/-Xss180k/-Xss228k/' cassandra/conf/cassandra-env.sh && \
     mkdir /home/cassandra /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \
     yum autoremove -y && \

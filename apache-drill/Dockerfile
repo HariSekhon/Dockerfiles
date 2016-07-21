@@ -47,6 +47,8 @@ ENV DRILL_HEAP=900M
 # -e ZOOKEEPER_HOST if clustering these containers with external contained linked zookeeper
 ENV ZOOKEEPER_HOST=zookeeper
 
+WORKDIR /
+
 RUN \
     yum install -y wget tar which && \
     if [ "${APACHE_DRILL_VERSION:0:3}" = "1.6" -o "${APACHE_DRILL_VERSION:0:3}" = "1.7" ]; then \

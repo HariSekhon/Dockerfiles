@@ -55,10 +55,12 @@ pull:
 #	if [ -x /usr/bin/yum ];     then make yum-packages; fi
 #	# this is clearly too basic - it doesn't even recognize LABEL instruction, nor line continuations
 #	which docklint &>/dev/null || npm install -g validate-dockerfile
-#
-#.PHONY: test
-#test:
-#	@# this would test everything but would call test-deps over and over inefficiently
-#	@#for x in *; do [ -d $$x ] || continue; pushd $$x; make test; popd; done
-#	make test-deps
-#	find . -name Dockerfile | xargs -n1 docklint
+
+.PHONY: test
+test:
+	@# this would test everything but would call test-deps over and over inefficiently
+	@#for x in *; do [ -d $$x ] || continue; pushd $$x; make test; popd; done
+	@#make test-deps
+	@#find . -name Dockerfile | xargs -n1 docklint
+	which dockerfiles_check_git_branches.py &>/dev/null && dockerfiles_check_git_branches.py .
+	which git_check_branches_upstream.py &>/dev/null && git_check_branches_upstream.py .

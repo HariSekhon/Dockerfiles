@@ -38,6 +38,7 @@ RUN \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "nifi-${NIFI_VERSION}" nifi && \
+    { rm -rf nifi/docs; : ; } && \
     yum remove -y wget tar && \
     yum autoremove -y && \
     yum clean all

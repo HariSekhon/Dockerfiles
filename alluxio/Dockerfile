@@ -29,7 +29,7 @@ LABEL Description="Alluxio from BDAS" \
 RUN apt-get update && \
     apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
     wget -t 100 --retry-connrefused -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
-    tar zxvf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
+    tar zxf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     rm -fv "alluxio-${ALLUXIO_VERSIO}-bin.tar.gz" && \
     ln -sv "alluxio-${ALLUXIO_VERSION}" alluxio && \
     cp -v /alluxio/conf/alluxio-env.sh.template /alluxio/conf/alluxio-env.sh && \

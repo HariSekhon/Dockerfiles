@@ -44,7 +44,7 @@ RUN \
     else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz&action=download"; \
     fi && \
     for((i=0;i<10;i++)); do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
-    tar zxvf "$TAR" && \
+    tar zxf "$TAR" && \
     # normalize apache-solr-3.x => solr-<version> like newer versions
     if [ -d apache-solr-$SOLR_VERSION ]; then mv -iv apache-solr-$SOLR_VERSION solr-$SOLR_VERSION; fi && \
     ln -sv solr-$SOLR_VERSION solr && \

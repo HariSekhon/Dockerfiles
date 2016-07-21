@@ -35,7 +35,7 @@ RUN \
         url="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
     fi && \
     wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
-    tar xvf "${TAR}" && \
+    tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "nifi-${NIFI_VERSION}" nifi && \
     yum remove -y wget tar && \

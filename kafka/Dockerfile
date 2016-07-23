@@ -31,9 +31,6 @@ LABEL Description="Apache Kafka by LinkedIn" \
       "Scala Version"="$SCALA_VERSION" \
       "Kafka Version"="$KAFKA_VERSION"
 
-# quicker cached
-#COPY kafka_$SCALA_VERSION-$KAFKA_VERSION /kafka
-
 RUN apt-get update && \
     apt-get install -y --no-install-recommends wget tar && \
     wget -t 100 --retry-connrefused -O "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" && \

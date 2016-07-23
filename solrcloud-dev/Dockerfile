@@ -14,9 +14,9 @@
 FROM harisekhon/centos-github
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SOLRCLOUD_VERSION=4.10.4
-#ARG SOLRCLOUD_VERSION=5.5.1
-#ARG SOLRCLOUD_VERSION=6.0.1
+# SolrCloud doesn't exist < 4.0 but this is for consistency with dockerfiles_check_git_branches.py validator
+# originally I removed the solrcloud directories from these < 4.0 solr branches but this makes merges require manual fixing on every master merge
+ARG SOLRCLOUD_VERSION=3.6
 
 ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 

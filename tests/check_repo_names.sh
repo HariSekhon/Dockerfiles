@@ -20,6 +20,7 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$srcdir/.."
 
+echo "checking repo names match directory tree"
 for x in *; do
     [ -d "$x" ] || continue
     grep -q -e "^REPO=harisekhon/$x" -e "^REPO=harisekhon/${x#*-}" "$x/Makefile" ||

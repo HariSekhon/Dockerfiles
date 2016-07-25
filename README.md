@@ -1,5 +1,7 @@
-Hari Sekhon Docker [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
-=========================
+Hari Sekhon Docker
+==================
+[![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HariSekhon/Dockerfiles&amp;utm_campaign=Badge_Grade)
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 

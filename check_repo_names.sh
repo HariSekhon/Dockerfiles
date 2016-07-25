@@ -18,7 +18,7 @@ set -euo pipefail
 
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd "$srcdir"
+cd "$srcdir/.."
 
 for x in *; do
     [ -d "$x" ] || continue

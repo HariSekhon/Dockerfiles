@@ -31,7 +31,6 @@ RUN \
     gcc \
     gcc-c++ \
     git \
-    git \
     groovy \
     hostname \
     libev \

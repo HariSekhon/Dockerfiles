@@ -87,7 +87,7 @@ https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.htm
 - Ubuntu 14.04 with Java 7
 - Ubuntu latest with Java 8, 9
 
-### To Build from Dockerfile + source yourself
+### Build from Source
 
 ```
 git clone https://github/harisekhon/Dockerfiles
@@ -95,7 +95,7 @@ git clone https://github/harisekhon/Dockerfiles
 cd Dockerfiles
 ```
 
-To build all Docker images:
+To build all Docker images, just run the ```make``` command at the top level:
 
 ```
 make

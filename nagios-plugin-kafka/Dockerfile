@@ -28,6 +28,10 @@ RUN \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build && \
+    cp -v check_kafka.jar{,2} && \
+    make clean && \
+    rm -fr .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot && \
+    mv -iv check_kafka.jar{2,} && \
     yum autoremove -y && \
     yum clean all
 

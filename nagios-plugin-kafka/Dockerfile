@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev:latest
+FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Kafka API Nagios Plugin (Scala pre-built)"
+LABEL Description="Kafka API Nagios Plugin (Scala, pre-built)"
 
 ENV PATH $PATH:/github/nagios-plugin-kafka
 
@@ -22,8 +22,8 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN \
+    yum install -y git make && \
     x=nagios-plugin-kafka; \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
@@ -32,6 +32,7 @@ RUN \
     make clean && \
     rm -fr .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot && \
     mv -iv check_kafka.jar{2,} && \
+    yum remove -y git make && \
     yum autoremove -y && \
     yum clean all
 

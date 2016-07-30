@@ -25,5 +25,6 @@ build:
 nocache:
 	docker build -t $(REPO) --no-cache .
 
+.PHONY: test
 test:
 	docker run -ti $(REPO) tests/all.sh

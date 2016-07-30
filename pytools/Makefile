@@ -24,3 +24,11 @@ build:
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO) --no-cache .
+
+.PHONY: test
+test:
+	docker run -ti $(REPO) tests/all.sh
+
+.PHONY: run
+run:
+	docker run -ti $(REPO) sh

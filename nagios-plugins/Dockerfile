@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Adv Nagios Plugins Collection pre-built on CentOS"
+LABEL Description="Advanced Nagios Plugins Collection"
 
 ENV PATH $PATH:/github/nagios-plugins
 
@@ -25,11 +25,12 @@ WORKDIR /github
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN \
     x=nagios-plugins; \
+    apk update && \
+    apk add git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build zookeeper clean && \
-    yum autoremove -y && \
-    yum clean all
+    apk del git make
 
 WORKDIR /github/nagios-plugins
 

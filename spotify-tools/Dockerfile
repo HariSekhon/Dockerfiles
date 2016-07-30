@@ -23,9 +23,9 @@ RUN mkdir -v /github
 WORKDIR /github
 
 RUN \
+    x=spotify-tools; \
     apk update && \
     apk add bash make git perl perl-dev gcc wget alpine-sdk openssl-dev expat-dev && \
-    x=spotify-tools && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build clean && \

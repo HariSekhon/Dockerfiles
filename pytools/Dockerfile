@@ -11,20 +11,47 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="PyTools repo pre-built on CentOS"
+LABEL Description="Python Tools"
 
-ENV PATH $PATH:/github/pytools
+ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
 
 RUN mkdir -v /github
 
 WORKDIR /github
 
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
-RUN x=pytools; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; yum autoremove -y && yum clean all && pip uninstall -y certifi && pip install certifi==2015.04.28
+RUN \
+    apk update && \
+    apk add make git && \
+    #py-cffi && \
+    x=pytools && \
+    git clone https://github.com/harisekhon/$x /github/$x && \
+    cd /github/$x && \
+    make && \
+    pip uninstall -y certifi && pip install certifi==2015.04.28 && \
+    make build clean apk-packages-remove && \
+    apk del make git
+
+# Jython
+COPY jython_autoinstall.exp /
+RUN \
+    cd / && \
+    apk update && \
+    apk add wget && \
+    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
+    ./jython_autoinstall.exp && \
+    ln -sf /opt/jython-2.7.0 /opt/jython && \
+    rm -fv jython-installer.jar && \
+    rm -fv jython_autoinstall.exp && \
+    apk del wget
+
+COPY profile.d/java.sh /etc/profile.d/
+COPY profile.d/jython.sh /etc/profile.d/
+
+WORKDIR /github/pytools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD /bin/bash -c "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"

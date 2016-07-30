@@ -33,7 +33,7 @@ RUN \
     make && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
     make build clean apk-packages-remove && \
-    apk del make git
+    apk del make git py-pip
 
 # Jython
 COPY jython_autoinstall.exp /

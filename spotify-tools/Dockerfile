@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Spotify Tools pre-built on CentOS"
+LABEL Description="Spotify Tools"
 
 ENV PATH $PATH:/github/spotify-tools
 
@@ -22,8 +22,18 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN x=spotify-tools; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; yum autoremove -y && yum clean all
+RUN \
+    apk update && \
+    apk add bash make git perl perl-dev gcc wget alpine-sdk openssl-dev expat-dev && \
+    x=spotify-tools && \
+    git clone https://github.com/harisekhon/$x /github/$x && \
+    cd /github/$x && \
+    make build clean && \
+    apk del make git perl-dev gcc wget alpine-sdk openssl-dev expat-dev
+    # cache not enabled
+    #apk cache clean
+
+WORKDIR /github/spotify-tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD /bin/bash -c "find /github/spotify-tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"
+CMD sh -c "find /github/spotify-tools -maxdepth 1 -type f -name '[A-Za-z]*.pl' | xargs -n1 basename | sort"

@@ -29,7 +29,7 @@ RUN \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build clean apk-remove-packages && \
-    apk del make git
+    apk del git make
 
 WORKDIR /github/tools
 

@@ -28,3 +28,7 @@ nocache:
 .PHONY: test
 test:
 	docker run -ti $(REPO) tests/all.sh
+
+.PHONY: run
+run:
+	docker run -to $(REPO) sh

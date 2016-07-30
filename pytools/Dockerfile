@@ -40,13 +40,13 @@ COPY jython_autoinstall.exp /
 RUN \
     cd / && \
     apk update && \
-    apk add wget && \
-    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
+    apk add curl expect && \
+    curl -L "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" > jython-installer.jar && \
     ./jython_autoinstall.exp && \
     ln -sf /opt/jython-2.7.0 /opt/jython && \
     rm -fv jython-installer.jar && \
     rm -fv jython_autoinstall.exp && \
-    apk del wget
+    apk del curl expect
 
 COPY profile.d/java.sh /etc/profile.d/
 COPY profile.d/jython.sh /etc/profile.d/

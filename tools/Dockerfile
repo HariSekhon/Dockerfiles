@@ -25,11 +25,11 @@ WORKDIR /github
 RUN \
     x=tools; \
     apk update && \
-    apk add bash make git perl perl-dev gcc wget alpine-sdk openssl-dev expat-dev libxml2-dev && \
+    apk add git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build clean && \
-    apk del make git perl-dev gcc wget alpine-sdk openssl-dev expat-dev libxml2-dev
+    make build clean apk-remove-packages && \
+    apk del make git
 
 WORKDIR /github/tools
 

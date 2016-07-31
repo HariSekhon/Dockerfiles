@@ -29,10 +29,11 @@ RUN \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build && \
-    cp check_kafka.jar{,2} && \
-    make clean && \
-    rm -fr .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot && \
-    mv -i check_kafka.jar{2,} && \
+    # not using mv as it's as symlink, cp will take the target
+    cp -i check_kafka.jar check_kafka.jar2 && \
+    # clean removes the link along with the target/build dir
+    make deep-clean && \
+    mv -i check_kafka.jar2 check_kafka.jar && \
     apk del git make alpine-sdk
 
 WORKDIR /github/nagios-plugin-kafka

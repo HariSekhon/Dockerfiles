@@ -1,0 +1,119 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2016-01-16 09:58:07 +0000 (Sat, 16 Jan 2016)
+#
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  https://github.com/harisekhon/Dockerfiles/alpine-dev
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+FROM alpine:latest
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+
+LABEL Description="Alpine Dev Build"
+
+ENV GRADLE_VERSION=2.14.1
+ENV GROOVY_VERSION=2.4.7
+ENV JYTHON_VERSION=2.7.0
+ENV MAVEN_VERSION=3.3.9
+ENV SBT_VERSION=0.13.12
+
+ENV GRADLE_HOME=/opt/gradle
+ENV GROOVY_HOME=/opt/groovy
+ENV JYTHON_HOME=/opt/jython
+ENV MAVEN_HOME=/opt/maven
+ENV SBT_HOME=/opt/sbt
+
+ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bin:$SBT_HOME/bin
+
+RUN \
+    mkdir -p /opt && \
+    apk update && \
+    apk add \
+    bash \
+    curl \
+    cyrus-sasl-dev \
+    expat-dev \
+    expect \
+    gcc \
+    git \
+    jwhois \
+    libev \
+    libevdev \
+    make \
+    mariadb-dev \
+    net-tools \
+    openjdk8 \
+    openssl-dev \
+    perl \
+    perl-dbd-mysql \
+    perl-libwww \
+    py-mysqldb \
+    py-pip \
+    py-setuptools \
+    python-dev \
+    ruby \
+    ruby-dev \
+    snappy-dev \
+    sysstat \
+    tar \
+    unzip \
+    vim \
+    wget \
+    which \
+    zip
+
+# doesn't have Gradle / Groovy / Maven / SBT packages ...
+
+# Gradle
+RUN \
+    cd /opt && \
+    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && \
+    unzip gradle-$GRADLE_VERSION-bin.zip && \
+    ln -sv gradle-$GRADLE_VERSION gradle && \
+    rm -f gradle-$GRADLE_VERSION-bin.zip
+
+# Groovy
+RUN \
+    cd /opt && \
+    wget -t 100 --retry-connrefused https://dl.bintray.com/groovy/maven/apache-groovy-binary-$GROOVY_VERSION.zip && \
+    unzip apache-groovy-binary-$GROOVY_VERSION.zip && \
+    ln -sv groovy-GROOVY_VERSION groovy && \
+    rm -f apache-groovy-binary-$GROOVY_VERSION.zip
+
+# Jython
+COPY jython_autoinstall.exp /
+RUN \
+    cd / && \
+    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
+    ./jython_autoinstall.exp && \
+    ln -sf /opt/jython-2.7.0 /opt/jython && \
+    rm -fv jython-installer.jar && \
+    rm -fv jython_autoinstall.exp
+
+# Maven
+RUN \
+    cd /opt && \
+    wget -t 100 --retry-connrefused https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+    tar zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+    ln -sv apache-maven-$MAVEN_VERSION maven && \
+    rm -f apache-maven-$MAVEN_VERSION-bin.tar.gz
+
+# SBT
+RUN \
+    cd /opt && \
+    wget -t 100 --retry-connrefused https://dl.bintray.com/sbt/native-packages/sbt/$SBT_VERSION/sbt-$SBT_VERSION.tgz && \
+    tar zxvf sbt-$SBT_VERSION.tgz && \
+    rm -f sbt-$SBT_VERSION.tgz
+
+COPY profile.d/gradle.sh /etc/profile.d/
+COPY profile.d/groovy.sh /etc/profile.d/
+COPY profile.d/java.sh   /etc/profile.d/
+COPY profile.d/jython.sh /etc/profile.d/
+COPY profile.d/sbt.sh    /etc/profile.d/
+
+CMD /bin/bash

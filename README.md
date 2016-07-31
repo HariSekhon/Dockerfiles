@@ -67,6 +67,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 - CentOS + all Github repos pre-built
 - Debian + all Github repos pre-built
 - Ubuntu + all Github repos pre-built
+- Alpine + all Github repos pre-built
 
 ##### Base Images:
 
@@ -75,6 +76,7 @@ Dev images:
 - CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
 - Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 - Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images + Java / Scala:
 

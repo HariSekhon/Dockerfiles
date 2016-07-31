@@ -32,7 +32,8 @@ RUN \
     cd /github/$x && \
     make && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
-    make build clean apk-packages-remove && \
+    make build clean && \
+    make apk-packages-remove && \
     apk del make git py-pip
 
 # Jython

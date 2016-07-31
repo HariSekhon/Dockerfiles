@@ -25,13 +25,12 @@ WORKDIR /github
 RUN \
     x=spotify-tools; \
     apk update && \
-    apk add bash make git perl perl-dev gcc wget alpine-sdk openssl-dev expat-dev && \
+    apk add make git && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build clean && \
-    apk del make git perl-dev gcc wget alpine-sdk openssl-dev expat-dev
-    # cache not enabled
-    #apk cache clean
+    make apk-packages-remove && \
+    apk del make git
 
 WORKDIR /github/spotify-tools
 

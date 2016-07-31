@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-java:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Kafka API Nagios Plugin (Scala, pre-built)"
@@ -23,18 +23,17 @@ RUN mkdir -v /github
 WORKDIR /github
 
 RUN \
-    yum install -y git make && \
+    apk update && \
+    apk add git make bash openjdk8 alpine-sdk && \
     x=nagios-plugin-kafka; \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build && \
-    cp -v check_kafka.jar{,2} && \
+    cp check_kafka.jar{,2} && \
     make clean && \
     rm -fr .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot && \
-    mv -iv check_kafka.jar{2,} && \
-    yum remove -y git make && \
-    yum autoremove -y && \
-    yum clean all
+    mv -i check_kafka.jar{2,} && \
+    apk del git make alpine-sdk
 
 WORKDIR /github/nagios-plugin-kafka
 

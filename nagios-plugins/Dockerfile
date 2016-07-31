@@ -30,6 +30,7 @@ RUN \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build zookeeper clean && \
+    make apk-packages-remove && \
     apk del git make
 
 WORKDIR /github/nagios-plugins

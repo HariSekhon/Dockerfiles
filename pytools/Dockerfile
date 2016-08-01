@@ -11,20 +11,42 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="PyTools repo pre-built on CentOS"
+LABEL Description="Python Tools"
 
-ENV PATH $PATH:/github/pytools
+ENV JYTHON_HOME=/opt/jython
+ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
 
 RUN mkdir -v /github
 
 WORKDIR /github
 
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
-RUN x=pytools; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; yum autoremove -y && yum clean all && pip uninstall -y certifi && pip install certifi==2015.04.28
+RUN \
+    apk update && \
+    apk add make git && \
+    #py-cffi && \
+    x=pytools && \
+    git clone https://github.com/harisekhon/$x /github/$x && \
+    cd /github/$x && \
+    make && \
+    pip uninstall -y certifi && pip install certifi==2015.04.28 && \
+    make build clean && \
+    make apk-packages-remove && \
+    apk del make git py-pip
+
+WORKDIR /github/pytools
+
+# Jython
+RUN \
+    apk update && \
+    apk add wget expect && \
+    sh jython_install.sh && \
+    apk del wget expect
+
+COPY profile.d/java.sh /etc/profile.d/
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD /bin/bash -c "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"

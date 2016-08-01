@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:noet
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/spotify-tools
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -24,3 +24,11 @@ build:
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO) --no-cache .
+
+.PHONY: test
+test:
+	docker run -ti $(REPO) tests/all.sh
+
+.PHONY: run
+run:
+	docker run -to $(REPO) sh

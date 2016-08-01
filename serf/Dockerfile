@@ -13,7 +13,7 @@
 
 # busybox wget doesn't support SSL, no curl available :-(
 #FROM busybox:latest
-FROM debian:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG SERF_VERSION=0.1.0
@@ -36,14 +36,12 @@ LABEL Description="HashiCorp's Serf minimal" \
 WORKDIR /
 
 RUN \
-    apt-get update && \
-    apt-get install -y --no-install-recommends wget unzip ca-certificates && \
+    apk update && \
+    apk add wget unzip ca-certificates && \
     wget -t 100 --retry-connrefused -O "serf_${SERF_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip" && \
     unzip "serf_${SERF_VERSION}_linux_amd64.zip" && \
     rm -fv "serf_${SERF_VERSION}_linux_amd64.zip" && \
-    apt-get purge -y wget unzip ca-certificates && \
-    apt-get autoremove -y && \
-    apt-get clean
+    apk del wget unzip ca-certificates
 
 EXPOSE 7946 7373
 

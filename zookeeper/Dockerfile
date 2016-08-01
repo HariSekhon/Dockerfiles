@@ -11,9 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos-java:jre7
-# > 100MB smaller than centos
-FROM harisekhon/debian-java:jre7
+FROM alpine
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG ZOOKEEPER_VERSION=3.3.6
@@ -28,18 +26,15 @@ LABEL Description="ZooKeeper" \
 WORKDIR /
 
 RUN \
-    apt-get update && \
-    apt-get install -y --no-install-recommends wget tar && \
+    apk update && \
+    apk add bash openjdk8-jre-base wget tar && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
     { rm -rf zookeeper/{src,docs}; : ; } && \
-    # attempting to remove tar causes unmet dependency breakage
-    apt-get purge -y wget && \
-    apt-get autoremove -y && \
-    apt-get clean
+    apk del wget tar
 
 EXPOSE 2181 3181 4181
 

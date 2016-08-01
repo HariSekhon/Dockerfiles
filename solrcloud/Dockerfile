@@ -14,7 +14,7 @@
 
 # not basing on official solr as it doesn't have SolrCloud 4.x which I want to keep using for my test suite
 # newer Solr complains about Java major minor version, obviously needs newer JDK in centos-java not debian-java
-FROM harisekhon/centos-java:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG SOLRCLOUD_VERSION=4.10.4
@@ -32,22 +32,21 @@ LABEL Description="SolrCloud", \
 WORKDIR /
 
 RUN \
+    apk update && \
     # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
-    yum install -y wget tar lsof && \
+    apk add bash openjdk8-jre-base lsof wget tar && \
     # Solr 4.x
     # no longer on mirrors, use Apache archive instead
     if [ "${SOLRCLOUD_VERSION:0:1}" = 4 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz"; \
     elif [ "${SOLRCLOUD_VERSION:0:3}" = "6.0" ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz"; \
     else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz&action=download"; \
     fi && \
-    for((i=0;i<10;i++)); do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
+    for x in {1..10}; do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
     tar zxf "$TAR" && \
     ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \
     { rm -rf solr/doc; : ; } && \
-    yum remove -y wget tar && \
-    yum autoremove -y && \
-    yum clean all
+    apk del wget tar
 
 COPY entrypoint.sh /
 

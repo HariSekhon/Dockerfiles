@@ -67,16 +67,10 @@ RUN \
     apt-get clean
 
 # Jython
-COPY jython_autoinstall.exp /
 RUN \
-    cd / && \
-    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
-    ./jython_autoinstall.exp && \
-    ln -sf /opt/jython-2.7.0 /opt/jython && \
-    rm -fv jython-installer.jar && \
-    rm -fv jython_autoinstall.exp
-
-COPY profile.d/gradle.sh /etc/profile.d/
-COPY profile.d/jython.sh /etc/profile.d/
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
+    sh jython_install.sh && \
+    rm -f jython_install.sh jython_autoinstall.exp
 
 CMD /bin/bash

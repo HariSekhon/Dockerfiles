@@ -12,7 +12,6 @@
 #
 
 # not basing on official solr as it doesn't have Solr < 5.0 which I want to keep using for my test suite
-# newer Solr complains about Java major minor version, obviously needs newer JDK which centos-java has so not using debian-java
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 

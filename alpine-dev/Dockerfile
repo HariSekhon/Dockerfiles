@@ -16,11 +16,6 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Alpine Dev Build"
 
-ENV GRADLE_VERSION=2.14.1
-ENV GROOVY_VERSION=2.4.7
-ENV MAVEN_VERSION=3.3.9
-ENV SBT_VERSION=0.13.12
-
 ENV GRADLE_HOME=/opt/gradle
 ENV GROOVY_HOME=/opt/groovy
 ENV JYTHON_HOME=/opt/jython
@@ -70,19 +65,16 @@ RUN \
 
 # Gradle
 RUN \
-    cd /opt && \
-    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && \
-    unzip gradle-$GRADLE_VERSION-bin.zip && \
-    ln -sv gradle-$GRADLE_VERSION gradle && \
-    rm -f gradle-$GRADLE_VERSION-bin.zip
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+    sh install_gradle.sh && \
+    rm -f install_gradle.sh
 
 # Groovy
 RUN \
     cd /opt && \
-    wget -t 100 --retry-connrefused https://dl.bintray.com/groovy/maven/apache-groovy-binary-$GROOVY_VERSION.zip && \
-    unzip apache-groovy-binary-$GROOVY_VERSION.zip && \
-    ln -sv groovy-GROOVY_VERSION groovy && \
-    rm -f apache-groovy-binary-$GROOVY_VERSION.zip
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh && \
+    sh install_groovy.sh && \
+    rm -f install_groovy.sh
 
 # Jython
 RUN \
@@ -93,22 +85,17 @@ RUN \
 
 # Maven
 RUN \
-    cd /opt && \
-    wget -t 100 --retry-connrefused https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-    tar zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-    ln -sv apache-maven-$MAVEN_VERSION maven && \
-    rm -f apache-maven-$MAVEN_VERSION-bin.tar.gz
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh && \
+    sh install_maven.sh && \
+    rm -f install_maven.sh
 
 # SBT
 RUN \
     cd /opt && \
-    wget -t 100 --retry-connrefused https://dl.bintray.com/sbt/native-packages/sbt/$SBT_VERSION/sbt-$SBT_VERSION.tgz && \
-    tar zxvf sbt-$SBT_VERSION.tgz && \
-    rm -f sbt-$SBT_VERSION.tgz
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh && \
+    sh install_sbt.sh && \
+    rm -f install_sbt.sh
 
-COPY profile.d/gradle.sh /etc/profile.d/
-COPY profile.d/groovy.sh /etc/profile.d/
 COPY profile.d/java.sh   /etc/profile.d/
-COPY profile.d/sbt.sh    /etc/profile.d/
 
 CMD /bin/bash

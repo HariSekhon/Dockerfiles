@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-java:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ENV PATH $PATH:/nifi/bin
@@ -28,7 +28,8 @@ LABEL Description="Nifi" \
 WORKDIR /
 
 RUN \
-    yum install -y wget tar && \
+    apk update && \
+    apk add bash openjdk8-jre-base wget tar && \
     if [ "${NIFI_VERSION:0:3}" = "0.7" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
     else \
@@ -38,10 +39,8 @@ RUN \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "nifi-${NIFI_VERSION}" nifi && \
-    { rm -rf nifi/docs; : ; } && \
-    yum remove -y wget tar && \
-    yum autoremove -y && \
-    yum clean all
+    #{ rm -rf nifi/docs; : ; } && \
+    apk del wget tar
 
 EXPOSE 8080
 

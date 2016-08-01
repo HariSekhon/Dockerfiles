@@ -4,16 +4,14 @@
 #
 #  vim:ts=4:sts=4:sw=4:noet
 #
-#  https://github.com/harisekhon/Dockerfiles/riak
+#  https://github.com/harisekhon/Dockerfiles/alpine-dev
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/riak
-
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+REPO=harisekhon/alpine-dev
 
 .PHONY: all
 all:
@@ -21,12 +19,12 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(REPO):$(TAG) .
+	docker build -t $(REPO) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
+	docker build -t $(REPO) --no-cache .
 
-.PHONY: run
+.PHONY: nocache
 run:
-	docker run -ti -p 8098:8098 $(REPO):$(TAG)
+	docker run -ti $(REPO) bash

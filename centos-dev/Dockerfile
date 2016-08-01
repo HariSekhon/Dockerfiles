@@ -70,11 +70,9 @@ RUN \
 
 # Gradle doesn't have an RPM :-(
 RUN \
-    cd /opt && \
-    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-2.13-bin.zip && \
-    unzip gradle-2.13-bin.zip && \
-    ln -sv gradle-2.13 gradle && \
-    rm -f gradle-2.13-bin.zip
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+    sh install_gradle.sh && \
+    rm -f install_gradle.sh
 
 # Jython
 RUN \
@@ -82,7 +80,5 @@ RUN \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
     sh jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
-
-COPY profile.d/gradle.sh /etc/profile.d/
 
 CMD /bin/bash

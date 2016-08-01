@@ -68,23 +68,15 @@ RUN apt-get update && \
 
 # Gradle in Debian is old 1.5 :-(
 RUN \
-    cd /opt && \
-    wget -t 100 --retry-connrefused https://services.gradle.org/distributions/gradle-2.13-bin.zip && \
-    unzip gradle-2.13-bin.zip && \
-    ln -sv gradle-2.13 gradle && \
-    rm -f gradle-2.13-bin.zip
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+    sh install_gradle.sh && \
+    rm -f install_gradle.sh
 
 # Jython
-COPY jython_autoinstall.exp /
 RUN \
-    cd / && \
-    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
-    ./jython_autoinstall.exp && \
-    ln -sf /opt/jython-2.7.0 /opt/jython && \
-    rm -fv jython-installer.jar && \
-    rm -fv jython_autoinstall.exp
-
-COPY profile.d/gradle.sh /etc/profile.d/
-COPY profile.d/jython.sh /etc/profile.d/
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
+    sh jython_install.sh && \
+    rm -f jython_install.sh jython_autoinstall.exp
 
 CMD /bin/bash

@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-java:latest
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ENV PATH $PATH:/apache-drill/bin:/zookeeper/bin
@@ -20,13 +20,10 @@ LABEL Description="Apache Drill" \
       "Apache Drill Version"="$APACHE_DRILL_VERSION"
 
 RUN \
-    # required for supervisord
-    yum install -y epel-release && \
+    apk update && \
     # used by nagios checks
-    yum install -y supervisor && \
-    yum remove -y epel-release && \
-    yum autoremove -y && \
-    yum clean all
+    apk add supervisor && \
+    mkdir -p /etc/supervisor.d
 
 #ARG APACHE_DRILL_VERSION=0.7.0
 #ARG APACHE_DRILL_VERSION=0.8.0
@@ -50,7 +47,8 @@ ENV ZOOKEEPER_HOST=zookeeper
 WORKDIR /
 
 RUN \
-    yum install -y wget tar which && \
+    apk update && \
+    apk add bash openjdk8-jre-base which wget tar && \
     if [ "${APACHE_DRILL_VERSION:0:3}" = "1.6" -o "${APACHE_DRILL_VERSION:0:3}" = "1.7" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     else \
@@ -60,13 +58,10 @@ RUN \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \
-    yum remove -y wget tar && \
-    yum autoremove -y && \
-    yum install hostname -y && \
-    yum clean all
+    apk del wget tar
 
 COPY entrypoint.sh /
-COPY supervisord.d/drill.ini /etc/supervisord.d/
+COPY supervisord.d/drill.ini /etc/supervisor.d/
 
 EXPOSE 8047
 

@@ -11,9 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos-java:jre7
-# > 100MB smaller than centos
-FROM harisekhon/debian-java:jre7
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SCALA_VERSION=2.10
@@ -31,16 +29,15 @@ LABEL Description="Apache Kafka by LinkedIn" \
       "Scala Version"="$SCALA_VERSION" \
       "Kafka Version"="$KAFKA_VERSION"
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends wget tar && \
+RUN \
+    apk update && \
+    apk add bash perl openjdk8-jre-base wget tar && \
     wget -t 100 --retry-connrefused -O "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" && \
     tar zxf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     ln -sv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}" kafka && \
     # attempting to remove tar causes unmet dependency breakage
-    apt-get purge -y wget && \
-    apt-get autoremove -y && \
-    apt-get clean
+    apk del wget
 
 COPY entrypoint.sh /
 

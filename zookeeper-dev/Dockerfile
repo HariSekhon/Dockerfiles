@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/debian-github:latest
+FROM harisekhon/alpine-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG ZOOKEEPER_VERSION=3.3.6
@@ -20,22 +20,21 @@ ARG TAR="zookeeper-${ZOOKEEPER_VERSION}.tar.gz"
 
 ENV PATH $PATH:/zookeeper/bin
 
-LABEL Description="ZooKeeper" \
+LABEL Description="ZooKeeper Dev" \
       "ZooKeeper Version"="$ZOOKEEPER_VERSION"
 
 WORKDIR /
 
 RUN \
+    apk update && \
+    apk add wget && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
     { rm -rf zookeeper/{src,docs}; : ; } && \
-    # attempting to remove tar causes unmet dependency breakage
-    apt-get purge -y wget && \
-    apt-get autoremove -y && \
-    apt-get clean
+    apk del wget
 
 EXPOSE 2181 3181 4181
 

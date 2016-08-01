@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:noet
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/harisekhon/Dockerfiles/consul-dev
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -29,4 +29,4 @@ nocache:
 
 .PHONY: run
 run:
-	docker run -ti -p 8500:8500 $(REPO):$(TAG) agent -dev -data-dir /tmp -client 0.0.0.0
+	docker run -ti -p 8500:8500 $(REPO):$(TAG) consul agent -dev -data-dir /tmp -client 0.0.0.0

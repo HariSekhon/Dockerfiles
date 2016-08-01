@@ -11,9 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-# inherit the nagios-plugins container for less duplication as it's the biggest project
-#FROM harisekhon/centos-dev:latest
-FROM harisekhon/nagios-plugins:latest
+FROM harisekhon/centos-dev:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS + my GitHub repos pre-built"
@@ -32,7 +30,7 @@ WORKDIR /github
 RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
 RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
 # inherited now
-#RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; yum autoremove -y && yum clean all
+RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; yum autoremove -y && yum clean all
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all && pip uninstall -y certifi && pip install certifi==2015.04.28
 RUN for x in lib-java;          do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all

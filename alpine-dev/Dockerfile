@@ -71,7 +71,6 @@ RUN \
 
 # Groovy
 RUN \
-    cd /opt && \
     wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh && \
     sh install_groovy.sh && \
     rm -f install_groovy.sh

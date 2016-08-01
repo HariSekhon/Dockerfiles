@@ -14,7 +14,7 @@
 # busybox wget doesn't support SSL, no curl available :-(
 #FROM busybox:latest
 # -dev version allows testing of local consul command utils like check_consul_version.py
-FROM harisekhon/debian-github:latest
+FROM harisekhon/alpine-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG CONSUL_VERSION=0.1.0
@@ -38,15 +38,12 @@ WORKDIR /
 #ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 
 RUN \
-    apt-get update && \
-    apt-get install -y --no-install-recommends wget unzip ca-certificates && \
+    apk update && \
+    apk add wget unzip && \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
-    # can't remove ca-cacertificates, ca-certificates-java is required by openjdk
-    apt-get purge -y wget unzip && \
-    apt-get autoremove -y && \
-    apt-get clean
+    apk del wget unzip
 
 #COPY entrypoint.sh /
 

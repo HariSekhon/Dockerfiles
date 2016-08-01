@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-github:latest
+FROM harisekhon/alpine-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG HBASE_VERSION=0.94.27
@@ -29,7 +29,8 @@ LABEL Description="HBase Dev", \
 WORKDIR /
 
 RUN \
-    yum install -y wget tar && \
+    apk update && \
+    apk add wget && \
     # HBase 0.94
     if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
     # HBase 0.96 usually missing from mirrors, have to use apache archive
@@ -48,11 +49,7 @@ RUN \
     ln -sv hbase-$HBASE_VERSION hbase && \
     rm -fv hbase-$HBASE_VERSION-bin.tar.gz && \
     { rm -rf hbase/{docs,src}; : ; } && \
-    yum remove -y wget tar && \
-    yum autoremove -y && \
-    # removes 'hostname', 'yum install' marking doesn't work, nor does --exclude
-    yum install hostname -y && \
-    yum clean all
+    apk del wget
 
 COPY entrypoint.sh /
 COPY conf/hbase-site.xml /hbase/conf/

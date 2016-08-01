@@ -1,0 +1,3 @@
+[submodule "bash-tools"]
+	path = bash-tools
+	url = https://github.com/harisekhon/bash-tools

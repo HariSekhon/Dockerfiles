@@ -16,6 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools"
 
+ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
 
 RUN mkdir -v /github
@@ -36,23 +37,16 @@ RUN \
     make apk-packages-remove && \
     apk del make git py-pip
 
+WORKDIR /github/pytools
+
 # Jython
-COPY jython_autoinstall.exp /
 RUN \
-    cd / && \
     apk update && \
-    apk add curl expect && \
-    curl -L "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" > jython-installer.jar && \
-    ./jython_autoinstall.exp && \
-    ln -sf /opt/jython-2.7.0 /opt/jython && \
-    rm -fv jython-installer.jar && \
-    rm -fv jython_autoinstall.exp && \
-    apk del curl expect
+    apk add wget expect && \
+    sh jython_install.sh && \
+    apk del wget expect
 
 COPY profile.d/java.sh /etc/profile.d/
-COPY profile.d/jython.sh /etc/profile.d/
-
-WORKDIR /github/pytools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD /bin/bash -c "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"

@@ -18,7 +18,6 @@ LABEL Description="Alpine Dev Build"
 
 ENV GRADLE_VERSION=2.14.1
 ENV GROOVY_VERSION=2.4.7
-ENV JYTHON_VERSION=2.7.0
 ENV MAVEN_VERSION=3.3.9
 ENV SBT_VERSION=0.13.12
 
@@ -86,14 +85,11 @@ RUN \
     rm -f apache-groovy-binary-$GROOVY_VERSION.zip
 
 # Jython
-COPY jython_autoinstall.exp /
 RUN \
-    cd / && \
-    wget -O jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar" && \
-    ./jython_autoinstall.exp && \
-    ln -sf /opt/jython-2.7.0 /opt/jython && \
-    rm -fv jython-installer.jar && \
-    rm -fv jython_autoinstall.exp
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
+    sh jython_install.sh && \
+    rm -f jython_install.sh jython_autoinstall.exp
 
 # Maven
 RUN \
@@ -113,7 +109,6 @@ RUN \
 COPY profile.d/gradle.sh /etc/profile.d/
 COPY profile.d/groovy.sh /etc/profile.d/
 COPY profile.d/java.sh   /etc/profile.d/
-COPY profile.d/jython.sh /etc/profile.d/
 COPY profile.d/sbt.sh    /etc/profile.d/
 
 CMD /bin/bash

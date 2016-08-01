@@ -30,3 +30,7 @@ nocache:
 .PHONY: run
 run:
 	docker run -ti -p 8047:8047 $(REPO):$(TAG)
+
+.PHONY: run-drillbit
+run-drillbit:
+	docker run -ti -p 8047:8047 $(REPO):$(TAG) supervisord -n

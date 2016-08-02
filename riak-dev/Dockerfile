@@ -13,9 +13,8 @@
 
 # can't base off official Riak as it's missing deps to run the tools
 #FROM riak:latest
-#FROM centos:latest
 # this is so that the nagios-plugin deps are available to mount new versions calling local programs eg. riak-admin
-FROM harisekhon/nagios-plugins:latest
+FROM harisekhon/centos-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG RIAK_VERSION=1.4.9
@@ -33,7 +32,7 @@ LABEL Description="Riak Dev"
 #    yum autoremove -y && \
 #    yum clean all
 # Riak 2.x
-RUN yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
+RUN yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/${RIAK_VERSION%.[[:digit:]]*}/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
     yum autoremove -y && \
     yum clean all
 

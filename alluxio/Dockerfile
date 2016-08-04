@@ -11,9 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-#FROM harisekhon/centos-java:jre7
-# > 100MB smaller than centos
-FROM harisekhon/debian-java:jre7
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG ALLUXIO_VERSION=1.0.1
@@ -24,27 +22,26 @@ ENV PATH $PATH:/alluxio/bin
 LABEL Description="Alluxio from BDAS" \
       "Alluxio Version"="$ALLUXIO_VERSION"
 
-#COPY alluxio-$ALLUXIO_VERSION /alluxio
-
 WORKDIR /
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
+RUN \
+    apk update && \
+    # OpenJDK8 recent versions give error:
+    #
+    # org.apache.jasper.JasperException: PWC6033: Error in Javac compilation for JSP PWC6199: Generated servlet error: The type java.io.ObjectInputStream cannot be resolved. It is indirectly referenced from required .class files
+    #
+    # use OpenJDK7 instead
+    apk add bash openjdk7-jre-base sudo wget tar && \
     wget -t 100 --retry-connrefused -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     rm -fv "alluxio-${ALLUXIO_VERSIO}-bin.tar.gz" && \
     ln -sv "alluxio-${ALLUXIO_VERSION}" alluxio && \
     cp -v alluxio/conf/alluxio-env.sh.template alluxio/conf/alluxio-env.sh && \
-    mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
     alluxio format && \
-    # attempting to remove tar causes unmet dependency breakage
-    apt-get remove -y wget && \
-    apt-get autoremove -y && \
-    apt-get clean
+    apk del wget tar
 
 COPY entrypoint.sh /
 
 EXPOSE 19999 30000
 
 ENTRYPOINT ["/entrypoint.sh"]
-#CMD /usr/sbin/sshd; sleep 1; alluxio-start.sh local; sleep 2; cat /alluxio/logs/*; tail -f /alluxio/logs/*

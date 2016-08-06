@@ -24,7 +24,7 @@ ENV PATH $PATH:/cassandra/bin
 #ARG CASSANDRA_VERSION=2.0.9
 #ARG CASSANDRA_VERSION=2.1.14
 #ARG CASSANDRA_VERSION=2.2.6
-#ARG CASSANDRA_VERSION=3.0.6
+#ARG CASSANDRA_VERSION=3.0.8
 ARG CASSANDRA_VERSION=3.5
 #ARG CASSANDRA_VERSION=3.6
 #ARG CASSANDRA_VERSION=3.7
@@ -37,8 +37,9 @@ LABEL Description="Cassandra Dev", \
 WORKDIR /
 
 RUN \
+    apk update && \
+    apk add wget openjdk8-jre-base && \
     # cassandra refuses to run as root without -R, just run as regular user
-    groupadd -r cassandra --gid=501 && useradd -r -g cassandra --uid=501 cassandra && \
     if [ "${CASSANDRA_VERSION:0:3}" = "3.7" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     else \
@@ -49,11 +50,15 @@ RUN \
     rm -fv  "${TAR}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
     { rm -rf cassandra/{doc,javadoc}; : ; } && \
-    sed -i 's/-Xss180k/-Xss228k/' cassandra/conf/cassandra-env.sh && \
-    mkdir /home/cassandra /var/lib/cassandra /var/log/cassandra && \
+    apk del wget
+
+RUN \
+    adduser -D -u 501 cassandra && \
+    mkdir /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \
-    yum autoremove -y && \
-    yum clean all
+    sed -i 's/-Xss180k/-Xss228k/' cassandra/conf/cassandra-env.sh && \
+    sed -i 's/^rpc_address:/#rpc_address:/' cassandra/conf/cassandra.yaml && \
+    sed -i 's/^#[[:space:]]*rpc_interface:.*/rpc_interface: eth0/' cassandra/conf/cassandra.yaml
 
 # 7000: intra-node communication
 # 7001: TLS intra-node communication

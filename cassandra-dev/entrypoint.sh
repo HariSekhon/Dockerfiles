@@ -37,9 +37,13 @@ while true; do
 done
 echo
 echo
+# bug workaround
+# https://issues.apache.org/jira/browse/CASSANDRA-11850
+export CQLSH_NO_BUNDLED=TRUE
+myip="$(ifconfig | grep -m1 'inet addr:' | sed 's/[^:]*://; s/ .*//')"
 #cqlsh
 if [ -t 0 ]; then
-    su cassandra $(which cqlsh)
+    su cassandra $(which cqlsh) $myip
     echo -e "\n\nCQL shell exited"
 else
     echo "

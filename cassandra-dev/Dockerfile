@@ -39,7 +39,6 @@ WORKDIR /
 RUN \
     apk update && \
     apk add wget openjdk8-jre-base && \
-    # cassandra refuses to run as root without -R, just run as regular user
     if [ "${CASSANDRA_VERSION:0:3}" = "3.7" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     else \
@@ -52,10 +51,12 @@ RUN \
     { rm -rf cassandra/{doc,javadoc}; : ; } && \
     apk del wget
 
+# cassandra refuses to run as root without -R, just run as regular useraddgroup -S cassandra id=501 && adduser -S -G cassandra --uid=501 cassandra && \
 RUN \
     adduser -D -u 501 cassandra && \
     mkdir /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \
+    sed -i 's,cassandra:/bin/false,cassandra:/bin/bash,' /etc/passwd && \
     sed -i 's/-Xss180k/-Xss228k/' cassandra/conf/cassandra-env.sh && \
     sed -i 's/^rpc_address:/#rpc_address:/' cassandra/conf/cassandra.yaml && \
     sed -i 's/^#[[:space:]]*rpc_interface:.*/rpc_interface: eth0/' cassandra/conf/cassandra.yaml

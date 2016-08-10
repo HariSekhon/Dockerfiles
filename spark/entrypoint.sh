@@ -39,7 +39,7 @@ $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(host
 sleep 2
 
 if [ -t 0 ]; then
-    echo e "\nStarting Spark Shell to connect to standalone daemons\n"
+    echo -e "\nStarting Spark Shell to connect to standalone daemons\n"
     # less than about 480m SQLContext fails to load and gets a bunch of NPEs
     $SPARK_HOME/bin/spark-shell --driver-memory 500m --master spark://$(hostname -f):7077
     echo -e "\n\nSpark Shell exited\n\n"

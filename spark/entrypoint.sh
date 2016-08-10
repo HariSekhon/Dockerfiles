@@ -16,6 +16,8 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
+export JAVA_HOME="${JAVA_HOME:-/usr}"
+
 export SPARK_DAEMON_MEMORY="${SPARK_DAEMON_MEMORY:-128M}"
 
 export SPARK_HOME="/spark"
@@ -29,11 +31,11 @@ else
 fi
 
 echo -e "\nStarting Master"
-$SPARK_HOME/bin$SPARK_HOME-class org.apache.spark.deploy.master.Master &>$SPARK_HOME/logs/master.log &
+$SPARK_HOME/bin/spark-class org.apache.spark.deploy.master.Master &>/spark/logs/master.log &
 sleep 2
 
 echo -e "\nStarting Worker"
-$SPARK_HOME/bin$SPARK_HOME-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>$SPARK_HOME/logs/worker.log &
+$SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>/spark/logs/worker.log &
 sleep 2
 
 if [ -t 0 ]; then

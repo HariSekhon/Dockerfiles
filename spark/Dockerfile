@@ -13,7 +13,7 @@
 
 #FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
-FROM harisekhon/debian-java:jre7
+FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SPARK_VERSION=1.4.1
@@ -31,16 +31,13 @@ LABEL Description="Apache Spark" \
 WORKDIR /
 
 RUN \
-    apt-get update && \
-    apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
+    apk update && \
+    apk add bash openjdk8-jre-base wget tar && \
     wget -t 100 --retry-connrefused -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
     tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -s "spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION" spark && \
-    # attempting to remove tar causes unmet dependency breakage
-    apt-get purge -y wget && \
-    apt-get autoremove -y && \
-    apt-get clean
+    apk del wget tar
 
 RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd && \
 cp -v /spark/conf/spark-env.sh.template /spark/conf/spark-env.sh

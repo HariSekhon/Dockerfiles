@@ -20,6 +20,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 #ARG HBASE_VERSION=1.0.3
 ARG HBASE_VERSION=1.1.5
 #ARG HBASE_VERSION=1.2.2
+#ARG HBASE_VERSION=1.1.5
+#ARG HBASE_VERSION=1.2.2
 
 ENV PATH $PATH:/hbase/bin
 

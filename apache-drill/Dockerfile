@@ -36,6 +36,7 @@ RUN \
 ARG APACHE_DRILL_VERSION=1.5.0
 #ARG APACHE_DRILL_VERSION=1.6.0
 #ARG APACHE_DRILL_VERSION=1.7.0
+#ARG APACHE_DRILL_VERSION=1.8.0
 
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 
@@ -49,7 +50,8 @@ WORKDIR /
 RUN \
     apk update && \
     apk add bash openjdk8-jre-base which wget tar && \
-    if [ "${APACHE_DRILL_VERSION:0:3}" = "1.6" -o "${APACHE_DRILL_VERSION:0:3}" = "1.7" ]; then \
+    if [ "${APACHE_DRILL_VERSION:0:3}" = "1.7" -o \
+         "${APACHE_DRILL_VERSION:0:3}" = "1.8" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     else \
         url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
@@ -59,6 +61,15 @@ RUN \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \
     apk del wget tar
+
+# need to keep this here to make it easier to launch supervisor with just a ZOOKEEPER_HOST and DRILL_HEAP environment variables
+RUN \
+    # for older versions
+    sed -i -e "s/-Xms1G/-Xms\$DRILL_MAX_HEAP/" apache-drill/conf/drill-env.sh; \
+    sed -i -e "s/^DRILL_MAX_HEAP=.*/DRILL_MAX_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh; \
+    \
+    sed -i -e "s/^DRILL_HEAP=.*/DRILL_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh; \
+    sed -i -e "s/^\([[:space:]]*\)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" apache-drill/conf/drill-override.conf
 
 COPY entrypoint.sh /
 COPY supervisord.d/drill.ini /etc/supervisor.d/

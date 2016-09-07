@@ -18,7 +18,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG H2O_VERSION=2.6.1.5
 #ARG H2O_VERSION=3.8.0.4
-ARG H2O_VERSION=3.8.2.3
+#ARG H2O_VERSION=3.8.2.3
+ARG H2O_VERSION=3.10.0.3
 
 ENV PATH $PATH:/h2o/bin
 

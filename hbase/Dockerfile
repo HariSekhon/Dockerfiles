@@ -23,6 +23,8 @@ ARG HBASE_VERSION=1.1.6
 
 ENV PATH $PATH:/hbase/bin
 
+ENV JAVA_HOME=/usr
+
 LABEL Description="HBase Dev", \
       "HBase Version"="$HBASE_VERSION"
 

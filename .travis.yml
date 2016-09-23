@@ -33,4 +33,4 @@ install:
   - echo nothing to install
 
 script:
-  - tests/all.sh
+  - make test

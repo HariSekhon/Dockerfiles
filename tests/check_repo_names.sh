@@ -24,6 +24,8 @@ echo "checking repo names match directory tree"
 for x in *; do
     [ -d "$x" ] || continue
     [ "$x" = "bash-tools" -o "$x" = "tests" ] && continue
+    # exclude things not in Git yet
+    git log -1 hbase-dev/ 2>/dev/null | grep -q '.*' || continue
     grep -q -e "^REPO=harisekhon/$x" -e "^REPO=harisekhon/${x#*-}" "$x/Makefile" ||
         { echo "$x REPO mismatch!"; exit 1; }
 done

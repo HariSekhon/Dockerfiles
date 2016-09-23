@@ -21,7 +21,7 @@ echo "Dockerfiles PyTools Checks"
 
 cd "$srcdir/.."
 
-export PATH=$PATH:pytools_checks
+export PATH=$PATH:$PWD/pytools_checks
 
 get_pytools(){
     if ! [ -d pytools_checks ]; then

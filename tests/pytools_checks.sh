@@ -21,12 +21,12 @@ echo "Dockerfiles PyTools Checks"
 
 cd "$srcdir/.."
 
-export PATH=$PATH:pytools
+export PATH=$PATH:pytools_checks
 
 get_pytools(){
-    if ! [ -d pytools ]; then
-        git clone https://github.com/harisekhon/pytools
-        cd pytools
+    if ! [ -d pytools_checks ]; then
+        git clone https://github.com/harisekhon/pytools pytools_checks
+        cd pytools_checks
         make
     fi
 }

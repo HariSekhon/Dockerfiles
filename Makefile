@@ -62,5 +62,4 @@ test:
 	@#for x in *; do [ -d $$x ] || continue; pushd $$x; make test; popd; done
 	@#make test-deps
 	@#find . -name Dockerfile | xargs -n1 docklint
-	which dockerfiles_check_git_branches.py &>/dev/null && dockerfiles_check_git_branches.py .
-	which git_check_branches_upstream.py &>/dev/null && git_check_branches_upstream.py .
+	tests/all.sh

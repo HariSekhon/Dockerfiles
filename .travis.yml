@@ -17,6 +17,11 @@ language: python
 python:
   - "2.7"
 
+sudo: required
+
+env:
+  - DEBUG=1
+
 notifications:
   email: false
 
@@ -28,4 +33,4 @@ install:
   - echo nothing to install
 
 script:
-  - tests/all.sh
+  - make test

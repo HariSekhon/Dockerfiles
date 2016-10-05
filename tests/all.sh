@@ -25,6 +25,8 @@ section "Dockerfiles checks"
 
 tests/check_repo_names.sh
 
+tests/pytools_checks.sh
+
 echo
 
 bash-tools/all.sh

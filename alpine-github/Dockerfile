@@ -38,4 +38,6 @@ RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /g
 RUN x=lib-java; apk update && apk add bash openjdk8 alpine-sdk; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build deep-clean
 #RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean apk-packages-remove || exit 1; done
 
+COPY profile.d/java.sh /etc/profile.d/
+
 CMD /bin/bash

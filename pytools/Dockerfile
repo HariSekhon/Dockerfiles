@@ -27,6 +27,8 @@ WORKDIR /github
 RUN \
     apk update && \
     apk add make git && \
+    # allows numpy to compile with musl instead of glibc
+    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
     x=pytools && \
     git clone https://github.com/harisekhon/$x /github/$x && \
@@ -44,8 +46,6 @@ RUN \
     apk update && \
     apk add wget expect && \
     sh jython_install.sh && \
-    # allows numpy to compile with musl instead of glibc
-    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     apk del wget expect
 
 COPY profile.d/java.sh /etc/profile.d/

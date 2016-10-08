@@ -44,6 +44,8 @@ RUN \
     apk update && \
     apk add wget expect && \
     sh jython_install.sh && \
+    # allows numpy to compile with musl instead of glibc
+    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     apk del wget expect
 
 COPY profile.d/java.sh /etc/profile.d/

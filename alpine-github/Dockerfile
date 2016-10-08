@@ -34,7 +34,16 @@ RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /g
 # inherited now
 #RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean apk-packages-remove || exit 1; done
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
-RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean apk-packages-remove || exit 1; done; pip uninstall -y certifi && pip install certifi==2015.04.28
+RUN \
+    # allows numpy to compile with musl instead of glibc
+    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
+    for x in pylib pytools; do \
+        git clone https://github.com/harisekhon/$x /github/$x && \
+        cd /github/$x && \
+        make build clean apk-packages-remove || exit 1;\
+    done; \
+    pip uninstall -y certifi && \
+    pip install certifi==2015.04.28
 RUN x=lib-java; apk update && apk add bash openjdk8 alpine-sdk; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build deep-clean
 #RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean apk-packages-remove || exit 1; done
 

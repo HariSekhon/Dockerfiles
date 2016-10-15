@@ -28,6 +28,7 @@ RUN \
                        curl \
                        dstat \
                        expect \
+                       ethtool \
                        git \
                        gradle \
                        groovy \

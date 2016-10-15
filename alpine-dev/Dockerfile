@@ -33,6 +33,7 @@ RUN \
     cyrus-sasl-dev \
     expat-dev \
     expect \
+    ethtool \
     gcc \
     git \
     jwhois \

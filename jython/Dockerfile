@@ -16,8 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Jython on Alpine + OpenJDK, minimal container"
 
-ENV JYTHON_VERSION=2.7.0
-ENV JYTHON_HOME=/opt/jython-$JYTHON_VERSION
+ARG JYTHON_VERSION=2.7.0
+ARG JYTHON_HOME=/opt/jython-$JYTHON_VERSION
 
 RUN \
     apk update && \

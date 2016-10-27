@@ -24,8 +24,7 @@ WORKDIR /github
 
 RUN \
     x=tools; \
-    apk update && \
-    apk add git make && \
+    apk add --no-cache git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build clean && \

@@ -37,7 +37,7 @@ LABEL Description="Cassandra Dev", \
 WORKDIR /
 
 RUN \
-    apk add --no-cache wget openjdk8-jre-base && \
+    apk add --no-cache wget openjdk7-jre-base && \
     if [ "${CASSANDRA_VERSION:0:3}" = "3.7" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     else \

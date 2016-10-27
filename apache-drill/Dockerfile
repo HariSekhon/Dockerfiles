@@ -20,9 +20,8 @@ LABEL Description="Apache Drill" \
       "Apache Drill Version"="$APACHE_DRILL_VERSION"
 
 RUN \
-    apk update && \
     # used by nagios checks
-    apk add supervisor && \
+    apk add --no-cache supervisor && \
     mkdir -p /etc/supervisor.d
 
 #ARG APACHE_DRILL_VERSION=0.7.0

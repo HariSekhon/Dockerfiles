@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-scala:2.11-jdk8
+FROM harisekhon/centos-scala:2.11-jdk7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS Dev Build"

@@ -25,8 +25,9 @@ WORKDIR /github
 
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 RUN \
-    apk update && \
-    apk add make git && \
+    apk add --no-cache make git && \
+    # allows numpy to compile with musl instead of glibc
+    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
     x=pytools && \
     git clone https://github.com/harisekhon/$x /github/$x && \
@@ -41,8 +42,7 @@ WORKDIR /github/pytools
 
 # Jython
 RUN \
-    apk update && \
-    apk add wget expect && \
+    apk add --no-cache wget expect && \
     sh jython_install.sh && \
     apk del wget expect
 

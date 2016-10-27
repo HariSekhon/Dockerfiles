@@ -17,7 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 LABEL Description="Java + Ubuntu (OpenJDK)"
 
 ARG JAVA_VERSION=7
-ARG JAVA_RELEASE=JRE
+ARG JAVA_RELEASE=JDK
 
 ENV JAVA_HOME=/usr
 

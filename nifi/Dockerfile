@@ -29,8 +29,7 @@ LABEL Description="Nifi" \
 WORKDIR /
 
 RUN \
-    apk update && \
-    apk add bash openjdk8-jre-base wget tar && \
+    apk add --no-cache bash openjdk8-jre-base wget tar && \
     #if [ "${NIFI_VERSION:0:3}" = "0.7" ]; then \
     #    url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
     #else \

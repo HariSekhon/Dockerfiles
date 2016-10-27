@@ -41,7 +41,7 @@ RUN \
     make \
     mariadb-dev \
     net-tools \
-    openjdk8 \
+    openjdk7 \
     openssl-dev \
     perl \
     perl-dbd-mysql \

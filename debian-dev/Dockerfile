@@ -26,6 +26,7 @@ RUN apt-get update && \
                        build-essential \
                        curl \
                        dstat \
+                       ethtool \
                        expect \
                        git \
                        #gradle \

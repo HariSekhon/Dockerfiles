@@ -42,8 +42,7 @@ WORKDIR /github/pytools
 
 # Jython
 RUN \
-    apk update && \
-    apk add wget expect && \
+    apk add --no-cache wget expect && \
     sh jython_install.sh && \
     apk del wget expect
 

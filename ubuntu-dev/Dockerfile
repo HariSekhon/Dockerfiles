@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/ubuntu-java:jdk8
+FROM harisekhon/ubuntu-java:jdk7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu Dev Build"

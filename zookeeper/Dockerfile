@@ -26,8 +26,7 @@ LABEL Description="ZooKeeper" \
 WORKDIR /
 
 RUN \
-    apk update && \
-    apk add bash openjdk8-jre-base wget tar && \
+    apk add --no-cache bash openjdk8-jre-base wget tar && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \

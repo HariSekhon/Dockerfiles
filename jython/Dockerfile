@@ -24,7 +24,7 @@ RUN \
     apk add bash wget && \
     wget -cO jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/$JYTHON_VERSION/jython-installer-$JYTHON_VERSION.jar" && \
     java -jar jython-installer.jar -s -t standard -d "$JYTHON_HOME" && \
-    rm -fr "$JYTHON_HOME"/{Docs,Demo,tests}
+    rm -fr "$JYTHON_HOME"/{Docs,Demo,tests} && \
     rm -f jython-installer.jar && \
     ln -sfv "$JYTHON_HOME/bin/"* /usr/local/bin/ && \
     apk del wget

@@ -16,8 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + CentOS (OpenJDK)"
 
-ARG JAVA_VERSION=8
-ARG JAVA_RELEASE=JDK
+ARG JAVA_VERSION=7
+ARG JAVA_RELEASE=JRE
 
 ENV JAVA_HOME=/usr
 

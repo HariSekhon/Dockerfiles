@@ -26,8 +26,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bi
 
 RUN \
     mkdir -p /opt && \
-    apk update && \
-    apk add \
+    apk add --no-cache \
     bash \
     curl \
     cyrus-sasl-dev \

@@ -28,6 +28,7 @@ RUN \
     dstat \
     expat-devel \
     expect \
+    ethtool \
     gcc \
     gcc-c++ \
     git \

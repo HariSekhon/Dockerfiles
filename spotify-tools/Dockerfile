@@ -24,8 +24,7 @@ WORKDIR /github
 
 RUN \
     x=spotify-tools; \
-    apk update && \
-    apk add make git && \
+    apk add --no-cache make git && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build clean && \

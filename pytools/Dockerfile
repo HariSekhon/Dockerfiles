@@ -25,8 +25,7 @@ WORKDIR /github
 
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 RUN \
-    apk update && \
-    apk add make git && \
+    apk add --no-cache make git && \
     # allows numpy to compile with musl instead of glibc
     ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \

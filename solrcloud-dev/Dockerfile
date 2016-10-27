@@ -33,8 +33,7 @@ LABEL Description="SolrCloud", \
 WORKDIR /
 
 RUN \
-    apk update && \
-    apk add bash lsof tar wget && \
+    apk add --no-cache bash lsof tar wget && \
     # Solr 4.x
     # no longer on mirrors, use Apache archive instead
     #if [ "${SOLRCLOUD_VERSION:0:1}" = "4" ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz"; \

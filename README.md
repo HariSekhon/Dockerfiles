@@ -4,7 +4,7 @@ Hari Sekhon Docker
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-##### Contains 37 repos with around 130 tags (not including 'latest'), many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
+##### Contains 41 repos with over 140 tags (excluding 'latest'), many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
 
 * [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
 * Hadoop, NoSQL & OS images used for development and functional test suites
@@ -43,6 +43,7 @@ docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 - H2O by 0xdata
 - Hadoop (HDFS + Yarn)
 - HBase (opens HBase shell)
+- Jython
 - Kafka
 - Mesos
 - Nifi

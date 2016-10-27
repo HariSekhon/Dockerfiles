@@ -47,7 +47,7 @@ ENV ZOOKEEPER_HOST=zookeeper
 WORKDIR /
 
 RUN \
-    apk add --no-cache bash openjdk8-jre-base which wget tar && \
+    apk add --no-cache bash openjdk7-jre-base which wget tar && \
     if [ "${APACHE_DRILL_VERSION:0:3}" = "1.7" -o \
          "${APACHE_DRILL_VERSION:0:3}" = "1.8" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \

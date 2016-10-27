@@ -25,13 +25,12 @@ LABEL Description="Alluxio from BDAS" \
 WORKDIR /
 
 RUN \
-    apk update && \
     # OpenJDK8 recent versions give error:
     #
     # org.apache.jasper.JasperException: PWC6033: Error in Javac compilation for JSP PWC6199: Generated servlet error: The type java.io.ObjectInputStream cannot be resolved. It is indirectly referenced from required .class files
     #
     # use OpenJDK7 instead
-    apk add bash openjdk7-jre-base sudo wget tar && \
+    apk add --no-cache bash openjdk7-jre-base sudo wget tar && \
     wget -t 100 --retry-connrefused -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     rm -fv "alluxio-${ALLUXIO_VERSIO}-bin.tar.gz" && \

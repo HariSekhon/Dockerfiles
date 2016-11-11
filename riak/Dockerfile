@@ -21,7 +21,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 #ARG RIAK_VERSION=2.0.6
 ARG RIAK_VERSION=2.1.4
 
-LABEL Description="Riak"
+LABEL Description="Riak" \
+      "Riak Version"="$RIAK_VERSION"
 
 #RUN OS=el DIST=6 curl "https://packagecloud.io/install/repositories/basho/riak/config_file.repo?os=${OS}&dist=${DIST}&name=basho_repo" > /etc/yum.repos.d/basho.repo && \
 

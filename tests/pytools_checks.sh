@@ -27,7 +27,7 @@ get_pytools(){
     if ! [ -d pytools_checks ]; then
         git clone https://github.com/harisekhon/pytools pytools_checks
         cd pytools_checks
-        make
+        make update
     fi
 }
 

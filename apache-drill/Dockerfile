@@ -14,16 +14,6 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ENV PATH $PATH:/apache-drill/bin:/zookeeper/bin
-
-LABEL Description="Apache Drill" \
-      "Apache Drill Version"="$APACHE_DRILL_VERSION"
-
-RUN \
-    # used by nagios checks
-    apk add --no-cache supervisor && \
-    mkdir -p /etc/supervisor.d
-
 ARG APACHE_DRILL_VERSION=0.7.0
 #ARG APACHE_DRILL_VERSION=0.8.0
 #ARG APACHE_DRILL_VERSION=0.9.0
@@ -44,9 +34,17 @@ ENV DRILL_HEAP=900M
 # -e ZOOKEEPER_HOST if clustering these containers with external contained linked zookeeper
 ENV ZOOKEEPER_HOST=zookeeper
 
+ENV PATH $PATH:/apache-drill/bin:/zookeeper/bin
+
+LABEL Description="Apache Drill" \
+      "Apache Drill Version"="$APACHE_DRILL_VERSION"
+
 WORKDIR /
 
 RUN \
+    # used by nagios checks
+    apk add --no-cache supervisor && \
+    mkdir -p /etc/supervisor.d && \
     apk add --no-cache bash openjdk8-jre-base which wget tar && \
     if [ "${APACHE_DRILL_VERSION:0:3}" = "1.7" -o \
          "${APACHE_DRILL_VERSION:0:3}" = "1.8" ]; then \

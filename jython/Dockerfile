@@ -14,10 +14,10 @@
 FROM openjdk:jre-alpine
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Jython on Alpine + OpenJDK, minimal container"
-
 ARG JYTHON_VERSION=2.7.0
 ARG JYTHON_HOME=/opt/jython-$JYTHON_VERSION
+
+LABEL Description="Jython $JYTHON_VERSION on Alpine + OpenJDK, minimal container"
 
 RUN \
     apk add --no-cache bash wget && \

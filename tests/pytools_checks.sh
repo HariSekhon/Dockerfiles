@@ -26,8 +26,9 @@ export PATH=$PATH:$PWD/pytools_checks
 get_pytools(){
     if ! [ -d pytools_checks ]; then
         git clone https://github.com/harisekhon/pytools pytools_checks
-        cd pytools_checks
-        make update
+        pushd pytools_checks
+        make
+        popd
     fi
 }
 
@@ -37,6 +38,11 @@ if ! which dockerfiles_check_git_branches.py &>/dev/null ||
     get_pytools
 fi
 
+pushd $PWD/pytools_checks
+make update
+
 dockerfiles_check_git_branches.py .
 
 git_check_branches_upstream.py .
+
+popd

@@ -39,7 +39,7 @@ WORKDIR /
 
 RUN \
     apk add --no-cache wget openjdk8-jre-base && \
-    if [ "${CASSANDRA_VERSION:0:3}" = "3.7" ]; then \
+    if [ "${CASSANDRA_VERSION:0:3}" = "3.9" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     else \
         url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \

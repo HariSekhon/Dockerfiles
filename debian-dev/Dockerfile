@@ -21,8 +21,9 @@ ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
 RUN apt-get update && \
-    apt-get upgrade -y --no-install-recommends && \
-    apt-get install -y --no-install-recommends \
+    apt-get upgrade -y && \
+    # --no-install-recommends breaks sbt download due to missing gnupg, even adding gnupg + gnupg1 + gnupg2 manually it still breaks on download manager when trying to get sbt
+    apt-get install -y \
                        build-essential \
                        curl \
                        dstat \
@@ -53,9 +54,15 @@ RUN apt-get update && \
                        unzip \
                        vim \
                        wget \
-                       zip && \
+                       zip \
+                       && \
     # for sbt https repo
-    apt-get install -y apt-transport-https && \
+    apt-get install -y \
+                       apt-transport-https \
+                       #gnupg \
+                       #gnupg1 \
+                       #gnupg2 \
+                       && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \

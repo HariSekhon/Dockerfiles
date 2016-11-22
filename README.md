@@ -32,7 +32,7 @@ DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https:
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
 
-For service technologies like Hadoop, HBase, ZooKeeper for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains a `make` build so you can simply call:
+For service technologies like Hadoop, HBase, ZooKeeper for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains a shortcut so you don't have to remember all the specifics:
 ```
 cd zookeeper
 make run

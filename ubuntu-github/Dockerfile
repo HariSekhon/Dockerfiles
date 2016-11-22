@@ -32,7 +32,7 @@ RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /g
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean && pip uninstall -y certifi && pip install certifi==2015.04.28
 RUN for x in lib-java;          do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn deep-clean || exit 1; done; apt-get autoremove -y && apt-get clean
-RUN for x in spark-apps nagios-plugin-kafka; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn clean || exit 1; done; apt-get autoremove -y && apt-get clean
+RUN for x in spark-apps nagios-plugin-kafka; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean
 
 # trick to invalidate cache at this point to pull latest updates
 #COPY invalidate_cache /tmp

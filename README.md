@@ -4,12 +4,20 @@ Hari Sekhon Docker
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-##### Contains 41 repos with over 140 tags (excluding 'latest'), many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
+##### Contains 41 repos with over 140 tags, many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
 
 * [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
 * Hadoop, NoSQL & OS images used for development and functional test suites
 
 These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
+
+Hari Sekhon
+
+Big Data Contractor, United Kingdom
+
+https://www.linkedin.com/in/harisekhon
+
+(you're welcome to connect with me on LinkedIn)
 
 ### Ready to run Docker images
 

@@ -16,8 +16,7 @@ Hari Sekhon
 Big Data Contractor, United Kingdom
 
 https://www.linkedin.com/in/harisekhon
-
-(you're welcome to connect with me on LinkedIn)
+###### (you're welcome to connect with me on LinkedIn)
 
 ### Ready to run Docker images
 

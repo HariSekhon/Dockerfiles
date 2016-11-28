@@ -7,7 +7,7 @@ Docker Images containing hundreds of my published tools and the supporting techn
 ##### Contains 41 repos with over 140 tags, many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
 
 * [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
-* Hadoop, Big Data, NoSQL, Infrastructure & OS images - often used for development and functional test suites
+* Hadoop, Big Data, NoSQL & OS images - often used for development and functional test suites
 
 These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
 

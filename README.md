@@ -4,12 +4,19 @@ Hari Sekhon Docker
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-##### Contains 41 repos with over 140 tags (excluding 'latest'), many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
+##### Contains 41 repos with over 140 tags, many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
 
-* [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
-* Hadoop, NoSQL & OS images used for development and functional test suites
+* Hadoop, Big Data, NoSQL & OS images
+* [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
 
 These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
+
+Hari Sekhon
+
+Big Data Contractor, United Kingdom
+
+https://www.linkedin.com/in/harisekhon
+###### (you're welcome to connect with me on LinkedIn)
 
 ### Ready to run Docker images
 
@@ -30,6 +37,23 @@ DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https:
 
 ```
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
+```
+
+For service technologies like Hadoop, HBase, ZooKeeper for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains a shortcut so you don't have to remember all the specifics:
+```
+cd zookeeper
+make run
+```
+which is easier to remember and type rather than the equivalent bigger commands like:
+```
+docker run -ti -p 2181:2181 harisekhon/zookeeper
+```
+which gets much worse for more complex services like Hadoop / HBase:
+```
+docker run -ti -p 2181:2181 -p 8080:8080 -p 8085:8085 -p 9090:9090 -p 9095:9095 -p 16000:16000 -p 16010:16010 -p 16201:16201 -p 16301:16301 harisekhon/hbase
+```
+```
+docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:10020 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 harisekhon/hadoop
 ```
 
 ### Full Inventory:

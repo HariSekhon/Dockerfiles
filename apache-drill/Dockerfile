@@ -26,6 +26,7 @@ ARG APACHE_DRILL_VERSION=1.2.0
 #ARG APACHE_DRILL_VERSION=1.6.0
 #ARG APACHE_DRILL_VERSION=1.7.0
 #ARG APACHE_DRILL_VERSION=1.8.0
+#ARG APACHE_DRILL_VERSION=1.9.0
 
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 
@@ -46,8 +47,8 @@ RUN \
     apk add --no-cache supervisor && \
     mkdir -p /etc/supervisor.d && \
     apk add --no-cache bash openjdk8-jre-base which wget tar && \
-    if [ "${APACHE_DRILL_VERSION:0:3}" = "1.7" -o \
-         "${APACHE_DRILL_VERSION:0:3}" = "1.8" ]; then \
+    if [ "${APACHE_DRILL_VERSION:0:3}" = "1.8" -o \
+         "${APACHE_DRILL_VERSION:0:3}" = "1.9" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     else \
         url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \

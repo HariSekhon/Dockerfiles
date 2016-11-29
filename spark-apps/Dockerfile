@@ -25,7 +25,7 @@ WORKDIR /github
 
 RUN \
     x=spark-apps; \
-    yum install -y make git && \
+    yum install -y make git maven && \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y --nogpgcheck sbt && \
     git clone https://github.com/harisekhon/$x /github/$x && \

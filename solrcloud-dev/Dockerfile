@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/alpine-github:latest
+FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG SOLRCLOUD_VERSION=4.10.4
@@ -24,7 +24,7 @@ ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 
 ENV PATH $PATH:/solr/bin
 
-LABEL Description="SolrCloud", \
+LABEL Description="SolrCloud + Nagios Plugins", \
       "Solr Version"="$SOLRCLOUD_VERSION"
 
 WORKDIR /

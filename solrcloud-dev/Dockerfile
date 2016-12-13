@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/alpine-github:latest
+FROM harisekhon/nagios-plugins:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 # SolrCloud doesn't exist < 4.0 but this is for consistency with dockerfiles_check_git_branches.py validator
@@ -27,13 +27,13 @@ ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 
 ENV PATH $PATH:/solr/bin
 
-LABEL Description="SolrCloud", \
+LABEL Description="SolrCloud + Nagios Plugins", \
       "Solr Version"="$SOLRCLOUD_VERSION"
 
 WORKDIR /
 
 RUN \
-    apk add --no-cache bash lsof tar wget && \
+    apk add --no-cache bash openjdk8-jre-base lsof wget tar && \
     # Solr 4.x
     # no longer on mirrors, use Apache archive instead
     #if [ "${SOLRCLOUD_VERSION:0:1}" = "4" ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz"; \
@@ -46,7 +46,7 @@ RUN \
     ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \
     { rm -rf solr/doc; : ; } && \
-    apk del wget
+    apk del tar wget
 
 COPY entrypoint.sh /
 

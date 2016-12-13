@@ -30,7 +30,7 @@ LABEL Description="SolrCloud + Nagios Plugins", \
 WORKDIR /
 
 RUN \
-    apk add --no-cache bash lsof tar wget && \
+    apk add --no-cache bash openjdk8-jre-base lsof wget tar && \
     # Solr 4.x
     # no longer on mirrors, use Apache archive instead
     #if [ "${SOLRCLOUD_VERSION:0:1}" = "4" ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/solr-$SOLRCLOUD_VERSION.tgz"; \
@@ -43,7 +43,7 @@ RUN \
     ln -sv solr-$SOLRCLOUD_VERSION solr && \
     rm -fv "$TAR" && \
     { rm -rf solr/doc; : ; } && \
-    apk del wget
+    apk del tar wget
 
 COPY entrypoint.sh /
 

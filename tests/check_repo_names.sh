@@ -25,7 +25,7 @@ for x in *; do
     [ "$x" = "bash-tools" ] && continue
     [ -f "$x/Makefile" ] || continue
     # exclude things not in Git yet
-    git log -1 "$x" 2>/dev/null | grep -q '.*' || continue
+    #git log -1 "$x" 2>/dev/null | grep -q '.*' || continue
     grep -q -e "^REPO=harisekhon/$x" -e "^REPO=harisekhon/${x#*-}" "$x/Makefile" ||
         { echo "$x REPO mismatch!"; exit 1; }
 done

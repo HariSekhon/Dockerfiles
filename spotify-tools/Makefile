@@ -29,6 +29,10 @@ nocache:
 test:
 	docker run -ti $(REPO) tests/all.sh
 
+.PHONY: push
+push:
+	docker push $(REPO)
+
 .PHONY: run
 run:
 	docker run -to $(REPO) sh

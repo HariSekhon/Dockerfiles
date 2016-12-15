@@ -14,7 +14,7 @@
 
 version: '2.1'
 services:
-  consul:
+  consul-dev:
     image: harisekhon/consul-dev:${VERSION:-latest}
     ports:
       - 8500:8500

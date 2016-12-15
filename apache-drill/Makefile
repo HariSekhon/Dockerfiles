@@ -27,6 +27,10 @@ build:
 nocache:
 	docker build -t $(REPO):$(TAG) --no-cache .
 
+.PHONY: push
+push:
+	docker push $(REPO):$(TAG)
+
 .PHONY: run
 run:
 	docker run -ti -p 8047:8047 $(REPO):$(TAG)

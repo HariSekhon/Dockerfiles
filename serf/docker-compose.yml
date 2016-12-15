@@ -14,7 +14,7 @@
 
 version: '2.1'
 services:
-  consul:
+  serf:
     image: harisekhon/serf:${VERSION:-latest}
     ports:
       #- 7373:7373

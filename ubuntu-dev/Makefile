@@ -25,6 +25,10 @@ build:
 nocache:
 	docker build -t $(REPO) --no-cache .
 
+.PHONY: push
+push:
+	docker push $(REPO)
+
 .PHONY: nocache
 run:
 	docker run -ti $(REPO) bash

@@ -27,6 +27,10 @@ build:
 nocache:
 	docker build -t $(REPO):$(TAG) --no-cache .
 
+.PHONY: push
+push:
+	docker push $(REPO):$(TAG)
+
 .PHONY: run
 run:
 	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 $(REPO):$(TAG)

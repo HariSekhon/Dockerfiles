@@ -27,5 +27,5 @@ for x in *; do
     # exclude things not in Git yet
     #git log -1 "$x" 2>/dev/null | grep -q '.*' || continue
     grep -q -e "^REPO=harisekhon/$x" "$x/Makefile" ||
-        { echo "$x REPO mismatch!"; exit 1; }
+        { echo "$x Makefile REPO mismatch!"; exit 1; }
 done

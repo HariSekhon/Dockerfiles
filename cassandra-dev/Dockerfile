@@ -38,7 +38,7 @@ LABEL Description="Cassandra Dev", \
 WORKDIR /
 
 RUN \
-    apk add --no-cache wget openjdk8-jre-base && \
+    apk add --no-cache wget openjdk8-jre-base py-pip && \
     if [ "${CASSANDRA_VERSION:0:3}" = "3.9" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     else \
@@ -49,6 +49,7 @@ RUN \
     rm -fv  "${TAR}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
     { rm -rf cassandra/{doc,javadoc}; : ; } && \
+    pip install --upgrade cassandra-driver && \
     apk del wget
 
 # cassandra refuses to run as root without -R, just run as regular useraddgroup -S cassandra id=501 && adduser -S -G cassandra --uid=501 cassandra && \

@@ -33,4 +33,4 @@ push:
 
 .PHONY: run
 run:
-	docker run -ti -p 7946:7946 -p 7373:7373 $(REPO):$(TAG)
+	docker run -ti -p 7946:7946 -p 7373:7373 $(REPO):$(TAG) agent

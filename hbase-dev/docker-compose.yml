@@ -1,0 +1,28 @@
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  Author: Hari Sekhon
+#  Date: 2016-12-09 22:13:19 +0000 (Fri, 09 Dec 2016)
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+version: '2.1'
+services:
+  hbase-dev:
+    image: harisekhon/hbase-dev:${VERSION:-latest}
+    ports:
+      - 2181:2181
+      - 8080:8080
+      - 8085:8085
+      - 9090:9090
+      - 9095:9095
+      - 16000:16000
+      - 16010:16010
+      - 16201:16201
+      - 16301:16301

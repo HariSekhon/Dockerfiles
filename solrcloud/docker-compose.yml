@@ -1,0 +1,23 @@
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  Author: Hari Sekhon
+#  Date: 2016-12-13 14:01:04 +0000 (Tue, 13 Dec 2016)
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+version: '2.1'
+services:
+  solrcloud:
+    # using my own Docker images now as official solr doesn't have builds < 5
+    image: harisekhon/solrcloud:${VERSION:-latest}
+    ports:
+      - 8983:8983
+      - 8984:8984
+      - 9983:9983

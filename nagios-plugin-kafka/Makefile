@@ -27,4 +27,4 @@ nocache:
 
 .PHONY: push
 push:
-	docker push $(REPO):$(TAG)
+	docker push $(REPO)

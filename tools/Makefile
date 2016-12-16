@@ -31,7 +31,7 @@ test:
 
 .PHONY: push
 push:
-	docker push $(REPO):$(TAG)
+	docker push $(REPO)
 
 .PHONY: run
 run:

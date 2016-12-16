@@ -15,11 +15,10 @@
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
-srcdir="$(cd "$(dirname "$0")" && pwd)"
 
 echo "Dockerfiles PyTools Checks"
 
-cd "$srcdir/.."
+pushd "`dirname ${BASH_SOURCE[0]}`/.."
 
 export PATH=$PATH:$PWD/pytools_checks
 
@@ -32,14 +31,17 @@ get_pytools(){
     fi
 }
 
-if ! which dockerfiles_check_git_branches.py &>/dev/null ||
-   ! which git_check_branches_upstream.py &>/dev/null
+if which dockerfiles_check_git_branches.py &>/dev/null &&
+   which git_check_branches_upstream.py &>/dev/null
     then
+    if [ -d pytools_checks ]; then
+        pushd "$(dirname "$(which dockerfiles_check_git_branches.py)")"
+        make update
+        popd
+    fi
+else
     get_pytools
 fi
-
-pushd $PWD/pytools_checks
-make update
 
 dockerfiles_check_git_branches.py .
 

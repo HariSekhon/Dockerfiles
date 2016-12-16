@@ -25,6 +25,8 @@ section "Dockerfiles checks"
 
 tests/check_repo_names.sh
 
+tests/check_docker-compose_images.sh
+
 tests/pytools_checks.sh
 
 echo

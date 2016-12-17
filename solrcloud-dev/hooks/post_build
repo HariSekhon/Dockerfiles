@@ -16,7 +16,9 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-if [ "$SOURCE_BRANCH" = "solr-6.2" ]; then
+latest_tag="$(grep ARG.*_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+
+if [ "$SOURCE_BRANCH" = "solr-$latest_tag" ]; then
     docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
     docker push "$DOCKER_REPO:latest"
 fi

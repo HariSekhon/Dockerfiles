@@ -15,6 +15,10 @@ REPO=harisekhon/serf
 
 TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
+ifdef LATEST
+	TAG=latest
+endif
+
 .PHONY: all
 all:
 	make build
@@ -27,6 +31,10 @@ build:
 nocache:
 	docker build -t $(REPO):$(TAG) --no-cache .
 
+.PHONY: push
+push:
+	docker push $(REPO):$(TAG)
+
 .PHONY: run
 run:
-	docker run -ti -p 7946:7946 -p 7373:7373 $(REPO):$(TAG)
+	docker run -ti -p 7946:7946 -p 7373:7373 $(REPO):$(TAG) agent

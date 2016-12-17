@@ -15,6 +15,10 @@ REPO=harisekhon/alluxio
 
 TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
+ifdef LATEST
+	TAG=latest
+endif
+
 .PHONY: all
 all:
 	make build
@@ -26,6 +30,10 @@ build:
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO):$(TAG) --no-cache .
+
+.PHONY: push
+push:
+	docker push $(REPO):$(TAG)
 
 .PHONY: run
 run:

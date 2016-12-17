@@ -15,6 +15,10 @@ REPO=harisekhon/kafka
 
 TAG=$(shell perl -n -e '/^\s*ARG\s+SCALA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)_$(shell perl -n -e '/^\s*ARG\s+KAFKA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)
 
+ifdef LATEST
+	TAG=latest
+endif
+
 .PHONY: all
 all:
 	make build
@@ -26,6 +30,10 @@ build:
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO):$(TAG) --no-cache .
+
+.PHONY: push
+push:
+	docker push $(REPO):$(TAG)
 
 .PHONY: run
 run:

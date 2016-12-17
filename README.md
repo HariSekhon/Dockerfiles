@@ -4,12 +4,19 @@ Hari Sekhon Docker
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-##### Contains 41 repos with over 140 tags (excluding 'latest'), many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
+##### Contains 41 repos with over 140 tags, many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
 
-* [My GitHub repos](https://github.com/HariSekhon) with all dependencies pre-built
-* Hadoop, NoSQL & OS images used for development and functional test suites
+* Hadoop, Big Data, NoSQL & OS images
+* [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
 
 These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
+
+Hari Sekhon
+
+Big Data Contractor, United Kingdom
+
+https://www.linkedin.com/in/harisekhon
+###### (you're welcome to connect with me on LinkedIn)
 
 ### Ready to run Docker images
 
@@ -32,12 +39,17 @@ DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https:
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
 
-For service technologies like Hadoop, HBase, ZooKeeper for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains a shortcut so you don't have to remember all the specifics:
+For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:
+```
+cd zookeeper
+docker-compose up
+```
+or for technologies with interactive shells like Spark, ZooKeeper, HBase, Drill, Cassandra where you want to be dropped in to an interactive shell, use the ` make run ` shortcut instead:
 ```
 cd zookeeper
 make run
 ```
-which is easier to remember and type rather than the equivalent bigger commands like:
+which is much easier to type and remember than the equivalent bigger commands like:
 ```
 docker run -ti -p 2181:2181 harisekhon/zookeeper
 ```

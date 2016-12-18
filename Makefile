@@ -63,3 +63,6 @@ test:
 	@#make test-deps
 	@#find . -name Dockerfile | xargs -n1 docklint
 	tests/all.sh
+
+push:
+	git push --all

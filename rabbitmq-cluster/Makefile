@@ -37,4 +37,5 @@ push:
 
 .PHONY: run
 run:
-	docker run -ti $$(for x in 5672 15672; do echo -p $$x:$$x; done) $(REPO):$(TAG)
+	#docker run -ti $$(for x in 5672 15672; do echo -p $$x:$$x; done) $(REPO):$(TAG)
+	docker-compose up

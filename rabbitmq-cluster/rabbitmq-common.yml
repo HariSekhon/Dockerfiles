@@ -1,0 +1,36 @@
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  Author: Hari Sekhon
+#  Date: 2016-12-08 18:16:46 +0000 (Thu, 08 Dec 2016)
+#
+#  https://github.com/harisekhon/Dockerfiles/rabbitmq-cluser
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+version: '2.1'
+services:
+  rabbitmq-common:
+    extends:
+      file: common.yml
+      service: common
+    image: harisekhon/rabbitmq-cluster:${VERSION:-latest}
+    environment:
+      # quotes here break RabbitMQ startup:
+      # could not start kernel pid (application_controller) (error in config file "/etc/rabbitmq/rabbitmq.config" (5): syntax error before: rabbituser)
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-rabbituser}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-rabbitpw}
+      - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_DEFAULT_VHOST:-my_vhost}
+      - RABBITMQ_ERLANG_COOKIE=${RABBITMQ_ERLANG_COOKIE:-secret cookie here}
+      - RABBITMQ_MANAGEMENT_PLUGIN=1
+      #- RABBITMQ_FEDERATION_PLUGIN=1
+      #- RABBITMQ_FEDERATION_MANAGEMENT_PLUGIN=1
+      #- RABBITMQ_SHOVEL_PLUGIN=1
+      #- RABBITMQ_SHOVEL_MANAGEMENT_PLUGIN=1
+    ports:
+      - 5672
+      - 15672

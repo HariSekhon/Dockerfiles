@@ -17,14 +17,14 @@ services:
   rabbit1:
     hostname: rabbit1
     extends:
-      file: rabbitmq-common.yml
+      file: rabbitmq-docker-compose-common.yml
       service: rabbitmq-common
     environment:
       - RABBITMQ_CLUSTER_SEED=rabbit1
   rabbit2:
     hostname: rabbit2
     extends:
-      file: rabbitmq-common.yml
+      file: rabbitmq-docker-compose-common.yml
       service: rabbitmq-common
     links:
       - rabbit1

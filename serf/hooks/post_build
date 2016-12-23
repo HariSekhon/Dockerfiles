@@ -18,6 +18,7 @@ set -euo pipefail
 
 docker_branch_base="$(basename "$(dirname "${BASH_SOURCE[0]}")/..")"
 docker_branch_base="${docker_branch_base%-dev}"
+docker_branch_base="${docker_branch_base%-cluster}"
 if [ "$docker_branch_base" = "kafka" ]; then
     latest_tag="2.11-0.9"
 else

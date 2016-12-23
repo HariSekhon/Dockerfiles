@@ -13,8 +13,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-# might break upstream entrypoint
 #set -euo pipefail
+# upstream uses this
+set -eu
 [ -n "${DEBUG:-}" ] && set -x
 #srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 

@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  Author: Hari Sekhon
+#  Date: 2016-12-23 10:03:28 +0000 (Fri, 23 Dec 2016)
+#
+#  https://github.com/harisekhon/Dockerfiles/rabbitmq-cluster
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+# might break upstream entrypoint
+#set -euo pipefail
+[ -n "${DEBUG:-}" ] && set -x
+#srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
+RABBITMQ_NODE="${RABBITMQ_NODE:-rabbit}"
+
+RABBITMQ_CLUSTER_SEED="${RABBITMQ_CLUSTER_SEED:-}"
+
+if [ -z "${RABBITMQ_ERLANG_COOKIE:-}" ]; then
+    echo "WARNING: \$RABBITMQ_ERLANG_COOKIE not set, clustering will fail"
+    if [ -n "$RABBITMQ_CLUSTER_SEED" ]; then
+        echo "\$RABBITMQ_CLUSTER_SEED specified but \$RABBITMQ_ERLANG_COOKIE not specified, clustering will definitely fail, aborting"
+        exit 1
+    fi
+fi
+
+if [ -n "${RABBITMQ_RAM_NODE:-}" ]; then
+    RAM="--ram"
+else
+    RAM=""
+fi
+
+if [ -z "$RABBITMQ_CLUSTER_SEED" ]; then
+    echo "No \$RABBITMQ_CLUSTER_SEED specified, starting in standalone mode"
+    rabbitmq-server
+elif [ "$RABBITMQ_CLUSTER_SEED" = "$HOSTNAME" ]; then
+    echo "I am the cluster seed, starting standalone first"
+    rabbitmq-server
+else
+    echo "Initiating node, will add to cluster via seed $RABBITMQ_CLUSTER_SEED"
+    echo "starting erlang process"
+    rabbitmq-server -detached
+    echo "stopping default standalone node app"
+    rabbitmqctl stop_app
+    echo "joining cluster via seed $RABBITMQ_CLUSTER_SEED"
+    if [ -n "$RAM" ]; then
+        echo "will configure as a ram node"
+    fi
+    rabbitmqctl join_cluster "$RABBITMQ_NODE"@"$RABBITMQ_CLUSTER_SEED" "$RAM"
+    echo "starting cluster node"
+    rabbitmqctl start_app
+    tail -f /dev/null /var/log/rabbitmq/*
+fi

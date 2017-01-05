@@ -15,9 +15,8 @@
 version: '2.1'
 services:
   rabbitmq-common:
-    extends:
-      file: common.yml
-      service: common
+    environment:
+      - DEBUG
     image: harisekhon/rabbitmq-cluster:${VERSION:-latest}
     environment:
       # quotes here break RabbitMQ startup:

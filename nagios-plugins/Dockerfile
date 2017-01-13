@@ -31,7 +31,7 @@ RUN \
     make build zookeeper clean && \
     make apk-packages-remove && \
     apk del git make || \
-    for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done
+    { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }
 
 WORKDIR /github/nagios-plugins
 

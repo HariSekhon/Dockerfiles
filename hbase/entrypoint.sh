@@ -23,6 +23,10 @@ export JAVA_HOME="${JAVA_HOME:-/usr}"
 # shell breaks and doesn't run zookeeper without this
 mkdir -pv /hbase/logs
 
+# kill any pre-existing rest or thrift instances before starting new ones
+pgrep -f proc_rest && pkill -9 -f proc_rest
+pgrep -f proc_thrift && pkill -9 -f proc_thrift
+
 # tries to run zookeepers.sh distributed via SSH, run zookeeper manually instead now
 #RUN sed -i 's/# export HBASE_MANAGES_ZK=true/export HBASE_MANAGES_ZK=true/' /hbase/conf/hbase-env.sh
 /hbase/bin/hbase zookeeper &>/hbase/logs/zookeeper.log &

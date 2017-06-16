@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection"
+LABEL Description="Advanced Nagios Plugins Collection (on Ubuntu)"
 
 ENV PATH $PATH:/github/nagios-plugins
 
@@ -25,12 +25,12 @@ WORKDIR /github
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN \
     x=nagios-plugins; \
-    apk add --no-cache git make && \
+    apt-get update && \
+    apt-get install -y git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build zookeeper clean && \
-    make apk-packages-remove && \
-    apk del git make && \
+    make apt-packages-remove && \
     tests/help.sh || \
     { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }
 

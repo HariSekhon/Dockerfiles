@@ -31,6 +31,8 @@ RUN \
     cd /github/$x && \
     make build zookeeper clean && \
     make apt-packages-remove && \
+    apt-get remove -y make && \
+    apt-get autoremove -y && \
     tests/help.sh || \
     { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }
 

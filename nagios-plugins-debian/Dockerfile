@@ -27,8 +27,8 @@ RUN \
     x=nagios-plugins; \
     apt-get update && \
     apt-get install -y git make && \
-    # just for check_puppet.rb
-    apt-get install -y ruby && \
+    # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
+    #apt-get install -y ruby && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make build zookeeper clean && \

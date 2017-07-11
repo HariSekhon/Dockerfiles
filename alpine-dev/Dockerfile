@@ -42,7 +42,7 @@ RUN \
     mariadb-dev \
     net-tools \
     openjdk8 \
-    openssl-dev \
+    libressl-dev \
     perl \
     perl-dbd-mysql \
     perl-libwww \

@@ -32,7 +32,8 @@ RUN \
     make build || : ; \
     make build zookeeper clean && \
     make yum-packages-remove && \
-    yum remove -y git make && \
+    # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
+    yum remove -y make && \
     yum clean all && \
     tests/help.sh || \
     { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }

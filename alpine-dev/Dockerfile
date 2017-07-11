@@ -40,7 +40,7 @@ RUN \
     libev \
     libevdev \
     make \
-    mariadb-dev \
+    libmariadbd-dev \
     net-tools \
     openjdk8 \
     libressl-dev \

@@ -18,23 +18,18 @@ set -euo pipefail
 
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-export JAVA_HOME="${JAVA_HOME:-/usr}"
-
-export SOLR_HOME="/solr"
-
-# solr -e cloud fails if not called from $SOLR_HOME
-cd "$SOLR_HOME"
+export SOLR_USER="solr"
 
 if [ $# -gt 0 ]; then
     exec $@
 else
-    # Solr 5+ insists on SOLR_HOME being set to /solr/server/solr dir containing solr.xml
-    set +o pipefail # in case solr version doesn't exist in older versions
-    if [ "$(solr version|cut -c 1)" -ge 5 ]; then
-        export SOLR_HOME="$SOLR_HOME/server/solr"
-        solr start -f
+    if [ "$(whoami)" = "root" ]; then
+        su - "$SOLR_USER" <<-EOF
+            # preserve PATH from root
+            export PATH="$PATH"
+            /solr-start.sh
+EOF
     else
-        cd "$SOLR_HOME/example"
-        java -jar start.jar
+        /solr-start.sh
     fi
 fi

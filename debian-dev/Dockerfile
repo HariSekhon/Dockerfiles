@@ -36,7 +36,7 @@ RUN apt-get update && \
                        libev4 \
                        libexpat1-dev \
                        libkrb5-dev \
-                       libmysqlclient-dev \
+                       libmariadbd-dev \
                        libsasl2-dev \
                        libsnappy-dev \
                        libssl-dev \

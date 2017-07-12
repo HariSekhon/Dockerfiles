@@ -18,7 +18,11 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 #ARG SOLRCLOUD_VERSION=5.5.2
 #ARG SOLRCLOUD_VERSION=6.0.1
 #ARG SOLRCLOUD_VERSION=6.1.0
-ARG SOLRCLOUD_VERSION=6.2.0
+#ARG SOLRCLOUD_VERSION=6.2.1
+#ARG SOLRCLOUD_VERSION=6.3.0
+#ARG SOLRCLOUD_VERSION=6.4.2
+#ARG SOLRCLOUD_VERSION=6.5.1
+ARG SOLRCLOUD_VERSION=6.6.0
 
 ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 
@@ -46,6 +50,11 @@ RUN \
     apk del tar wget
 
 COPY entrypoint.sh /
+COPY solr-start.sh /
+
+RUN adduser -S -s /bin/bash solr && \
+    chown -R solr /solr* && \
+    chmod 0555 /entrypoint.sh /solr-start.sh
 
 EXPOSE 8983 8984 9983
 

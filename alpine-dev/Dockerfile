@@ -27,6 +27,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bi
 RUN \
     mkdir -p /opt && \
     apk add --no-cache \
+    acf-openssl \
     bash \
     curl \
     cyrus-sasl-dev \
@@ -42,7 +43,7 @@ RUN \
     mariadb-dev \
     net-tools \
     openjdk7 \
-    openssl-dev \
+    libressl-dev \
     perl \
     perl-dbd-mysql \
     perl-libwww \

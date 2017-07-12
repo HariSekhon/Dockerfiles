@@ -49,6 +49,9 @@ RUN \
     { rm -rf solr/doc; : ; } && \
     apk del tar wget
 
+RUN adduser -S -s /bin/bash solr && \
+    chown -R solr /solr*
+
 COPY entrypoint.sh /
 
 EXPOSE 8983 8984 9983

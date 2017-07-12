@@ -62,8 +62,7 @@ COPY solr-start.sh /
 
 RUN adduser -S -s /bin/bash solr && \
     chown -R solr /solr* && \
-    chmod 0555 /entrypoint.sh
-    #apk add --no-cache busybox-suid
+    chmod 0555 /entrypoint.sh /solr-start.sh
 
 EXPOSE 8983 8984 9983
 

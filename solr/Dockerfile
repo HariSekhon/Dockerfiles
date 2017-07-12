@@ -36,10 +36,12 @@ LABEL Description="Solr", \
 
 WORKDIR /
 
+RUN apk add --no-cache bash openjdk8-jre-base lsof
+
 RUN \
     # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
     # Solr start script needs jar or unzip to extract war
-    apk add --no-cache bash openjdk8-jre-base lsof wget tar && \
+    apk add --no-cache wget tar && \
     # Solr 3.x / 4.x
     # no longer on mirrors, use Apache archive instead
     if [ "${SOLR_VERSION:0:1}" = 3 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz"; \

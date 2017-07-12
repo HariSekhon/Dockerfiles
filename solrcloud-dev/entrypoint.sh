@@ -18,22 +18,18 @@ set -euo pipefail
 
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-export JAVA_HOME="${JAVA_HOME:-/usr}"
-
-export SOLR_HOME="/solr"
-
-# solr -e cloud fails if not called from $SOLR_HOME
-cd "$SOLR_HOME"
+export SOLR_USER="solr"
 
 if [ $# -gt 0 ]; then
     exec $@
 else
-    # exits with 141 for pipefail breaking yes stdout
-    set +o pipefail
-    yes "" | solr -e cloud
-    if ls -d "$SOLR_HOME"-4* &>/dev/null; then
-        tail -f "$SOLR_HOME/"node*/logs/*
+    if [ "$(whoami)" = "root" ]; then
+        su - "$SOLR_USER" <<-EOF
+            # preserve PATH from root
+            export PATH="$PATH"
+            /solr-start.sh
+EOF
     else
-        tail -f "$SOLR_HOME/example/cloud/"node*/logs/*
+        /solr-start.sh
     fi
 fi

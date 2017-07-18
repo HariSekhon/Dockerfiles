@@ -34,9 +34,9 @@ WORKDIR /
 RUN \
     apk add --no-cache bash openjdk8-jre-base wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
-    url_backup="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
+    url_archive="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
     wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url_backup" && \
+    wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "nifi-${NIFI_VERSION}" nifi && \

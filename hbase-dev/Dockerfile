@@ -43,7 +43,9 @@ RUN apk add --no-cache wget && \
     elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
     else echo "unrecognized HBase version"; exit 1; \
     fi && \
-    wget -t 100 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
+    url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"
+    wget -t 10 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
+    wget -t 10 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url_archive" && \
     mkdir hbase-$HBASE_VERSION && \
     tar zxf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
     ln -sv hbase-$HBASE_VERSION hbase && \

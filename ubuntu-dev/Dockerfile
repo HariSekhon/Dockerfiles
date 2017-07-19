@@ -20,8 +20,7 @@ ENV JAVA_HOME=/usr
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$JYTHON_HOME/bin
 
-RUN \
-    apt-get update && \
+RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
                        build-essential \

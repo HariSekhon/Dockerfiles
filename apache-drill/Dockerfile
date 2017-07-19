@@ -42,11 +42,11 @@ LABEL Description="Apache Drill" \
 
 WORKDIR /
 
-RUN \
-    # used by nagios checks
-    apk add --no-cache supervisor && \
-    mkdir -p /etc/supervisor.d && \
-    apk add --no-cache bash openjdk8-jre-base which wget tar && \
+# supervisor is used to run apache-drill standalone for nagios checks
+RUN apk add --no-cache bash openjdk8-jre-base supervisor which
+    mkdir -p /etc/supervisor.d
+
+RUN apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
     wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \

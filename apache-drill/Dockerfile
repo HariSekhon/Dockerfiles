@@ -44,7 +44,7 @@ LABEL Description="Apache Drill" \
 WORKDIR /
 
 # supervisor is used to run apache-drill standalone for nagios checks
-RUN apk add --no-cache bash openjdk8-jre-base supervisor which
+RUN apk add --no-cache bash openjdk8-jre-base supervisor which && \
     mkdir -p /etc/supervisor.d
 
 RUN apk add --no-cache wget tar && \

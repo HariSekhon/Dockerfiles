@@ -22,8 +22,9 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-RUN \
-    apk add --no-cache git make bash openjdk7 alpine-sdk && \
+RUN apk add --no-cache bash openjdk7
+
+RUN apk add --no-cache git make alpine-sdk && \
     x=nagios-plugin-kafka; \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \

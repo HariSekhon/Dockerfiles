@@ -41,6 +41,7 @@ RUN yum install -y wget tar hostname && \
     # Hadoop 2.x
     /hadoop/bin/hdfs namenode -format && \
     yum remove -y wget tar && \
+    # tries to remove systemd, which breaks
     #yum autoremove -y && \
     yum install -y hostname && \
     yum clean all

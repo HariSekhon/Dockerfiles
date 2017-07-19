@@ -42,15 +42,16 @@ RUN \
     # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
     # Solr start script needs jar or unzip to extract war
     apk add --no-cache wget tar && \
-    # Solr 3.x / 4.x
-    # no longer on mirrors, use Apache archive instead
-    if [ "${SOLR_VERSION:0:1}" = 3 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz"; \
-    #elif [ "${SOLR_VERSION:0:1}" = 4 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"; \
-    #elif [ "${SOLR_VERSION:0:1}" = "6" -a "${SOLR_VERSION:2:1}" -lt 2 ]; then url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"; \
-    #else url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz&action=download"; \
-    else url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/$TAR"; \
+    # Solr 3.x has a different tarball
+    if [ "${SOLR_VERSION:0:1}" = 3 ]; then \
+        url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz"; \
+    else \
+        url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz&action=download"; \
+        url_archive="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/$TAR"; \
     fi && \
-    for x in {1..10}; do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
+    #for x in {1..10}; do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
+    wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
+    wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "$TAR" && \
     # normalize apache-solr-3.x => solr-<version> like newer versions
     if [ -d apache-solr-$SOLR_VERSION ]; then mv -iv apache-solr-$SOLR_VERSION solr-$SOLR_VERSION; fi && \

@@ -75,14 +75,12 @@ RUN apt-get update && \
     apt-get clean
 
 # Gradle in Debian is old 1.5 :-(
-RUN \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
     sh install_gradle.sh && \
     rm -f install_gradle.sh
 
 # Jython
-RUN \
-    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+RUN wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
     sh jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp

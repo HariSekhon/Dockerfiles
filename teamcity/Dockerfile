@@ -24,8 +24,7 @@ LABEL Description="TeamCity", \
 
 WORKDIR /opt
 
-RUN \
-    yum install -y tar && \
+RUN yum install -y tar && \
     curl -L "https://download.jetbrains.com/teamcity/$TAR" > "$TAR" && \
     tar zxf "$TAR" && \
     yum remove -y tar && \

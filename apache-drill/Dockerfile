@@ -48,13 +48,10 @@ RUN \
     apk add --no-cache supervisor && \
     mkdir -p /etc/supervisor.d && \
     apk add --no-cache bash openjdk8-jre-base which wget tar && \
-    if [ "${APACHE_DRILL_VERSION:0:3}" = "1.8" -o \
-         "${APACHE_DRILL_VERSION:0:3}" = "1.9" ]; then \
-        url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
-    else \
-        url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
-    fi && \
-    wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
+    url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
+    url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
+    wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
+    wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \

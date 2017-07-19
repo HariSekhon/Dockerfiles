@@ -37,11 +37,11 @@ LABEL Description="SolrCloud", \
 
 WORKDIR /
 
+# SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
+# Solr start script needs jar or unzip to extract war
 RUN apk add --no-cache bash openjdk8-jre-base lsof
 
-RUN \
-    # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
-    apk add --no-cache wget tar && \
+RUN apk add --no-cache wget tar && \
     # Solr 4+ only
     url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLRCLOUD_VERSION/$TAR&action=download"; \
     url_archive="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/$TAR"; \

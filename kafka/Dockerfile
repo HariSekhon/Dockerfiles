@@ -29,8 +29,9 @@ LABEL Description="Apache Kafka by LinkedIn" \
       "Scala Version"="$SCALA_VERSION" \
       "Kafka Version"="$KAFKA_VERSION"
 
-RUN \
-    apk add --no-cache bash perl openjdk7-jre-base wget tar && \
+RUN apk add --no-cache bash perl openjdk7-jre-base tar
+
+RUN apk add --no-cache wget && \
     wget -t 100 --retry-connrefused -O "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" && \
     tar zxf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \

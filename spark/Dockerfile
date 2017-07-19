@@ -30,8 +30,9 @@ LABEL Description="Apache Spark" \
 
 WORKDIR /
 
-RUN \
-    apk add --no-cache bash openjdk7-jre-base wget tar && \
+RUN apk add --no-cache bash openjdk7-jre-base
+
+RUN apk add --no-cache wget tar && \
     wget -t 100 --retry-connrefused -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
     tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \

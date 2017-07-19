@@ -29,7 +29,10 @@ LABEL Description="Hadoop Dev", \
 WORKDIR /
 
 RUN \
-    yum install -y openssh-server openssh-clients wget tar which hostname && \
+    yum install -y openssh-server openssh-clients wget tar which
+
+RUN \
+    yum install -y hostname && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" && \
     tar zxf "$TAR" && \
     ln -sv hadoop-$HADOOP_VERSION hadoop && \

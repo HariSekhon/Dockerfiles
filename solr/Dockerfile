@@ -39,8 +39,7 @@ WORKDIR /
 # Solr start script needs jar or unzip to extract war
 RUN apk add --no-cache bash openjdk8-jre-base
 
-RUN \
-    apk add --no-cache wget tar && \
+RUN apk add --no-cache wget tar && \
     # Solr 3.x has a different tarball
     if [ "${SOLR_VERSION:0:1}" = 3 ]; then \
         url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz"; \

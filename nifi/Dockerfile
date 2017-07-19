@@ -19,7 +19,10 @@ ENV PATH $PATH:/nifi/bin
 #ARG NIFI_VERSION=0.5.1
 #ARG NIFI_VERSION=0.6.1
 #ARG NIFI_VERSION=0.7.0
-ARG NIFI_VERSION=1.0.0
+#ARG NIFI_VERSION=1.0.1
+#ARG NIFI_VERSION=1.1.2
+#ARG NIFI_VERSION=1.2.0
+ARG NIFI_VERSION=1.3.0
 
 ARG TAR=nifi-${NIFI_VERSION}-bin.tar.gz
 
@@ -30,12 +33,10 @@ WORKDIR /
 
 RUN \
     apk add --no-cache bash openjdk8-jre-base wget tar && \
-    #if [ "${NIFI_VERSION:0:3}" = "0.7" ]; then \
-    #    url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
-    #else \
-        url="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
-    #fi && \
-    wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
+    url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
+    url_archive="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
+    wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
+    wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "nifi-${NIFI_VERSION}" nifi && \

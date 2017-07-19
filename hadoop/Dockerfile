@@ -41,7 +41,7 @@ RUN yum install -y wget tar hostname && \
     # Hadoop 2.x
     /hadoop/bin/hdfs namenode -format && \
     yum remove -y wget tar && \
-    yum autoremove -y && \
+    #yum autoremove -y && \
     yum install -y hostname && \
     yum clean all
 

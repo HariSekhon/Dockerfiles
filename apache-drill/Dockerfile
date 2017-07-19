@@ -46,7 +46,10 @@ RUN \
     # used by nagios checks
     apk add --no-cache supervisor && \
     mkdir -p /etc/supervisor.d && \
-    apk add --no-cache bash openjdk8-jre-base which wget tar && \
+    apk add --no-cache bash openjdk8-jre-base which
+
+RUN \
+    apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
     wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \

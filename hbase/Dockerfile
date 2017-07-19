@@ -34,18 +34,26 @@ RUN apk add --no-cache bash openjdk7-jre-base
 
 RUN apk add --no-cache wget tar && \
     # HBase 0.94
-    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
+    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
     # HBase 0.96 usually missing from mirrors, have to use apache archive
-    elif [ "${HBASE_VERSION:0:4}" = "0.96" ]; then url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
+    elif [ "${HBASE_VERSION:0:4}" = "0.96" ]; then \
+        url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98
-    elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
+    elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
     # HBase 1.0
-    elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
+    elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
     # HBase 1.1+
-    elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
-    else echo "unrecognized HBase version"; exit 1; \
+    elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
+    else \
+        echo "unrecognized HBase version"; exit 1; \
     fi && \
-    wget -t 100 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
+    url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz" && \
+    wget -t 10 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
+    wget -t 10 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url_archive" && \
     mkdir hbase-$HBASE_VERSION && \
     tar zxf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
     ln -sv hbase-$HBASE_VERSION hbase && \

@@ -30,8 +30,7 @@ LABEL Description="H2O" \
 
 WORKDIR /
 
-RUN \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends wget unzip && \
     # 2.6.1.5
     #wget -t 100 --retry-connrefused http://h2o-release.s3.amazonaws.com/h2o/rel-lambert/5/h2o-${H2O_VERSION}.zip && \

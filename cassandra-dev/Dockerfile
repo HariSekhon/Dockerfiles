@@ -38,7 +38,10 @@ LABEL Description="Cassandra Dev", \
 WORKDIR /
 
 RUN \
-    apk add --no-cache wget openjdk8-jre-base py-pip && \
+    apk add --no-cache openjdk8-jre-base py-pip
+
+RUN \
+    apk add --no-cache wget && \
     url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     url_archive="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
     wget -t 10 --retry-connrefused -O "$TAR" "$url" || \

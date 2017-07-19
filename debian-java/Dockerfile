@@ -13,7 +13,7 @@
 
 # currently on Jessie which doesn't have OpenJDK 8 yet
 #FROM debian:latest
-FROM debian:stretch
+FROM debian:jessie
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Debian (OpenJDK)"

@@ -45,7 +45,7 @@ RUN apk add --no-cache wget tar && \
     # HBase 0.98
     elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
-        url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
+        url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 1.0
     elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \

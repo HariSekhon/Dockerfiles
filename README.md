@@ -38,6 +38,7 @@ DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https:
 ```
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
+(you might need to add --timeout 60 as ubuntu has a lot of tags now I've noticed to stop it timing out while fetching all the pages)
 
 For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:
 ```

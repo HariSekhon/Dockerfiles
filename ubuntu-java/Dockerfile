@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM ubuntu:14.04
+FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Ubuntu (OpenJDK)"

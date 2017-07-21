@@ -47,7 +47,7 @@ RUN apk add --no-cache wget tar && \
     ln -sv "nifi-${NIFI_VERSION}" nifi && \
     rm -fv  "${TAR}" && \
     #{ rm -rf nifi/docs; : ; } && \
-    apk del wget tar
+    apk del tar wget
 
 EXPOSE 8080
 

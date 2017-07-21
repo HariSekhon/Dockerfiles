@@ -48,15 +48,20 @@ RUN apk add --no-cache wget tar && \
         url_archive="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/$TAR"; \
     fi && \
     #for x in {1..10}; do wget -t 10 --retry-connrefused -c -O "$TAR" "$url" && break; done && \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "$TAR" && \
     # normalize apache-solr-3.x => solr-<version> like newer versions
     if [ -d apache-solr-$SOLR_VERSION ]; then mv -iv apache-solr-$SOLR_VERSION solr-$SOLR_VERSION; fi && \
-    ln -sv solr-$SOLR_VERSION solr && \
+    # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
+    test -d "solr-$SOLR_VERSION" && \
+    ln -sv "solr-$SOLR_VERSION" solr && \
     rm -fv "$TAR" && \
     { rm -rf solr/doc; : ; } && \
-    apk del wget tar
+    apk del tar wget
 
 COPY entrypoint.sh /
 COPY solr-start.sh /

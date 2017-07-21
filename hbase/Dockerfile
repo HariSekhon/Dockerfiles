@@ -68,7 +68,7 @@ RUN apk add --no-cache wget tar && \
     ln -sv "hbase-$HBASE_VERSION hbase" && \
     rm -fv "hbase-$HBASE_VERSION-bin.tar.gz" && \
     { rm -rf hbase/{docs,src}; : ; } && \
-    apk del wget tar
+    apk del tar wget
 
 COPY entrypoint.sh /
 COPY conf/hbase-site.xml /hbase/conf/

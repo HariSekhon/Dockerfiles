@@ -50,12 +50,17 @@ RUN apk add --no-cache bash openjdk8-jre-base supervisor which && \
 RUN apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "${TAR}" && \
+    # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
+    test -d "apache-drill-${APACHE_DRILL_VERSION}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \
-    apk del wget tar
+    apk del tar wget
 
 # need to keep this here to make it easier to launch supervisor with just a ZOOKEEPER_HOST and DRILL_HEAP environment variables
 RUN \

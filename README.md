@@ -9,7 +9,7 @@ Docker Images containing hundreds of my published tools and the supporting techn
 * Hadoop, Big Data, NoSQL & OS images
 * [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
 
-These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
+These images are all available pre-built on [My DockerHub: https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 
 Hari Sekhon
 

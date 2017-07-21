@@ -55,12 +55,16 @@ RUN apk add --no-cache wget && \
     else \
         echo "unrecognized HBase version"; exit 1; \
     fi && \
-    wget -t 10 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
-    wget -t 10 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url_archive" && \
-    mkdir hbase-$HBASE_VERSION && \
-    tar zxf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
-    ln -sv hbase-$HBASE_VERSION hbase && \
-    rm -fv hbase-$HBASE_VERSION-bin.tar.gz && \
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url_archive" && \
+    mkdir "hbase-$HBASE_VERSION" && \
+    tar zxf "hbase-$HBASE_VERSION-bin.tar.gz" -C "hbase-$HBASE_VERSION" --strip 1 && \
+    test -d "hbase-$HBASE_VERSION" && \
+    ln -sv "hbase-$HBASE_VERSION" hbase && \
+    rm -fv "hbase-$HBASE_VERSION-bin.tar.gz" && \
     { rm -rf hbase/{docs,src}; : ; } && \
     apk del wget
 

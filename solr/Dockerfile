@@ -61,7 +61,7 @@ RUN apk add --no-cache wget tar && \
     ln -sv "solr-$SOLR_VERSION" solr && \
     rm -fv "$TAR" && \
     { rm -rf solr/doc; : ; } && \
-    apk del wget tar
+    apk del tar wget
 
 COPY entrypoint.sh /
 COPY solr-start.sh /

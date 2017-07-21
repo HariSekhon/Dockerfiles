@@ -31,10 +31,15 @@ WORKDIR /
 RUN yum install -y openssh-server openssh-clients which
 
 RUN yum install -y wget tar hostname && \
-    wget -t 10 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" || \
-    wget -t 10 --retry-connrefused -O "$TAR" "http://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz" && \
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz&action=download" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "$TAR" "http://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-$HADOOP_VERSION.tar.gz" && \
     tar zxf "$TAR" && \
-    ln -sv hadoop-$HADOOP_VERSION hadoop && \
+    # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
+    test -d "hadoop-$HADOOP_VERSION" && \
+    ln -sv "hadoop-$HADOOP_VERSION" hadoop && \
     rm -fv "$TAR" && \
     { rm -rf hadoop/share/doc; : ; } && \
     # Hadoop 1.x

@@ -49,7 +49,8 @@ RUN apk add --no-cache bash openjdk8-jre-base supervisor which && \
 RUN apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
+    # one of the mirrors incorrectly redirects to apache-drill-1.9 which also breaks later stuff
+    #wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
     wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \

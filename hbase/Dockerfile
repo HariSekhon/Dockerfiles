@@ -65,7 +65,7 @@ RUN apk add --no-cache wget tar && \
     mkdir "hbase-$HBASE_VERSION" && \
     tar zxf "hbase-$HBASE_VERSION-bin.tar.gz" -C "hbase-$HBASE_VERSION" --strip 1 && \
     test -d "hbase-$HBASE_VERSION" && \
-    ln -sv "hbase-$HBASE_VERSION hbase" && \
+    ln -sv "hbase-$HBASE_VERSION" hbase && \
     rm -fv "hbase-$HBASE_VERSION-bin.tar.gz" && \
     { rm -rf hbase/{docs,src}; : ; } && \
     apk del tar wget

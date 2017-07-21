@@ -60,7 +60,7 @@ RUN apk add --no-cache wget tar && \
     test -d "apache-drill-${APACHE_DRILL_VERSION}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \
-    apk del wget tar
+    apk del tar wget
 
 # need to keep this here to make it easier to launch supervisor with just a ZOOKEEPER_HOST and DRILL_HEAP environment variables
 RUN \

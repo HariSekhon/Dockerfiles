@@ -60,7 +60,7 @@ RUN apk add --no-cache wget && \
     #                  (and is also the wrong version for the tag)
     wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
     wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url_archive" && \
-    mkdir hbase-$HBASE_VERSION && \
+    mkdir "hbase-$HBASE_VERSION" && \
     tar zxf "hbase-$HBASE_VERSION-bin.tar.gz" -C "hbase-$HBASE_VERSION" --strip 1 && \
     test -d "hbase-$HBASE_VERSION" && \
     ln -sv "hbase-$HBASE_VERSION" hbase && \

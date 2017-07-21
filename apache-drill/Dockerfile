@@ -50,8 +50,9 @@ RUN apk add --no-cache bash openjdk8-jre-base supervisor which && \
 RUN apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url" || \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$url_archive" && \
+    # This is because some apache mirrors redirect a couple times and give you the latest version instead but this break stuff later (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \

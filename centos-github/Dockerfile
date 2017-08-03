@@ -37,9 +37,9 @@ RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /g
 RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all && pip uninstall -y certifi && pip install certifi==2015.04.28
 
 # could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
-RUN x=lib-java; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean; done; yum autoremove -y && yum clean all
-RUN x=nagios-plugin-kafka; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean; yum autoremove -y && yum clean all
-#RUN x=spark-apps; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean; yum autoremove -y && yum clean all
+RUN x=lib-java; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean && yum autoremove -y && yum clean all
+RUN x=nagios-plugin-kafka; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean && yum autoremove -y && yum clean all
+#RUN x=spark-apps; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean && yum autoremove -y && yum clean all
 
 # trick to invalidate cache at this point to pull latest updates
 # not needed any more since DockerHub does the build now and doesn't cache anyway

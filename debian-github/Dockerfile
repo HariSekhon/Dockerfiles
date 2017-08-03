@@ -18,7 +18,7 @@ LABEL Description="Debian + my GitHub repos pre-built"
 
 ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
-RUN mkdir -v /github
+RUN mkdir -vp /github
 
 WORKDIR /github
 

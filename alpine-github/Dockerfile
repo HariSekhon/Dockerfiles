@@ -52,6 +52,7 @@ RUN \
 
 # could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
 RUN x=lib-java; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build apk-packages-remove clean
+RUN x=nagios-plugin-kafka; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build apk-packages-remove clean
 #RUN x=spark-apps; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build apk-packages-remove clean
 
 COPY profile.d/java.sh /etc/profile.d/

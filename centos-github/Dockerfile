@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-dev:latest
+FROM harisekhon/nagios-plugins:centos
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS + my GitHub repos pre-built"
@@ -29,11 +29,17 @@ WORKDIR /github
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
 RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
-RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; yum autoremove -y && yum clean all
+
+# inherited instead now
+#RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; yum autoremove -y && yum clean all
+
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all && pip uninstall -y certifi && pip install certifi==2015.04.28
-RUN for x in lib-java;          do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
-RUN for x in spark-apps;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all
+
+# could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
+RUN x=lib-java; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean; done; yum autoremove -y && yum clean all
+RUN x=nagios-plugin-kafka; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean; yum autoremove -y && yum clean all
+#RUN x=spark-apps; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean; yum autoremove -y && yum clean all
 
 # trick to invalidate cache at this point to pull latest updates
 # not needed any more since DockerHub does the build now and doesn't cache anyway

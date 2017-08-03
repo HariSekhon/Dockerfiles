@@ -36,9 +36,9 @@ RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /g
 RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean && pip uninstall -y certifi && pip install certifi==2015.04.28
 
 # could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
-RUN x=lib-java; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make gradle clean && apt-get autoremove -y && apt-get clean
-RUN x=nagios-plugin-kafka; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn clean && apt-get autoremove -y && apt-get clean
-#RUN x=spark-apps nagios-plugin-kafka; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn clean && apt-get autoremove -y && apt-get clean
+RUN x=lib-java;             git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make gradle clean && apt-get autoremove -y && apt-get clean
+RUN x=nagios-plugin-kafka;  git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn clean && apt-get autoremove -y && apt-get clean
+#RUN x=spark-apps;          git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make sbt clean && apt-get autoremove -y && apt-get clean
 
 # trick to invalidate cache at this point to pull latest updates
 #COPY invalidate_cache /tmp

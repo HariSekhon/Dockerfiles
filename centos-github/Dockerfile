@@ -26,7 +26,10 @@ WORKDIR /github
 # this is too big and unwieldy and makes caching/maintenance hard
 #RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh && yum clean all
 
-RUN yum install -y make git && yum autoremove -y
+RUN yum install -y make git java-1.8.0-openjdk-devel && \
+    curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
+    yum install -y --nogpgcheck sbt && \
+    yum autoremove -y
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; yum autoremove -y && yum clean all

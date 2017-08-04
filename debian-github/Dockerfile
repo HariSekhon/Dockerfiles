@@ -25,7 +25,15 @@ WORKDIR /github
 # this is too big and unwieldy and makes caching/maintenance hard
 #RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh && apt-get clean
 
-RUN apt-get update && apt-get install -y make git && apt-get autoremove -y
+RUN apt-get update && \
+    apt-get install -y make git openjdk-8-jdk scala && \
+    echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
+    apt-get install -y --no-install-recommends apt-transport-https && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
+    apt-get update && \
+    apt-get install -y sbt && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean

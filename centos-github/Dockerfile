@@ -29,7 +29,7 @@ WORKDIR /github
 RUN yum install -y make git java-1.8.0-openjdk-devel && \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y --nogpgcheck sbt && \
-    yum autoremove -y &&
+    yum autoremove -y && \
     yum clean all
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough

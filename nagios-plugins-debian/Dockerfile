@@ -11,7 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM debian:latest
+# newer libxml2 in Debian 9 Stretch has incompatible libxml2 version that breaks CPAN XML::LibXML compile
+FROM debian:jessie
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Advanced Nagios Plugins Collection (on Debian)"

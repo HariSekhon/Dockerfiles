@@ -50,7 +50,7 @@ RUN for x in pylib pytools; do git clone https://github.com/harisekhon/$x /githu
 # could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
 # instead build each project with a different build tool and don't deep-clean so we have them cached for faster development in docker
 RUN x=lib-java;             git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make gradle test clean && apt-get autoremove -y && apt-get clean
-RUN x=nagios-plugin-kakfa;  git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn    test clean && apt-get autoremove -y && apt-get clean
+RUN x=nagios-plugin-kafka;  git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn    test clean && apt-get autoremove -y && apt-get clean
 #RUN x=spark-apps;          git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make sbt    test clean && apt-get autoremove -y && apt-get clean
 
 # trick to invalidate cache at this point to pull latest updates

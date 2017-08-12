@@ -19,6 +19,8 @@ LABEL Description="CentOS + my GitHub repos pre-built"
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
 ENV PATH /bin:$PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
+ENV JAVA_HOME=/usr
+
 RUN mkdir -vp /github
 
 WORKDIR /github
@@ -57,5 +59,7 @@ RUN x=nagios-plugin-kafka; git clone https://github.com/harisekhon/$x /github/$x
 #RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh && yum clean all
 #RUN cd /github/nagios-plugins && make zookeeper && make clean-zookeeper
 #RUN rm -f /tmp/invalidate_cache
+
+COPY profile.d/java.sh /etc/profile.d/
 
 CMD /bin/bash

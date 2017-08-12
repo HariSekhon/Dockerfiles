@@ -20,6 +20,8 @@ LABEL Description="Alpine + my GitHub repos pre-built"
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
 ENV PATH /bin:$PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
+ENV JAVA_HOME=/usr
+
 RUN mkdir -vp /github
 
 WORKDIR /github

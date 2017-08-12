@@ -36,7 +36,7 @@ RUN apt-get update && \
                        libev4 \
                        libexpat1-dev \
                        libkrb5-dev \
-                       libmysqlclient-dev \
+                       libmariadbd-dev \
                        libsasl2-dev \
                        libsnappy-dev \
                        libssl-dev \
@@ -57,8 +57,7 @@ RUN apt-get update && \
                        zip \
                        && \
     # for sbt https repo
-    apt-get install -y \
-                       apt-transport-https \
+    apt-get install -y --no-install-recommends apt-transport-https \
                        #gnupg \
                        #gnupg1 \
                        #gnupg2 \
@@ -75,14 +74,12 @@ RUN apt-get update && \
     apt-get clean
 
 # Gradle in Debian is old 1.5 :-(
-RUN \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
     sh install_gradle.sh && \
     rm -f install_gradle.sh
 
 # Jython
-RUN \
-    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+RUN wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
     sh jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp

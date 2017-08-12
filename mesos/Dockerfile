@@ -32,9 +32,8 @@ LABEL Description="Apache Mesos" \
 
 WORKDIR /
 
-RUN \
-    # debian uses sh -c by default which doesn't recognize the ${var:n:n}
-    bash -c '\
+# debian uses sh -c by default which doesn't recognize the ${var:n:n}
+RUN bash -c '\
     apt-get update && \
     apt-get install -y --no-install-recommends wget && \
     # Apache only ships source, don't want entire dev tooling in image

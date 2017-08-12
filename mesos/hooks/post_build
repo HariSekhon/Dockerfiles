@@ -16,12 +16,18 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-docker_branch_base="$(basename "$(dirname "${BASH_SOURCE[0]}")")"
+docker_branch_base="$(basename "$(dirname "${BASH_SOURCE[0]}")/..")"
 docker_branch_base="${docker_branch_base%-dev}"
-#latest_tag="$(grep ARG.*_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
-latest_tag="0.24"
+docker_branch_base="${docker_branch_base%-cluster}"
+if [ "$docker_branch_base" = "kafka" ]; then
+    latest_tag="2.11-0.9"
+else
+    latest_tag="$(grep ARG.*_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+fi
 
-if [ "$SOURCE_BRANCH" = "$branch_base-$latest_tag" ]; then
-    docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
-    docker push "$DOCKER_REPO:latest"
+if [ "$SOURCE_BRANCH" = "$docker_branch_base-$latest_tag" ]; then
+    for tag in latest ${latest_tag%%.*}; do
+        docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
+        docker push "$DOCKER_REPO:$tag"
+    done
 fi

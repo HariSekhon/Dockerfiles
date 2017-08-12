@@ -19,8 +19,9 @@ ARG JYTHON_HOME=/opt/jython-$JYTHON_VERSION
 
 LABEL Description="Jython $JYTHON_VERSION on Alpine + OpenJDK, minimal container"
 
-RUN \
-    apk add --no-cache bash wget && \
+RUN apk add --no-cache bash
+
+RUN apk add --no-cache wget && \
     wget -cO jython-installer.jar "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/$JYTHON_VERSION/jython-installer-$JYTHON_VERSION.jar" && \
     java -jar jython-installer.jar -s -t standard -d "$JYTHON_HOME" && \
     rm -fr "$JYTHON_HOME"/{Docs,Demo,tests} && \

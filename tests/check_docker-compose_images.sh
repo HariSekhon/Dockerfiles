@@ -26,6 +26,10 @@ for x in *; do
     [ -f "$x/docker-compose.yml" ] || continue
     # exclude things not in Git yet
     git log -1 "$x" 2>/dev/null | grep -q '.*' || continue
-    grep -q -e "^[[:space:]]*image:[[:space:]]*harisekhon/$x:\${VERSION:-latest}" "$x/docker-compose.yml" ||
-        { echo "$x docker-compose.yml image mismatch!"; exit 1; }
+    for compose_file in "$x/"*docker-compose*.yml; do
+        if grep -q image "$compose_file"; then
+            grep -q -e "^[[:space:]]*image:[[:space:]]*harisekhon/$x:\${VERSION:-latest}" "$compose_file" ||
+                { echo "$x docker-compose.yml image mismatch!"; exit 1; }
+        fi
+    done
 done

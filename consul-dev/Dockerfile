@@ -22,8 +22,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 #ARG CONSUL_VERSION=0.3.1
 #ARG CONSUL_VERSION=0.4.1
 #ARG CONSUL_VERSION=0.5.2
-ARG CONSUL_VERSION=0.6.4
-#ARG CONSUL_VERSION=0.7.0
+#ARG CONSUL_VERSION=0.6.4
+ARG CONSUL_VERSION=0.7.1
 
 ENV PATH $PATH:/
 
@@ -37,8 +37,7 @@ WORKDIR /
 
 #ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 
-RUN \
-    apk add --no-cache wget unzip && \
+RUN apk add --no-cache wget unzip && \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \

@@ -28,7 +28,9 @@ ENV PATH $PATH:/cassandra/bin
 #ARG CASSANDRA_VERSION=3.5
 #ARG CASSANDRA_VERSION=3.6
 #ARG CASSANDRA_VERSION=3.7
-ARG CASSANDRA_VERSION=3.9
+#ARG CASSANDRA_VERSION=3.9
+#ARG CASSANDRA_VERSION=3.10
+ARG CASSANDRA_VERSION=3.11.0
 
 ARG TAR="apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz"
 
@@ -37,24 +39,30 @@ LABEL Description="Cassandra Dev", \
 
 WORKDIR /
 
-RUN \
-    apk add --no-cache wget openjdk8-jre-base py-pip && \
-    if [ "${CASSANDRA_VERSION:0:3}" = "3.9" ]; then \
-        url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
-    else \
-        url="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
-    fi && \
-    wget -t 100 --retry-connrefused -O "$TAR" "$url" && \
+RUN apk add --no-cache openjdk8-jre-base py-pip
+
+RUN apk add --no-cache wget && \
+    url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
+    url_archive="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "$TAR" "$url" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "$TAR" "$url_archive" && \
     tar zxf "${TAR}" && \
     rm -fv  "${TAR}" && \
+    # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
+    test -d "apache-cassandra-${CASSANDRA_VERSION}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
     { rm -rf cassandra/{doc,javadoc}; : ; } && \
     pip install --upgrade cassandra-driver && \
     apk del wget
 
 # cassandra refuses to run as root without -R, just run as regular useraddgroup -S cassandra id=501 && adduser -S -G cassandra --uid=501 cassandra && \
-RUN \
-    adduser -D -u 501 cassandra && \
+RUN adduser -D -u 501 cassandra && \
     mkdir /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \
     sed -i 's,cassandra:/bin/false,cassandra:/bin/bash,' /etc/passwd && \

@@ -9,7 +9,7 @@ Docker Images containing hundreds of my published tools and the supporting techn
 * Hadoop, Big Data, NoSQL & OS images
 * [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
 
-These images are all available pre-built on [My DockerHub](https://hub.docker.com/u/harisekhon/).
+These images are all available pre-built on [My DockerHub: https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 
 Hari Sekhon
 
@@ -38,6 +38,7 @@ DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https:
 ```
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
+(you might need to add --timeout 60 as ubuntu has a lot of tags now I've noticed to stop it timing out while fetching all the pages)
 
 For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:
 ```
@@ -76,6 +77,7 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 - Kafka
 - Mesos
 - Nifi
+- RabbitMQ Cluster (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
 - Riak
 - Riak (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - Serf
@@ -89,9 +91,14 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 
-- [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 250+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs, NoSQL APIs etc
-- [Perl Tools](https://github.com/harisekhon/tools) - 25+ Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
-- [Python Tools](https://github.com/harisekhon/pytools) - 30+ Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython - CLI tools
+- [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 350+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
+  - Tags:
+    - nagios-plugins:latest (alpine)
+    - nagios-plugins:centos
+    - nagios-plugins:debian
+    - nagios-plugins:ubuntu
+- [Python Tools](https://github.com/harisekhon/pytools) - ~ 50 tools for Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython - CLI tools
+- [Perl Tools](https://github.com/harisekhon/tools) - 25+ tools for Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
 - [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript for automation, auto timed track flick through etc.
 
 - CentOS + all Github repos pre-built

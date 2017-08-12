@@ -25,8 +25,7 @@ LABEL Description="ZooKeeper Dev" \
 
 WORKDIR /
 
-RUN \
-    apk add --no-cache wget && \
+RUN apk add --no-cache wget && \
     wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \

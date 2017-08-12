@@ -16,10 +16,11 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 #ARG HBASE_VERSION=0.94.27
 #ARG HBASE_VERSION=0.96.2
-#ARG HBASE_VERSION=0.98.23
+#ARG HBASE_VERSION=0.98.24
 #ARG HBASE_VERSION=1.0.3
-#ARG HBASE_VERSION=1.1.7
-ARG HBASE_VERSION=1.2.4
+#ARG HBASE_VERSION=1.1.9
+#ARG HBASE_VERSION=1.2.6
+ARG HBASE_VERSION=1.3.1
 
 ENV PATH $PATH:/hbase/bin
 
@@ -30,27 +31,44 @@ LABEL Description="HBase Dev", \
 
 WORKDIR /
 
-RUN \
-    apk add --no-cache bash openjdk8-jre-base wget tar && \
+RUN apk add --no-cache bash openjdk8-jre-base
+
+RUN apk add --no-cache wget tar && \
     # HBase 0.94
-    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
+    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
+        url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
     # HBase 0.96 usually missing from mirrors, have to use apache archive
-    elif [ "${HBASE_VERSION:0:4}" = "0.96" ]; then url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
+    elif [ "${HBASE_VERSION:0:4}" = "0.96" ]; then \
+        url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
+        url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98
-    elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
+    elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
+        url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 1.0
-    elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
+    elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
+        url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     # HBase 1.1+
-    elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
-    else echo "unrecognized HBase version"; exit 1; \
+    elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then \
+        url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
+        url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
+    else \
+        echo "unrecognized HBase version"; exit 1; \
     fi && \
-    wget -t 100 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" && \
-    mkdir hbase-$HBASE_VERSION && \
-    tar zxf hbase-$HBASE_VERSION-bin.tar.gz -C hbase-$HBASE_VERSION --strip 1 && \
-    ln -sv hbase-$HBASE_VERSION hbase && \
-    rm -fv hbase-$HBASE_VERSION-bin.tar.gz && \
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "hbase-$HBASE_VERSION-bin.tar.gz" "$url_archive" && \
+    mkdir "hbase-$HBASE_VERSION" && \
+    tar zxf "hbase-$HBASE_VERSION-bin.tar.gz" -C "hbase-$HBASE_VERSION" --strip 1 && \
+    test -d "hbase-$HBASE_VERSION" && \
+    ln -sv "hbase-$HBASE_VERSION" hbase && \
+    rm -fv "hbase-$HBASE_VERSION-bin.tar.gz" && \
     { rm -rf hbase/{docs,src}; : ; } && \
-    apk del wget tar
+    apk del tar wget
 
 COPY entrypoint.sh /
 COPY conf/hbase-site.xml /hbase/conf/

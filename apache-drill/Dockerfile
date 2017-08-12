@@ -26,7 +26,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 #ARG APACHE_DRILL_VERSION=1.6.0
 #ARG APACHE_DRILL_VERSION=1.7.0
 #ARG APACHE_DRILL_VERSION=1.8.0
-ARG APACHE_DRILL_VERSION=1.9.0
+#ARG APACHE_DRILL_VERSION=1.9.0
+ARG APACHE_DRILL_VERSION=1.10.0
 
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 
@@ -42,30 +43,32 @@ LABEL Description="Apache Drill" \
 
 WORKDIR /
 
-RUN \
-    # used by nagios checks
-    apk add --no-cache supervisor && \
-    mkdir -p /etc/supervisor.d && \
-    apk add --no-cache bash openjdk8-jre-base which wget tar && \
-    if [ "${APACHE_DRILL_VERSION:0:3}" = "1.8" -o \
-         "${APACHE_DRILL_VERSION:0:3}" = "1.9" ]; then \
-        url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
-    else \
-        url="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
-    fi && \
-    wget -t 100 --retry-connrefused -O "${TAR}" "$url" && \
+# supervisor is used to run apache-drill standalone for nagios checks
+RUN apk add --no-cache bash openjdk8-jre-base supervisor which && \
+    mkdir -p /etc/supervisor.d
+
+RUN apk add --no-cache wget tar && \
+    url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
+    url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
+    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
+    #                  but this breaks stuff later because the link will not point to the right dir
+    #                  (and is also the wrong version for the tag)
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url" || \
+    wget -t 10 --max-redirect 1 --retry-connrefused -O "${TAR}" "$url_archive" && \
     tar zxf "${TAR}" && \
+    # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
+    test -d "apache-drill-${APACHE_DRILL_VERSION}" && \
     rm -fv  "${TAR}" && \
     ln -sv "apache-drill-${APACHE_DRILL_VERSION}" apache-drill && \
-    apk del wget tar
+    apk del tar wget
 
 # need to keep this here to make it easier to launch supervisor with just a ZOOKEEPER_HOST and DRILL_HEAP environment variables
 RUN \
     # for older versions
-    sed -i -e "s/-Xms1G/-Xms\$DRILL_MAX_HEAP/" apache-drill/conf/drill-env.sh; \
-    sed -i -e "s/^DRILL_MAX_HEAP=.*/DRILL_MAX_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh; \
+    sed -i -e "s/-Xms1G/-Xms\$DRILL_MAX_HEAP/" apache-drill/conf/drill-env.sh && \
+    sed -i -e "s/^DRILL_MAX_HEAP=.*/DRILL_MAX_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh && \
     \
-    sed -i -e "s/^DRILL_HEAP=.*/DRILL_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh; \
+    sed -i -e "s/^DRILL_HEAP=.*/DRILL_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh && \
     sed -i -e "s/^\([[:space:]]*\)zk.connect:.*/\\1zk.connect: \"${ZOOKEEPER_HOST}\"/" apache-drill/conf/drill-override.conf
 
 COPY entrypoint.sh /

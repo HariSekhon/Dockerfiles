@@ -63,4 +63,6 @@ RUN x=nagios-plugin-kafka;  git clone https://github.com/harisekhon/$x /github/$
 #RUN cd /github/nagios-plugins && make zookeeper && make clean-zookeeper && apt-get clean
 #RUN rm -f /tmp/invalidate_cache
 
+COPY profile.d/java.sh /etc/profile.d/
+
 CMD /bin/bash

@@ -18,6 +18,8 @@ LABEL Description="Debian + my GitHub repos pre-built"
 
 ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
+ENV JAVA_HOME=/usr
+
 RUN mkdir -vp /github
 
 WORKDIR /github
@@ -60,5 +62,7 @@ RUN x=nagios-plugin-kafka;  git clone https://github.com/harisekhon/$x /github/$
 #RUN /github/bash-tools/update-my-repos.sh && /github/bash-tools/clean-my-repos.sh && apt-get clean
 #RUN cd /github/nagios-plugins && make zookeeper && make clean-zookeeper && apt-get clean
 #RUN rm -f /tmp/invalidate_cache
+
+COPY profile.d/java.sh /etc/profile.d/
 
 CMD /bin/bash

@@ -11,28 +11,48 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/ubuntu-dev:latest
+FROM harisekhon/nagios-plugins:ubuntu
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu + my GitHub repos pre-built"
 
 ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
-RUN mkdir -v /github
+RUN mkdir -vp /github
 
 WORKDIR /github
 
 # this is too big and unwieldy and makes caching/maintenance hard
 #RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh && apt-get clean
 
+RUN apt-get update && \
+    apt-get install -y make git openjdk-8-jdk-headless && \
+    # For SBT
+    apt-get install -y --no-install-recommends apt-transport-https && \
+    echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends sbt && \
+    apt-get autoremove -y && \
+    apt-get clean
+
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN for x in bash-tools;        do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean
-RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean
-RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; apt-get autoremove -y && apt-get clean
+RUN x=bash-tools;   git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && apt-get autoremove -y && apt-get clean
+RUN x=lib;          git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && apt-get autoremove -y && apt-get clean
+RUN x=tools;        git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && apt-get autoremove -y && apt-get clean
+RUN x=spotify;      git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean      && apt-get autoremove -y && apt-get clean
+
+# inherited now
+#RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; apt-get autoremove -y && apt-get clean
+
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
-RUN for x in pylib pytools;     do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean && pip uninstall -y certifi && pip install certifi==2015.04.28
-RUN for x in lib-java;          do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn deep-clean || exit 1; done; apt-get autoremove -y && apt-get clean
-RUN for x in spark-apps nagios-plugin-kafka; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean || exit 1; done; apt-get autoremove -y && apt-get clean
+RUN for x in pylib pytools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean || exit 1; done; apt-get autoremove -y && apt-get clean && pip uninstall -y certifi && pip install certifi==2015.04.28
+
+# could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
+# instead build each project with a different build tool and don't deep-clean so we have them cached for faster development in docker
+RUN x=lib-java;             git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make gradle test clean && apt-get autoremove -y && apt-get clean
+RUN x=nagios-plugin-kafka;  git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn    test clean && apt-get autoremove -y && apt-get clean
+#RUN x=spark-apps;          git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make sbt    test clean && apt-get autoremove -y && apt-get clean
 
 # trick to invalidate cache at this point to pull latest updates
 #COPY invalidate_cache /tmp

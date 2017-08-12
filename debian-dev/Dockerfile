@@ -57,8 +57,7 @@ RUN apt-get update && \
                        zip \
                        && \
     # for sbt https repo
-    apt-get install -y \
-                       apt-transport-https \
+    apt-get install -y --no-install-recommends apt-transport-https \
                        #gnupg \
                        #gnupg1 \
                        #gnupg2 \

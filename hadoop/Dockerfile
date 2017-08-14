@@ -28,9 +28,9 @@ LABEL Description="Hadoop Dev", \
 
 WORKDIR /
 
-RUN yum install -y openssh-server openssh-clients which
+RUN yum install -y openssh-server openssh-clients tar which
 
-RUN yum install -y wget tar hostname && \
+RUN yum install -y wget hostname && \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
     #                  (and is also the wrong version for the tag)
@@ -49,6 +49,7 @@ RUN yum install -y wget tar hostname && \
     # removing tar tries to remove systemd, which breaks
     yum remove -y wget && \
     yum autoremove -y && \
+    # gets autoremoved, ensure it's added back as Hadoop scripts need it
     yum install -y hostname && \
     yum clean all
 

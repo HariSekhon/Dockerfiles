@@ -30,7 +30,7 @@ WORKDIR /
 
 RUN yum install -y openssh-server openssh-clients wget tar which
 
-RUN yum install -y hostname && \
+RUN yum install -y hostname
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
     #                  (and is also the wrong version for the tag)
@@ -47,6 +47,7 @@ RUN yum install -y hostname && \
     # Hadoop 2.x
     /hadoop/bin/hdfs namenode -format && \
     yum autoremove -y && \
+    # gets autoremoved, ensure it's added back as Hadoop scripts need it
     yum install -y hostname && \
     yum clean all
 

@@ -30,7 +30,7 @@ It's a treasure trove of essentials for every single "DevOp" / sysadmin / engine
 * [Mesos](http://mesos.apache.org/)
 * [Consul](https://www.consul.io/)
 
-and NoSQL technologies:
+NoSQL technologies:
 
 * [Cassandra](http://cassandra.apache.org/)
 * [HBase](https://hbase.apache.org/)

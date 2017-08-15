@@ -42,4 +42,17 @@ and NoSQL technologies:
 * [Solr / SolrCloud](http://lucene.apache.org/solr/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch)
 
+Linux & Infrastructure technologies:
+
+* [Jenkins](https://jenkins.io/),
+* [Travis CI](https://travis-ci.org/),
+* SSL Certificate expiry
+* advanced DNS record checks
+* Whois domain expiry check
+* Linux OS checks
+* RAID array checks
+* [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) / [CentOS](https://www.centos.org/) yum security updates
+* [Git](https://git-scm.com/)
+* [MySQL](https://www.mysql.com/)
+
 and many more ...

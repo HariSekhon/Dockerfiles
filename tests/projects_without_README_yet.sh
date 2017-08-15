@@ -25,3 +25,5 @@ section "Projects without README yet"
 
 find . -maxdepth 1 -type d | while read dir; do [ -f "$dir/README.md" ] || echo "$(basename "$dir")"; done |
 egrep -v '^(alpine|centos|debian|ubuntu)-(dev|java|github)|pytools|tools|nagios-plugins|nagios-plugin-kafka|spark-apps|centos-scala|jython|tests|\..*$'
+echo
+echo

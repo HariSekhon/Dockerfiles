@@ -44,8 +44,8 @@ and NoSQL technologies:
 
 Linux & Infrastructure technologies:
 
-* [Jenkins](https://jenkins.io/),
-* [Travis CI](https://travis-ci.org/),
+* [Jenkins](https://jenkins.io/)
+* [Travis CI](https://travis-ci.org/)
 * SSL Certificate expiry
 * advanced DNS record checks
 * Whois domain expiry check

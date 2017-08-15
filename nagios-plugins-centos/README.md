@@ -11,7 +11,7 @@
 
 Docker image containing the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) - the largest, most advanced collection of production-grade Nagios monitoring code (over 350 programs).
 
-This docker image contains all dependencies pre-built on CentOS and is tagged `harisekhon/nagios-plugins:centos`. For variants on Alpine, Debian and Ubuntusee see adjacent directories.
+This docker image contains all dependencies pre-built on CentOS and is tagged `harisekhon/nagios-plugins:centos`. For variants on Alpine, Debian and Ubuntu see see adjacent directories.
 
 Specialised plugins for Hadoop, Big Data & NoSQL technologies, written by a former Clouderan ([Cloudera](http://www.cloudera.com) was the first Hadoop Big Data vendor) and current [Hortonworks](http://www.hortonworks.com) consultant.
 

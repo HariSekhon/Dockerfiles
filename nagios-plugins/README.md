@@ -33,7 +33,7 @@ It's a treasure trove of essentials for every single "DevOp" / sysadmin / engine
 and NoSQL technologies:
 
 * [Cassandra](http://cassandra.apache.org/)
-* * [HBase](https://hbase.apache.org/)
+* [HBase](https://hbase.apache.org/)
 * [MongoDB](https://www.mongodb.com/)
 * [Memcached](https://memcached.org/)
 * [Redis](http://redis.io/)

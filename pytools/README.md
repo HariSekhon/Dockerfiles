@@ -21,6 +21,12 @@ Running the docker container without arguments will show just the list of progra
 docker run -ti harisekhon/pytools
 ```
 
+Run any given program:
+
+```
+docker run harisekhon/pytools <program> <args>
+```
+
 All programs have `--help` to list the available options.
 
 For many more tools see the [Tools](https://github.com/harisekhon/tools) and [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) repos which contains many Hadoop, NoSQL, Web and infrastructure tools and Nagios plugins which have docker builds in the adjacent directories.

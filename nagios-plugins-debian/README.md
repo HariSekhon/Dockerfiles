@@ -17,11 +17,29 @@ Specialised plugins for Hadoop, Big Data & NoSQL technologies, written by a form
 
 Hadoop and extensive API integration with all major Hadoop vendors ([Hortonworks](http://www.hortonworks.com), [Cloudera](http://www.cloudera.com), [MapR](http://www.mapr.com), [IBM BigInsights](http://www-03.ibm.com/software/products/en/ibm-biginsights-for-apache-hadoop)), as well as most major open source NoSQL technologies, Pub-Sub / Message Buses, CI, Web and Linux based infrastructure.
 
-Supports a a wide variety of [compatible Enterprise Monitoring servers](https://github.com/harisekhon/nagios-plugins#enterprise-monitoring-systems).
-
 Most enterprise monitoring systems come with basic generic checks, while this project extends their monitoring capabilities significantly further in to advanced infrastructure, application layer, APIs etc.
 
-It's a treasure trove of essentials for every single "DevOp" / sysadmin / engineer, with extensive goodies for people running:
+List all plugins:
+
+```
+docker run harisekhon/nagios-plugins
+```
+
+Run any given plugin by suffixing it to the docker run command:
+
+```
+docker run harisekhon/nagios-plugins <program> <args>
+```
+
+eg.
+
+```
+docker run harisekhon/nagios-plugins check_ssl_cert.pl --help
+```
+
+Supports a a wide variety of [compatible Enterprise Monitoring servers](https://github.com/harisekhon/nagios-plugins#enterprise-monitoring-systems).
+
+The project is a treasure trove of essentials for every single "DevOp" / sysadmin / engineer, with extensive goodies for people running:
 
 * Web Infrastructure
 * [Hadoop](http://hadoop.apache.org/)

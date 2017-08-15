@@ -41,4 +41,5 @@ and NoSQL technologies:
 * [Riak](http://basho.com/products/)
 * [Solr / SolrCloud](http://lucene.apache.org/solr/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch)
-... etc.
+
+and many more ...

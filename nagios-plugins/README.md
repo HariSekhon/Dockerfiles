@@ -13,7 +13,7 @@ Docker image containing the [Advanced Nagios Plugins Collection](https://github.
 
 This docker image contains all dependencies pre-built on Alpine Linux to minimize size. For variants on CentOS, Debian and Ubuntu see adjacent projects.
 
-Specialised plugins for Hadoop, Big Data & NoSQL technologies, written by a former Clouderan ([Cloudera](http://www.cloudera.com) was the first Hadoop Big Data vendor) and Hortonworks consultant.
+Specialised plugins for Hadoop, Big Data & NoSQL technologies, written by a former Clouderan ([Cloudera](http://www.cloudera.com) was the first Hadoop Big Data vendor) and current [Hortonworks](http://www.hortonworks.com) consultant.
 
 Hadoop and extensive API integration with all major Hadoop vendors ([Hortonworks](http://www.hortonworks.com), [Cloudera](http://www.cloudera.com), [MapR](http://www.mapr.com), [IBM BigInsights](http://www-03.ibm.com/software/products/en/ibm-biginsights-for-apache-hadoop)), as well as most major open source NoSQL technologies, Pub-Sub / Message Buses, CI, Web and Linux based infrastructure.
 
@@ -29,7 +29,9 @@ It's a treasure trove of essentials for every single "DevOp" / sysadmin / engine
 * [RabbitMQ](http://www.rabbitmq.com/)
 * [Mesos](http://mesos.apache.org/)
 * [Consul](https://www.consul.io/)
+
 and NoSQL technologies:
+
 * [Cassandra](http://cassandra.apache.org/)
 * * [HBase](https://hbase.apache.org/)
 * [MongoDB](https://www.mongodb.com/)

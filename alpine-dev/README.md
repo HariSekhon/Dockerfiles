@@ -17,4 +17,4 @@ Alpine Linux + Development Tools including:
 * Make
 * Expect
 * Git
-* various Linux development and systems administration tools, eg. ViM, wget, MariaDB dev libraries etc
+* various Linux development and systems administration tools, eg. ViM, wget, MariaDB dev libraries etc.

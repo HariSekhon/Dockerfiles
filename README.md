@@ -68,26 +68,26 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 
 More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
 
-- Alluxio
-- Apache Drill (opens Drill shell)
-- Cassandra (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
-- Consul
-- H2O by 0xdata
-- Hadoop (HDFS + Yarn)
-- HBase (opens HBase shell)
-- Jython
-- Kafka
-- Mesos
-- Nifi
-- RabbitMQ Cluster (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
-- Riak
-- Riak (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
-- Serf
-- Solr
-- SolrCloud
-- Spark (opens Spark shell)
-- Tachyon
-- ZooKeeper (opens ZK shell)
+- [Alluxio](http://www.alluxio.org/)
+- [Apache Drill](https://drill.apache.org/) (opens Drill shell)
+- [Cassandra](http://cassandra.apache.org/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- [Consul](https://www.consul.io/)
+- [H2O](https://www.h2o.ai/) by 0xdata
+- [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn)
+- [HBase](https://hbase.apache.org/) (opens HBase shell)
+- [Jython](http://www.jython.org/)
+- [Kafka](https://kafka.apache.org/)
+- [Mesos](http://mesos.apache.org/)
+- [Nifi](https://nifi.apache.org/)
+- [RabbitMQ](https://www.rabbitmq.com/) Cluster (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
+- [Riak KV](http://basho.com/products/riak-kv/)
+- [Riak KV](http://basho.com/products/riak-kv/) (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- [Serf](https://www.serf.io/)
+- [Solr](http://lucene.apache.org/solr/)
+- [SolrCloud](http://lucene.apache.org/solr/)
+- [Spark](https://spark.apache.org/) (opens Spark shell)
+- [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0)
+- [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell)
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 

@@ -18,7 +18,7 @@ See a list of included programs with descriptions [here](https://github.com/hari
 Running the docker container without arguments will show just the list of programs:
 
 ```
-docker run -ti harisekhon/pytools
+docker run harisekhon/pytools
 ```
 
 Run any given program:

@@ -66,6 +66,8 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 
 ##### Official Technologies:
 
+More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
+
 - Alluxio
 - Apache Drill (opens Drill shell)
 - Cassandra (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))

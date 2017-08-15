@@ -38,26 +38,35 @@ DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https:
 ```
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
+
 (you might need to add --timeout 60 as ubuntu has a lot of tags now I've noticed to stop it timing out while fetching all the pages)
 
 For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:
+
 ```
 cd zookeeper
 docker-compose up
 ```
+
 or for technologies with interactive shells like Spark, ZooKeeper, HBase, Drill, Cassandra where you want to be dropped in to an interactive shell, use the ` make run ` shortcut instead:
+
 ```
 cd zookeeper
 make run
 ```
+
 which is much easier to type and remember than the equivalent bigger commands like:
+
 ```
 docker run -ti -p 2181:2181 harisekhon/zookeeper
 ```
+
 which gets much worse for more complex services like Hadoop / HBase:
+
 ```
 docker run -ti -p 2181:2181 -p 8080:8080 -p 8085:8085 -p 9090:9090 -p 9095:9095 -p 16000:16000 -p 16010:16010 -p 16201:16201 -p 16301:16301 harisekhon/hbase
 ```
+
 ```
 docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:10020 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 harisekhon/hadoop
 ```

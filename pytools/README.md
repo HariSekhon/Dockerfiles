@@ -13,7 +13,13 @@
 
 A few of the Hadoop, Spark & Linux tools I've written over the years.
 
-See a list of included programs [here](https://github.com/harisekhon/pytools#pytools)
+See a list of included programs with description [here](https://github.com/harisekhon/pytools#pytools).
+
+Running the docker container without arguments will show just the list of programs:
+
+```
+docker run -ti harisekhon/pytools
+```
 
 All programs have `--help` to list the available options.
 

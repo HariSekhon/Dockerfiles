@@ -18,4 +18,4 @@ CentOS Linux latest version + Development Tools including:
 * Expect
 * EPEL repository
 * Git
-* various Linux development and systems administration tools, eg. ViM enhanced, system and network tools, wget, MySQL dev libraries etc.
+* various Linux development and systems administration tools, eg. ViM enhanced, system and network tools, curl, wget, MySQL dev libraries etc.

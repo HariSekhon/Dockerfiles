@@ -51,7 +51,6 @@ Linux & Infrastructure technologies:
 * Whois domain expiry check
 * Linux OS checks
 * RAID array checks
-* [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) / [CentOS](https://www.centos.org/) yum security updates
 * [Git](https://git-scm.com/)
 * [MySQL](https://www.mysql.com/)
 

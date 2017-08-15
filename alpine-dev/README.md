@@ -1,7 +1,7 @@
 Alpine Development Build
 ========================
 
-Alpine Linux + Development Tools including:
+Alpine Linux latest version + Development Tools including:
 
 * Java JDK
 * Perl

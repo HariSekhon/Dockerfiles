@@ -49,7 +49,6 @@ Linux & Infrastructure technologies:
 * SSL Certificate expiry
 * advanced DNS record checks
 * Whois domain expiry check
-* [Git](https://git-scm.com/)
 * [MySQL](https://www.mysql.com/)
 
 and many more ...

@@ -28,7 +28,7 @@ docker run harisekhon/tools <program> <args>
 
 All programs have `--help` to list the available options.
 
-For many more tools see [PyTools](https://github.com/harisekhon/pytools) and the [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) which contains many more Hadoop, NoSQL and Linux/Web tools. 
+For many more tools see [PyTools](https://github.com/harisekhon/pytools) and the [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) which contains many more Hadoop, NoSQL and Linux/Web tools.
 
 Hari Sekhon
 

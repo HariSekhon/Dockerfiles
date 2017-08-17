@@ -18,3 +18,5 @@ Debian Linux latest version + Development Tools including:
 * Expect
 * Git
 * various Linux development and systems administration tools, eg. ViM enhanced, system and network tools, curl, wget, MariaDB dev libraries etc.
+
+See [master GitHub repo](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) top level for a tonne of related technologies.

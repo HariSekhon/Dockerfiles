@@ -11,3 +11,5 @@ Docker image containing the [Kafka Scala API Tester - Advanced Nagios Plugin / C
 This docker image contains all dependencies pre-built on Alpine Linux.
 
 See upstream project for more details on its usage [here](https://github.com/HariSekhon/nagios-plugin-kafka)
+
+See [master GitHub repo](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) top level for a tonne of related technologies.

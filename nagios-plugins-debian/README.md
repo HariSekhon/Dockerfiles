@@ -19,6 +19,8 @@ Hadoop and extensive API integration with all major Hadoop vendors ([Hortonworks
 
 Most enterprise monitoring systems come with basic generic checks, while this project extends their monitoring capabilities significantly further in to advanced infrastructure, application layer, APIs etc.
 
+For more documentation on the Nagios Plugins contained in this image, see the [GitHub project page](https://github.com/HariSekhon/nagios-plugins#usage---help)
+
 List all plugins:
 
 ```

@@ -12,7 +12,7 @@
 
 A few of the Hadoop, NoSQL, Web & Linux tools I've written over the years. All programs have --help to list the available options.
 
-See a list of included programs with descriptions [here](https://github.com/harisekhon/tools#a-sample-of-cool-programs-in-this-toolbox).
+See a list of included programs with descriptions on the [GitHub project page](https://github.com/harisekhon/tools#a-sample-of-cool-programs-in-this-toolbox).
 
 Running the docker container without arguments will show just the list of programs:
 

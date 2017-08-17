@@ -19,4 +19,4 @@ Alpine Linux latest version + Development Tools including:
 * Git
 * various Linux development and systems administration tools, eg. ViM, system and network tools, curl, wget, MariaDB dev libraries etc.
 
-See [master GitHub repo](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) top level for a tonne of related technologies.
+See [master GitHub repo](https://github.com/HariSekhon/Dockerfiles) top level for a tonne of related technologies.

@@ -37,4 +37,4 @@ Big Data Contractor, United Kingdom
 
 https://www.linkedin.com/in/harisekhon
 
-See [master GitHub repo](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) top level for a tonne of related technologies.
+See [master GitHub repo](https://github.com/HariSekhon/Dockerfiles) top level for a tonne of related technologies.

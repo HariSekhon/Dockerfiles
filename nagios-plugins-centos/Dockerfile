@@ -34,6 +34,11 @@ RUN \
     make yum-packages-remove && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     yum remove -y make && \
+    # these will get autoremoved as dependencies of make
+    # TODO: setting these as yum install manually doesn't protect them from autoremove, fix this
+    yum install -y perl-HTTP-Parser perl-Digest && \
+    yum autoremove -y && \
+    yum install -y perl-HTTP-Parser perl-Digest && \
     yum clean all && \
     tests/help.sh || \
     { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }

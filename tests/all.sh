@@ -32,3 +32,9 @@ tests/pytools_checks.sh
 echo
 
 bash-tools/all.sh
+
+echo
+
+tests/projects_without_docker-compose_yet.sh
+
+tests/projects_without_README_yet.sh

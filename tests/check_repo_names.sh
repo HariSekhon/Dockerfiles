@@ -23,6 +23,7 @@ echo "checking repo names match directory tree"
 for x in *; do
     [ -d "$x" ] || continue
     [ "$x" = "bash-tools" ] && continue
+    [ "$x" = "pytools_checks" ] && continue
     [ -f "$x/Makefile" ] || continue
     # exclude things not in Git yet
     #git log -1 "$x" 2>/dev/null | grep -q '.*' || continue

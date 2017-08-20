@@ -1,6 +1,6 @@
 Hari Sekhon Docker
 ==================
-[![Build Status](https://travis-ci.org/HariSekhon/Dockerfiles.svg?branch=master)](https://travis-ci.org/HariSekhon/Dockerfiles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
+[![Build Status](https://travis-ci.org/HariSekhon/Dockerfiles.svg?branch=master)](https://travis-ci.org/HariSekhon/Dockerfiles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/network) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
@@ -38,26 +38,35 @@ DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https:
 ```
 docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
 ```
+
 (you might need to add --timeout 60 as ubuntu has a lot of tags now I've noticed to stop it timing out while fetching all the pages)
 
 For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:
+
 ```
 cd zookeeper
 docker-compose up
 ```
+
 or for technologies with interactive shells like Spark, ZooKeeper, HBase, Drill, Cassandra where you want to be dropped in to an interactive shell, use the ` make run ` shortcut instead:
+
 ```
 cd zookeeper
 make run
 ```
+
 which is much easier to type and remember than the equivalent bigger commands like:
+
 ```
 docker run -ti -p 2181:2181 harisekhon/zookeeper
 ```
+
 which gets much worse for more complex services like Hadoop / HBase:
+
 ```
 docker run -ti -p 2181:2181 -p 8080:8080 -p 8085:8085 -p 9090:9090 -p 9095:9095 -p 16000:16000 -p 16010:16010 -p 16201:16201 -p 16301:16301 harisekhon/hbase
 ```
+
 ```
 docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:10020 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 harisekhon/hadoop
 ```
@@ -66,26 +75,28 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 
 ##### Official Technologies:
 
-- Alluxio
-- Apache Drill (opens Drill shell)
-- Cassandra (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
-- Consul
-- H2O by 0xdata
-- Hadoop (HDFS + Yarn)
-- HBase (opens HBase shell)
-- Jython
-- Kafka
-- Mesos
-- Nifi
-- RabbitMQ Cluster (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
-- Riak
-- Riak (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
-- Serf
-- Solr
-- SolrCloud
-- Spark (opens Spark shell)
-- Tachyon
-- ZooKeeper (opens ZK shell)
+More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
+
+- [Alluxio](http://www.alluxio.org/)
+- [Apache Drill](https://drill.apache.org/) (opens Drill shell)
+- [Cassandra](http://cassandra.apache.org/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- [Consul](https://www.consul.io/)
+- [H2O](https://www.h2o.ai/) by 0xdata
+- [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn)
+- [HBase](https://hbase.apache.org/) (opens HBase shell)
+- [Jython](http://www.jython.org/)
+- [Kafka](https://kafka.apache.org/)
+- [Mesos](http://mesos.apache.org/)
+- [Nifi](https://nifi.apache.org/)
+- [RabbitMQ](https://www.rabbitmq.com/) Cluster (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
+- [Riak KV](http://basho.com/products/riak-kv/)
+- [Riak KV](http://basho.com/products/riak-kv/) (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- [Serf](https://www.serf.io/)
+- [Solr](http://lucene.apache.org/solr/)
+- [SolrCloud](http://lucene.apache.org/solr/)
+- [Spark](https://spark.apache.org/) (opens Spark shell)
+- [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0)
+- [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell)
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 

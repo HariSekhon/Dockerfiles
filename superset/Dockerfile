@@ -35,4 +35,6 @@ RUN pip install --upgrade setuptools pip && \
     #yum remove -y gcc gcc-c++ libffi-devel python-devel openssl-devel libsasl2-devel openldap-devel mysql-devel && \
     #yum autoremove -y
 
+EXPOSE 8088
+
 CMD bash -c "/usr/bin/superset runserver -p 8088"

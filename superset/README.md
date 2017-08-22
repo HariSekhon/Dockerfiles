@@ -3,7 +3,7 @@
 
 Superset open source analytics UI by AirBNB.
 
-Starts the web UI on port `8080`.
+Starts the web UI on port `8088`.
 
 Username and password are both set to `admin` by default.
 

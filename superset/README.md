@@ -1,5 +1,5 @@
-[Superset by AirBNB]
-====================
+[Superset](http://airbnb.io/projects/superset/) by AirBNB
+=========================================================
 
 Superset open source analytics UI by AirBNB.
 

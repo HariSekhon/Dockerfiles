@@ -70,13 +70,13 @@ RUN yum update -y && \
 
 # Gradle doesn't have an RPM :-(
 RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
-    sh install_gradle.sh && \
+    bash install_gradle.sh && \
     rm -f install_gradle.sh
 
 # Jython
 RUN wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
-    sh jython_install.sh && \
+    bash jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
 
 CMD /bin/bash

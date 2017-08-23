@@ -70,7 +70,7 @@ RUN apt-get update && \
 RUN \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
-    sh jython_install.sh && \
+    bash jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
 
 CMD /bin/bash

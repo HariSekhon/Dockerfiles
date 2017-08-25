@@ -70,3 +70,24 @@ test:
 .PHONY: push
 push:
 	git push --all
+
+.PHONY: update
+update:
+	@make update2
+	@make
+
+.PHONY: update2
+update2:
+	make update-no-recompile
+
+.PHONY: update-no-recompile
+update-no-recompile:
+	git pull
+	git submodule update --init --recursive
+
+.PHONY: update-submodules
+update-submodules:
+	git submodule update --init --remote
+.PHONY: updatem
+updatem:
+	make update-submodules

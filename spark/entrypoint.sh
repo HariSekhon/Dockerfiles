@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2016-01-26 22:51:25 +0000 (Tue, 26 Jan 2016)
 #
-#  https://github.com/harisekhon/Dockerfiles/spark
+#  https://github.com/harisekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #

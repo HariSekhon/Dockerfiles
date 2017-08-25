@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2016-07-14 16:35:56 +0100 (Thu, 14 Jul 2016)
 #
-#  https://github.com/harisekhon/Dockerfiles/kafka
+#  https://github.com/harisekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #

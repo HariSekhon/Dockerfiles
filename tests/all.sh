@@ -31,6 +31,9 @@ tests/pytools_checks.sh
 
 echo
 
+echo "Checking post build hook scripts separately as they're not inferred by .sh extension"
+bash-tools/check_shell_syntax.sh */hooks/post_build
+
 bash-tools/all.sh
 
 echo

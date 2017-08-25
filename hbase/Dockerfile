@@ -78,6 +78,7 @@ COPY profile.d/java.sh /etc/profile.d/
 # Thrift    9090  / 9095
 # HMaster   16000 / 16010
 # RS        16201 / 16301
-EXPOSE 2181 8080 8085 9090 9095 16000 16010 16201 16301
+# Older HBase uses different ports
+EXPOSE 2181 8080 8085 9090 9095 60000 60010 60201 60301
 
 CMD "/entrypoint.sh"

@@ -4,7 +4,7 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles/ubuntu-dev
+#  https://github.com/harisekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
@@ -70,7 +70,7 @@ RUN apt-get update && \
 RUN \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
-    sh jython_install.sh && \
+    bash jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
 
 CMD /bin/bash

@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2016-12-23 10:03:28 +0000 (Fri, 23 Dec 2016)
 #
-#  https://github.com/harisekhon/Dockerfiles/rabbitmq-cluster
+#  https://github.com/harisekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #

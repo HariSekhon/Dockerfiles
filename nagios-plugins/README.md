@@ -5,7 +5,7 @@
 Docker image containing the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) - the largest, most advanced collection of production-grade Nagios monitoring code (over 350 programs).
 
 <!-- the DockerHub page for harisekhon/nagios-plugins will show the README of the latest build so make all of them generic enough -->
-This docker image contains all dependencies pre-built on Alpine, CentOS, Debian and Ubuntu latest docker base images and are tagged as `:latest`, `:centos`, `:debian` and `:ubuntu` respectively. The source for each OS build is available in adjacent directories in the [Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles).
+This docker image contains all dependencies pre-built on Alpine, CentOS, Debian and Ubuntu latest docker base images and are tagged as `:latest`, `:centos`, `:debian` and `:ubuntu` respectively. The source for each OS build is available in adjacent directories in the [Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).
 
 Specialised plugins for Hadoop, Big Data & NoSQL technologies, written by a former Clouderan ([Cloudera](http://www.cloudera.com) was the first Hadoop Big Data vendor) and current [Hortonworks](http://www.hortonworks.com) consultant.
 
@@ -50,8 +50,8 @@ NoSQL technologies:
 * [HBase](https://hbase.apache.org/)
 * [MongoDB](https://www.mongodb.com/)
 * [Memcached](https://memcached.org/)
-* [Redis](http://redis.io/)
 * [Couchbase](http://www.couchbase.com/)
+* [Redis](http://redis.io/)
 * [Riak](http://basho.com/products/)
 * [Solr / SolrCloud](http://lucene.apache.org/solr/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch)
@@ -67,4 +67,4 @@ Linux & Infrastructure technologies:
 
 and many more ...
 
-Related Docker images can be found for many Open Source, Big Data and NoSQL technologies on [my DockerHub profile](https://hub.docker.com/r/harisekhon). The source for them all can be found in the [master Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles).
+Related Docker images can be found for many Open Source, Big Data and NoSQL technologies on [my DockerHub profile](https://hub.docker.com/r/harisekhon). The source for them all can be found in the [master Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).

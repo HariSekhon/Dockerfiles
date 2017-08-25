@@ -16,7 +16,11 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-docker_branch_base="$(basename "$(dirname "${BASH_SOURCE[0]}")/..")"
+if [ -z "${SOURCE_BRANCH:-}" ]; then
+    SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
+fi
+# readlink is not portable across Linux + Mac
+docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
 docker_branch_base="${docker_branch_base%-dev}"
 docker_branch_base="${docker_branch_base%-cluster}"
 if [ "$docker_branch_base" = "kafka" ]; then

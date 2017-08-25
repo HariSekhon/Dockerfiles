@@ -11,6 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# On Ubuntu this fails to pushd otherwise
+SHELL=/usr/bin/env bash
+
 # EUID /  UID not exported in Make
 # USER not populated in Docker
 #ifeq '$(shell id -u)' '0'

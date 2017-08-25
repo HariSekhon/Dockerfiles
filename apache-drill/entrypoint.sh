@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2016-04-24 21:29:46 +0100 (Sun, 24 Apr 2016)
 #
-#  https://github.com/harisekhon/Dockerfiles/apache-drill
+#  https://github.com/harisekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #

@@ -95,6 +95,7 @@ More specific information can be found in the readme page under each respective 
 - [Solr](http://lucene.apache.org/solr/)
 - [SolrCloud](http://lucene.apache.org/solr/)
 - [Spark](https://spark.apache.org/) (opens Spark shell)
+- [Superset](http://airbnb.io/projects/superset/) by Airbnb
 - [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0)
 - [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell)
 

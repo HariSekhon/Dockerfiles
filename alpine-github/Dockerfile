@@ -32,10 +32,11 @@ WORKDIR /github
 # bash, openjdk8 and alpine-sdk are for the JVM projects further down
 RUN apk add --no-cache make git bash openjdk8 alpine-sdk
 
-RUN x=bash-tools; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean
+RUN x=bash-tools; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN for x in lib spotify tools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean apk-packages-remove || exit 1; done
+# TODO: add spotify repo back when updated for Spotify API changes
+RUN for x in lib tools; do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean apk-packages-remove || exit 1; done
 
 # inherited now
 #RUN x=nagios-plugins; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean apk-packages-remove
@@ -47,7 +48,7 @@ RUN \
     for x in pylib pytools; do \
         git clone https://github.com/harisekhon/$x /github/$x && \
         cd /github/$x && \
-        make build clean apk-packages-remove || exit 1;\
+        make build test clean apk-packages-remove || exit 1;\
     done; \
     pip uninstall -y certifi && \
     pip install certifi==2015.04.28
@@ -55,7 +56,7 @@ RUN \
 # could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
 # instead build each project with a different build tool and don't deep-clean so we have them cached for faster development in docker
 RUN x=lib-java;             git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make gradle clean
-RUN x=nagios-plugin-kafka;  git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn clean
+RUN x=nagios-plugin-kafka;  git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn test clean
 #RUN x=spark-apps;          git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make sbt clean
 
 COPY profile.d/java.sh /etc/profile.d/

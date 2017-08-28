@@ -41,7 +41,7 @@ RUN apt-get update && \
 RUN x=bash-tools;   git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && apt-get autoremove -y && apt-get clean
 RUN x=lib;          git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && apt-get autoremove -y && apt-get clean
 RUN x=tools;        git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && apt-get autoremove -y && apt-get clean
-RUN x=spotify;      git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean      && apt-get autoremove -y && apt-get clean
+RUN x=spotify;      git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build      clean && apt-get autoremove -y && apt-get clean
 
 # inherited now
 #RUN for x in nagios-plugins;    do git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean || exit 1; done; apt-get autoremove -y && apt-get clean

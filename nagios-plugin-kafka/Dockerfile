@@ -28,7 +28,7 @@ RUN apk add --no-cache git make alpine-sdk && \
     x=nagios-plugin-kafka; \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build && \
+    make build test && \
     # not using mv as it's as symlink, cp will take the target
     cp -i check_kafka.jar check_kafka.jar2 && \
     # clean removes the link along with the target/build dir

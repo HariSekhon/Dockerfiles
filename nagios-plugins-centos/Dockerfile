@@ -30,7 +30,7 @@ RUN \
     cd /github/$x && \
     # The first compile fails with an upstream perl cpan error, second compile works
     make build || : ; \
-    make build zookeeper clean && \
+    make build zookeeper test clean && \
     make yum-packages-remove && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     yum remove -y make && \

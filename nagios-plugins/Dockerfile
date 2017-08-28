@@ -28,7 +28,7 @@ RUN \
     apk add --no-cache git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build zookeeper clean && \
+    make build zookeeper test clean && \
     make apk-packages-remove && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     apk del make && \

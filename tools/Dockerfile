@@ -27,7 +27,7 @@ RUN \
     apk add --no-cache git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build clean && \
+    make build test clean && \
     make apk-packages-remove && \
     apk del git make
 

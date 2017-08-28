@@ -33,7 +33,7 @@ RUN apk add --no-cache make git && \
     cd /github/$x && \
     make && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
-    make build clean && \
+    make build test clean && \
     make apk-packages-remove && \
     apk del make git py-pip
 

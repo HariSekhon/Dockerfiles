@@ -38,7 +38,7 @@ RUN yum install -y make git java-1.8.0-openjdk-devel && \
 RUN x=bash-tools;   git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && yum autoremove -y && yum clean all
 RUN x=lib;          git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && yum autoremove -y && yum clean all
 RUN x=tools;        git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && yum autoremove -y && yum clean all
-RUN x=spotify;      git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build clean      && yum autoremove -y && yum clean all
+RUN x=spotify;      git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build      clean && yum autoremove -y && yum clean all
 
 # inherited instead now
 #RUN x=nagios-plugins; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean; yum autoremove -y && yum clean all

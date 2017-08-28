@@ -32,7 +32,7 @@ RUN \
     #apt-get install -y ruby && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build zookeeper clean && \
+    make build zookeeper test clean && \
     make apt-packages-remove && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     apt-get remove -y make && \

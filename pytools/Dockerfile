@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+# Alpine's underlying libraries are causing find_active_server.py --https mode to run all threads concurrently without respecting the --num causing indeterministic results and failing tests/test_find_active_server.sh
+#FROM alpine:latest
+FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools"
@@ -24,26 +26,35 @@ RUN mkdir -v /github
 WORKDIR /github
 
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
-RUN apk add --no-cache make git && \
+#RUN apk add --no-cache make git && \
     # allows numpy to compile with musl instead of glibc
-    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
+    #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
+RUN apt-get update && apt-get install -y make git && \
     x=pytools && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     make && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
     make build test clean && \
-    make apk-packages-remove && \
-    apk del make git py-pip
+    make apt-packages-remove && \
+    apt-get purge -y make git python-pip && \
+    apt-get autoremove -y && \
+    apt-get clean
+#    make apk-packages-remove && \
+#    apk del make git py-pip
 
 WORKDIR /github/pytools
 
 # Jython
 RUN \
-    apk add --no-cache wget expect && \
+    #apk add --no-cache wget expect && \
+    apt-get update && apt-get install -y wget expect && \
     sh jython_install.sh && \
-    apk del wget expect
+    apt-get purge -y wget expect && \
+    apt-get autoremove -y && \
+    apt-get clean
+    #apk del wget expect
 
 COPY profile.d/java.sh /etc/profile.d/
 

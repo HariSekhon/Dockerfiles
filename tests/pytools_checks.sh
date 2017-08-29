@@ -31,8 +31,8 @@ get_pytools(){
     fi
 }
 
-if ! which dockerfiles_check_git_branches.py &>/dev/null &&
-   ! which git_check_branches_upstream.py &>/dev/null
+if which dockerfiles_check_git_branches.py &>/dev/null &&
+   which git_check_branches_upstream.py &>/dev/null
     then
     if [ -d pytools_checks ]; then
         pushd "$(dirname "$(which dockerfiles_check_git_branches.py)")"

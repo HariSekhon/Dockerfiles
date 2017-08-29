@@ -23,11 +23,12 @@ fi
 docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
 docker_branch_base="${docker_branch_base%-dev}"
 docker_branch_base="${docker_branch_base%-cluster}"
+docker_version_base="${docker_branch_base//-/_}"
 docker_branch_base="${docker_branch_base/solrcloud/solr}"
 if [ "$docker_branch_base" = "kafka" ]; then
     latest_tag="2.11-0.9"
 else
-    latest_tag="$(grep ARG.*_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    latest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
 fi
 
 if [ "$SOURCE_BRANCH" = "$docker_branch_base-$latest_tag" ]; then

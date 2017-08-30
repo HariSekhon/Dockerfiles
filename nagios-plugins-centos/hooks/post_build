@@ -16,7 +16,7 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-tag="alpine"
+tag="centos"
 
 docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
 docker push "$DOCKER_REPO:$tag"

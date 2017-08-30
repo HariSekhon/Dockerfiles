@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y make git && \
     apt-get autoremove -y && \
     apt-get clean
     # fails on pyspark progs as Spark installations are cleaned out after build test
-    # not necessary as make test is rung above
+    # not necessary as make test is run above
     #tests/help.sh
 #    make apk-packages-remove && \
 #    apk del make git py-pip

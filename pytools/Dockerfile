@@ -38,9 +38,13 @@ RUN apt-get update && apt-get install -y make git && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
     make build test clean && \
     make apt-packages-remove && \
-    apt-get purge -y make git python-pip && \
+    # leave git package as some tools use git
+    apt-get purge -y make && \
     apt-get autoremove -y && \
-    apt-get clean
+    apt-get clean && \
+    # fails on pyspark progs as Spark installations are cleaned out after build test
+    # not necessary as make test is rung above
+    #tests/help.sh
 #    make apk-packages-remove && \
 #    apk del make git py-pip
 

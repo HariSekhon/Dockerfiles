@@ -34,8 +34,7 @@ RUN \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     apk del make && \
     # basic test for missing dependencies again
-    tests/help.sh || \
-    { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }
+    tests/help.sh
 
 WORKDIR /github/nagios-plugins
 

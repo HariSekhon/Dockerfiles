@@ -26,20 +26,28 @@ WORKDIR /github
 RUN \
     x=nagios-plugins; \
     yum install -y git make && \
+    # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
+    #yum install -y ruby && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
     # The first compile fails with an upstream perl cpan error, second compile works
     make build || : ; \
-    make build zookeeper test clean && \
+    make build zookeeper && \
     make yum-packages-remove && \
+    # run tests after autoremove to check that no important packages we need get removed
+    make test clean && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     yum remove -y make && \
     # these will get autoremoved as dependencies of make
-    # TODO: setting these as yum install manually doesn't protect them from autoremove, fix this
+    # setting these as yum install manually doesn't protect them from autoremove by this point, must re-install afterwards :-/
     yum install -y perl-HTTP-Parser perl-Digest && \
     yum autoremove -y && \
+    # the above yum install should work in theory to mark these packages as manually installed but in practice doesn't :-/
     yum install -y perl-HTTP-Parser perl-Digest && \
+    # try autoremove again and then test to ensure these packages are safe by this point
+    yum autoremove -y && \
     yum clean all && \
+    # basic test for missing dependencies again
     tests/help.sh || \
     { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }
 

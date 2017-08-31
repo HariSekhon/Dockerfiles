@@ -28,10 +28,12 @@ RUN \
     apk add --no-cache git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build zookeeper test clean && \
+    make build zookeeper && \
     make apk-packages-remove && \
-    # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
+    make test clean && \
     apk del make && \
+    # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
+    # basic test for missing dependencies again
     tests/help.sh || \
     { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }
 

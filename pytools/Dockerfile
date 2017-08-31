@@ -36,17 +36,19 @@ RUN apt-get update && apt-get install -y make git && \
     cd /github/$x && \
     make && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
-    make build test clean && \
+    make build && \
     make apt-packages-remove && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    make test clean && \
     # leave git package as some tools use git
+#    apk del make py-pip
     apt-get purge -y make && \
     apt-get autoremove -y && \
     apt-get clean
-    # fails on pyspark progs as Spark installations are cleaned out after build test
-    # not necessary as make test is run above
+    # fails after make clean as local spark installations are removed
+    # basic test for missing dependencies again
     #tests/help.sh
-#    make apk-packages-remove && \
-#    apk del make git py-pip
 
 WORKDIR /github/pytools
 

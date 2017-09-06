@@ -46,6 +46,8 @@ RUN \
     yum install -y perl-HTTP-Parser perl-Digest && \
     # try autoremove again and then test to ensure these packages are safe by this point
     yum autoremove -y && \
+    # for some reason openssl ends up being missing here when it doesn't show up on manual autoremove
+    yum install -y openssl jwhois && \
     yum clean all && \
     # basic test for missing dependencies again
     tests/help.sh

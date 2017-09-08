@@ -72,11 +72,13 @@ RUN apk add --no-cache wget && \
 COPY entrypoint.sh /
 COPY conf/hbase-site.xml /hbase/conf/
 
+# HBase < 1.0 uses different ports
+#
 # Stargate  8080  / 8085
 # Thrift    9090  / 9095
-# HMaster   16000 / 16010
-# RS        16201 / 16301
-# HBase < 1.0 uses different ports
+# HMaster   60000 / 60010
+# RS        60201 / 60301
+#
 EXPOSE 2181 8080 8085 9090 9095 60000 60010 60201 60301
 
 CMD "/entrypoint.sh"

@@ -14,7 +14,7 @@
 
 version: '2.1'
 services:
-  hbase:
+  hbase-dev:
     image: harisekhon/hbase-dev:${VERSION:-latest}
     ports:
       - 2181:2181

@@ -74,10 +74,13 @@ COPY entrypoint.sh /
 COPY conf/hbase-site.xml /hbase/conf/
 COPY profile.d/java.sh /etc/profile.d/
 
+# HBase < 1.0 uses different ports
+#
 # Stargate  8080  / 8085
 # Thrift    9090  / 9095
-# HMaster   16000 / 16010
-# RS        16201 / 16301
+# HMaster   60000 / 60010
+# RS        60201 / 60301
+#
 EXPOSE 2181 8080 8085 9090 9095 60000 60010 60201 60301
 
 CMD "/entrypoint.sh"

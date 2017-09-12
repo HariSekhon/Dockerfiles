@@ -1,0 +1,12 @@
+*.bak
+*.md
+*.orig
+*.swp
+*.tmp
+.*
+.DS_Store
+.gitignore
+Dockerfile
+LICENSE
+Makefile
+docker-compose.yml

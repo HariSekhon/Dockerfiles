@@ -15,8 +15,12 @@
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-tag="alpine"
+tag="latest"
+
+IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")}"
+DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 
 docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
 docker push "$DOCKER_REPO:$tag"

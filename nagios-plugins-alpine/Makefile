@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/nagios-plugins
+REPO=harisekhon/nagios-plugins:alpine
 
 .PHONY: all
 all:

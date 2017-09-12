@@ -1,0 +1,9 @@
+*.bak
+*.md
+*.orig
+*.swp
+*.tmp
+.*
+LICENSE
+Makefile
+docker-compose.yml

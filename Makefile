@@ -39,7 +39,7 @@ nocache:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done
 
 .PHONY: pull
-pull:
+dockerpull:
 	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x; done
 #.PHONY: apt-packages
 #apt-packages:
@@ -70,6 +70,9 @@ test:
 .PHONY: push
 push:
 	git push --all
+
+pull:
+	for branch in $$(git branch -a); do git checkout $$branch && git pull || break ; done
 
 .PHONY: update
 update:

@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+# Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
+#FROM alpine:latest
+FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Perl Tools"
@@ -24,12 +26,18 @@ WORKDIR /github
 
 RUN \
     x=tools; \
-    apk add --no-cache git make && \
+    #apk add --no-cache git make && \
+    apt-get update && apt-get install -y git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build test clean && \
-    make apk-packages-remove && \
-    apk del git make
+    make build && \
+    make apt-packages-remove && \
+    make test clean && \
+    apt-get remove -y make git && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    # basic test for missing dependencies again
+    tests/help.sh
 
 WORKDIR /github/tools
 

@@ -27,15 +27,22 @@ RUN \
     x=nagios-plugins; \
     apt-get update && \
     apt-get install -y git make && \
+    # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
+    #apt-get install -y ruby && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make build zookeeper test clean && \
+    make build zookeeper && \
     make apt-packages-remove && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    # run tests after autoremove to check that no important packages we need get removed
+    make test clean && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     apt-get remove -y make && \
     apt-get autoremove -y && \
-    tests/help.sh || \
-    { for x in /home/travis/.cpanm/work/*/build.log; do echo "uploading $x"; curl -sT "$x" transfer.sh || :; curl -sT "$x" chunk.io || :; done; exit 1; }
+    apt-get clean && \
+    # basic test for missing dependencies again
+    tests/help.sh
 
 WORKDIR /github/nagios-plugins
 

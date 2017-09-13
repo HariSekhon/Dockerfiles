@@ -29,14 +29,24 @@ tests/check_docker-compose_images.sh
 
 tests/pytools_checks.sh
 
-echo
-
-echo "Checking post build hook scripts separately as they're not inferred by .sh extension"
-bash-tools/check_shell_syntax.sh */hooks/post_build
-
-bash-tools/all.sh
-
-echo
+if is_CI; then
+    branches="$(git branch -a |
+        sed '
+        s/^\* // ;
+        s/.*\/// ;
+        s/^[[:space:]]*// ;
+        s/[[:space:]]*$// ;
+        s/.*[[:space:]]// ;
+        s/)[[:space:]]*//
+        ' |
+        sort -u
+        )"
+    for branch in $branches; do
+        tests/test_branch.sh "$branch"
+    done
+else
+    tests/test_branch.sh
+fi
 
 tests/projects_without_docker-compose_yet.sh
 

@@ -21,7 +21,8 @@ ARG JAVA_RELEASE=JDK
 
 ENV JAVA_HOME=/usr
 
-RUN pkg="java-1.$JAVA_VERSION.0-openjdk"; \
+RUN set -euxo pipefail && \
+    pkg="java-1.$JAVA_VERSION.0-openjdk" && \
     if [ "$JAVA_RELEASE" = "JDK" ]; then \
         pkg="$pkg-devel"; \
     else \

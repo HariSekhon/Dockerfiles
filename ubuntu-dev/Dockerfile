@@ -20,7 +20,9 @@ ENV JAVA_HOME=/usr
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$JYTHON_HOME/bin
 
-RUN apt-get update && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
                        build-essential \
@@ -64,13 +66,14 @@ RUN apt-get update && \
     #apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
-    apt-get clean
+    apt-get clean'
 
 # Jython
-RUN \
+RUN bash -c ' \
+    set -euxo pipefail && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
     bash jython_install.sh && \
-    rm -f jython_install.sh jython_autoinstall.exp
+    rm -f jython_install.sh jython_autoinstall.exp'
 
 CMD /bin/bash

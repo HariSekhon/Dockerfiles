@@ -20,7 +20,8 @@ ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
-RUN yum update -y && \
+RUN set -euxo pipefail && \
+    yum update -y && \
     yum install -y \
     curl \
     cyrus-sasl-devel \
@@ -69,12 +70,14 @@ RUN yum update -y && \
     mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
 
 # Gradle doesn't have an RPM :-(
-RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+RUN set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
     bash install_gradle.sh && \
     rm -f install_gradle.sh
 
 # Jython
-RUN wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+RUN set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
     bash jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp

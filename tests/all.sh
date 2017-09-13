@@ -45,7 +45,7 @@ if is_CI; then
     sort -u
     )"
     for branch in $branches; do
-        tests/test_branch.sh "$branch"
+        tests/test_branch.sh "origin/$branch"
     done
 else
     tests/test_branch.sh

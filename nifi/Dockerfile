@@ -31,9 +31,11 @@ LABEL Description="Nifi" \
 
 WORKDIR /
 
-RUN apk add --no-cache bash openjdk8-jre-base
+RUN set -euxo pipefail && \
+    apk add --no-cache bash openjdk8-jre-base
 
-RUN apk add --no-cache wget tar && \
+RUN set -euxo pipefail && \
+    apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead

@@ -23,8 +23,8 @@ RUN mkdir -v /github
 WORKDIR /github
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN \
-    x=nagios-plugins; \
+RUN set -euxo pipefail && \
+    x=nagios-plugins && \
     yum install -y git make && \
     # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
     #yum install -y ruby && \

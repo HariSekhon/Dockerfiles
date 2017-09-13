@@ -30,17 +30,20 @@ tests/check_docker-compose_images.sh
 tests/pytools_checks.sh
 
 if is_CI; then
-    branches="$(git branch -a |
-        sed '
-        s/^\* // ;
-        s/.*\/// ;
-        s/^[[:space:]]*// ;
-        s/[[:space:]]*$// ;
-        s/.*[[:space:]]// ;
-        s/)[[:space:]]*//
-        ' |
-        sort -u
-        )"
+    branches="$(
+    git ls-remote |
+    awk '/\/heads\//{print $2}' |
+    sed 's,^refs/heads/,,' |
+    sed '
+    s/^\* // ;
+    s/.*\/// ;
+    s/^[[:space:]]*// ;
+    s/[[:space:]]*$// ;
+    s/.*[[:space:]]// ;
+    s/)[[:space:]]*//
+    ' |
+    sort -u
+    )"
     for branch in $branches; do
         tests/test_branch.sh "$branch"
     done

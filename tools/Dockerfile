@@ -24,8 +24,9 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-RUN \
-    x=tools; \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    x=tools && \
     #apk add --no-cache git make && \
     apt-get update && apt-get install -y git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
@@ -37,7 +38,7 @@ RUN \
     apt-get autoremove -y && \
     apt-get clean && \
     # basic test for missing dependencies again
-    tests/help.sh
+    tests/help.sh'
 
 WORKDIR /github/tools
 

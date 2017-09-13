@@ -18,12 +18,11 @@ LABEL Description="SuperSet (open source Analytics UI by AirBNB)"
 
 WORKDIR /
 
-# TODO: merge this back in to one layer once it's working so dev libs are never saved in the layers
-RUN yum upgrade python-setuptools && \
+RUN set -euxo pipefail && \
+    yum upgrade python-setuptools && \
     yum install -y epel-release && \
-    yum install -y gcc gcc-c++ libffi-devel python-devel python-pip python-wheel openssl-devel libsasl2-devel openldap-devel mysql-devel
-
-RUN pip install --upgrade setuptools pip && \
+    yum install -y gcc gcc-c++ libffi-devel python-devel python-pip python-wheel openssl-devel libsasl2-devel openldap-devel mysql-devel && \
+    pip install --upgrade setuptools pip && \
     pip install mysqlclient && \
     pip install pyhive && \
     # built on Superset 0.19 originally
@@ -31,9 +30,9 @@ RUN pip install --upgrade setuptools pip && \
     printf "admin\nadmin\nuser\nroot@localhost\nadmin\nadmin\n" | fabmanager create-admin --app superset && \
     superset db upgrade && \
     superset load_examples && \
-    superset init
-    #yum remove -y gcc gcc-c++ libffi-devel python-devel openssl-devel libsasl2-devel openldap-devel mysql-devel && \
-    #yum autoremove -y
+    superset init && \
+    yum remove -y gcc gcc-c++ libffi-devel python-devel openssl-devel libsasl2-devel openldap-devel mysql-devel && \
+    yum autoremove -y
 
 EXPOSE 8088
 

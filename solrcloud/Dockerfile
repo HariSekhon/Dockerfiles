@@ -37,9 +37,11 @@ WORKDIR /
 
 # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
 # Solr start script needs jar or unzip to extract war
-RUN apk add --no-cache bash openjdk8-jre-base lsof
+RUN set -euxo pipefail && \
+    apk add --no-cache bash openjdk8-jre-base lsof
 
-RUN apk add --no-cache wget tar && \
+RUN set -euxo pipefail && \
+    apk add --no-cache wget tar && \
     # Solr 4+ only
     url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLRCLOUD_VERSION/$TAR&action=download"; \
     url_archive="http://archive.apache.org/dist/lucene/solr/$SOLRCLOUD_VERSION/$TAR"; \
@@ -60,7 +62,8 @@ RUN apk add --no-cache wget tar && \
 COPY entrypoint.sh /
 COPY solr-start.sh /
 
-RUN adduser -S -s /bin/bash solr && \
+RUN set -euxo pipefail && \
+    adduser -S -s /bin/bash solr && \
     chown -R solr /solr* && \
     chmod 0555 /entrypoint.sh /solr-start.sh
 

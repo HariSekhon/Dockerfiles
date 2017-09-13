@@ -28,12 +28,14 @@ LABEL Description="Riak Dev" \
 #RUN OS=el DIST=6 curl "https://packagecloud.io/install/repositories/basho/riak/config_file.repo?os=${OS}&dist=${DIST}&name=basho_repo" > /etc/yum.repos.d/basho.repo && \
 
 # Riak 1.x
-#RUN yum install -y http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm && \
+#RUN set -euxo pipefail && \
+#    yum install -y http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm && \
 #    yum install -y riak-$RIAK_VERSION && \
 #    yum autoremove -y && \
 #    yum clean all
 # Riak 2.x
-RUN yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/${RIAK_VERSION%.[[:digit:]]*}/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
+RUN set -euxo pipefail && \
+    yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/${RIAK_VERSION%.[[:digit:]]*}/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
     yum autoremove -y && \
     yum clean all
 

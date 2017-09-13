@@ -26,11 +26,15 @@ RUN mkdir -v /github
 WORKDIR /github
 
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
-#RUN apk add --no-cache make git && \
+#RUN set -euxo pipefail && \
+    #apk add --no-cache make git && \
     # allows numpy to compile with musl instead of glibc
     #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
-RUN apt-get update && apt-get install -y make git && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    apt-get update && \
+    apt-get install -y make git && \
     x=pytools && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
@@ -45,22 +49,25 @@ RUN apt-get update && apt-get install -y make git && \
 #    apk del make py-pip
     apt-get purge -y make && \
     apt-get autoremove -y && \
-    apt-get clean
+    apt-get clean \
     # fails after make clean as local spark installations are removed
     # basic test for missing dependencies again
     #tests/help.sh
+    '
 
 WORKDIR /github/pytools
 
 # Jython
-RUN \
+RUN bash -c ' \
+    set -euxo pipefail && \
     #apk add --no-cache wget expect && \
     apt-get update && apt-get install -y wget expect && \
     sh jython_install.sh && \
     apt-get purge -y wget expect && \
     apt-get autoremove -y && \
-    apt-get clean
+    apt-get clean \
     #apk del wget expect
+    '
 
 COPY profile.d/java.sh /etc/profile.d/
 

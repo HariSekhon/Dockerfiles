@@ -24,11 +24,12 @@ LABEL Description="TeamCity", \
 
 WORKDIR /opt
 
-RUN \
+RUN set -euxo pipefail && \
     yum install -y tar && \
     curl -L "https://download.jetbrains.com/teamcity/$TAR" > "$TAR" && \
     tar zxf "$TAR" && \
-    yum remove -y tar && \
+    # fails as it tries to remove systemd
+    #yum remove -y tar && \
     yum autoremove -y && \
     yum clean all
 

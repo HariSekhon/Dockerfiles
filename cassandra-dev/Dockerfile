@@ -15,7 +15,7 @@
 # can't base off Cassandra as it's missing deps to run the tools
 # and official Cassandra versions only go back to 2.1 and miss in between versions like 3.5, 3.6 which I still test against
 #FROM cassandra:latest
-FROM harisekhon/nagios-plugins:latest
+FROM harisekhon/nagios-plugins:alpine
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ENV PATH $PATH:/cassandra/bin
@@ -39,9 +39,11 @@ LABEL Description="Cassandra Dev", \
 
 WORKDIR /
 
-RUN apk add --no-cache openjdk8-jre-base py-pip
+RUN set -euxo pipefail && \
+    apk add --no-cache openjdk8-jre-base py-pip
 
-RUN apk add --no-cache wget && \
+RUN set -euxo pipefail && \
+    apk add --no-cache wget && \
     url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     url_archive="http://archive.apache.org/dist/cassandra/${CASSANDRA_VERSION}/${TAR}"; \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
@@ -62,7 +64,8 @@ RUN apk add --no-cache wget && \
     apk del wget
 
 # cassandra refuses to run as root without -R, just run as regular useraddgroup -S cassandra id=501 && adduser -S -G cassandra --uid=501 cassandra && \
-RUN adduser -D -u 501 cassandra && \
+RUN set -euxo pipefail && \
+    adduser -D -u 501 cassandra && \
     mkdir /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \
     sed -i 's,cassandra:/bin/false,cassandra:/bin/bash,' /etc/passwd && \

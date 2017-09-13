@@ -24,8 +24,9 @@ RUN mkdir -v /github
 WORKDIR /github
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN \
-    x=nagios-plugins; \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    x=nagios-plugins && \
     apt-get update && \
     apt-get install -y git make && \
     # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
@@ -43,7 +44,8 @@ RUN \
     apt-get autoremove -y && \
     apt-get clean && \
     # basic test for missing dependencies again
-    tests/help.sh
+    tests/help.sh \
+    '
 
 WORKDIR /github/nagios-plugins
 

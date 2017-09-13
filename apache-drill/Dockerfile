@@ -44,10 +44,12 @@ LABEL Description="Apache Drill" \
 WORKDIR /
 
 # supervisor is used to run apache-drill standalone for nagios checks
-RUN apk add --no-cache bash openjdk8-jre-base supervisor which && \
+RUN set -euxo pipefail && \
+    apk add --no-cache bash openjdk8-jre-base supervisor which && \
     mkdir -p /etc/supervisor.d
 
-RUN apk add --no-cache wget tar && \
+RUN set -euxo pipefail && \
+    apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
@@ -63,7 +65,7 @@ RUN apk add --no-cache wget tar && \
     apk del tar wget
 
 # need to keep this here to make it easier to launch supervisor with just a ZOOKEEPER_HOST and DRILL_HEAP environment variables
-RUN \
+RUN set -euxo pipefail && \
     # for older versions
     sed -i -e "s/-Xms1G/-Xms\$DRILL_MAX_HEAP/" apache-drill/conf/drill-env.sh && \
     sed -i -e "s/^DRILL_MAX_HEAP=.*/DRILL_MAX_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh && \

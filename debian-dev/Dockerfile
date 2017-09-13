@@ -20,7 +20,9 @@ ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
-RUN apt-get update && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    apt-get update && \
     apt-get upgrade -y && \
     # --no-install-recommends breaks sbt download due to missing gnupg, even adding gnupg + gnupg1 + gnupg2 manually it still breaks on download manager when trying to get sbt
     apt-get install -y \
@@ -71,17 +73,24 @@ RUN apt-get update && \
     #apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
-    apt-get clean
+    apt-get clean \
+    '
 
 # Gradle in Debian is old 1.5 :-(
-RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
     bash install_gradle.sh && \
-    rm -f install_gradle.sh
+    rm -f install_gradle.sh \
+    '
 
 # Jython
-RUN wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
     bash jython_install.sh && \
-    rm -f jython_install.sh jython_autoinstall.exp
+    rm -f jython_install.sh jython_autoinstall.exp \
+    '
 
 CMD /bin/bash

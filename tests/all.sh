@@ -29,7 +29,10 @@ tests/pytools_checks.sh
 # - don't want PyTools checks applying to all branches because
 #   they already check out every branch to test alignment of version numbers before commit + push
 #   doing CI against every branch would become a multiplier of all branches vs all branches
-if is_CI; then
+#
+# XXX: doesn't work Travis fails to check out any branches
+if false; then
+#if is_CI; then
     branches="$(
     git ls-remote |
     awk '/\/heads\//{print $2}' |

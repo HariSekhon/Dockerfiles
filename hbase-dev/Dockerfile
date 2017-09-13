@@ -31,7 +31,8 @@ LABEL Description="HBase Dev", \
 
 WORKDIR /
 
-RUN apk add --no-cache wget && \
+RUN set -euxo pipefail && \
+    apk add --no-cache wget && \
     # HBase 0.94
     if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \

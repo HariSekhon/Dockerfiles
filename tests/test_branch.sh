@@ -39,6 +39,10 @@ fi
 
 echo
 
+tests/check_repo_names.sh
+
+tests/check_docker-compose_images.sh
+
 echo "Checking post build hook scripts separately as they're not inferred by .sh extension"
 bash-tools/check_shell_syntax.sh */hooks/post_build
 

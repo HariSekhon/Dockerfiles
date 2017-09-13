@@ -34,6 +34,7 @@ WORKDIR /
 
 # debian uses sh -c by default which doesn't recognize the ${var:n:n}
 RUN bash -c '\
+    set -euxo pipefail && \
     apt-get update && \
     apt-get install -y --no-install-recommends wget && \
     # Apache only ships source, don't want entire dev tooling in image
@@ -59,7 +60,8 @@ RUN bash -c '\
     elif [ "${MESOS_VERSION:0:4}" = "0.28" ]; then file="mesos_$MESOS_VERSION-2.0.27.debian81_amd64.deb"; \
     else echo "unexpected mesos version"; exit 1; fi && \
     wget -t 10 --retry-connrefused "http://repos.mesosphere.com/debian/pool/main/m/mesos/$file" && \
-    dpkg -i mesos*.deb; \
+    #apt-get install ./mesos*.deb && \
+    dpkg -i mesos*.deb || :; \
     apt-get install -yf && \
     dpkg -i mesos*.deb && \
     # attempting to remove tar causes unmet dependency breakage

@@ -37,7 +37,7 @@ if [ -t 0 ]; then
     sqlline -u jdbc:drill:zk=local
 else
     echo "
-Running non-interactively, will not open Apache Drill shell
+Running non-interactively, will not open Apache Drill SQL shell
 
 For Apache Drill shell start this image with 'docker run -t -i' switches
 

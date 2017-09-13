@@ -37,9 +37,11 @@ LABEL Description="Solr", \
 WORKDIR /
 
 # Solr start script needs jar or unzip to extract war
-RUN apk add --no-cache bash openjdk8-jre-base
+RUN set -euxo pipefail && \
+    apk add --no-cache bash openjdk8-jre-base
 
-RUN apk add --no-cache wget tar && \
+RUN set -euxo pipefail && \
+    apk add --no-cache wget tar && \
     # Solr 3.x has a different tarball
     if [ "${SOLR_VERSION:0:1}" = 3 ]; then \
         url="http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/apache-solr-$SOLR_VERSION.tgz"; \
@@ -66,7 +68,9 @@ RUN apk add --no-cache wget tar && \
 COPY entrypoint.sh /
 COPY solr-start.sh /
 
-RUN adduser -S -s /bin/bash solr && \
+RUN set -euxo pipefail && \
+    set -euxo pipefail && \
+    adduser -S -s /bin/bash solr && \
     chown -R solr /solr* && \
     chmod 0555 /entrypoint.sh /solr-start.sh
 

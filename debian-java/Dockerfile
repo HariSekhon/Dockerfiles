@@ -23,7 +23,9 @@ ARG JAVA_RELEASE=JRE
 
 ENV JAVA_HOME=/usr
 
-RUN apt-get update && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    apt-get update && \
     pkg="openjdk-$JAVA_VERSION"; \
     if [ "$JAVA_RELEASE" = "JDK" ]; then \
         pkg="$pkg-jdk"; \
@@ -31,7 +33,8 @@ RUN apt-get update && \
         pkg="$pkg-jre-headless"; \
     fi; \
     apt-get install -y --no-install-recommends "$pkg" && \
-    apt-get clean
+    apt-get clean \
+    '
 
 COPY profile.d/java.sh /etc/profile.d/
 

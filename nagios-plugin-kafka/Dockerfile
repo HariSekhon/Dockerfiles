@@ -22,9 +22,11 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-RUN apk add --no-cache bash openjdk7
+RUN set -euxo pipefail && \
+    apk add --no-cache bash openjdk7
 
-RUN apk add --no-cache git make alpine-sdk && \
+RUN set -euxo pipefail && \
+    apk add --no-cache git make alpine-sdk && \
     x=nagios-plugin-kafka; \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \

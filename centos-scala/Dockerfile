@@ -18,6 +18,7 @@ ARG SCALA_VERSION=2.11.7
 
 LABEL Description="Scala + CentOS (+OpenJDK)"
 
-RUN rpm -ivh http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm
+RUN set -euxo pipefail && \
+    rpm -ivh http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm
 
 CMD /bin/bash

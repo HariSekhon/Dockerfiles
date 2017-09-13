@@ -25,6 +25,10 @@ section "Dockerfiles checks"
 
 tests/pytools_checks.sh
 
+# in Travis we only test master branch
+# - don't want PyTools checks applying to all branches because
+#   they already check out every branch to test alignment of version numbers before commit + push
+#   doing CI against every branch would become a multiplier of all branches vs all branches
 if is_CI; then
     branches="$(
     git ls-remote |
@@ -41,7 +45,7 @@ if is_CI; then
     sort -u
     )"
     for branch in $branches; do
-        tests/test_branch.sh "origin/$branch"
+        tests/test_branch.sh "$branch"
     done
 else
     tests/test_branch.sh

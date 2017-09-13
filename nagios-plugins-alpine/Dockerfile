@@ -23,8 +23,8 @@ RUN mkdir -v /github
 WORKDIR /github
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN \
-    x=nagios-plugins; \
+RUN set -euxo pipefail && \
+    x=nagios-plugins && \
     apk add --no-cache git make && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \

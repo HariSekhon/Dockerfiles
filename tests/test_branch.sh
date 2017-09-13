@@ -33,6 +33,7 @@ original_branch="$(git branch | awk '/\*/ {print $2}')"
 
 if [ -n "$branch" ]; then
     echo "Checking out branch $branch"
+    git fetch "$branch"
     git checkout "$branch"
 fi
 

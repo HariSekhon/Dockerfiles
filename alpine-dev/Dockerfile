@@ -24,7 +24,8 @@ ENV SBT_HOME=/opt/sbt
 
 ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bin:$SBT_HOME/bin
 
-RUN mkdir -p /opt && \
+RUN set -euxo pipefail && \
+    mkdir -p /opt && \
     apk add --no-cache \
     acf-openssl \
     bash \
@@ -64,28 +65,33 @@ RUN mkdir -p /opt && \
 # doesn't have Gradle / Groovy / Maven / SBT packages ...
 
 # Gradle
-RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+RUN set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
     sh install_gradle.sh && \
     rm -f install_gradle.sh
 
 # Groovy
-RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh && \
+RUN set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh && \
     sh install_groovy.sh && \
     rm -f install_groovy.sh
 
 # Jython
-RUN wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
+RUN set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
     sh jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
 
 # Maven
-RUN wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh && \
+RUN set -euxo pipefail && \
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh && \
     sh install_maven.sh && \
     rm -f install_maven.sh
 
 # SBT
-RUN cd /opt && \
+RUN set -euxo pipefail && \
+    cd /opt && \
     wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh && \
     sh install_sbt.sh && \
     rm -f install_sbt.sh

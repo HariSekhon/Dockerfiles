@@ -23,7 +23,7 @@ RUN mkdir -vp /github
 
 WORKDIR /github
 
-RUN \
+RUN set -euxo pipefail && \
     x=spark-apps; \
     yum install -y make git maven && \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \

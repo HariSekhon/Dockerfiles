@@ -22,7 +22,7 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-RUN \
+RUN set -euxo pipefail && \
     x=spotify-tools; \
     apk add --no-cache make git && \
     git clone https://github.com/harisekhon/$x /github/$x && \

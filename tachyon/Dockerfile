@@ -32,7 +32,9 @@ LABEL Description="Tachyon from BDAS" \
 WORKDIR /
 
 #RUN yum install -y sudo openssh-server && yum clean all
-RUN apt-get update && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    apt-get update && \
     apt-get install -y --no-install-recommends sudo openssh-server wget tar && \
     wget -t 100 --retry-connrefused -O "tachyon-${TACHYON_VERSION}-bin.tar.gz" "http://tachyon-project.org/downloads/files/${TACHYON_VERSION}/tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
     tar zxf "tachyon-${TACHYON_VERSION}-bin.tar.gz" && \
@@ -45,7 +47,7 @@ RUN apt-get update && \
     # attempting to remove tar causes unmet dependency breakage
     apt-get remove -y wget && \
     apt-get autoremove -y && \
-    apt-get clean
+    apt-get clean'
 
 COPY entrypoint.sh /
 

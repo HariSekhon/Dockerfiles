@@ -89,7 +89,7 @@ More specific information can be found in the readme page under each respective 
 - [Mesos](http://mesos.apache.org/) - datacenter resource manager by [Mesosphere](https://mesosphere.com/) (mostly obsoleted by more free Hortonworks / Hadoop Yarn resource manager)
 - [Nifi](https://nifi.apache.org/) - IOT data flow engine by NSA and [Hortonworks](https://hortonworks.com/)
 - [Presto](https://prestodb.io/) - distributed SQL engine by Facebook (opens Presto SQL shell)
-- [RabbitMQ](https://www.rabbitmq.com/) Cluster - pub-sub message queue broker by [Pivotal](https://pivotal.io/) (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
+- [RabbitMQ](https://www.rabbitmq.com/) Cluster - pub-sub message queue broker by [Pivotal](https://pivotal.io/) (extension of RabbitMQ official image with added plugins)
 - [Riak KV](http://basho.com/products/riak-kv/) - distributed NoSQL datastore by [Basho](http://basho.com/)
 - [Riak KV](http://basho.com/products/riak-kv/) (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Serf](https://www.serf.io/) - decentralized cluster coordination engine by [HashiCorp](https://www.hashicorp.com/)

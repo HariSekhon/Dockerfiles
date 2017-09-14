@@ -106,7 +106,8 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 - [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 350+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
   - Tags:
-    - nagios-plugins:latest (alpine)
+    - nagios-plugins:latest (centos)
+    - nagios-plugins:alpine
     - nagios-plugins:centos
     - nagios-plugins:debian
     - nagios-plugins:ubuntu

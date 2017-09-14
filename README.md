@@ -4,7 +4,7 @@ Hari Sekhon Docker
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-##### Contains 41 repos with over 140 tags, many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
+##### Contains 42 repos with over 140 tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory):
 
 * Hadoop, Big Data, NoSQL & OS images
 * [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built

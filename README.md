@@ -82,23 +82,23 @@ More specific information can be found in the readme page under each respective 
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
 - [H2O](https://www.h2o.ai/) - distributed machine learning framework by [0xdata](https://www.h2o.ai/)
-- [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn) - distributed storage and compute cluster by Yahoo and [Hortonworks](https://hortonworks.com/)
+- [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn) - distributed storage and compute cluster by Yahoo, [Cloudera](https://www.cloudera.com/) and [Hortonworks](https://hortonworks.com/)
 - [HBase](https://hbase.apache.org/) - distributed NoSQL datastore by Facebook (opens HBase shell)
 - [Jython](http://www.jython.org/) - Python on Java JVM (useful for Hadoop python utilities using Hadoop's Java API. eg. [PyTools](https://github.com/harisekhon/pytools))
 - [Kafka](https://kafka.apache.org/) - pub-sub data broker by [LinkedIn](https://www.linkedin.com) and [Confluent](https://www.confluent.io/)
-- [Mesos](http://mesos.apache.org/) - datacenter resource manager by [Mesosphere](https://mesosphere.com/) (mostly obsoleted by more free Hortonworks / Hadoop / Yarn resource manager)
+- [Mesos](http://mesos.apache.org/) - datacenter resource manager by [Mesosphere](https://mesosphere.com/) (mostly obsoleted by more free Hortonworks / Hadoop Yarn resource manager)
 - [Nifi](https://nifi.apache.org/) - IOT data flow engine by NSA and [Hortonworks](https://hortonworks.com/)
 - [Presto](https://prestodb.io/) - distributed SQL engine by Facebook (opens Presto SQL shell)
 - [RabbitMQ](https://www.rabbitmq.com/) Cluster - pub-sub message queue broker by [Pivotal](https://pivotal.io/) (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
 - [Riak KV](http://basho.com/products/riak-kv/) - distributed NoSQL datastore by [Basho](http://basho.com/)
 - [Riak KV](http://basho.com/products/riak-kv/) (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
-- [Serf](https://www.serf.io/) - decentralized cluster coordination enginer by [HashiCorp](https://www.hashicorp.com/)
+- [Serf](https://www.serf.io/) - decentralized cluster coordination engine by [HashiCorp](https://www.hashicorp.com/)
 - [Solr](http://lucene.apache.org/solr/) - mature indexing engine built on Lucene search library
 - [SolrCloud](http://lucene.apache.org/solr/) - clustered distributed indexing engine version of Solr
 - [Spark](https://spark.apache.org/) - fast distributed cluster compute engine usually used on Hadoop, by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/) and [Databricks](https://databricks.com/) (opens Spark shell)
 - [Superset](http://airbnb.io/projects/superset/) - data visualization by [Airbnb](https://www.airbnb.com/)
 - [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0) - distributed memory based storage by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
-- [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell) - distributed coordination and sychronization service
+- [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell) - distributed coordination and sychronization service by Yahoo
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  Author: Hari Sekhon
+#  Date: 2017-09-13 14:47:28 +0200 (Wed, 13 Sep 2017)
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+set -euo pipefail
+[ -n "${DEBUG:-}" ] && set -x
+
+if [ -z "${SOURCE_BRANCH:-}" ]; then
+    SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
+fi
+# readlink is not portable across Linux + Mac
+docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
+docker_branch_base="${docker_branch_base%-dev}"
+docker_branch_base="${docker_branch_base%-cluster}"
+docker_version_base="${docker_branch_base//-/_}"
+docker_branch_base="${docker_branch_base/solrcloud/solr}"
+if [ "$docker_branch_base" = "kafka" ]; then
+    latest_tag="2.11-0.9"
+else
+    latest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+fi
+
+if [ "$SOURCE_BRANCH" = "$docker_branch_base-$latest_tag" ]; then
+    for tag in latest ${latest_tag%%.*}; do
+        docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
+        docker push "$DOCKER_REPO:$tag"
+    done
+fi

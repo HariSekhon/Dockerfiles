@@ -78,7 +78,7 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
 
 - [Alluxio](http://www.alluxio.org/)
-- [Apache Drill](https://drill.apache.org/) (opens Drill shell)
+- [Apache Drill](https://drill.apache.org/) (opens Drill SQL shell)
 - [Cassandra](http://cassandra.apache.org/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Consul](https://www.consul.io/)
 - [H2O](https://www.h2o.ai/) by 0xdata
@@ -88,6 +88,7 @@ More specific information can be found in the readme page under each respective 
 - [Kafka](https://kafka.apache.org/)
 - [Mesos](http://mesos.apache.org/)
 - [Nifi](https://nifi.apache.org/)
+- [Presto](https://prestodb.io/) SQL engine by Facebook (opens Presto SQL shell)
 - [RabbitMQ](https://www.rabbitmq.com/) Cluster (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
 - [Riak KV](http://basho.com/products/riak-kv/)
 - [Riak KV](http://basho.com/products/riak-kv/) (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))

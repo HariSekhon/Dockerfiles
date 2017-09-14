@@ -15,6 +15,8 @@ Hari Sekhon
 
 Big Data Contractor, United Kingdom
 
+(ex-Cloudera, Hortonworks Consultant)
+
 https://www.linkedin.com/in/harisekhon
 ###### (you're welcome to connect with me on LinkedIn)
 

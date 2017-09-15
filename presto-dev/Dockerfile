@@ -41,13 +41,13 @@ RUN set -euxo pipefail && \
     server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_DEVELOPMENT_VERSION}/presto-server-${PRESTO_DEVELOPMENT_VERSION}.tar.gz" && \
     cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_DEVELOPMENT_VERSION}/presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
     wget -t 10 --retry-connrefused -O "${TAR}" "$server_url" && \
-    wget -t 10 --retry-connrefused "$cli_url" && \
     test -s "${TAR}" && \
     tar zxf "${TAR}" && \
     # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
     test -d "presto-server-${PRESTO_DEVELOPMENT_VERSION}" && \
     rm -fv  "${TAR}" && \
     ln -sv "presto-server-${PRESTO_DEVELOPMENT_VERSION}" presto && \
+    wget -t 10 --retry-connrefused "$cli_url" && \
     test -s "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
     chmod +x "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
     mv -v "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/ && \

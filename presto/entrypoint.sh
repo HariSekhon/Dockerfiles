@@ -21,7 +21,7 @@ export JAVA_HOME="${JAVA_HOME:-/usr}"
 
 if [ -t 0 ]; then
     # start as a daemon
-    echo "Starting Presto engine as daemon:
+    echo "Starting Presto engine as a daemon:
 "
     /presto/bin/launcher start
     sleep 5

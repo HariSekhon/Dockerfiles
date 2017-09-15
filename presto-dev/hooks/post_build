@@ -19,7 +19,12 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # DockerHub will always build latest from master, so find out what the latest tag is and tag this build as such
 
-# There is a race condition here between the time we call get_presto_versions.sh to do the build and them potentially publishing a new build before we call it again here
+IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")}"
+DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
+
+# There is a race condition here between the time we call get_presto_versions.sh in Dockerfile to do the build and
+# calling it again here to get the latest version, Facebook could potentially publish a new build in the interim
+# which would result in an incorrect tagging until the next run
 latest_tag="$("$srcdir/../get_presto_versions.sh" | head -n1)"
 
 docker tag "$DOCKER_IMAGE" "$DOCKER_REPO:$tag"

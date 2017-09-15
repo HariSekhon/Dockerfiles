@@ -35,7 +35,7 @@ RUN set -euxo pipefail && \
 RUN set -euxo pipefail && \
     apk add --no-cache wget tar && \
     server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz" && \
-    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.184/presto-cli-${PRESTO_VERSION}-executable.jar" && \
+    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar" && \
     wget -t 10 --retry-connrefused -O "${TAR}" "$server_url" && \
     wget -t 10 --retry-connrefused "$cli_url" && \
     test -s "${TAR}" && \

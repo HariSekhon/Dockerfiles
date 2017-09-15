@@ -14,14 +14,14 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG PRESTO_VERSION=0.184
+ARG PRESTO_DEVELOPMENT_VERSION=""
 
-ARG TAR="presto-server-${PRESTO_VERSION}.tar.gz"
+ARG TAR="presto-server-${PRESTO_DEVELOPMENT_VERSION}.tar.gz"
 
 ENV PATH $PATH:/presto/bin
 
 LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_VERSION"
+      "Presto SQL Version"="$PRESTO_DEVELOPMENT_VERSION"
 
 WORKDIR /
 
@@ -34,20 +34,24 @@ RUN set -euxo pipefail && \
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget tar && \
-    server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz" && \
-    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.184/presto-cli-${PRESTO_VERSION}-executable.jar" && \
+    if [ -z "$PRESTO_DEVELOPMENT_VERSION" ]; then \
+        # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_DEVELOPMENT_VERSION as part of make build to know the image to push
+        PRESTO_DEVELOPMENT_VERSION=$(./get_presto_versions.sh | head -n1); \
+    fi && \
+    server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_DEVELOPMENT_VERSION}/presto-server-${PRESTO_DEVELOPMENT_VERSION}.tar.gz" && \
+    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_DEVELOPMENT_VERSION}/presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
     wget -t 10 --retry-connrefused -O "${TAR}" "$server_url" && \
     wget -t 10 --retry-connrefused "$cli_url" && \
     test -s "${TAR}" && \
     tar zxf "${TAR}" && \
     # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
-    test -d "presto-server-${PRESTO_VERSION}" && \
+    test -d "presto-server-${PRESTO_DEVELOPMENT_VERSION}" && \
     rm -fv  "${TAR}" && \
-    ln -sv "presto-server-${PRESTO_VERSION}" presto && \
-    test -s "presto-cli-${PRESTO_VERSION}-executable.jar" && \
-    chmod +x "presto-cli-${PRESTO_VERSION}-executable.jar" && \
-    mv -v "presto-cli-${PRESTO_VERSION}-executable.jar" presto/bin/ && \
-    ln -sv "presto-cli-${PRESTO_VERSION}-executable.jar" presto/bin/presto && \
+    ln -sv "presto-server-${PRESTO_DEVELOPMENT_VERSION}" presto && \
+    test -s "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
+    chmod +x "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
+    mv -v "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/ && \
+    ln -sv "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/presto && \
     apk del tar wget
 
 COPY entrypoint.sh /

@@ -14,7 +14,7 @@
 
 version: '2.1'
 services:
-  presto:
-    image: harisekhon/presto:${VERSION:-latest}
+  presto-dev:
+    image: harisekhon/presto-dev:${VERSION:-latest}
     ports:
       - 8080:8080

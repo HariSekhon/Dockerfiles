@@ -43,6 +43,8 @@ else
     get_pytools
 fi
 
+validate_json.py .
+
 dockerfiles_check_git_branches.py .
 
 git_check_branches_upstream.py .

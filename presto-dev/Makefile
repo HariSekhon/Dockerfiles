@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/presto
+REPO=harisekhon/presto-dev
 
 TAG=$(shell ./get_presto_versions.sh | head -n1)
 
@@ -38,6 +38,7 @@ nocache:
 .PHONY: push
 push:
 	docker push $(REPO):$(TAG)
+	hooks/post_build
 
 .PHONY: run
 run:

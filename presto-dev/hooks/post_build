@@ -15,25 +15,12 @@
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ -z "${SOURCE_BRANCH:-}" ]; then
-    SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
-fi
-# readlink is not portable across Linux + Mac
-docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
-docker_branch_base="${docker_branch_base%-dev}"
-docker_branch_base="${docker_branch_base%-cluster}"
-docker_version_base="${docker_branch_base//-/_}"
-docker_branch_base="${docker_branch_base/solrcloud/solr}"
-if [ "$docker_branch_base" = "kafka" ]; then
-    latest_tag="2.11-0.9"
-else
-    latest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
-fi
+# DockerHub will always build latest from master, so find out what the latest tag is and tag this build as such
 
-if [ "$SOURCE_BRANCH" = "$docker_branch_base-$latest_tag" ]; then
-    for tag in latest ${latest_tag%%.*}; do
-        docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
-        docker push "$DOCKER_REPO:$tag"
-    done
-fi
+# There is a race condition here between the time we call get_presto_versions.sh to do the build and them potentially publishing a new build before we call it again here
+latest_tag="$("$srcdir/../get_presto_versions.sh" | head -n1)"
+
+docker tag "$DOCKER_IMAGE" "$DOCKER_REPO:$tag"
+docker push "$DOCKER_REPO:$tag"

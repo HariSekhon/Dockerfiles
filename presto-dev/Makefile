@@ -13,11 +13,7 @@
 
 REPO=harisekhon/presto
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
-
-ifdef LATEST
-	TAG=latest
-endif
+TAG=$(shell ./get_presto_versions.sh | head -n1)
 
 .PHONY: all
 all:
@@ -25,11 +21,19 @@ all:
 
 .PHONY: build
 build:
-	docker build -t $(REPO):$(TAG) .
+	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) .
+
+.PHONY: history
+history:
+	./build_historic_versions.sh
+
+.PHONY: history
+history-push:
+	PUSH=1 ./build_historic_versions.sh
 
 .PHONY: nocache
 nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
+	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) --no-cache .
 
 .PHONY: push
 push:

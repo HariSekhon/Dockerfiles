@@ -25,7 +25,18 @@ DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 # There is a race condition here between the time we call get_presto_versions.sh in Dockerfile to do the build and
 # calling it again here to get the latest version, Facebook could potentially publish a new build in the interim
 # which would result in an incorrect tagging until the next run
-latest_tag="$("$srcdir/../get_presto_versions.sh" | head -n1)"
+latest_version="$("$srcdir/../get_presto_versions.sh" | head -n1)"
 
-docker tag "$DOCKER_IMAGE" "$DOCKER_REPO:$tag"
-docker push "$DOCKER_REPO:$tag"
+tag="${IMAGE_NAME#*:}"
+
+if [ "$tag" = "latest" ]; then
+    # we are running in DockerHub latest build and should tag the actual version number and push that
+    docker tag "$IMAGE_NAME:latest" "$DOCKER_REPO:$latest_version"
+    docker push "$DOCKER_REPO:$latest_version"
+# if [ "$tag" = "$latest_version" ]; then
+else
+    # we are running locally via Make which explicitly builds newest version
+    # in which case we should tag as latest and push latest
+    docker tag "$IMAGE_NAME:$latest_version" "$DOCKER_REPO:latest"
+    docker push "$DOCKER_REPO:latest"
+fi

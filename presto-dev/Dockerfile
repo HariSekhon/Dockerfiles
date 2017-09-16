@@ -29,11 +29,14 @@ WORKDIR /
 # java   => presto engine
 # python => launcher script
 # less   => presto pager
+# curl   => ./get_presto_version.sh
 RUN set -euxo pipefail && \
     apk add --no-cache bash openjdk8-jre-base python less
 
+COPY get_presto_versions.sh /
+
 RUN set -euxo pipefail && \
-    apk add --no-cache wget tar && \
+    apk add --no-cache curl wget tar && \
     if [ -z "$PRESTO_DEVELOPMENT_VERSION" ]; then \
         # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_DEVELOPMENT_VERSION as part of make build to know the image to push
         PRESTO_DEVELOPMENT_VERSION=$(./get_presto_versions.sh | head -n1); \
@@ -52,7 +55,8 @@ RUN set -euxo pipefail && \
     chmod +x "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
     mv -v "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/ && \
     ln -sv "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/presto && \
-    apk del tar wget
+    rm -v get_presto_version.sh && \
+    apk del curl tar wget
 
 COPY entrypoint.sh /
 COPY etc /presto/etc

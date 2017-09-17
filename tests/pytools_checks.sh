@@ -45,6 +45,8 @@ fi
 
 validate_json.py .
 
+validate_ini.py .
+
 dockerfiles_check_git_branches.py .
 
 git_check_branches_upstream.py .

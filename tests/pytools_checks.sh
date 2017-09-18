@@ -43,12 +43,21 @@ else
     get_pytools
 fi
 
-validate_json.py .
-
-validate_ini.py .
+echo
+echo "Running validation programs:"
+echo
+for x in validate_*.py; do
+    [ "$x" = validate_multimedia.py ] && continue
+    echo "$x: "
+    ./$x .
+    echo
+done
+echo
 
 dockerfiles_check_git_branches.py .
+echo
 
 git_check_branches_upstream.py .
+echo
 
 popd

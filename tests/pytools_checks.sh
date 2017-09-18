@@ -15,10 +15,11 @@
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Dockerfiles PyTools Checks"
 
-pushd "`dirname ${BASH_SOURCE[0]}`/.."
+pushd "$srcdir/.."
 
 export PATH=$PATH:$PWD/pytools_checks
 
@@ -50,11 +51,11 @@ echo
 for x in validate_*.py; do
     [ "$x" = validate_multimedia.py ] && continue
     echo "$x: "
-    ./$x .
+    ./$x "$srcdir/.."
     echo
 done
 echo
-popd"
+popd
 
 dockerfiles_check_git_branches.py .
 echo

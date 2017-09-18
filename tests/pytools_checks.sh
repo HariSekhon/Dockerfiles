@@ -45,7 +45,7 @@ fi
 
 echo
 echo "Running validation programs:"
-pushd "$(dirname "$(which validate_json.py)")"
+pushd "$(dirname "$(which validate_ini.py)")"
 echo
 for x in validate_*.py; do
     [ "$x" = validate_multimedia.py ] && continue

@@ -45,14 +45,16 @@ fi
 
 echo
 echo "Running validation programs:"
+pushd "$(which validate_json.py)"
 echo
 for x in validate_*.py; do
     [ "$x" = validate_multimedia.py ] && continue
     echo "$x: "
-    $x .
+    ./$x .
     echo
 done
 echo
+popd"
 
 dockerfiles_check_git_branches.py .
 echo

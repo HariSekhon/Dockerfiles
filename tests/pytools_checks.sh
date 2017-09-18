@@ -49,7 +49,7 @@ echo
 for x in validate_*.py; do
     [ "$x" = validate_multimedia.py ] && continue
     echo "$x: "
-    ./$x .
+    $x .
     echo
 done
 echo

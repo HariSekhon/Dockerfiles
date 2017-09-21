@@ -11,12 +11,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM centos:7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG PRESTO_VERSION=0.184
-
-ARG TAR="presto-server-${PRESTO_VERSION}.tar.gz"
+ARG PRESTO_VERSION=0.167
+ARG PRESTO_PKG_RELEASE=0.2
 
 ENV PATH $PATH:/presto/bin
 
@@ -30,28 +29,45 @@ WORKDIR /
 # python => launcher script
 # less   => presto pager
 RUN set -euxo pipefail && \
-    apk add --no-cache bash openjdk8-jre-base python less
+    yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less
+
+# for faster build testing without having to download
+COPY $tar /
+COPY $TAR_CLI /
 
 RUN set -euxo pipefail && \
-    apk add --no-cache wget tar && \
-    server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz" && \
-    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar" && \
-    wget -t 10 --retry-connrefused -O "${TAR}" "$server_url" && \
-    test -s "${TAR}" && \
-    tar zxf "${TAR}" && \
-    # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
-    test -d "presto-server-${PRESTO_VERSION}" && \
-    rm -fv  "${TAR}" && \
-    ln -sv "presto-server-${PRESTO_VERSION}" presto && \
-    wget -t 10 --retry-connrefused "$cli_url" && \
-    test -s "presto-cli-${PRESTO_VERSION}-executable.jar" && \
-    chmod +x "presto-cli-${PRESTO_VERSION}-executable.jar" && \
-    mv -v "presto-cli-${PRESTO_VERSION}-executable.jar" presto/bin/ && \
-    ln -sv "presto-cli-${PRESTO_VERSION}-executable.jar" presto/bin/presto && \
-    apk del tar wget
+    # not doing these as ARG above as that doesn't catch imperfections in the re-use of env vars via set -u
+    TAR="presto_server_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.tar.gz" && \
+    # server package contains CLI but we need CLI package for ODBC + JDBC drivers
+    TAR_CLI="presto_client_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.tar.gz" && \
+    SERVER_RPM="presto-server-rpm-${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.x86_64.rpm" && \
+    SERVER_TAR_DIR="presto_server_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}" && \
+    CLI_TAR_DIR="presto_client_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}" && \
+    CLI_JAR="presto-cli-${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}-executable.jar" && \
+    SERVER_URL="http://teradata-presto.s3.amazonaws.com/release-packages/${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}/$TAR" && \
+    CLI_URL="http://teradata-presto.s3.amazonaws.com/release-packages/${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}/$TAR_CLI" && \
+    yum install -y wget tar && \
+    wget -c -t 10 --retry-connrefused -O "$TAR" "$SERVER_URL" && \
+    wget -c -t 10 --retry-connrefused -O "$TAR_CLI" "$CLI_URL" && \
+    tar zxvf "$TAR" && \
+    #yum localinstall -y "$SERVER_TAR_DIR/$SERVER_RPM" && \
+    # complains about java version
+    rpm -ivh --noscripts "$SERVER_TAR_DIR/$SERVER_RPM" && \
+    rm -rfv  "$TAR" "$SERVER_TAR_DIR" && \
+    tar zxvf "$TAR_CLI" && \
+    mv -iv "$CLI_TAR_DIR/$CLI_JAR" . && \
+    chmod +x "$CLI_JAR" && \
+    ln -sv "$CLI_JAR" /usr/bin/presto && \
+    # the JDBC 4.2 driver is the one for Java 8
+    mv -iv "$CLI_TAR_DIR"/jdbc/presto-jdbc42-*.jar . && \
+    yum localinstall -y "$CLI_TAR_DIR"/odbc/TeradatPrestoODBC-64-bit-*.rpm && \
+    # get rid of all the other unneeded drivers to save space
+    rm -fr "$CLI_TAR_DIR" && \
+    yum remove -y wget && \
+    yum autoremove -y
 
 COPY entrypoint.sh /
-COPY etc /presto/etc
+COPY etc /etc/presto
 
 EXPOSE 8080
 

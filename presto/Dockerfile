@@ -29,7 +29,8 @@ WORKDIR /
 # python => launcher script
 # less   => presto pager
 RUN set -euxo pipefail && \
-    yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less
+    yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less && \
+    yum clean all
 
 # for faster build testing without having to download
 #COPY $tar /

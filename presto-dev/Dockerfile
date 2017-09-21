@@ -14,6 +14,8 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
+# cache the std packages between tagged versions for space efficiency, must have this above ARG
+
 # bash   => entrypoint.sh
 # java   => presto engine
 # python => launcher script

@@ -55,7 +55,7 @@ RUN set -euxo pipefail && \
     chmod +x "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
     mv -v "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/ && \
     ln -sv "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/presto && \
-    rm -v get_presto_version.sh && \
+    rm -v get_presto_versions.sh && \
     apk del curl tar wget
 
 COPY entrypoint.sh /

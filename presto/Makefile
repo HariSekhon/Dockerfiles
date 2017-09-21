@@ -34,6 +34,7 @@ nocache:
 .PHONY: push
 push:
 	docker push $(REPO):$(TAG)
+	hooks/post_build
 
 .PHONY: run
 run:

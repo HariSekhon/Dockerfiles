@@ -1,7 +1,7 @@
 Teradata's distribution of Presto
 =================================
 
-https://prestodb.io/
+http://www.teradata.com/products-and-services/Presto/Presto-Download
 
 Teradata's distribution of Presto DB - the distributed interactive high scale SQL engine for Big Data.
 

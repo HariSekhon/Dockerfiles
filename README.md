@@ -16,6 +16,8 @@ Summarily this repo contains:
 
 These images are all available pre-built on [My DockerHub: https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 
+**Quality and Testing** - this repo has entire suites of tests run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images functionality, branches vs tagged versions align, syntax checks against build files and various configuration file formats (ini/json/xml) etc - these are reusable tests that can anybody can reuse for their own repos and can be found in my [PyTools](https://github.com/HariSekhon/pytools) and [Bash-Tools](https://github.com/HariSekhon/bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs. This is never 100% but is an always ongoing process, and they are tested via Continuous Integration for various repos that use them for their test suites as well. All of this is intended to keep the qualify of this repo high.
+
 Hari Sekhon
 
 Big Data Contractor, United Kingdom

@@ -14,16 +14,6 @@
 FROM centos:7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG PRESTO_VERSION=0.167
-ARG PRESTO_PKG_RELEASE=0.2
-
-ENV PATH $PATH:/presto/bin
-
-LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_VERSION"
-
-WORKDIR /
-
 # bash   => entrypoint.sh
 # java   => presto engine
 # python => launcher script
@@ -31,6 +21,14 @@ WORKDIR /
 RUN set -euxo pipefail && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less && \
     yum clean all
+
+ARG PRESTO_VERSION=0.157.1
+ARG PRESTO_PKG_RELEASE=0.2
+
+LABEL Description="Presto SQL" \
+      "Presto SQL Version"="$PRESTO_VERSION"
+
+WORKDIR /
 
 # for faster build testing without having to download
 #COPY $tar /

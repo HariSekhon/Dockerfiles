@@ -1,9 +1,13 @@
-Presto SQL DB by Facebook
-=========================
+Teradata's distribution of Presto
+=================================
 
 https://prestodb.io/
 
-Distributed interactive high scale SQL engine for Big Data.
+Teradata's distribution of Presto DB - the distributed interactive high scale SQL engine for Big Data.
+
+Includes the ODBC and JDBC drivers for Presto.
+
+For all the Facebook Presto releases see the adjacent `presto-dev` directory.
 
 Starts a single Presto node which acts as both coordinator and worker and maps port 8080 for nice web UI and driver access.
 

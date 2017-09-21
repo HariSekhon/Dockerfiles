@@ -32,28 +32,28 @@ LABEL Description="Presto SQL" \
 
 # for faster build testing without having to download
 #COPY $tar /
-#COPY $TAR_CLI /
+#COPY $CLI_TAR /
 
 RUN set -euxo pipefail && \
     # not doing these as ARG above as that doesn't catch imperfections in the re-use of env vars via set -u
     TAR="presto_server_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.tar.gz" && \
     # server package contains CLI but we need CLI package for ODBC + JDBC drivers
-    TAR_CLI="presto_client_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.tar.gz" && \
+    CLI_TAR="presto_client_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.tar.gz" && \
     SERVER_RPM="presto-server-rpm-${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.x86_64.rpm" && \
     SERVER_TAR_DIR="presto_server_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}" && \
     CLI_TAR_DIR="presto_client_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}" && \
     CLI_JAR="presto-cli-${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}-executable.jar" && \
     SERVER_URL="http://teradata-presto.s3.amazonaws.com/release-packages/${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}/$TAR" && \
-    CLI_URL="http://teradata-presto.s3.amazonaws.com/release-packages/${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}/$TAR_CLI" && \
+    CLI_URL="http://teradata-presto.s3.amazonaws.com/release-packages/${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}/$CLI_TAR" && \
     yum install -y wget tar && \
     wget -c -t 10 --retry-connrefused -O "$TAR" "$SERVER_URL" && \
-    wget -c -t 10 --retry-connrefused -O "$TAR_CLI" "$CLI_URL" && \
+    wget -c -t 10 --retry-connrefused -O "$CLI_TAR" "$CLI_URL" && \
     tar zxvf "$TAR" && \
     #yum localinstall -y "$SERVER_TAR_DIR/$SERVER_RPM" && \
     # complains about java version
     rpm -ivh --noscripts "$SERVER_TAR_DIR/$SERVER_RPM" && \
     rm -rfv  "$TAR" "$SERVER_TAR_DIR" && \
-    tar zxvf "$TAR_CLI" && \
+    tar zxvf "$CLI_TAR" && \
     mv -iv "$CLI_TAR_DIR/$CLI_JAR" . && \
     chmod +x "$CLI_JAR" && \
     ln -sv "$CLI_JAR" /usr/bin/presto && \

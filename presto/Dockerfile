@@ -32,8 +32,8 @@ RUN set -euxo pipefail && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less
 
 # for faster build testing without having to download
-COPY $tar /
-COPY $TAR_CLI /
+#COPY $tar /
+#COPY $TAR_CLI /
 
 RUN set -euxo pipefail && \
     # not doing these as ARG above as that doesn't catch imperfections in the re-use of env vars via set -u

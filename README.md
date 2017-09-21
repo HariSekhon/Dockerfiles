@@ -8,10 +8,10 @@ Docker Images containing hundreds of my published tools and the supporting techn
 
 Summarily this repo contains:
 
-* *Hadoop & Big Data* ecosystem technologies (Spark, Kafka, Presto, Drill, Nifi, ZooKeeper)
-* *NoSQL* datastores (HBase, Cassandra, Riak, SolrCloud)
+* **Hadoop & Big Data** ecosystem technologies (Spark, Kafka, Presto, Drill, Nifi, ZooKeeper)
+* **NoSQL** datastores (HBase, Cassandra, Riak, SolrCloud)
 * OS & development images (Alpine, CentOS, Debian, Ubuntu)
-* *DevOps* tech, anything cool and open source (RabbitMQ Cluster, Mesos, Consul)
+* **DevOps** tech, anything cool and open source (RabbitMQ Cluster, Mesos, Consul)
 * [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
 
 These images are all available pre-built on [My DockerHub: https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).

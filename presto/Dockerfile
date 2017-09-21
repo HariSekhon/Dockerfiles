@@ -63,7 +63,7 @@ RUN set -euxo pipefail && \
     mv -iv "$CLI_TAR_DIR"/jdbc/presto-jdbc42-*.jar . && \
     yum localinstall -y "$CLI_TAR_DIR"/odbc/TeradatPrestoODBC-64-bit-*.rpm && \
     # get rid of all the other unneeded drivers to save space
-    rm -fr "$CLI_TAR_DIR" && \
+    rm -fr "$CLI_TAR_DIR" "$CLI_TAR" && \
     yum remove -y wget && \
     yum autoremove -y
 

@@ -22,13 +22,13 @@ RUN set -euxo pipefail && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less && \
     yum clean all
 
+WORKDIR /
+
 ARG PRESTO_VERSION=0.157.1
 ARG PRESTO_PKG_RELEASE=0.2
 
 LABEL Description="Presto SQL" \
       "Presto SQL Version"="$PRESTO_VERSION"
-
-WORKDIR /
 
 # for faster build testing without having to download
 #COPY $tar /

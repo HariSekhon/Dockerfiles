@@ -15,10 +15,11 @@
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Dockerfiles PyTools Checks"
 
-pushd "`dirname ${BASH_SOURCE[0]}`/.."
+pushd "$srcdir/.."
 
 export PATH=$PATH:$PWD/pytools_checks
 
@@ -43,8 +44,23 @@ else
     get_pytools
 fi
 
+echo
+echo "Running validation programs:"
+pushd "$(dirname "$(which validate_ini.py)")"
+echo
+for x in validate_*.py; do
+    [ "$x" = validate_multimedia.py ] && continue
+    echo "$x: "
+    ./$x "$srcdir/.."
+    echo
+done
+echo
+popd
+
 dockerfiles_check_git_branches.py .
+echo
 
 git_check_branches_upstream.py .
+echo
 
 popd

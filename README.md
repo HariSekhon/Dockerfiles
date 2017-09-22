@@ -4,16 +4,25 @@ Hari Sekhon Docker
 
 Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
 
-##### Contains 41 repos with over 140 tags, many different versions of [official software](https://github.com/HariSekhon/Dockerfiles#official-technologies):
+##### Contains 45 repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.
 
-* Hadoop, Big Data, NoSQL & OS images
+Summarily this repo contains:
+
+* **Hadoop & Big Data** ecosystem technologies (Spark, Kafka, Presto, Drill, Nifi, ZooKeeper)
+* **NoSQL** datastores (HBase, Cassandra, Riak, SolrCloud)
+* OS & development images (Alpine, CentOS, Debian, Ubuntu)
+* **DevOps** tech, anything cool and open source (RabbitMQ Cluster, Mesos, Consul)
 * [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
 
 These images are all available pre-built on [My DockerHub: https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 
+**Quality and Testing** - this repo has entire suites of tests run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images functionality, branches vs tagged versions align, syntax checks against build files and various configuration file formats (ini/json/xml) etc - these are reusable tests that can anybody can reuse for their own repos and can be found in my [PyTools](https://github.com/HariSekhon/pytools) and [Bash-Tools](https://github.com/HariSekhon/bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs. This is never 100% but is an always ongoing process, and they are tested via Continuous Integration for various repos that use them for their test suites as well. All of this is intended to keep the qualify of this repo high.
+
 Hari Sekhon
 
 Big Data Contractor, United Kingdom
+
+(ex-Cloudera, Hortonworks Consultant)
 
 https://www.linkedin.com/in/harisekhon
 ###### (you're welcome to connect with me on LinkedIn)
@@ -73,31 +82,33 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 
 ### Full Inventory:
 
-##### Official Technologies:
+##### Official Standard Open Source Technologies:
 
 More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
 
-- [Alluxio](http://www.alluxio.org/)
-- [Apache Drill](https://drill.apache.org/) (opens Drill shell)
-- [Cassandra](http://cassandra.apache.org/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
-- [Consul](https://www.consul.io/)
-- [H2O](https://www.h2o.ai/) by 0xdata
-- [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn)
-- [HBase](https://hbase.apache.org/) (opens HBase shell)
-- [Jython](http://www.jython.org/)
-- [Kafka](https://kafka.apache.org/)
-- [Mesos](http://mesos.apache.org/)
-- [Nifi](https://nifi.apache.org/)
-- [RabbitMQ](https://www.rabbitmq.com/) Cluster (supports all same env vars as RabbitMQ official base, plus ones for enabling plugins)
-- [Riak KV](http://basho.com/products/riak-kv/)
+- [Alluxio](http://www.alluxio.org/) - distributed memory base storage by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
+- [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell)
+- [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
+- [H2O](https://www.h2o.ai/) - distributed machine learning framework by [0xdata](https://www.h2o.ai/)
+- [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn) - distributed storage and compute cluster by Yahoo, [Cloudera](https://www.cloudera.com/) and [Hortonworks](https://hortonworks.com/)
+- [HBase](https://hbase.apache.org/) - distributed NoSQL datastore by Facebook (opens HBase shell)
+- [Jython](http://www.jython.org/) - Python on Java JVM (useful for Hadoop python utilities using Hadoop's Java API. eg. [PyTools](https://github.com/harisekhon/pytools))
+- [Kafka](https://kafka.apache.org/) - pub-sub data broker by [LinkedIn](https://www.linkedin.com) and [Confluent](https://www.confluent.io/)
+- [Mesos](http://mesos.apache.org/) - datacenter resource manager by [Mesosphere](https://mesosphere.com/) (mostly obsoleted by more free Hortonworks / Hadoop Yarn resource manager)
+- [Nifi](https://nifi.apache.org/) - IOT data flow engine by NSA and [Hortonworks](https://hortonworks.com/)
+- [Presto](https://prestodb.io/) - distributed SQL engine by Facebook (opens Presto SQL shell)
+- [Presto (Teradata distribution)](http://www.teradata.com/products-and-services/Presto/Presto-Download) - Teradata's Presto distribution including ODBC and JDBC drivers (opens Presto SQL shell)
+- [RabbitMQ](https://www.rabbitmq.com/) Cluster - pub-sub message queue broker by [Pivotal](https://pivotal.io/) (extension of RabbitMQ official image with added plugins)
+- [Riak KV](http://basho.com/products/riak-kv/) - distributed NoSQL datastore by [Basho](http://basho.com/)
 - [Riak KV](http://basho.com/products/riak-kv/) (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
-- [Serf](https://www.serf.io/)
-- [Solr](http://lucene.apache.org/solr/)
-- [SolrCloud](http://lucene.apache.org/solr/)
-- [Spark](https://spark.apache.org/) (opens Spark shell)
-- [Superset](http://airbnb.io/projects/superset/) by Airbnb
-- [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0)
-- [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell)
+- [Serf](https://www.serf.io/) - decentralized cluster coordination engine by [HashiCorp](https://www.hashicorp.com/)
+- [Solr](http://lucene.apache.org/solr/) - mature indexing engine built on Lucene search library
+- [SolrCloud](http://lucene.apache.org/solr/) - clustered distributed indexing engine version of Solr
+- [Spark](https://spark.apache.org/) - fast distributed cluster compute engine usually used on Hadoop, by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/) and [Databricks](https://databricks.com/) (opens Spark shell)
+- [Superset](http://airbnb.io/projects/superset/) - data visualization by [Airbnb](https://www.airbnb.com/)
+- [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0) - distributed memory based storage by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
+- [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell) - distributed coordination and sychronization service by Yahoo
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 
@@ -105,11 +116,12 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 - [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 350+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
   - Tags:
-    - nagios-plugins:latest (alpine)
+    - nagios-plugins:latest (centos)
+    - nagios-plugins:alpine
     - nagios-plugins:centos
     - nagios-plugins:debian
     - nagios-plugins:ubuntu
-- [Python Tools](https://github.com/harisekhon/pytools) - ~ 50 tools for Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython - CLI tools
+- [Python Tools](https://github.com/harisekhon/pytools) - 50+ tools for Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython - CLI tools
 - [Perl Tools](https://github.com/harisekhon/tools) - 25+ tools for Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
 - [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript for automation, auto timed track flick through etc.
 

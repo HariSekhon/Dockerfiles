@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  Author: Hari Sekhon
+#  Date: 2017-09-13 14:47:28 +0200 (Wed, 13 Sep 2017)
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+set -euo pipefail
+[ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# DockerHub will always build latest from master, so find out what the latest tag is and tag this build as such
+
+IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")}"
+DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
+
+# There is a race condition here between the time we call get_presto_versions.sh in Dockerfile to do the build and
+# calling it again here to get the latest version, Facebook could potentially publish a new build in the interim
+# which would result in an incorrect tagging until the next run
+latest_version="$("$srcdir/../get_presto_versions.sh" | head -n1)"
+
+tag="${IMAGE_NAME#*:}"
+
+if [ "$tag" = "latest" ]; then
+    # we are running in DockerHub latest build and should tag the actual version number and push that
+    docker tag "$IMAGE_NAME:latest" "$DOCKER_REPO:$latest_version"
+    docker push "$DOCKER_REPO:$latest_version"
+# tag will end up being harisekhon/presto-dev if there is no :version to strip up to as with Make builds
+# if [ "$tag" = "$latest_version" ]; then
+else
+    # we are running locally via Make which explicitly builds newest version
+    # in which case we should tag as latest and push latest
+    docker tag "$IMAGE_NAME:$latest_version" "$DOCKER_REPO:latest"
+    docker push "$DOCKER_REPO:latest"
+fi

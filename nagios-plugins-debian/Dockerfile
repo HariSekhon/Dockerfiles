@@ -17,6 +17,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Advanced Nagios Plugins Collection (on Debian)"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ENV PATH $PATH:/github/nagios-plugins
 
 RUN mkdir -v /github

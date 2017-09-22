@@ -43,7 +43,10 @@ LABEL Description="Apache Drill" \
 
 WORKDIR /
 
-# supervisor is used to run apache-drill standalone for nagios checks
+# bash       => entrypoint.sh
+# java       => apache drill engine
+# supervisor => drillbit standalone runner for nagios checks
+# which      => drill-embedded script
 RUN set -euxo pipefail && \
     apk add --no-cache bash openjdk8-jre-base supervisor which && \
     mkdir -p /etc/supervisor.d

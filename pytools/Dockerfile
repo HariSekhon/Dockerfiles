@@ -18,6 +18,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
 

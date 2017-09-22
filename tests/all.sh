@@ -23,20 +23,36 @@ cd "$srcdir/.."
 
 section "Dockerfiles checks"
 
-tests/check_repo_names.sh
-
-tests/check_docker-compose_images.sh
-
 tests/pytools_checks.sh
 
-echo
-
-echo "Checking post build hook scripts separately as they're not inferred by .sh extension"
-bash-tools/check_shell_syntax.sh */hooks/post_build
-
-bash-tools/all.sh
-
-echo
+# in Travis we only test master branch
+# - don't want PyTools checks applying to all branches because
+#   they already check out every branch to test alignment of version numbers before commit + push
+#   doing CI against every branch would become a multiplier of all branches vs all branches
+#
+# XXX: doesn't work Travis fails to check out any branches
+if false; then
+#if is_CI; then
+    branches="$(
+    git ls-remote |
+    awk '/\/heads\//{print $2}' |
+    sed 's,^refs/heads/,,' |
+    sed '
+    s/^\* // ;
+    s/.*\/// ;
+    s/^[[:space:]]*// ;
+    s/[[:space:]]*$// ;
+    s/.*[[:space:]]// ;
+    s/)[[:space:]]*//
+    ' |
+    sort -u
+    )"
+    for branch in $branches; do
+        tests/test_branch.sh "$branch"
+    done
+else
+    tests/test_branch.sh
+fi
 
 tests/projects_without_docker-compose_yet.sh
 

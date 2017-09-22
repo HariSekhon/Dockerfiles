@@ -14,9 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG SCALA_VERSION=2.10
 ARG SCALA_VERSION=2.11
-#ARG KAFKA_VERSION=0.8.2.2
 ARG KAFKA_VERSION=0.9.0.1
 # 0.10 fails to come up
 #ARG KAFKA_VERSION=0.10.0.0

@@ -14,8 +14,6 @@
 FROM rabbitmq:3.6
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG RABBITMQ_VERSION=3.4
-#ARG RABBITMQ_VERSION=3.5
 ARG RABBITMQ_VERSION=3.6
 
 LABEL Description="RabbitMQ Cluster" \

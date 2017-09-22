@@ -39,6 +39,8 @@ LABEL Description="Cassandra Dev", \
 
 WORKDIR /
 
+# java   => cassandra engine
+# py-pip => cassandra python driver
 RUN set -euxo pipefail && \
     apk add --no-cache openjdk8-jre-base py-pip
 

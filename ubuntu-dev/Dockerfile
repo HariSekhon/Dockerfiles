@@ -16,6 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu Dev Build"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ENV JAVA_HOME=/usr
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$JYTHON_HOME/bin

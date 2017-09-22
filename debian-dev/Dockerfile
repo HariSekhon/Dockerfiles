@@ -16,6 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Debian Dev Build"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin

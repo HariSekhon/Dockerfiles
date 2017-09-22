@@ -30,6 +30,8 @@ ENV PATH $PATH:/mesos/bin
 LABEL Description="Apache Mesos" \
       "Apache Mesos Version"="$MESOS_VERSION"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 WORKDIR /
 
 # debian uses sh -c by default which doesn't recognize the ${var:n:n}

@@ -16,6 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Ubuntu + my GitHub repos pre-built"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
 
 ENV JAVA_HOME=/usr

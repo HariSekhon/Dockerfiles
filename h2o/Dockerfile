@@ -26,6 +26,8 @@ ENV PATH $PATH:/h2o/bin
 LABEL Description="H2O" \
       "0xData H2O Version"="$H2O_VERSION"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 #COPY h2o-$H2O_VERSION /h2o
 
 WORKDIR /

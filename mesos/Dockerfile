@@ -16,11 +16,6 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG MESOS_VERSION=0.23.0
-#ARG MESOS_VERSION=0.24.2
-#ARG MESOS_VERSION=0.25.1
-#ARG MESOS_VERSION=0.26.1
-#ARG MESOS_VERSION=0.27.2
 ARG MESOS_VERSION=0.28.2
 
 #ARG TAR="mesos-$MESOS_VERSION.tar.gz"

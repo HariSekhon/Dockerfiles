@@ -16,7 +16,6 @@
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-#ARG TACHYON_VERSION=0.7.1
 ARG TACHYON_VERSION=0.8.2
 
 ENV PATH $PATH:/tachyon/bin

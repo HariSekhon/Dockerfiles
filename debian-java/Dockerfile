@@ -18,6 +18,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Debian (OpenJDK)"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ARG JAVA_VERSION=8
 ARG JAVA_RELEASE=JRE
 

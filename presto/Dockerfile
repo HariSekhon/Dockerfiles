@@ -58,7 +58,7 @@ RUN set -euxo pipefail && \
     tar zxvf "$CLI_TAR" && \
     mv -iv "$CLI_TAR_DIR/$CLI_JAR" . && \
     chmod +x "$CLI_JAR" && \
-    ln -sv "$CLI_JAR" /usr/bin/presto && \
+    ln -sv "/$CLI_JAR" /usr/bin/presto && \
     # the JDBC 4.2 driver is the one for Java 8
     mv -iv "$CLI_TAR_DIR"/jdbc/presto-jdbc42-*.jar . && \
     yum localinstall -y "$CLI_TAR_DIR"/odbc/TeradatPrestoODBC-64-bit-*.rpm && \

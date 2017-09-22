@@ -31,6 +31,8 @@ LABEL Description="HBase Dev", \
 
 WORKDIR /
 
+# bash => entrypoint.sh
+# java => hbase engine
 RUN set -euxo pipefail && \
     apk add --no-cache bash openjdk8-jre-base
 

@@ -15,6 +15,12 @@
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+tag="latest"
+
+IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")}"
+DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 
 if [ -z "${SOURCE_BRANCH:-}" ]; then
     SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
@@ -31,7 +37,12 @@ else
     latest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
 fi
 
-if [ "$SOURCE_BRANCH" = "$docker_branch_base-$latest_tag" ]; then
+if ! grep ':' <<< "$IMAGE_NAME";  then
+    current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}_VERSION=" Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    IMAGE_NAME="$IMAGE_NAME:$current_tag"
+fi
+
+if [ "$SOURCE_BRANCH" = "master" -o "$SOURCE_BRANCH" = "$docker_branch_base-$latest_tag" ]; then
     for tag in latest ${latest_tag%%.*}; do
         docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
         docker push "$DOCKER_REPO:$tag"

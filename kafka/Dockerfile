@@ -29,17 +29,19 @@ LABEL Description="Apache Kafka by LinkedIn" \
       "Scala Version"="$SCALA_VERSION" \
       "Kafka Version"="$KAFKA_VERSION"
 
+# bash => entrypoint.sh
+# perl => entrypoint.sh kafka configs in place edit for advertised hostname
+# java => kafka
 RUN set -euxo pipefail && \
-    apk add --no-cache bash perl openjdk8-jre-base tar
+    apk add --no-cache bash perl openjdk8-jre-base
 
 RUN set -euxo pipefail && \
-    apk add --no-cache wget && \
+    apk add --no-cache tar wget && \
     wget -t 100 --retry-connrefused -O "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" && \
     tar zxf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     ln -sv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}" kafka && \
-    # attempting to remove tar causes unmet dependency breakage
-    apk del wget
+    apk del tar wget
 
 COPY entrypoint.sh /
 

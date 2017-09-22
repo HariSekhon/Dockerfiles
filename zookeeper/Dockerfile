@@ -25,6 +25,8 @@ LABEL Description="ZooKeeper" \
 
 WORKDIR /
 
+# bash => entrypoint.sh
+# java => zookeeper
 RUN set -euxo pipefail && \
     apk add --no-cache bash openjdk8-jre-base
 

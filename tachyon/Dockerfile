@@ -24,6 +24,8 @@ ENV PATH $PATH:/tachyon/bin
 LABEL Description="Tachyon from BDAS" \
       "Tachyon Version"="$TACHYON_VERSION"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 # use dev build it's quicker and cached
 #RUN yum install -y java-1.7.0-openjdk && yum clean all
 

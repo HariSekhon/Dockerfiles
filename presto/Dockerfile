@@ -14,15 +14,7 @@
 FROM centos:7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG PRESTO_VERSION=0.167
-ARG PRESTO_PKG_RELEASE=0.2
-
-ENV PATH $PATH:/presto/bin
-
-LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_VERSION"
-
-WORKDIR /
+# cache the std packages between tagged versions for space efficiency, must have this above ARG
 
 # bash   => entrypoint.sh
 # java   => presto engine
@@ -31,6 +23,14 @@ WORKDIR /
 RUN set -euxo pipefail && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less && \
     yum clean all
+
+WORKDIR /
+
+ARG PRESTO_VERSION=0.167
+ARG PRESTO_PKG_RELEASE=0.2
+
+LABEL Description="Presto SQL" \
+      "Presto SQL Version"="$PRESTO_VERSION"
 
 # for faster build testing without having to download
 #COPY $tar /
@@ -58,7 +58,7 @@ RUN set -euxo pipefail && \
     tar zxvf "$CLI_TAR" && \
     mv -iv "$CLI_TAR_DIR/$CLI_JAR" . && \
     chmod +x "$CLI_JAR" && \
-    ln -sv "$CLI_JAR" /usr/bin/presto && \
+    ln -sv "/$CLI_JAR" /usr/bin/presto && \
     # the JDBC 4.2 driver is the one for Java 8
     mv -iv "$CLI_TAR_DIR"/jdbc/presto-jdbc42-*.jar . && \
     yum localinstall -y "$CLI_TAR_DIR"/odbc/TeradatPrestoODBC-64-bit-*.rpm && \

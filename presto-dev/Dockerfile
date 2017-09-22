@@ -14,16 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG PRESTO_DEVELOPMENT_VERSION=""
-
-ARG TAR="presto-server-${PRESTO_DEVELOPMENT_VERSION}.tar.gz"
-
-ENV PATH $PATH:/presto/bin
-
-LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_DEVELOPMENT_VERSION"
-
-WORKDIR /
+# cache the std packages between tagged versions for space efficiency, must have this above ARG
 
 # bash   => entrypoint.sh
 # java   => presto engine
@@ -33,9 +24,19 @@ WORKDIR /
 RUN set -euxo pipefail && \
     apk add --no-cache bash openjdk8-jre-base python less
 
+WORKDIR /
+
+ENV PATH $PATH:/presto/bin
+
+ARG PRESTO_DEVELOPMENT_VERSION=""
+
+LABEL Description="Presto SQL" \
+      "Presto SQL Version"="$PRESTO_DEVELOPMENT_VERSION"
+
 COPY get_presto_versions.sh /
 
 RUN set -euxo pipefail && \
+    TAR="presto-server-${PRESTO_DEVELOPMENT_VERSION}.tar.gz" && \
     apk add --no-cache curl wget tar && \
     if [ -z "$PRESTO_DEVELOPMENT_VERSION" ]; then \
         # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_DEVELOPMENT_VERSION as part of make build to know the image to push

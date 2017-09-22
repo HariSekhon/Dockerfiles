@@ -1,0 +1,21 @@
+{
+  "catalogs": [
+    {
+      "user": "admin",
+      "catalog": "(mysql|system)",
+      "allow": true
+    },
+    {
+      "catalog": "hive",
+      "allow": true
+    },
+    {
+      "catalog": "localfile",
+      "allow": true
+    },
+    {
+      "catalog": "system",
+      "allow": false
+    }
+  ]
+}

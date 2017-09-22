@@ -22,6 +22,8 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
+# bash => test scripts
+# java => kafka
 RUN set -euxo pipefail && \
     apk add --no-cache bash openjdk8
 

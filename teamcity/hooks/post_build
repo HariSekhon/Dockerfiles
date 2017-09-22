@@ -34,7 +34,10 @@ docker_branch_base="${docker_branch_base/solrcloud/solr}"
 if [ "$docker_branch_base" = "kafka" ]; then
     latest_tag="2.11-0.9"
 else
-    latest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging latest improvements from master
+    #latest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    # use Git branch versions as the source of truth
+    latest_tag="$(git branch -a | grep -i "remotes/.*/$docker_branch_base" | sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' | sort -n | tail -n 1)"
 fi
 
 if ! grep ':' <<< "$IMAGE_NAME";  then

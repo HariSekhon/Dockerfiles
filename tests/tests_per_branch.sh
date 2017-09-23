@@ -35,7 +35,7 @@ if [ -n "$branch" ]; then
     echo "Checking out branch $branch"
     git remote update
     git fetch
-    git checkout -b "$branch" "origin/$branch"
+    git checkout "$branch" # "origin/$branch"
 fi
 
 echo
@@ -43,6 +43,10 @@ echo
 tests/check_repo_names.sh
 
 tests/check_docker-compose_images.sh
+
+tests/check_ports_exposed.sh
+
+tests/pytools_checks_per_branch.sh
 
 echo "Checking post build hook scripts separately as they're not inferred by .sh extension"
 bash-tools/check_shell_syntax.sh */hooks/post_build

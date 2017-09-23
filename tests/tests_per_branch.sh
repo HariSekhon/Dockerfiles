@@ -46,7 +46,8 @@ tests/check_docker-compose_images.sh
 
 tests/check_ports_exposed.sh
 
-tests/pytools_checks_per_branch.sh
+# is run in CI from pytools_checks.sh
+#tests/pytools_checks_per_branch.sh
 
 echo "Checking post build hook scripts separately as they're not inferred by .sh extension"
 bash-tools/check_shell_syntax.sh */hooks/post_build

@@ -31,8 +31,8 @@ tests/pytools_checks.sh
 #   doing CI against every branch would become a multiplier of all branches vs all branches
 #
 # XXX: doesn't work Travis fails to check out any branches
-if false; then
-#if is_CI; then
+#if ! is_CI; then
+if ! is_travis; then
     branches="$(
     git ls-remote |
     awk '/\/heads\//{print $2}' |
@@ -48,10 +48,10 @@ if false; then
     sort -u
     )"
     for branch in $branches; do
-        tests/test_branch.sh "$branch"
+        tests/tests_per_branch.sh "$branch"
     done
 else
-    tests/test_branch.sh
+    tests/tests_per_branch.sh
 fi
 
 tests/projects_without_docker-compose_yet.sh

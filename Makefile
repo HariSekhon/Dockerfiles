@@ -24,8 +24,8 @@ SHELL=/usr/bin/env bash
 #endif
 
 .PHONY: all
-all:
-	make build
+all: build
+	:
 
 .PHONY: build
 build:
@@ -75,13 +75,12 @@ pull:
 	for branch in $$(git branch -a); do git checkout $$branch && git pull || break ; done
 
 .PHONY: update
-update:
-	@make update2
-	@make
+update: update2 build
+	:
 
 .PHONY: update2
-update2:
-	make update-no-recompile
+update2: update-no-recompile
+	:
 
 .PHONY: update-no-recompile
 update-no-recompile:
@@ -92,5 +91,5 @@ update-no-recompile:
 update-submodules:
 	git submodule update --init --remote
 .PHONY: updatem
-updatem:
-	make update-submodules
+updatem: update-submodules
+	:

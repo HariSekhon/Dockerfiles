@@ -21,6 +21,10 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 section "Dockerfiles PyTools Checks per Branch"
 
+git branch | grep ^*
+
+echo
+
 pushd "$srcdir/.."
 
 export PATH=$PATH:$PWD/pytools_checks

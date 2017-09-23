@@ -28,6 +28,7 @@ nocache:
 .PHONY: push
 push:
 	docker push $(REPO)
+	hooks/post_build
 
 .PHONY: nocache
 run:

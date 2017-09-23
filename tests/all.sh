@@ -32,7 +32,8 @@ tests/pytools_checks.sh
 #
 # XXX: doesn't work Travis fails to check out any branches
 #if ! is_CI; then
-if ! is_travis; then
+#if ! is_travis; then
+if false; then
     branches="$(
     git ls-remote |
     awk '/\/heads\//{print $2}' |

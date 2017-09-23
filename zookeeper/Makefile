@@ -38,4 +38,4 @@ push:
 
 .PHONY: run
 run:
-	docker run -ti -p 2181:2181 $(REPO):$(TAG)
+	docker run -ti -p 2181:2181 -p 3181:3181 -p 4181:4181 $(REPO):$(TAG)

@@ -25,9 +25,9 @@ sudo: required
 notifications:
   email: false
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 
 install:
   - echo nothing to install

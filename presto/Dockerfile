@@ -33,7 +33,7 @@ LABEL Description="Presto SQL" \
       "Presto SQL Version"="$PRESTO_VERSION"
 
 # for faster build testing without having to download
-#COPY $tar /
+#COPY $TAR /
 #COPY $CLI_TAR /
 
 RUN set -euxo pipefail && \

@@ -33,7 +33,7 @@ LABEL Description="Presto SQL" \
       "Presto SQL Version"="$PRESTO_VERSION"
 
 # for faster build testing without having to download
-#COPY $tar /
+#COPY $TAR /
 #COPY $CLI_TAR /
 
 RUN set -euxo pipefail && \
@@ -64,11 +64,13 @@ RUN set -euxo pipefail && \
     yum localinstall -y "$CLI_TAR_DIR"/odbc/TeradatPrestoODBC-64-bit-*.rpm && \
     # get rid of all the other unneeded drivers to save space
     rm -fr "$CLI_TAR" "$CLI_TAR_DIR" && \
+    # older versions of Presto look for config in /usr/lib/presto/etc, linking for compatability across versions
+    ln -sv /etc/presto /usr/lib/presto/etc && \
     yum remove -y wget && \
     yum autoremove -y
 
 COPY entrypoint.sh /
-COPY etc /etc/presto
+COPY etc /etc/presto/
 
 EXPOSE 8080
 

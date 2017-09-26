@@ -42,7 +42,10 @@ echo
 export CQLSH_NO_BUNDLED=TRUE
 #cqlsh
 if [ -t 0 ]; then
-    su cassandra $(which cqlsh) $(hostname -f)
+    bind_address="$(netstat -lnt | awk '/:9042/{print $4}' | sed 's/:[[:digit:]]*.*//')"
+    cqlsh="$(which cqlsh)"
+    echo "su cassandra $cqlsh $bind_address"
+    su cassandra $cqlsh "$bind_address"
     echo -e "\n\nCQL shell exited"
 else
     echo "

@@ -19,10 +19,6 @@ ifdef LATEST
 	TAG=latest
 endif
 
-.PHONY: all
-all:
-	make build
-
 .PHONY: build
 build:
 	docker build -t $(REPO):$(TAG) .

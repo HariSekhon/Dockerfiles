@@ -42,7 +42,7 @@ echo
 export CQLSH_NO_BUNDLED=TRUE
 #cqlsh
 if [ -t 0 ]; then
-    su cassandra $(which cqlsh) $(hostname -f)
+    su cassandra $(which cqlsh) 127.0.0.1
     echo -e "\n\nCQL shell exited"
 else
     echo "

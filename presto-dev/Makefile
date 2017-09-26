@@ -15,10 +15,6 @@ REPO=harisekhon/presto-dev
 
 TAG=$(shell ./get_presto_versions.sh | head -n1)
 
-.PHONY: all
-all:
-	make build
-
 .PHONY: build
 build:
 	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) .

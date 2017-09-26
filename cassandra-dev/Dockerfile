@@ -52,7 +52,7 @@ RUN set -euxo pipefail && \
     test -d "apache-cassandra-${CASSANDRA_VERSION}" && \
     ln -sv "apache-cassandra-${CASSANDRA_VERSION}" cassandra && \
     { rm -rf cassandra/{doc,javadoc}; : ; } && \
-    pip install --upgrade cassandra-driver && \
+    pip install --upgrade cassandra-driver cql && \
     apk del wget
 
 # cassandra refuses to run as root without -R, just run as regular useraddgroup -S cassandra id=501 && adduser -S -G cassandra --uid=501 cassandra && \

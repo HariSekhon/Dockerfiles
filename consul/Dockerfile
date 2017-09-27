@@ -23,6 +23,8 @@ ENV PATH $PATH:/
 LABEL Description="HashiCorp's Consul minimal" \
       "Consul Version"="$CONSUL_VERSION"
 
+WORKDIR /
+
 # faster, cached
 #COPY consul /
 
@@ -33,11 +35,13 @@ RUN set -euxo pipefail && \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
+    chmod +x consul && \
+    ls -l && \
     apk del wget unzip ca-certificates
 
-#COPY entrypoint.sh /
+COPY entrypoint.sh /
 
 EXPOSE 8400 8500 8600
 
-#ENTRYPOINT ["/entrypoint.sh"]
-ENTRYPOINT ["/consul"]
+#ENTRYPOINT ["/consul"]
+ENTRYPOINT ["/entrypoint.sh"]

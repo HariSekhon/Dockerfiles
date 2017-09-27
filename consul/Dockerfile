@@ -36,7 +36,7 @@ RUN bash -c ' \
     set -euxo pipefail && \
     #apk add --no-cache wget unzip ca-certificates && \
     apt-get update && \
-    apt-get install -y wget unzip && \
+    apt-get install -y wget unzip net-tools && \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \

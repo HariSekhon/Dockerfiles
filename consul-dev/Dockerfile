@@ -11,10 +11,15 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# -dev version allows testing of local consul command utils like check_consul_version.py
+
 # busybox wget doesn't support SSL, no curl available :-(
 #FROM busybox:latest
-# -dev version allows testing of local consul command utils like check_consul_version.py
-FROM harisekhon/alpine-github:latest
+# Alpine keeps breaking stuff, even after adding libc6-compat:
+# Error relocating ./consul: __fprintf_chk: symbol not foundError relocating ./consul: __fprintf_chk: symbol not found
+# rather than downloading glibc with a tonne of extra commands, just switch to debian
+#FROM harisekhon/alpine-github:latest
+FROM harisekhon/centos-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG CONSUL_VERSION=0.9.2
@@ -32,11 +37,12 @@ WORKDIR /
 #ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 
 RUN set -euxo pipefail && \
-    apk add --no-cache wget unzip && \
+    yum install -y wget unzip net-tools && \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
-    apk del wget unzip
+    yum remove -y wget unzip && \
+    yum autoremove -y
 
 #COPY entrypoint.sh /
 

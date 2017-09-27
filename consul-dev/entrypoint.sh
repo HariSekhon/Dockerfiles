@@ -13,7 +13,8 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-set -euo pipefail
+# -o pipefail - causes ifconfig to error out when grep -m1 prematurely terminates the output stream
+set -eu
 [ -n "${DEBUG:-}" ] && set -x
 
 # busybox's egrep and sed ERE are broken, don't recognize \. - doing something a bit more basic but it works

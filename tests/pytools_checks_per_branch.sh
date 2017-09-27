@@ -56,6 +56,7 @@ pushd "$(dirname "$(which validate_ini.py)")"
 echo
 for x in validate_*.py; do
     [ "$x" = validate_multimedia.py ] && continue
+    [ -L "$x" ] && continue
     echo "$x: "
     ./$x "$srcdir/.."
     echo

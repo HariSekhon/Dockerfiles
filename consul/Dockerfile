@@ -13,7 +13,11 @@
 
 # busybox wget doesn't support SSL, no curl available :-(
 #FROM busybox:latest
-FROM alpine:latest
+# Alpine keeps breaking stuff, even after adding libc6-compat:
+# Error relocating ./consul: __fprintf_chk: symbol not foundError relocating ./consul: __fprintf_chk: symbol not found
+# rather than downloading glibc with a tonne of extra commands, just switch to debian
+#FROM alpine:latest
+FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG CONSUL_VERSION=0.9.2
@@ -28,12 +32,21 @@ LABEL Description="HashiCorp's Consul minimal" \
 
 #ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 
-RUN set -euxo pipefail && \
-    apk add --no-cache wget unzip ca-certificates && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    #apk add --no-cache wget unzip ca-certificates && \
+    apt-get update && \
+    apt-get install -y wget unzip && \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
-    apk del wget unzip ca-certificates
+    chmod +x consul && \
+    ls -l && \
+    #apk del wget unzip ca-certificates
+    apt-get purge -y wget unzip && \
+    apt-get autoremove -y && \
+    apt-get clean \
+    '
 
 #COPY entrypoint.sh /
 

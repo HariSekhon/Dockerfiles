@@ -93,3 +93,23 @@ update-submodules:
 .PHONY: updatem
 updatem: update-submodules
 	:
+
+.PHONY: github
+# this would apply to all recipes
+#.ONESHELL:
+github:
+	for x in \
+		nagios-plugins-centos \
+		nagios-plugins-ubuntu \
+		nagios-plugins-debian \
+		centos-github \
+		ubuntu-github \
+		debian-github \
+		nagios-plugins-alpine \
+		alpine-github \
+		; do \
+		pushd $$x && \
+		make nocache push && \
+		popd || \
+		break; \
+	done

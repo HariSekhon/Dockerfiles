@@ -39,12 +39,11 @@ RUN bash -c ' \
     apt-get autoremove -y && \
     apt-get clean && \
     # run tests after autoremove to check that no important packages we need get removed
-    make test clean && \
+    make test deep-clean && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     apt-get remove -y make && \
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -fr /root/.cache /root/.cpanm && \
     # basic test for missing dependencies again
     tests/help.sh \
     '

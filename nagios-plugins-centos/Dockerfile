@@ -35,7 +35,7 @@ RUN set -euxo pipefail && \
     make build zookeeper && \
     make yum-packages-remove && \
     # run tests after autoremove to check that no important packages we need get removed
-    make test clean && \
+    make test deep-clean && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     yum remove -y make && \
     # these will get autoremoved as dependencies of make
@@ -49,7 +49,6 @@ RUN set -euxo pipefail && \
     # for some reason openssl ends up being missing here when it doesn't show up on manual autoremove
     yum install -y openssl jwhois && \
     yum clean all && \
-    rm -fr /root/.cache /root/.cpanm && \
     # basic test for missing dependencies again
     tests/help.sh
 

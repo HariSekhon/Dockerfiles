@@ -34,7 +34,8 @@ RUN bash -c ' \
     make build && \
     make apt-packages-remove && \
     make test clean && \
-    apt-get remove -y make git && \
+    # leave git for bash-tools/check_pytools.sh
+    apt-get remove -y make && \
     apt-get autoremove -y && \
     apt-get clean && \
     # basic test for missing dependencies again

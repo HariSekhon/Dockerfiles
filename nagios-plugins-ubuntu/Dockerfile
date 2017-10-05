@@ -44,6 +44,7 @@ RUN bash -c ' \
     apt-get remove -y make && \
     apt-get autoremove -y && \
     apt-get clean && \
+    rm -fr /root/.cache /root/.cpanm && \
     # basic test for missing dependencies again
     tests/help.sh \
     '

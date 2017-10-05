@@ -30,10 +30,9 @@ RUN set -euxo pipefail && \
     cd /github/$x && \
     make build zookeeper && \
     make apk-packages-remove && \
-    make test clean && \
+    make test deep-clean && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     apk del make && \
-    rm -fr /root/.cache /root/.cpanm && \
     # basic test for missing dependencies again
     tests/help.sh
 

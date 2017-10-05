@@ -62,13 +62,10 @@ WORKDIR /github/pytools
 # Jython
 RUN bash -c ' \
     set -euxo pipefail && \
-    #apk add --no-cache wget expect && \
-    apt-get update && apt-get install -y wget expect && \
-    sh jython_install.sh && \
+    make jython && \
     apt-get purge -y wget expect && \
     apt-get autoremove -y && \
     apt-get clean \
-    #apk del wget expect
     '
 
 COPY profile.d/java.sh /etc/profile.d/

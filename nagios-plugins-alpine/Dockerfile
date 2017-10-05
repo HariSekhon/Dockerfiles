@@ -33,6 +33,7 @@ RUN set -euxo pipefail && \
     make test clean && \
     # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
     apk del make && \
+    rm -fr /root/.cache /root/.cpanm && \
     # basic test for missing dependencies again
     tests/help.sh
 

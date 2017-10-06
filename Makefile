@@ -93,3 +93,34 @@ update-submodules:
 .PHONY: updatem
 updatem: update-submodules
 	:
+
+# this would apply to all recipes
+#.ONESHELL:
+.PHONY: nagios-plugins
+nagios-plugins:
+	for x in \
+		nagios-plugins-centos \
+		nagios-plugins-ubuntu \
+		nagios-plugins-debian \
+		nagios-plugins-alpine \
+		; do \
+		pushd $$x && \
+		make nocache test && \
+		{ make push & popd; } || \
+		break; \
+	done
+
+.PHONY: github
+github:
+	# has no test target, consider adding one
+	for x in \
+		centos-github \
+		ubuntu-github \
+		debian-github \
+		alpine-github \
+		; do \
+		pushd $$x && \
+		make nocache push && \
+		{ make push & popd; } || \
+		break; \
+	done

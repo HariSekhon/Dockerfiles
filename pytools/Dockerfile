@@ -40,7 +40,7 @@ RUN bash -c ' \
     x=pytools && \
     git clone https://github.com/harisekhon/$x /github/$x && \
     cd /github/$x && \
-    make && \
+    NOJAVA=1 make && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
     make build && \
     make apt-packages-remove && \
@@ -51,7 +51,8 @@ RUN bash -c ' \
 #    apk del make py-pip
     apt-get purge -y make && \
     apt-get autoremove -y && \
-    apt-get clean \
+    apt-get clean && \
+    bash-tools/check_docker_clean.sh \
     # fails after make clean as local spark installations are removed
     # basic test for missing dependencies again
     #tests/help.sh
@@ -60,16 +61,17 @@ RUN bash -c ' \
 WORKDIR /github/pytools
 
 # Jython
-RUN bash -c ' \
-    set -euxo pipefail && \
-    #apk add --no-cache wget expect && \
-    apt-get update && apt-get install -y wget expect && \
-    sh jython_install.sh && \
-    apt-get purge -y wget expect && \
-    apt-get autoremove -y && \
-    apt-get clean \
-    #apk del wget expect
-    '
+#
+# Not realistically gonna use Hadoop Jython utils from docker when they need -Jcp `hadoop classpath` anyway, leave it for harisekhon/hadoop-dev docker image
+#
+#RUN bash -c ' \
+#    set -euxo pipefail && \
+#    apt-get install -y wget expect && \
+#    sh jython_install.sh && \
+#    apt-get purge -y wget expect && \
+#    apt-get autoremove -y && \
+#    apt-get clean \
+#    '
 
 COPY profile.d/java.sh /etc/profile.d/
 

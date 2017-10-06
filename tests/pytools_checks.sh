@@ -21,7 +21,10 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 section "Dockerfiles PyTools Checks"
 
-. "$srcdir/pytools_checks_per_branch.sh"
+export PROJECT=Dockerfiles
+
+# start time is run in here
+. "$srcdir/../bash-tools/check_pytools.sh"
 
 pushd "$srcdir/.."
 
@@ -32,3 +35,7 @@ git_check_branches_upstream.py .
 echo
 
 popd
+
+time_taken "$start_time"
+section2 "PyTools validations SUCCEEDED"
+echo

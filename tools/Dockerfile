@@ -33,10 +33,12 @@ RUN bash -c ' \
     cd /github/$x && \
     make build && \
     make apt-packages-remove && \
-    make test clean && \
-    apt-get remove -y make git && \
+    make test deep-clean && \
+    # leave git for bash-tools/check_pytools.sh
+    apt-get remove -y make && \
     apt-get autoremove -y && \
     apt-get clean && \
+    bash-tools/check_docker_clean.sh && \
     # basic test for missing dependencies again
     tests/help.sh'
 

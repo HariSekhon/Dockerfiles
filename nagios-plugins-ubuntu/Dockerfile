@@ -44,6 +44,7 @@ RUN bash -c ' \
     apt-get remove -y make && \
     apt-get autoremove -y && \
     apt-get clean && \
+    bash-tools/check_docker_clean.sh && \
     # basic test for missing dependencies again
     tests/help.sh \
     '

@@ -20,9 +20,6 @@ LABEL Description="Python Tools"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV JYTHON_HOME=/opt/jython
-ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
-
 RUN mkdir -v /github
 
 WORKDIR /github
@@ -42,11 +39,10 @@ RUN bash -c ' \
     cd /github/$x && \
     NOJAVA=1 make && \
     pip uninstall -y certifi && pip install certifi==2015.04.28 && \
-    make build && \
     make apt-packages-remove && \
     apt-get autoremove -y && \
     apt-get clean && \
-    make test clean && \
+    make test deep-clean && \
     # leave git package as some tools use git
 #    apk del make py-pip
     apt-get purge -y make && \
@@ -73,7 +69,11 @@ WORKDIR /github/pytools
 #    apt-get clean \
 #    '
 
-COPY profile.d/java.sh /etc/profile.d/
+#ENV JYTHON_HOME=/opt/jython
+#ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
+ENV PATH $PATH:/github/pytools
+
+#COPY profile.d/java.sh /etc/profile.d/
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD /bin/bash -c "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"

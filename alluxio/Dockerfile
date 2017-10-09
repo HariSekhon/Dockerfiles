@@ -18,7 +18,7 @@ ARG ALLUXIO_VERSION=1.0.1
 
 ENV PATH $PATH:/alluxio/bin
 
-LABEL Description="Alluxio by Berkeley AMPlab" \
+LABEL Description="Alluxio by Berkeley AMPLab" \
       "Alluxio Version"="$ALLUXIO_VERSION"
 
 WORKDIR /

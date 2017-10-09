@@ -39,10 +39,16 @@ else
     #fi
     #/alluxio/bin/alluxio-start.sh local
     #/alluxio/bin/alluxio-start.sh safe
+
     # fails first time
     /alluxio/bin/alluxio-start.sh master ||
         /alluxio/bin/alluxio-start.sh master
-    /alluxio/bin/alluxio-start.sh worker
+
+    # Worker now needs NoMount and master property to start
+    grep -q '^[[:space:]]*alluxio.master.hostname' /alluxio/conf/alluxio-site.properties ||
+        echo alluxio.master.hostname=localhost >> /alluxio/conf/alluxio-site.properties
+
+    /alluxio/bin/alluxio-start.sh worker NoMount
     sleep 2
     cat /alluxio/logs/*
     echo "================="

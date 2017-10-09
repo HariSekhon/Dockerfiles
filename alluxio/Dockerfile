@@ -14,11 +14,11 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ALLUXIO_VERSION=1.1.0
+ARG ALLUXIO_VERSION=1.6.0
 
 ENV PATH $PATH:/alluxio/bin
 
-LABEL Description="Alluxio by Berkeley AMPlab" \
+LABEL Description="Alluxio by Berkeley AMPLab" \
       "Alluxio Version"="$ALLUXIO_VERSION"
 
 WORKDIR /

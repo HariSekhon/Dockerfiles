@@ -32,7 +32,8 @@ else
         exit 1
     fi
     set -eo pipefail
-    mesos slave --master="$ip_address:5050" --log_dir=/tmp/mesos-slave-logs --no-systemd_enable_support &
+    # not needed on older versions of mesos: --no-systemd_enable_support --launcher=posix
+    mesos slave --master="$ip_address:5050" --log_dir=/tmp/mesos-slave-logs &
     sleep 1
     echo "================="
     cat /tmp/mesos-master-logs/*

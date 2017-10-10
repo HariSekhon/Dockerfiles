@@ -33,7 +33,8 @@ WORKDIR /
 RUN bash -c '\
     set -euxo pipefail && \
     apt-get update && \
-    apt-get install -y --no-install-recommends wget && \
+    # need net-tools for ifconfig in /entrypoint.sh
+    apt-get install -y --no-install-recommends wget net-tools && \
     # Apache only ships source, don't want entire dev tooling in image
     #apt-get install -y --no-install-recommends tar wget && \
     #wget -t 10 --retry-connrefused "http://archive.apache.org/dist/mesos/$MESOS_VERSION/$TAR" && \

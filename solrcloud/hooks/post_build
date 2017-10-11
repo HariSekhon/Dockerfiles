@@ -17,13 +17,17 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-tag="latest"
+highest_tag="unknown"
 
-IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")}"
+if [ -z "${IMAGE_NAME:-}" ]; then
+    IMAGE_NAME="$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")"
+    echo "IMAGE_NAME not set, determined from Makefile to be '$IMAGE_NAME'"
+fi
 DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 
 if [ -z "${SOURCE_BRANCH:-}" ]; then
     SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
+    echo "SOURCE_BRANCH not set, determined from git to be '$SOURCE_BRANCH'"
 fi
 # readlink is not portable across Linux + Mac
 docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
@@ -32,22 +36,46 @@ docker_branch_base="${docker_branch_base%-cluster}"
 docker_version_base="${docker_branch_base//-/_}"
 docker_branch_base="${docker_branch_base/solrcloud/solr}"
 if [ "$docker_branch_base" = "kafka" ]; then
-    latest_tag="2.11-0.9"
+    highest_tag="2.11-0.9"
+    echo "Kafka detected, overriding highest tag to be $highest_tag"
 else
-    # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging latest improvements from master
-    #latest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging improvements from master so not storing all previous versions commented out any more as it's more of an inconvenience
+    #highest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
     # use Git branch versions as the source of truth
-    latest_tag="$(git branch -a | grep -i "remotes/.*/$docker_branch_base" | sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' | sort -n | tail -n 1)"
+    branches="$(git branch -a | grep -i "remotes/.*/$docker_branch_base")"
+    if [ -n "$branches" ]; then
+        if [ "$(wc -l <<< "$branches")" -ge 2 ]; then
+            highest_tag="$(sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' <<< "$branches" | sed 's/\./ /g' | sort -n -k1 -k2 | sed 's/ /./g' | tail -n 1)"
+            echo "determined highest tag from git branches to be $highest_tag"
+        else
+            echo "WARNING: less than 2 matching branches found, cannot determine the highest tag"
+        fi
+    fi
 fi
 
 if ! grep ':' <<< "$IMAGE_NAME";  then
     current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}_VERSION=" Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    echo "current tag not found in IMAGE_NAME=$IMAGE_NAME, determined from Dockerfile to be '$current_tag'"
     IMAGE_NAME="$IMAGE_NAME:$current_tag"
 fi
 
-if [ "$SOURCE_BRANCH" = "master" -o "$SOURCE_BRANCH" = "$docker_branch_base-$latest_tag" ]; then
-    for tag in latest ${latest_tag%%.*}; do
-        docker tag "$IMAGE_NAME" "$DOCKER_REPO:$tag"
-        docker push "$DOCKER_REPO:$tag"
+is_latest(){
+    if [ "$SOURCE_BRANCH" = "master" ]; then
+        echo "determined to be latest build, due to running on master branch"
+        return 0
+    elif [ "$SOURCE_BRANCH" = "$docker_branch_base-$highest_tag" ]; then
+        echo "determined to be highest tagged build, due to SOURCE_BRANCH = '$SOURCE_BRANCH' == \$docker_branch_base-\$highest_tag = '$docker_branch_base-$highest_tag'"
+        return 0
+    fi
+    echo "$SOURCE_BRANCH is not the latest build, which is $docker_branch_base-$highest_tag"
+    return 1
+}
+
+if is_latest; then
+    for tag in latest ${highest_tag%%.*}; do
+        echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:latest\""
+        docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
+        echo "docker push \"$DOCKER_REPO:latest\""
+        docker push "$DOCKER_REPO:latest"
     done
 fi

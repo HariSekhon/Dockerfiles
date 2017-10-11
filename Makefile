@@ -29,18 +29,20 @@ all: build
 
 .PHONY: build
 build:
-	for x in *; do [ -d $$x ] || continue; pushd $$x; make build; popd; done
+	# do not just break as it will fail and move to next push target in build-push
+	for x in *; do [ -d $$x ] || continue; pushd $$x && make build && popd || exit 1; done
+
+.PHONY: build-push
+build-push: build dockerpush
+	:
 
 tags:
 	./build_tags.sh
 
 .PHONY: nocache
 nocache:
-	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done
+	for x in *; do [ -d $$x ] || continue; pushd $$x && make nocache && popd || exit 1; done
 
-.PHONY: pull
-dockerpull:
-	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x; done
 #.PHONY: apt-packages
 #apt-packages:
 #	$(SUDO) apt-get update
@@ -71,8 +73,30 @@ test:
 push:
 	git push --all
 
+.PHONY: pull
 pull:
-	for branch in $$(git branch -a); do git checkout $$branch && git pull || break ; done
+	for branch in $$(git branch -a); do \
+		echo "git checkout $$branch" && \
+		git checkout $$branch && \
+		echo "git pull" && \
+		git pull || \
+		exit 1; \
+	done
+
+.PHONY: dockerpull
+dockerpull:
+	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x || exit 1; done
+
+.PHONY: dockerpush
+dockerpush:
+	# use make push which will also call hooks/post_build
+	for x in *; do \
+		[ -d "$$x" ] || continue; \
+		pushd "$$x" && \
+		make push && \
+		popd || \
+		exit 1; \
+	done
 
 .PHONY: update
 update: update2 build

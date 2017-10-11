@@ -38,9 +38,6 @@ tags:
 nocache:
 	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done
 
-.PHONY: pull
-dockerpull:
-	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x; done
 #.PHONY: apt-packages
 #apt-packages:
 #	$(SUDO) apt-get update
@@ -72,7 +69,16 @@ push:
 	git push --all
 
 pull:
-	for branch in $$(git branch -a); do git checkout $$branch && git pull || break ; done
+	for branch in $$(git branch -a | grep -v remotes/); do git checkout $$branch && git pull || exit 1; done
+
+.PHONY: dockerpull
+dockerpull:
+	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x || exit 1; done
+
+.PHONY: dockerpush
+dockerpush:
+	# use make push which will also call hooks/post_build
+	for x in *; do [ -d $$x ] || continue; pushd $$x && make push && popd || exit 1; done
 
 .PHONY: update
 update: update2 build

@@ -72,7 +72,13 @@ push:
 	git push --all
 
 pull:
-	for branch in $$(git branch -a); do git checkout $$branch && git pull || break ; done
+	for branch in $$(git branch -a); do \
+		echo "git checkout $$branch" && \
+		git checkout $$branch && \
+		echo "git pull" && \
+		git pull || \
+		exit 1; \
+	done
 
 .PHONY: update
 update: update2 build

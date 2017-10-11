@@ -84,7 +84,13 @@ dockerpull:
 .PHONY: dockerpush
 dockerpush:
 	# use make push which will also call hooks/post_build
-	for x in *; do [ -d $$x ] || continue; pushd $$x && make push && popd || exit 1; done
+	for branch in $$(git branch -a); do \
+		echo "git checkout $$branch" && \
+		git checkout $$branch && \
+		echo "git pull" && \
+		git pull || \
+		exit 1; \
+	done
 
 .PHONY: update
 update: update2 build

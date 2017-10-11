@@ -29,14 +29,19 @@ all: build
 
 .PHONY: build
 build:
-	for x in *; do [ -d $$x ] || continue; pushd $$x; make build; popd; done
+	# do not just break as it will fail and move to next push target in build-push
+	for x in *; do [ -d $$x ] || continue; pushd $$x && make build && popd || exit 1; done
+
+.PHONY: build-push
+build-push: build dockerpush
+	:
 
 tags:
 	./build_tags.sh
 
 .PHONY: nocache
 nocache:
-	for x in *; do [ -d $$x ] || continue; pushd $$x; make nocache; popd; done
+	for x in *; do [ -d $$x ] || continue; pushd $$x && make nocache && popd || exit 1; done
 
 #.PHONY: apt-packages
 #apt-packages:
@@ -68,6 +73,7 @@ test:
 push:
 	git push --all
 
+.PHONY: pull
 pull:
 	for branch in $$(git branch -a | grep -v remotes/); do git checkout $$branch && git pull || exit 1; done
 

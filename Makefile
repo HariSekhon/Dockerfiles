@@ -75,9 +75,9 @@ push:
 
 .PHONY: pull
 pull:
-	for branch in $$(git branch -a | grep -v -e remotes/); do \
+	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
 		echo "git checkout $$branch" && \
-		git checkout $$branch && \
+		git checkout "$$branch" && \
 		echo "git pull" && \
 		git pull || \
 		exit 1; \

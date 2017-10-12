@@ -72,10 +72,8 @@ is_latest(){
 }
 
 if is_latest; then
-    for tag in latest ${highest_tag%%.*}; do
-        echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:latest\""
-        docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
-        echo "docker push \"$DOCKER_REPO:latest\""
-        docker push "$DOCKER_REPO:latest"
-    done
+    echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:latest\""
+    docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
+    echo "docker push \"$DOCKER_REPO:latest\""
+    docker push "$DOCKER_REPO:latest"
 fi

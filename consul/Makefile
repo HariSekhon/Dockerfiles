@@ -57,4 +57,5 @@ build-push-versions: build-versions push-versions
 
 .PHONY: run
 run:
-	docker run -ti -p 8500:8500 $(REPO):$(TAG) agent -dev -data-dir /tmp -client 0.0.0.0
+	# -dev flag >= 0.6 only, use -server -bootstrap instead
+	docker run -ti -p 8500:8500 $(REPO):$(TAG) agent -server -bootstrap -data-dir /tmp -client 0.0.0.0

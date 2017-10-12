@@ -104,7 +104,7 @@ mergemasterall:
 	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
 		echo "git checkout $$branch" && \
 		git checkout "$$branch" && \
-		git merge master || \
+		git merge -m "merged master" master || \
 		exit 1; \
 	done; \
 	git checkout master

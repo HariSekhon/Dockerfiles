@@ -102,9 +102,11 @@ dockerpush:
 .PHONY: mergemasterall
 mergemasterall:
 	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
+		echo "Merging branch $$branch" && \
 		echo "git checkout $$branch" && \
 		git checkout "$$branch" && \
-		git merge -m "merged master" master || \
+		git merge -m "merged master" master && \
+		echo || \
 		exit 1; \
 	done; \
 	git checkout master

@@ -18,7 +18,12 @@ set -eu
 [ -n "${DEBUG:-}" ] && set -x
 
 # busybox's egrep and sed ERE are broken, don't recognize \. - doing something a bit more basic but it works
-ip="$(ifconfig | grep -m1 'inet addr:' | sed 's/.*inet addr://;s/ .*$//')"
+ip="$(ifconfig | grep -m1 'inet ' | sed 's/.*inet //; s/ addr//; s/ .*$//')"
+
+if [ -z "$ip" ]; then
+    echo "FAILED to determined container's IP Address, cannot start!"
+    exit 1
+fi
 
 args=""
 if [ "${1:-}" = "agent" ]; then

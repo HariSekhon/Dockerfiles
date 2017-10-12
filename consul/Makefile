@@ -23,6 +23,14 @@ endif
 build:
 	docker build -t $(REPO):$(TAG) .
 
+.PHONY: build-versions
+build-versions:
+	for x in $$(git branch -a | grep consul | sed 's,remotes/origin/,,' | sort -u); do \
+		git checkout "$$x" && \
+		make build || \
+		exit 1; \
+	done
+
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO):$(TAG) --no-cache .
@@ -31,6 +39,19 @@ nocache:
 push:
 	docker push $(REPO):$(TAG)
 	hooks/post_build
+
+.PHONY: push-versions
+push-versions:
+	# use 'make push' rather than just 'docker push' to trigger hooks/post_build
+	for x in $$(git branch -a | grep consul | sed 's,remotes/origin/,,' | sort -u); do \
+		git checkout "$$x" && \
+		make push || \
+		exit 1; \
+	done
+
+.PHONY: build-push-versions
+build-push-versions: build-versions push-versions
+	:
 
 .PHONY: run
 run:

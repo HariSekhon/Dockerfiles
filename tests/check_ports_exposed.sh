@@ -63,3 +63,5 @@ for x in *; do
         exit 1
     fi
 done
+echo
+echo

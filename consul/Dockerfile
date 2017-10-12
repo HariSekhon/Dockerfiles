@@ -48,9 +48,8 @@ RUN bash -c ' \
     apt-get clean \
     '
 
-#COPY entrypoint.sh /
+COPY entrypoint.sh /
 
 EXPOSE 8400 8500 8600
 
-#ENTRYPOINT ["/entrypoint.sh"]
-ENTRYPOINT ["/consul"]
+ENTRYPOINT ["/entrypoint.sh"]

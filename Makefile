@@ -81,7 +81,8 @@ pull:
 		echo "git pull" && \
 		git pull || \
 		exit 1; \
-	done
+	done; \
+	git checkout master
 
 .PHONY: dockerpull
 dockerpull:
@@ -97,6 +98,16 @@ dockerpush:
 		popd || \
 		exit 1; \
 	done
+
+.PHONY: mergemasterall
+mergemasterall:
+	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
+		echo "git checkout $$branch" && \
+		git checkout "$$branch" && \
+		git merge -m "merged master" master || \
+		exit 1; \
+	done; \
+	git checkout master
 
 .PHONY: update
 update: update2 build

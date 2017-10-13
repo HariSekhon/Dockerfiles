@@ -19,6 +19,8 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 highest_tag="unknown"
 
+current_scala="2.11"
+
 if [ -z "${IMAGE_NAME:-}" ]; then
     IMAGE_NAME="$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")"
     echo "IMAGE_NAME not set, determined from Makefile to be '$IMAGE_NAME'"
@@ -36,7 +38,7 @@ docker_branch_base="${docker_branch_base%-cluster}"
 docker_version_base="${docker_branch_base//-/_}"
 docker_branch_base="${docker_branch_base/solrcloud/solr}"
 if [ "$docker_branch_base" = "kafka" ]; then
-    highest_tag="2.11-0.9"
+    highest_tag="${current_scala}_0.9"
     echo "Kafka detected, overriding highest tag to be $highest_tag"
 else
     # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging improvements from master so not storing all previous versions commented out any more as it's more of an inconvenience
@@ -55,6 +57,9 @@ fi
 
 if ! grep ':' <<< "$IMAGE_NAME";  then
     current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}_VERSION=" Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    if [ "$docker_branch_base" = "kafka" ]; then
+        current_tag="${current_scala}_$current_tag"
+    fi
     echo "current tag not found in IMAGE_NAME=$IMAGE_NAME, determined from Dockerfile to be '$current_tag'"
     IMAGE_NAME="$IMAGE_NAME:$current_tag"
 fi

@@ -13,13 +13,19 @@
 
 REPO=harisekhon/jython
 
+TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+
+ifdef LATEST
+	TAG=latest
+endif
+
 .PHONY: build
 build:
-	docker build -t $(REPO) .
+	docker build -t $(REPO):$(TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(REPO) --no-cache .
+	docker build -t $(REPO):$(TAG) --no-cache .
 
 .PHONY: push
 push:

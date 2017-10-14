@@ -33,7 +33,8 @@ LABEL Description="Riak" \
 RUN set -euxo pipefail && \
     yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
     yum autoremove -y && \
-    yum clean all
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 # make HTTP listen on 0.0.0.0 not 127.0.0.1
 # Riak 1.x

@@ -49,6 +49,7 @@ RUN set -euxo pipefail && \
     # for some reason openssl ends up being missing here when it doesn't show up on manual autoremove
     yum install -y openssl jwhois && \
     yum clean all && \
+    rm -rf /var/cache/yum && \
     bash-tools/check_docker_clean.sh && \
     # basic test for missing dependencies again
     tests/help.sh

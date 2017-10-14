@@ -67,7 +67,9 @@ RUN set -euxo pipefail && \
     # older versions of Presto look for config in /usr/lib/presto/etc, linking for compatability across versions
     ln -sv /etc/presto /usr/lib/presto/etc && \
     yum remove -y wget && \
-    yum autoremove -y
+    yum autoremove -y && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 COPY entrypoint.sh /
 COPY etc /etc/presto/

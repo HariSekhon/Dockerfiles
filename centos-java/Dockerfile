@@ -29,7 +29,8 @@ RUN set -euxo pipefail && \
         pkg="$pkg-headless"; \
     fi; \
     yum install -y "$pkg" && \
-    yum clean all
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 COPY profile.d/java.sh /etc/profile.d/
 

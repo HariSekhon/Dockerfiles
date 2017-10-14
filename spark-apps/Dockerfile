@@ -32,7 +32,8 @@ RUN set -euxo pipefail && \
     cd /github/$x && \
     make build clean && \
     yum autoremove -y && \
-    yum clean all
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 WORKDIR /github/spark-apps
 

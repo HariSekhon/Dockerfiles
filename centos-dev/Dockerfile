@@ -66,6 +66,7 @@ RUN set -euxo pipefail && \
     yum install -y --nogpgcheck sbt && \
     yum autoremove -y && \
     yum clean all && \
+    rm -rf /var/cache/yum && \
     # workaround for CentOS (found via strace) otherwise incorrectly states "Warning: You do not have write permission for Perl library directories." and local::lib hits use of uninitialized variables errors in base modules like even core File::Basename :-/
     mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
 

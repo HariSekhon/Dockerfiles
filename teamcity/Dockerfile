@@ -31,7 +31,8 @@ RUN set -euxo pipefail && \
     # fails as it tries to remove systemd
     #yum remove -y tar && \
     yum autoremove -y && \
-    yum clean all
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 EXPOSE 8111
 

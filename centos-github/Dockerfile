@@ -33,37 +33,73 @@ RUN set -euxo pipefail && \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y --nogpgcheck sbt && \
     yum autoremove -y && \
-    yum clean all
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN set -euxo pipefail && \
     for x in bash-tools lib tools; do \
-        git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean && yum autoremove -y && yum clean all || exit 1; \
+        git clone https://github.com/harisekhon/$x /github/$x && \
+        cd /github/$x && \
+        make build test clean && \
+        yum autoremove -y && \
+        yum clean all && \
+        rm -rf /var/cache/yum || \
+        exit 1; \
     done
 RUN set -euxo pipefail && \
     x=spotify && \
-        git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build      clean && yum autoremove -y && yum clean all
+        git clone https://github.com/harisekhon/$x /github/$x && \
+        cd /github/$x && \
+        make build clean && \
+        yum autoremove -y && \
+        yum clean all && \
+        rm -rf /var/cache/yum
 
 # inherited instead now
 #RUN x=nagios-plugins; git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build zookeeper clean; yum autoremove -y && yum clean all
 
 RUN set -euxo pipefail && \
     for x in pylib pytools; do \
-        git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean || exit 1; \
+        git clone https://github.com/harisekhon/$x /github/$x && \
+        cd /github/$x && \
+        make build test clean \
+        || exit 1; \
     done && \
     yum autoremove -y && \
     yum clean all && \
+    rm -rf /var/cache/yum && \
     # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
     pip uninstall -y certifi && pip install certifi==2015.04.28
 
 # could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
 # instead build each project with a different build tool and don't deep-clean so we have them cached for faster development in docker
 RUN set -euxo pipefail && \
-    x=lib-java &&            git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make gradle test clean && yum autoremove -y && yum clean all
+    x=lib-java && \
+    git clone https://github.com/harisekhon/$x /github/$x && \
+    cd /github/$x && \
+    make gradle test clean && \
+    yum autoremove -y && \
+    yum clean all && \
+    rm -rf /var/cache/yum
+
 RUN set -euxo pipefail && \
-    x=nagios-plugin-kafka && git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make mvn    test clean && yum autoremove -y && yum clean all
+    x=nagios-plugin-kafka && \
+    git clone https://github.com/harisekhon/$x /github/$x && \
+    cd /github/$x && \
+    make mvn test clean && \
+    yum autoremove -y && \
+    yum clean all && \
+    rm -rf /var/cache/yum
+
 #RUN set -euxo pipefail && \
-#    x=spark-apps &&         git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make sbt    test clean && yum autoremove -y && yum clean all
+#    x=spark-apps && \
+#    git clone https://github.com/harisekhon/$x /github/$x && \
+#    cd /github/$x && \
+#    make sbt test clean && \
+#    yum autoremove -y && \
+#    yum clean all && \
+#    rm -rf /var/cache/yum
 
 # trick to invalidate cache at this point to pull latest updates
 # not needed any more since DockerHub does the build now and doesn't cache anyway

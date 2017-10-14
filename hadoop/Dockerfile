@@ -50,7 +50,8 @@ RUN set -euxo pipefail && \
     yum autoremove -y && \
     # gets autoremoved, ensure it's added back as Hadoop scripts need it
     yum install -y hostname && \
-    yum clean all
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 COPY entrypoint.sh /
 COPY conf/core-site.xml /hadoop/etc/hadoop/

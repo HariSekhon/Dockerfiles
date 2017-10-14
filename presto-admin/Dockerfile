@@ -30,7 +30,10 @@ WORKDIR /
 # python => presto admin
 RUN set -euxo pipefail && \
     #yum install -y bash java-1.8.0-openjdk-headless python
-    yum install -y bash python # pycrypto # resolves to python2-crypto
+    # pycrypto # resolves to python2-crypto
+    yum install -y bash python && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 RUN set -euxo pipefail && \
     yum install -y gcc python-devel tar wget && \
@@ -44,7 +47,8 @@ RUN set -euxo pipefail && \
     ./install-prestoadmin.sh && \
     # trying to remove tar tries to remove systemd
     yum remove -y gcc python-devel wget && \
-    yum autoremove -y
+    yum autoremove -y && \
+    rm -rf /var/cache/yum
 
 #EXPOSE 8080
 

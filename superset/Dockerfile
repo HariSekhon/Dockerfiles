@@ -32,7 +32,9 @@ RUN set -euxo pipefail && \
     superset load_examples && \
     superset init && \
     yum remove -y gcc gcc-c++ libffi-devel python-devel openssl-devel libsasl2-devel openldap-devel mysql-devel && \
-    yum autoremove -y
+    yum autoremove -y && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 EXPOSE 8088
 

@@ -13,26 +13,8 @@
 
 REPO=harisekhon/consul-dev
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+include ../Makefile.common
 
-ifdef LATEST
-	TAG=latest
-endif
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
-
-.PHONY: run
 run:
 	# -dev flag >= 0.6 only, use -server -bootstrap instead
 	docker run -ti -p 8500:8500 $(REPO):$(TAG) consul agent -server -bootstrap -data-dir /tmp -client 0.0.0.0

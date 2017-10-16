@@ -13,11 +13,7 @@
 
 REPO=harisekhon/presto-admin
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
+include ../Makefile.common
 
 .PHONY: history
 history:
@@ -27,15 +23,13 @@ history:
 history-push:
 	PUSH=1 ./build_historic_versions.sh
 
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
+.PHONY: build-versions
+build-versions: build history
+	:
 
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
+.PHONY: build-push-versions
+build-push-versions: history-push
+	:
 
-.PHONY: run
 run:
 	docker run -ti -p 8080:8080 $(REPO):$(TAG)

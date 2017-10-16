@@ -13,25 +13,10 @@
 
 REPO=harisekhon/kafka
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+SCALA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)_$(shell perl -n -e '/^\s*ARG\s+KAFKA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)
+include ../Makefile.common
 
-ifdef LATEST
-	TAG=latest
-endif
+# override TAG with more specific Scala_Kafka version
+TAG = $(shell perl -n -e '/^\s*ARG\s+SCALA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)_$(shell perl -n -e '/^\s*ARG\s+KAFKA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)
 
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
-
-.PHONY: run
 run:
 	docker run -ti -p 2181:2181 -p 9092:9092 $(REPO):$(TAG)

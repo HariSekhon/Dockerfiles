@@ -32,11 +32,11 @@ build-versions:
 	branch=$(REPO); \
 	branch=$${branch##*/}; \
 	for x in $$(git branch -a | grep $$branch | sed 's,remotes/origin/,,' | sort -u); do \
-		echo git checkout "$$x" && \
-		echo make build || \
+		git checkout "$$x" && \
+		make build || \
 		exit 1; \
 	done; \
-	echo git checkout master
+	git checkout master
 
 .PHONY: build-push-versions
 build-push-versions: build-versions push-versions

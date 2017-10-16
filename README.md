@@ -1,4 +1,6 @@
-Hari Sekhon Docker
+Hari Sekhon's DockerHub source
+==================
+Big Data, NoSQL & DevOps technologies
 ==================
 [![Build Status](https://travis-ci.org/HariSekhon/Dockerfiles.svg?branch=master)](https://travis-ci.org/HariSekhon/Dockerfiles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/network) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
 
@@ -14,7 +16,7 @@ Summarily this repo contains:
 * **DevOps** tech, anything cool and open source (RabbitMQ Cluster, Mesos, Consul)
 * [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
 
-These images are all available pre-built on [My DockerHub: https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
+These images are all available pre-built on [My DockerHub - https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 
 **Quality and Testing** - this repo has entire suites of tests run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images functionality, branches vs tagged versions align, syntax checks against build files and various configuration file formats (ini/json/xml) etc - these are reusable tests that can anybody can reuse for their own repos and can be found in my [PyTools](https://github.com/HariSekhon/pytools) and [Bash-Tools](https://github.com/HariSekhon/bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs. This is never 100% but is an always ongoing process, and they are tested via Continuous Integration for various repos that use them for their test suites as well. All of this is intended to keep the qualify of this repo high.
 

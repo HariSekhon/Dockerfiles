@@ -1,4 +1,4 @@
-Hari Sekhon's DockerHub
+Hari Sekhon's DockerHub source
 ==================
 Big Data, NoSQL & DevOps technologies
 ==================

@@ -13,25 +13,7 @@
 
 REPO=harisekhon/solrcloud
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+include ../Makefile.common
 
-ifdef LATEST
-	TAG=latest
-endif
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
-
-.PHONY: run
 run:
 	docker run -ti -p 8983:8983 -p 8984:8984 -p 9983:9983 $(REPO):$(TAG)

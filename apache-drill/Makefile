@@ -13,7 +13,7 @@
 
 REPO=harisekhon/apache-drill
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 8047:8047 $(REPO):$(TAG)

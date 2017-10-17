@@ -13,7 +13,7 @@
 
 REPO=harisekhon/consul-dev
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	# -dev flag >= 0.6 only, use -server -bootstrap instead

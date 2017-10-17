@@ -13,7 +13,7 @@
 
 REPO=harisekhon/presto-admin
 
-include ../Makefile.common
+include ../Makefile.in
 
 .PHONY: history
 history:

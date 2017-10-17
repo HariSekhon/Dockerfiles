@@ -13,7 +13,7 @@
 
 REPO=harisekhon/riak-dev
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 8098:8098 $(REPO):$(TAG)

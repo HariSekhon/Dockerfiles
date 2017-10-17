@@ -13,7 +13,7 @@
 
 REPO=harisekhon/presto-dev
 
-include ../Makefile.common
+include ../Makefile.in
 
 TAG=$(shell ./get_presto_versions.sh | head -n1)
 

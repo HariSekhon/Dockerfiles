@@ -13,7 +13,7 @@
 
 REPO=harisekhon/teamcity
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 8111:8111 $(REPO):$(TAG)

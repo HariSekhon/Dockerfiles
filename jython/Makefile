@@ -13,4 +13,4 @@
 
 REPO=harisekhon/jython
 
-include ../Makefile.common
+include ../Makefile.in

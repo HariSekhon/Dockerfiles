@@ -13,7 +13,7 @@
 
 REPO=harisekhon/hadoop-dev
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 8042:8042 -p 8088:8088 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 $(REPO):$(TAG)

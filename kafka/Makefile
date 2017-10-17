@@ -13,7 +13,7 @@
 
 REPO=harisekhon/kafka
 
-include ../Makefile.common
+include ../Makefile.in
 
 # override TAG with more specific Scala_Kafka version
 TAG = $(shell perl -n -e '/^\s*ARG\s+SCALA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)_$(shell perl -n -e '/^\s*ARG\s+KAFKA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)

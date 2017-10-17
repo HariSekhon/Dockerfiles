@@ -13,7 +13,7 @@
 
 REPO=harisekhon/h2o
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 54321:54321 $(REPO):$(TAG)

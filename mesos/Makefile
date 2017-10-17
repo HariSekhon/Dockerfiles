@@ -13,7 +13,7 @@
 
 REPO=harisekhon/mesos
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	#docker run -ti -p 5050-5051:5050-5051 $(REPO):$(TAG)

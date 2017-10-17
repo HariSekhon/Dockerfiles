@@ -13,7 +13,7 @@
 
 REPO=harisekhon/rabbitmq-cluster
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	#docker run -ti $$(for x in 5672 15672; do echo -p $$x:$$x; done) $(REPO):$(TAG)

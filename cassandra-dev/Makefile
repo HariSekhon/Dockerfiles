@@ -13,7 +13,7 @@
 
 REPO=harisekhon/cassandra-dev
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 7199:7199 -p 9042:9042 -p 9160:9160 $(REPO):$(TAG)

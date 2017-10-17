@@ -13,7 +13,7 @@
 
 REPO=harisekhon/spark
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 $(REPO):$(TAG)

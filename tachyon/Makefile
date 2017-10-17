@@ -13,7 +13,7 @@
 
 REPO=harisekhon/tachyon
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 19999:19999 -p 30000:30000 $(REPO):$(TAG)

@@ -13,7 +13,7 @@
 
 REPO=harisekhon/nifi
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 8080:8080 $(REPO):$(TAG)

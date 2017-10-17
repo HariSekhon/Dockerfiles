@@ -13,7 +13,7 @@
 
 REPO=harisekhon/solrcloud
 
-include ../Makefile.common
+include ../Makefile.in
 
 run:
 	docker run -ti -p 8983:8983 -p 8984:8984 -p 9983:9983 $(REPO):$(TAG)

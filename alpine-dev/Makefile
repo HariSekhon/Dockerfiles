@@ -14,6 +14,3 @@
 REPO=harisekhon/alpine-dev
 
 include ../Makefile.in
-
-run:
-	docker run -ti $(REPO) bash

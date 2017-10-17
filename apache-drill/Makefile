@@ -11,13 +11,12 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/apache-drill
+REPO := harisekhon/apache-drill
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 8047:8047 $(REPO):$(TAG)
+MAP_PORTS := 8047
 
 .PHONY: run-drillbit
 run-drillbit:
-	docker run -ti -p 8047:8047 $(REPO):$(TAG) supervisord -n
+	docker run -ti -p 8047:8047 $(REPO) supervisord -n

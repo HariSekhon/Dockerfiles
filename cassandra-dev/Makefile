@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/cassandra-dev
+REPO := harisekhon/cassandra-dev
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 7199:7199 -p 9042:9042 -p 9160:9160 $(REPO):$(TAG)
+MAP_PORTS := 7199 9042 9160

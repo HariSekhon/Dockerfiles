@@ -11,11 +11,13 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/presto-dev
+REPO := harisekhon/presto-dev
 
 include ../Makefile.in
 
-TAG=$(shell ./get_presto_versions.sh | head -n1)
+TAG := $(shell ./get_presto_versions.sh | head -n1)
+
+MAP_PORTS := 8080
 
 .PHONY: build
 build:
@@ -40,6 +42,3 @@ build-push-versions: build push history-push
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) --no-cache .
-
-run:
-	docker run -ti -p 8080:8080 $(REPO):$(TAG)

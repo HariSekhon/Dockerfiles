@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/spark
+REPO := harisekhon/spark
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 $(REPO):$(TAG)
+MAP_PORTS := 4040 7077 8080 8081

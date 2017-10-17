@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/jython
+REPO := harisekhon/jython
 
 include ../Makefile.in

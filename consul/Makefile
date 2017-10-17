@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/consul
+REPO := harisekhon/consul
 
 include ../Makefile.in
 

@@ -11,10 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/mesos
+REPO := harisekhon/mesos
 
 include ../Makefile.in
 
-run:
-	#docker run -ti -p 5050-5051:5050-5051 $(REPO):$(TAG)
-	docker run -ti -p 5050:5050 -p 5051:5051 $(REPO):$(TAG)
+MAP_PORTS := 5050 5051

@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/teamcity
+REPO := harisekhon/teamcity
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 8111:8111 $(REPO):$(TAG)
+MAP_PORTS := 8111

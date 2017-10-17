@@ -13,19 +13,25 @@
 
 TAG = $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
-# TODO: how to handle REPO without a TAG? Combine TAG in to REPO if TAG is not empty?
+MAP_PORTS = ""
 
 ifdef LATEST
 	TAG=latest
 endif
 
+ifneq "$(TAG)" ""
+	REPO_TAG := "$(REPO):$(TAG)"
+else
+	REPO_TAG := "$(REPO)"
+endif
+
 .PHONY: build
 build:
-	docker build -t $(REPO):$(TAG) .
+	docker build -t $(REPO_TAG) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
+	docker build -t $(REPO_TAG) --no-cache .
 
 .PHONY: build-versions
 build-versions:
@@ -44,8 +50,8 @@ build-push-versions: build-versions push-versions
 
 .PHONY: push
 push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
+	docker push $(REPO_TAG)
+	[ -f hooks/post_build ] && hooks/post_build
 
 # use 'make push' rather than just 'docker push' to trigger hooks/post_build
 .PHONY: push-versions
@@ -60,3 +66,17 @@ push-versions:
 	git checkout master
 
 .PHONY: run
+run:
+	@if [ -n "$(MAP_PORTS)" ]; then \
+	    ports=$$(for port in $(MAP_PORTS); do echo -n "-p $$port:$$port "; done); \
+		echo "docker run -ti $$ports $(REPO_TAG)"; \
+		docker run -ti $$ports $(REPO_TAG); \
+	else \
+		echo "docker run -ti $(REPO_TAG) bash"; \
+		docker run -ti $(REPO_TAG) bash; \
+	fi
+
+.PHONY: test
+test:
+	#docker run -ti $(REPO) sh -c 'if test -f tests/all.sh; then tests/all.sh; fi;'
+	docker run -ti $(REPO) tests/all.sh

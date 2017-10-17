@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/presto
+REPO := harisekhon/presto
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 8080:8080 $(REPO):$(TAG)
+MAP_PORTS := 8080

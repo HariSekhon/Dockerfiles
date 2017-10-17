@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/rabbitmq-cluster
+REPO := harisekhon/rabbitmq-cluster
 
 include ../Makefile.in
 

@@ -11,9 +11,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/presto-admin
+REPO := harisekhon/presto-admin
 
 include ../Makefile.in
+
+MAP_PORTS := 8080
 
 .PHONY: history
 history:
@@ -30,6 +32,3 @@ build-versions: build history
 .PHONY: build-push-versions
 build-push-versions: history-push
 	:
-
-run:
-	docker run -ti -p 8080:8080 $(REPO):$(TAG)

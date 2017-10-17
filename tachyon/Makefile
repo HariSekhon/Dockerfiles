@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/tachyon
+REPO := harisekhon/tachyon
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 19999:19999 -p 30000:30000 $(REPO):$(TAG)
+MAP_PORTS := 19999 30000

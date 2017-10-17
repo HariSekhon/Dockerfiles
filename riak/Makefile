@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/riak
+REPO := harisekhon/riak
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 8098:8098 $(REPO):$(TAG)
+MAP_PORTS := 8098

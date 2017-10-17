@@ -11,16 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/centos-github
+REPO := harisekhon/centos-github
 
-.PHONY: build
-build:
-	docker build -t $(REPO) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO)
+include ../Makefile.in

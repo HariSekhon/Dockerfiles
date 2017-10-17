@@ -75,3 +75,8 @@ run:
 		echo "docker run -ti $(REPO_TAG) bash"; \
 		docker run -ti $(REPO_TAG) bash; \
 	fi
+
+.PHONY: test
+test:
+	#docker run -ti $(REPO) sh -c 'if test -f tests/all.sh; then tests/all.sh; fi;'
+	docker run -ti $(REPO) tests/all.sh

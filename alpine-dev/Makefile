@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/alpine-dev
+REPO := harisekhon/alpine-dev
 
 include ../Makefile.in

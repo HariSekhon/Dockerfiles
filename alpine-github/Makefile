@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/alpine-github
+REPO := harisekhon/alpine-github
 
 include ../Makefile.in

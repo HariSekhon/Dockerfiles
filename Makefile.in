@@ -13,24 +13,27 @@
 
 TAG = $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
-# TODO: how to handle REPO without a TAG? Combine TAG in to REPO if TAG is not empty?
-
 ifdef LATEST
 	TAG=latest
 endif
 
+ifneq "$(TAG)" ""
+    REPO := "$(REPO):$(TAG)"
+endif
+
 .PHONY: build
 build:
-	docker build -t $(REPO):$(TAG) .
+	docker build -t $(REPO) .
 
 .PHONY: nocache
 nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
+	docker build -t $(REPO) --no-cache .
 
 .PHONY: build-versions
 build-versions:
 	branch=$(REPO); \
 	branch=$${branch##*/}; \
+	branch=$${branch%:*}; \
 	for x in $$(git branch -a | grep $$branch | sed 's,remotes/origin/,,' | sort -u); do \
 		git checkout "$$x" && \
 		make build || \
@@ -44,7 +47,7 @@ build-push-versions: build-versions push-versions
 
 .PHONY: push
 push:
-	docker push $(REPO):$(TAG)
+	docker push $(REPO)
 	[ -f hooks/post_build ] && hooks/post_build
 
 # use 'make push' rather than just 'docker push' to trigger hooks/post_build
@@ -52,6 +55,7 @@ push:
 push-versions:
 	branch=$(REPO); \
 	branch=$${branch##*/}; \
+	branch=$${branch%:*}; \
 	for x in $$(git branch -a | grep $$branch | sed 's,remotes/origin/,,' | sort -u); do \
 		git checkout "$$x" && \
 		make push || \

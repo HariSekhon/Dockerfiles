@@ -11,20 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/debian-dev
+REPO := harisekhon/debian-dev
 
-.PHONY: build
-build:
-	docker build -t $(REPO) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO)
-
-.PHONY: nocache
-run:
-	docker run -ti $(REPO) bash
+include ../Makefile.in

@@ -11,12 +11,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/kafka
+REPO := harisekhon/kafka
 
 include ../Makefile.in
 
 # override TAG with more specific Scala_Kafka version
 TAG = $(shell perl -n -e '/^\s*ARG\s+SCALA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)_$(shell perl -n -e '/^\s*ARG\s+KAFKA_VERSION\s*=\s*(\d+\.\d+)/ && print "$$1"; ' Dockerfile)
 
-run:
-	docker run -ti -p 2181:2181 -p 9092:9092 $(REPO):$(TAG)
+MAP_PORTS := 2181 9092

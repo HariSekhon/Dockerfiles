@@ -11,24 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/nagios-plugins:ubuntu
+REPO := harisekhon/nagios-plugins:ubuntu
 
-.PHONY: build
-build:
-	docker build -t $(REPO) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO) --no-cache .
-
-.PHONY: test
-test:
-	docker run -ti $(REPO) tests/all.sh
-
-.PHONY: push
-push:
-	docker push $(REPO)
-
-.PHONY: run
-run:
-	docker run -ti $(REPO) sh
+include ../Makefile.in

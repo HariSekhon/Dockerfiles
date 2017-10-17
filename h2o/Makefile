@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/h2o
+REPO := harisekhon/h2o
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 54321:54321 $(REPO):$(TAG)
+MAP_PORTS := 54321

@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/zookeeper
+REPO := harisekhon/zookeeper
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 2181:2181 -p 3181:3181 -p 4181:4181 $(REPO):$(TAG)
+MAP_PORTS := 2181 3181 4181

@@ -11,9 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/hadoop-dev
+REPO := harisekhon/hadoop-dev
 
 include ../Makefile.in
 
-run:
-	docker run -ti -p 8042:8042 -p 8088:8088 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 $(REPO):$(TAG)
+MAP_PORTS := 8042 19888 50010 50020 50070 50075 50090

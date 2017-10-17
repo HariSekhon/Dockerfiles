@@ -28,7 +28,6 @@ test:
 .PHONY: push
 push:
 	docker push $(REPO)
-	hooks/post_build
 
 .PHONY: run
 run:

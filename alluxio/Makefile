@@ -11,8 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO = harisekhon/alluxio
+REPO := harisekhon/alluxio
 
 include ../Makefile.in
 
-MAP_PORTS = 19999 30000
+MAP_PORTS := 19999 30000

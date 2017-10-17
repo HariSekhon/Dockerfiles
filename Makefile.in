@@ -60,3 +60,4 @@ push-versions:
 	git checkout master
 
 .PHONY: run
+# define run separately for each docker image since you want to open different ports

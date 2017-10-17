@@ -67,8 +67,11 @@ push-versions:
 
 .PHONY: run
 run:
-	if [ -n "$(MAP_PORTS)" ]; then \
-		docker run -ti $$(for port in $(MAP_PORTS); do echo -p $$port:$$port; done) $(REPO_TAG); \
+	@if [ -n "$(MAP_PORTS)" ]; then \
+	    ports=$$(for port in $(MAP_PORTS); do echo -n "-p $$port:$$port "; done); \
+		echo "docker run -ti $$ports $(REPO_TAG)"; \
+		docker run -ti $$ports $(REPO_TAG); \
 	else \
+		echo "docker run -ti $(REPO_TAG) bash"; \
 		docker run -ti $(REPO_TAG) bash; \
 	fi

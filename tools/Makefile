@@ -11,25 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/tools
+REPO := harisekhon/tools
 
-.PHONY: build
-build:
-	docker build -t $(REPO) .
+include ../Makefile.in
 
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO) --no-cache .
-
-.PHONY: test
-test:
-	docker run -ti $(REPO) tests/all.sh
-
-.PHONY: push
-push:
-	docker push $(REPO)
-	#hooks/post_build
-
-.PHONY: run
-run:
-	docker run -ti $(REPO) sh
+#.PHONY: test
+#test:
+#	docker run -ti $(REPO) tests/all.sh

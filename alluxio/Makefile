@@ -11,27 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/alluxio
+REPO := harisekhon/alluxio
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+include ../Makefile.in
 
-ifdef LATEST
-	TAG=latest
-endif
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
-
-.PHONY: run
-run:
-	docker run -ti -p 19999:19999 -p 30000:30000 $(REPO):$(TAG)
+MAP_PORTS := 19999 30000

@@ -11,27 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/spark
+REPO := harisekhon/spark
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+include ../Makefile.in
 
-ifdef LATEST
-	TAG=latest
-endif
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
-
-.PHONY: run
-run:
-	docker run -ti -p 4040:4040 -p 7077:7077 -p 8080:8080 -p 8081:8081 $(REPO):$(TAG)
+MAP_PORTS := 4040 7077 8080 8081

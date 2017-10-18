@@ -11,25 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/nagios-plugins:debian
+REPO := harisekhon/nagios-plugins:debian
 
-.PHONY: build
-build:
-	docker build -t $(REPO) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO) --no-cache .
-
-.PHONY: test
-test:
-	docker run -ti $(REPO) tests/all.sh
-
-.PHONY: push
-push:
-	docker push $(REPO)
-	#hooks/post_build
-
-.PHONY: run
-run:
-	docker run -ti $(REPO) sh
+include ../Makefile.in

@@ -11,13 +11,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/presto-admin
+REPO := harisekhon/presto-admin
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+include ../Makefile.in
 
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
+MAP_PORTS := 8080
 
 .PHONY: history
 history:
@@ -27,15 +25,10 @@ history:
 history-push:
 	PUSH=1 ./build_historic_versions.sh
 
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
+.PHONY: build-versions
+build-versions: build history
+	:
 
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
-
-.PHONY: run
-run:
-	docker run -ti -p 8080:8080 $(REPO):$(TAG)
+.PHONY: build-push-versions
+build-push-versions: history-push
+	:

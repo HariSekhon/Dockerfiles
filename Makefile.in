@@ -1,0 +1,82 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2016-01-16 12:21:15 +0000 (Sat, 16 Jan 2016)
+#
+#  vim:ts=4:sts=4:sw=4:noet
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+TAG = $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+
+MAP_PORTS = ""
+
+ifdef LATEST
+	TAG=latest
+endif
+
+ifneq "$(TAG)" ""
+	REPO_TAG := "$(REPO):$(TAG)"
+else
+	REPO_TAG := "$(REPO)"
+endif
+
+.PHONY: build
+build:
+	docker build -t $(REPO_TAG) .
+
+.PHONY: nocache
+nocache:
+	docker build -t $(REPO_TAG) --no-cache .
+
+.PHONY: build-versions
+build-versions:
+	branch=$(REPO); \
+	branch=$${branch##*/}; \
+	for x in $$(git branch -a | grep $$branch | sed 's,remotes/origin/,,' | sort -u); do \
+		git checkout "$$x" && \
+		make build || \
+		exit 1; \
+	done; \
+	git checkout master
+
+.PHONY: build-push-versions
+build-push-versions: build-versions push-versions
+	:
+
+.PHONY: push
+push:
+	docker push $(REPO_TAG)
+	[ -f hooks/post_build ] && hooks/post_build
+
+# use 'make push' rather than just 'docker push' to trigger hooks/post_build
+.PHONY: push-versions
+push-versions:
+	branch=$(REPO); \
+	branch=$${branch##*/}; \
+	for x in $$(git branch -a | grep $$branch | sed 's,remotes/origin/,,' | sort -u); do \
+		git checkout "$$x" && \
+		make push || \
+		exit 1; \
+	done; \
+	git checkout master
+
+.PHONY: run
+run:
+	@if [ -n "$(MAP_PORTS)" ]; then \
+	    ports=$$(for port in $(MAP_PORTS); do echo -n "-p $$port:$$port "; done); \
+		echo "docker run -ti $$ports $(REPO_TAG)"; \
+		docker run -ti $$ports $(REPO_TAG); \
+	else \
+		echo "docker run -ti $(REPO_TAG) bash"; \
+		docker run -ti $(REPO_TAG) bash; \
+	fi
+
+.PHONY: test
+test:
+	#docker run -ti $(REPO) sh -c 'if test -f tests/all.sh; then tests/all.sh; fi;'
+	docker run -ti $(REPO) tests/all.sh

@@ -29,6 +29,12 @@ notifications:
 #  only:
 #    - master
 
+cache:
+  directories:
+    - .cache
+    - bash-tools
+    - pytools_checks
+
 install:
   - echo nothing to install
 

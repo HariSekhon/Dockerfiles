@@ -31,7 +31,7 @@ pushd "$srcdir/.."
 dockerfiles_check_git_branches.py .
 echo
 
-git_check_branches_upstream.py .
+git_check_branches_upstream.py --fix .
 echo
 
 popd

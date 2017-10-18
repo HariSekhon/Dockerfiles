@@ -11,51 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/consul
+REPO := harisekhon/consul
 
-TAG=$(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+include ../Makefile.in
 
-ifdef LATEST
-	TAG=latest
-endif
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) .
-
-.PHONY: build-versions
-build-versions:
-	for x in $$(git branch -a | grep consul | sed 's,remotes/origin/,,' | sort -u); do \
-		git checkout "$$x" && \
-		make build || \
-		exit 1; \
-	done; \
-	git checkout master
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO):$(TAG)
-	hooks/post_build
-
-.PHONY: push-versions
-push-versions:
-	# use 'make push' rather than just 'docker push' to trigger hooks/post_build
-	for x in $$(git branch -a | grep consul | sed 's,remotes/origin/,,' | sort -u); do \
-		git checkout "$$x" && \
-		make push || \
-		exit 1; \
-	done; \
-	git checkout master
-
-.PHONY: build-push-versions
-build-push-versions: build-versions push-versions
-	:
-
-.PHONY: run
 run:
 	# -dev flag >= 0.6 only, use -server -bootstrap instead
 	docker run -ti -p 8500:8500 $(REPO):$(TAG) agent -server -bootstrap -data-dir /tmp -client 0.0.0.0

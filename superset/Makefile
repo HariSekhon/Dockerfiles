@@ -11,21 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/superset
+REPO := harisekhon/superset
 
-.PHONY: build
-build:
-	docker build -t $(REPO) .
+include ../Makefile.in
 
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO)
-	hooks/post_build
-
-.PHONY: run
-run:
-	docker run -ti -p 8088:8088 $(REPO)
+MAP_PORTS := 8088

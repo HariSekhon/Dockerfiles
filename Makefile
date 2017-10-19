@@ -30,7 +30,13 @@ all: build
 .PHONY: build
 build:
 	# do not just break as it will fail and move to next push target in build-push
-	for x in *; do [ -d $$x ] || continue; pushd $$x && make build && popd || exit 1; done
+	for x in *; do \
+		[ -d $$x ] || continue; \
+		pushd $$x && \
+		make build && \
+		popd || \
+		exit 1; \
+	done
 
 .PHONY: build-push
 build-push: build dockerpush
@@ -41,7 +47,13 @@ tags:
 
 .PHONY: nocache
 nocache:
-	for x in *; do [ -d $$x ] || continue; pushd $$x && make nocache && popd || exit 1; done
+	for x in *; do \
+		[ -d $$x ] || continue; \
+		pushd $$x && \
+		make nocache && \
+		popd || \
+		exit 1; \
+	done
 
 #.PHONY: apt-packages
 #apt-packages:

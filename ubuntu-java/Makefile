@@ -11,17 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO=harisekhon/ubuntu-java
+REPO := harisekhon/ubuntu-java
 
-.PHONY: build
-build:
-	docker build -t $(REPO) .
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO) --no-cache .
-
-.PHONY: push
-push:
-	docker push $(REPO)
-	hooks/post_build
+include ../Makefile.in

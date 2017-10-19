@@ -42,7 +42,9 @@ RUN set -euxo pipefail && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     rm -fv "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     yum remove -y wget unzip && \
-    yum autoremove -y
+    yum autoremove -y && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 #COPY entrypoint.sh /
 

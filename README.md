@@ -156,6 +156,8 @@ https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.htm
 
 ### Build from Source
 
+All images come pre-built on [DockerHub](https://hub.docker.com/u/harisekhon/) but if you want to compile from source for any reason such as developing improvements, I've made this easy to do:
+
 ```
 git clone https://github/harisekhon/Dockerfiles
 
@@ -168,13 +170,30 @@ To build all Docker images, just run the ```make``` command at the top level:
 make
 ```
 
-To build a specific Docker image, enter it's directory and run make:
+To build a specific Docker image, enter its directory and run `make`:
 
 ```
 cd nagios-plugins
 
 make
 ```
+
+You can also build a specific version by checking out the git branch for the version and running the build:
+
+```
+cd consul
+git checkout consul-0.9
+make
+```
+
+or build all versions of a given software project like so:
+
+```
+cd hadoop
+make build-versions
+```
+
+See the top level `Makefile` as well as the `Makefile.in` which is sourced per project with any project specific overrides in the `<project_directory>/Makefile`.
 
 ### Support
 

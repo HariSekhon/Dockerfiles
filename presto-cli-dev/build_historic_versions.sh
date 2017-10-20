@@ -33,6 +33,7 @@ if [ -n "$*" ]; then
     versions_to_build="$@"
 else
     # do not build latest version by default, leave that to automated build
+    # originally did ../presto-dev/get_presto_versions.sh but it's needed inside the Dockerfile too to determine the latest version so much exist in this local context anyway
     versions_to_build="$(./get_presto_versions.sh | tail -n +2)"
 fi
 

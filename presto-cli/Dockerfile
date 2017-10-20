@@ -25,7 +25,7 @@ RUN set -euxo pipefail && \
 
 WORKDIR /
 
-ARG PRESTO_VERSION=0.179
+ARG PRESTO_VERSION=0.167
 ARG PRESTO_PKG_RELEASE=0.1
 
 LABEL Description="Presto SQL" \

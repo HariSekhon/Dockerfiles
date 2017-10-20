@@ -28,7 +28,7 @@ if [ -n "${NOCACHE:-}" ]; then
     no_cache="--no-cache"
 fi
 
-if [ -n "$@" ]; then
+if [ -n "$*" ]; then
     versions_to_build="$@"
 else
     # do not build latest version by default, leave that to automated build

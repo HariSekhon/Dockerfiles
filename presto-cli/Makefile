@@ -14,3 +14,5 @@
 REPO := harisekhon/presto-cli
 
 include ../Makefile.in
+
+BRANCH := presto

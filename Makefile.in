@@ -11,9 +11,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-TAG = $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
+TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*(\d+\.\d+)/ && &{ print $$1; exit }' Dockerfile)
 
-MAP_PORTS = ""
+BRANCH = $(shell echo "$(REPO)" | sed 's,.*/,,')
+
+MAP_PORTS := ""
 
 ifdef LATEST
 	TAG=latest
@@ -35,9 +37,8 @@ nocache:
 
 .PHONY: build-versions
 build-versions:
-	branch=$(REPO); \
-	branch=$${branch##*/}; \
-	for x in $$(git branch -a | grep $$branch | sed 's,remotes/origin/,,' | sort -u); do \
+	@echo "Building all versions from branches with base '$(BRANCH)'"
+	for x in $$(git branch -a | grep $(BRANCH) | sed 's,remotes/origin/,,' | sort -u); do \
 		git checkout "$$x" && \
 		make build || \
 		exit 1; \
@@ -56,9 +57,7 @@ push:
 # use 'make push' rather than just 'docker push' to trigger hooks/post_build
 .PHONY: push-versions
 push-versions:
-	branch=$(REPO); \
-	branch=$${branch##*/}; \
-	for x in $$(git branch -a | grep $$branch | sed 's,remotes/origin/,,' | sort -u); do \
+	for x in $$(git branch -a | grep $(BRANCH) | sed 's,remotes/origin/,,' | sort -u); do \
 		git checkout "$$x" && \
 		make push || \
 		exit 1; \

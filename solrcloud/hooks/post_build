@@ -36,11 +36,24 @@ if [ -z "${SOURCE_BRANCH:-}" ]; then
     echo "SOURCE_BRANCH not set, determined from git to be '$SOURCE_BRANCH'"
 fi
 # readlink is not portable across Linux + Mac
+# readlink is not portable across Linux + Mac
 docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
-docker_branch_base="${docker_branch_base%-dev}"
-docker_branch_base="${docker_branch_base%-cluster}"
+if ! git branch -a | grep -q "$docker_branch_base"; then
+    docker_branch_base="${docker_branch_base%-dev}"
+    docker_branch_base="${docker_branch_base%-cluster}"
+    if ! git branch -a | grep -q "$docker_branch_base"; then
+        docker_branch_base="${docker_branch_base%-*}"
+    fi
+    # solrcloud -> solr
+    docker_branch_base="${docker_branch_base%cloud}"
+    if ! git branch -a | grep -q "$docker_branch_base"; then
+        echo "ERROR: failed to determine docker branch base even after normalization rules, tried $docker_branch_base"
+        exit 1
+    fi
+fi
+echo "determined docker branch base = $docker_branch_base"
 docker_version_base="${docker_branch_base//-/_}"
-docker_branch_base="${docker_branch_base/solrcloud/solr}"
+echo "will search Dockerfile using docker version base = $docker_version_base"
 if [ "$docker_branch_base" = "kafka" ]; then
     highest_tag="${current_scala}_0.9"
     echo "Kafka detected, overriding highest tag to be $highest_tag"
@@ -60,7 +73,11 @@ else
 fi
 
 if ! grep ':' <<< "$IMAGE_NAME";  then
-    current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}_VERSION=" Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}.*_VERSION=" "$srcdir/../Dockerfile" | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}' || :)"
+    if [ -z "$current_tag" ]; then
+        echo "ERROR: failed to determine current tag from Dockerfile!"
+        exit 1
+    fi
     if [ "$docker_branch_base" = "kafka" ]; then
         current_tag="${current_scala}_$current_tag"
     fi

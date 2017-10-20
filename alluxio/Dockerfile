@@ -30,7 +30,7 @@ WORKDIR /
 # use OpenJDK7 instead
 RUN set -euxo pipefail && \
     # needs a full JDK now for master, not just JRE
-    apk add --no-cache bash openjdk8 sudo
+    apk add --no-cache bash openjdk7 sudo
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget tar && \

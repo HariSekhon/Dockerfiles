@@ -21,7 +21,7 @@ cd "$srcdir"
 
 . "$srcdir/../bash-tools/utils.sh"
 
-section "Presto SQL - building Development Versions"
+section "Presto CLI - building Development Versions"
 
 no_cache=""
 if [ -n "${NOCACHE:-}" ]; then
@@ -29,9 +29,11 @@ if [ -n "${NOCACHE:-}" ]; then
 fi
 
 if [ -n "$*" ]; then
+    echo here
     versions_to_build="$@"
 else
     # do not build latest version by default, leave that to automated build
+    # originally did ../presto-dev/get_presto_versions.sh but it's needed inside the Dockerfile too to determine the latest version so much exist in this local context anyway
     versions_to_build="$(./get_presto_versions.sh | tail -n +2)"
 fi
 
@@ -42,16 +44,16 @@ for version in $versions_to_build; do
         version="$(./get_presto_versions.sh | head -n1)"
     fi
     let count+=1
-    section2 "Building Presto version $version"
-    docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_DEVELOPMENT_VERSION="$version" $no_cache .
-    [ -n "${NOPUSH:-}" ] || docker push "harisekhon/presto-dev:$version"
+    section2 "Building Presto CLI version $version"
+    docker build -t "harisekhon/presto-cli-dev:$version" --build-arg PRESTO_DEVELOPMENT_VERSION="$version" $no_cache .
+    [ -n "${NOPUSH:-}" ] || docker push "harisekhon/presto-cli-dev:$version"
     # do not fill up all your space keeping each version around!!
     # do not remove every version, leave the first latest one, this will allow layer re-use for packages between all versions as the dependent layers for the latest version will not be removed and can be re-used as cache for all subsequent version builds saving time and space
     if [ $count -gt 1 ]; then
-        docker rmi "harisekhon/presto-dev:$version"
+        docker rmi "harisekhon/presto-cli-dev:$version"
     fi
     echo
 done
 
 echo
-echo "Successfully built $count versions of Presto"
+echo "Successfully built $count versions of Presto CLI"

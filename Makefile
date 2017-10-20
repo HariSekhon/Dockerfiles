@@ -111,8 +111,43 @@ dockerpush:
 		exit 1; \
 	done
 
-.PHONY: mergemasterall
-mergemasterall:
+.PHONY: sync-hooks
+sync-hooks:
+	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
+	latest_hook=`ls -t */hooks/post_build | egrep -v "nagios-plugins-centos|presto-dev" | head -n1`; \
+	for x in */hooks/post_build; do \
+		if [[ "$$x" =~ nagios-plugins-centos|presto-dev ]]; then \
+			continue; \
+		fi; \
+		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
+			echo "$$x/hooks/post_build has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		cp -v "$$latest_hook" "$$x"; \
+	done; \
+
+# TODO: finish and remove ranger
+.PHONY: post-build
+post-build:
+	@for x in *; do \
+		[ -d "$$x" ] || continue; \
+		[ "$$x" = h2o ] && continue; \
+		[ "$$x" = presto-dev ] && continue; \
+		[ "$$x" = ranger ] && continue; \
+		[ "$$x" = riak ] && continue; \
+		[ "$$x" = teamcity ] && continue; \
+		if [ -f "$$x/hooks/post_build" ]; then \
+			echo "$$x/hooks/post_build"; \
+			"$$x/hooks/post_build" || exit 1; \
+			echo; \
+		fi; \
+	done
+.PHONY: postbuild
+postbuild: post-build
+	:
+
+.PHONY: mergemaster
+mergemaster:
 	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
 		echo "Merging branch $$branch" && \
 		echo "git checkout $$branch" && \
@@ -122,6 +157,10 @@ mergemasterall:
 		exit 1; \
 	done; \
 	git checkout master
+
+.PHONY: mergemasterall
+mergemasterall: pull mergemaster
+	:
 
 .PHONY: update
 update: update2 build

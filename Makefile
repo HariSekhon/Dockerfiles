@@ -111,6 +111,33 @@ dockerpush:
 		exit 1; \
 	done
 
+.PHONY: sync-hooks
+sync-hooks:
+	latest_hook=`ls -t */hooks/post_build | head -n1`; \
+	for x in */hooks/post_build; do \
+		cp -v "$$latest_hook" "$$x"; \
+	done; \
+	# these hooks are different to the rest
+	git checkout \
+	nagios-plugins-centos/hooks/post_build \
+	presto-dev/hooks/post_build
+
+.PHONY: post-build
+post-build:
+	# TODO: remove h2o exception
+	@for x in *; do \
+		[ -d "$$x" ] || continue; \
+		[ "$$x" = h2o ] && continue; \
+		if [ -f "$$x/hooks/post_build" ]; then \
+			echo "$$x/hooks/post_build"; \
+			"$$x/hooks/post_build" || exit 1; \
+			echo; \
+		fi; \
+	done
+.PHONY: postbuild
+postbuild: post-build
+	:
+
 .PHONY: mergemasterall
 mergemasterall:
 	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \

@@ -19,7 +19,7 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # DockerHub will always build latest from master, so find out what the latest tag is and tag this build as such
 
-IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^REPO=/{print $2}' "$srcdir/../Makefile")}"
+IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^[[:space:]]*REPO[[:space:]]*:*=/{gsub (" ", "", $2); print $2}' "$srcdir/../Makefile")}"
 DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 
 # There is a race condition here between the time we call get_presto_versions.sh in Dockerfile to do the build and

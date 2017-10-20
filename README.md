@@ -1,14 +1,12 @@
-Hari Sekhon's DockerHub source
-==================
-Big Data, NoSQL & DevOps technologies
+Hadoop, Big Data, NoSQL & DevOps Docker Images
 ==================
 [![Build Status](https://travis-ci.org/HariSekhon/Dockerfiles.svg?branch=master)](https://travis-ci.org/HariSekhon/Dockerfiles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/network) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
 
-Docker Images containing hundreds of my published tools and the supporting technologies to run full functional test suites.
+##### Contains 45 DockerHub repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.
 
-##### Contains 45 repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.
+These docker images are tested by hundreds of tools and also used in the full functional test suites of various other GitHub repos.
 
-Summarily this repo contains:
+Overview - this repo contains:
 
 * **Hadoop & Big Data** ecosystem technologies (Spark, Kafka, Presto, Drill, Nifi, ZooKeeper)
 * **NoSQL** datastores (HBase, Cassandra, Riak, SolrCloud)
@@ -18,7 +16,11 @@ Summarily this repo contains:
 
 These images are all available pre-built on [My DockerHub - https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 
-**Quality and Testing** - this repo has entire suites of tests run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images functionality, branches vs tagged versions align, syntax checks against build files and various configuration file formats (ini/json/xml) etc - these are reusable tests that can anybody can reuse for their own repos and can be found in my [PyTools](https://github.com/HariSekhon/pytools) and [Bash-Tools](https://github.com/HariSekhon/bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs. This is never 100% but is an always ongoing process, and they are tested via Continuous Integration for various repos that use them for their test suites as well. All of this is intended to keep the qualify of this repo high.
+**Quality and Testing** - this repo has entire test suites run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images' functionality, branches vs tagged versions align, latest contains correct version from master branch, syntax checks against all build files found in the repo covering all common file formats (JSON/INI/Make/XML/YAML configurations) etc.
+
+These are reusable tests that can anybody can implement and can be found in my [PyTools](https://github.com/HariSekhon/pytools) and [Bash-Tools](https://github.com/HariSekhon/bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs to ensure the docker images are functioning as intended.
+
+[Continuous Integration](https://travis-ci.org/HariSekhon/Dockerfiles) in run on this and adjacent repos that form a bi-directional validation between these docker images and several other repositories full of hundreds of programs. All of this is intended to keep the quality of this repo as high as possible.
 
 Hari Sekhon
 
@@ -154,6 +156,8 @@ https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.htm
 
 ### Build from Source
 
+All images come pre-built on [DockerHub](https://hub.docker.com/u/harisekhon/) but if you want to compile from source for any reason such as developing improvements, I've made this easy to do:
+
 ```
 git clone https://github/harisekhon/Dockerfiles
 
@@ -166,13 +170,30 @@ To build all Docker images, just run the ```make``` command at the top level:
 make
 ```
 
-To build a specific Docker image, enter it's directory and run make:
+To build a specific Docker image, enter its directory and run `make`:
 
 ```
 cd nagios-plugins
 
 make
 ```
+
+You can also build a specific version by checking out the git branch for the version and running the build:
+
+```
+cd consul
+git checkout consul-0.9
+make
+```
+
+or build all versions of a given software project like so:
+
+```
+cd hadoop
+make build-versions
+```
+
+See the top level `Makefile` as well as the `Makefile.in` which is sourced per project with any project specific overrides in the `<project_directory>/Makefile`.
 
 ### Support
 

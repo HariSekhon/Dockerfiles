@@ -113,21 +113,28 @@ dockerpush:
 
 .PHONY: sync-hooks
 sync-hooks:
-	latest_hook=`ls -t */hooks/post_build | head -n1`; \
+	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
+	latest_hook=`ls -t */hooks/post_build | egrep -v "nagios-plugins-centos|presto-dev" | head -n1`; \
 	for x in */hooks/post_build; do \
+		if [[ "$$x" =~ nagios-plugins-centos|presto-dev ]]; then \
+			continue; \
+		fi; \
+		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
+			echo "$$x/hooks/post_build has pending modifications, skipping..."; \
+			continue; \
+		fi; \
 		cp -v "$$latest_hook" "$$x"; \
 	done; \
-	# these hooks are different to the rest
-	git checkout \
-	nagios-plugins-centos/hooks/post_build \
-	presto-dev/hooks/post_build
 
+# TODO: finish and remove ranger
 .PHONY: post-build
 post-build:
-	# TODO: remove h2o exception
 	@for x in *; do \
 		[ -d "$$x" ] || continue; \
 		[ "$$x" = h2o ] && continue; \
+		[ "$$x" = presto-dev ] && continue; \
+		[ "$$x" = ranger ] && continue; \
+		[ "$$x" = riak ] && continue; \
 		if [ -f "$$x/hooks/post_build" ]; then \
 			echo "$$x/hooks/post_build"; \
 			"$$x/hooks/post_build" || exit 1; \

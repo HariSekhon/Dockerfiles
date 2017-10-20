@@ -145,8 +145,8 @@ post-build:
 postbuild: post-build
 	:
 
-.PHONY: mergemasterall
-mergemasterall:
+.PHONY: mergemaster
+mergemaster:
 	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
 		echo "Merging branch $$branch" && \
 		echo "git checkout $$branch" && \
@@ -156,6 +156,10 @@ mergemasterall:
 		exit 1; \
 	done; \
 	git checkout master
+
+.PHONY: mergemasterall
+mergemasterall: pull mergemaster
+	:
 
 .PHONY: update
 update: update2 build

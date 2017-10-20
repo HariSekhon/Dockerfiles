@@ -135,6 +135,7 @@ post-build:
 		[ "$$x" = presto-dev ] && continue; \
 		[ "$$x" = ranger ] && continue; \
 		[ "$$x" = riak ] && continue; \
+		[ "$$x" = teamcity ] && continue; \
 		if [ -f "$$x/hooks/post_build" ]; then \
 			echo "$$x/hooks/post_build"; \
 			"$$x/hooks/post_build" || exit 1; \

@@ -54,5 +54,5 @@ docker run -t -i ...
 "
 fi
 echo -e "\n\nWill now read logs to keep container alive until killed...\n\n"
-tail -f $SPARK_HOME/logs/* &
+tail -f /dev/null "$SPARK_HOME"/logs/* &
 wait || :

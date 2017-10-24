@@ -34,5 +34,5 @@ For ZooKeeper shell start this image with 'docker run -t -i' switches
 fi
 echo -e "\nWill tail log now to keep this container alive until killed...\n\n"
 sleep 30
-tail -f zookeeper.out &
+tail -f /dev/null zookeeper.out &
 wait || :

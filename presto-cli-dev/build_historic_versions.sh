@@ -29,7 +29,6 @@ if [ -n "${NOCACHE:-}" ]; then
 fi
 
 if [ -n "$*" ]; then
-    echo here
     versions_to_build="$@"
 else
     # do not build latest version by default, leave that to automated build

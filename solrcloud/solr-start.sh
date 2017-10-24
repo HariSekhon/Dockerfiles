@@ -29,7 +29,7 @@ cd "$SOLR_HOME"
 set +o pipefail
 solr -e cloud -noprompt
 if ls -d "$SOLR_HOME"-4* &>/dev/null; then
-    tail -f "$SOLR_HOME/"node*/logs/*
+    tail -f /dev/null "$SOLR_HOME"/node*/logs/*
 else
-    tail -f "$SOLR_HOME/example/cloud/"node*/logs/*
+    tail -f /dev/null "$SOLR_HOME"/example/cloud/node*/logs/*
 fi

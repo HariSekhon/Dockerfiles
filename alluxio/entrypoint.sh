@@ -50,7 +50,7 @@ else
 
     /alluxio/bin/alluxio-start.sh worker NoMount
     sleep 2
-    cat /alluxio/logs/*
+    cat /alluxio/logs/* || :
     echo "================="
-    tail -f /alluxio/logs/*
+    tail -f /dev/null /alluxio/logs/*
 fi

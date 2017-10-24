@@ -36,7 +36,7 @@ else
     mesos slave --master="$ip_address:5050" --log_dir=/tmp/mesos-slave-logs &
     sleep 1
     echo "================="
-    cat /tmp/mesos-master-logs/*
-    cat /tmp/mesos-slave-logs/*
-    tail -f /tmp/mesos-master-logs/* /tmp/mesos-slave-logs/*
+    cat /tmp/mesos-master-logs/* || :
+    cat /tmp/mesos-slave-logs/*  || :
+    tail -f /dev/null /tmp/mesos-master-logs/* /tmp/mesos-slave-logs/*
 fi

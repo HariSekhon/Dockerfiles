@@ -77,7 +77,7 @@ Running non-interactively, will not open HBase shell
 
 For HBase shell start this image with 'docker run -t -i' switches
 "
-    tail -f /hbase/logs/* &
+    tail -f /dev/null /hbase/logs/* &
     # this shuts down from Control-C but exits prematurely, even when +euo pipefail and doesn't shut down HBase
     # so I rely on the sig trap handler above
     wait || :

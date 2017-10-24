@@ -47,4 +47,4 @@ RUN set -euxo pipefail && \
 
 EXPOSE 8080
 
-CMD nifi.sh start; tail -f /nifi/log*/*
+CMD nifi.sh start; tail -f /dev/null /nifi/log*/*

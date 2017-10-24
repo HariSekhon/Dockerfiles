@@ -35,7 +35,7 @@ else
     fi
     /tachyon/bin/tachyon-start.sh local
     sleep 2
-    cat /tachyon/logs/*
+    cat /tachyon/logs/* ||:
     echo "================="
-    tail -f /tachyon/logs/*
+    tail -f /dev/null /tachyon/logs/*
 fi

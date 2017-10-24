@@ -54,7 +54,7 @@ else
 
     start-dfs.sh
     start-yarn.sh
-    tail -f /hadoop/logs/*
+    tail -f /dev/null /hadoop/logs/*
     stop-yarn.sh
     stop-dfs.sh
 fi

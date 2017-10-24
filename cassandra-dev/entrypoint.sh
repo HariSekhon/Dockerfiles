@@ -57,5 +57,5 @@ For CQL shell start this image with 'docker run -t -i' switches
 fi
 echo -e "\n\nWill tail logs now to keep this container alive until killed...\n\n"
 sleep 30
-tail -f /cassandra/logs/* &
+tail -f /dev/null /cassandra/logs/* &
 wait || :

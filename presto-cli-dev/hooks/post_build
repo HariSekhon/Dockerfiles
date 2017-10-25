@@ -33,7 +33,7 @@ if [ "$tag" = "latest" ]; then
     # we are running in DockerHub latest build and should tag the actual version number and push that
     docker tag "$IMAGE_NAME:latest" "$DOCKER_REPO:$latest_version"
     docker push "$DOCKER_REPO:$latest_version"
-# tag will end up being harisekhon/presto-dev if there is no :version to strip up to as with Make builds
+# tag will end up being harisekhon/presto-cli-dev if there is no :version to strip up to as with Make builds
 # if [ "$tag" = "$latest_version" ]; then
 else
     # we are running locally via Make which explicitly builds newest version

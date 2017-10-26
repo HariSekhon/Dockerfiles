@@ -38,7 +38,7 @@ COPY get_presto_versions.sh /
 RUN set -euxo pipefail && \
     TAR="presto-server-${PRESTO_VERSION}.tar.gz" && \
     apk add --no-cache curl wget tar && \
-    if [ "$PRESTO_VERSION" = latest ]; then \
+    if [ "$PRESTO_VERSION" = "latest" ]; then \
         # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_VERSION as part of make build to know the image to push
         set +o pipefail; \
         PRESTO_VERSION=$(./get_presto_versions.sh | head -n1); \

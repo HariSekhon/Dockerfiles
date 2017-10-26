@@ -104,8 +104,16 @@ is_latest(){
 }
 
 if is_latest; then
-    echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:latest\""
-    docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
-    echo "docker push \"$DOCKER_REPO:latest\""
-    docker push "$DOCKER_REPO:latest"
+    if [ "$current_tag" = "latest" -a -x "$srcdir/../get_latest_version.sh" ]; then
+        newest_version="$("$srcdir/../get_latest_version.sh")"
+        echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:$newest_version\""
+        docker tag "$IMAGE_NAME" "$DOCKER_REPO:$newest_version"
+        echo "docker push \"$DOCKER_REPO:$newest_version\""
+        docker push "$DOCKER_REPO:$newest_version"
+    else
+        echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:latest\""
+        docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
+        echo "docker push \"$DOCKER_REPO:latest\""
+        docker push "$DOCKER_REPO:latest"
+    fi
 fi

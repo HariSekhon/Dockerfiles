@@ -15,13 +15,7 @@ REPO := harisekhon/presto-cli-dev
 
 include ../Makefile.in
 
-TAG := $(shell ./get_presto_versions.sh | head -n1)
-
 MAP_PORTS := 8080
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) .
 
 .PHONY: history
 history:
@@ -38,7 +32,3 @@ build-versions: build history
 .PHONY: build-push-versions
 build-push-versions: build push history-push
 	:
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) --no-cache .

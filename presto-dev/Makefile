@@ -15,13 +15,7 @@ REPO := harisekhon/presto-dev
 
 include ../Makefile.in
 
-TAG := $(shell ./get_presto_versions.sh | head -n1)
-
 MAP_PORTS := 8080
-
-.PHONY: build
-build:
-	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) .
 
 .PHONY: history
 history:
@@ -42,3 +36,13 @@ build-push-versions: build push history-push
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) --no-cache .
+
+.PHONY: run-foreground
+run-foreground:
+	@ports=$$(for port in $(MAP_PORTS); do echo -n "-p $$port:$$port "; done); \
+	echo "docker run $$ports $(REPO_TAG)"; \
+	docker run $$ports $(REPO_TAG)
+
+.PHONY: run-fg
+run-fg: run-foreground
+	:

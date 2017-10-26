@@ -32,17 +32,3 @@ build-versions: build history
 .PHONY: build-push-versions
 build-push-versions: build push history-push
 	:
-
-.PHONY: nocache
-nocache:
-	docker build -t $(REPO):$(TAG) --build-arg PRESTO_DEVELOPMENT_VERSION=$(TAG) --no-cache .
-
-.PHONY: run-foreground
-run-foreground:
-	@ports=$$(for port in $(MAP_PORTS); do echo -n "-p $$port:$$port "; done); \
-	echo "docker run $$ports $(REPO_TAG)"; \
-	docker run $$ports $(REPO_TAG)
-
-.PHONY: run-fg
-run-fg: run-foreground
-	:

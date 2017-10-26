@@ -28,24 +28,26 @@ WORKDIR /
 
 ENV PATH $PATH:/presto/bin
 
-ARG PRESTO_DEVELOPMENT_VERSION=""
+ARG PRESTO_VERSION="latest"
 
 LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_DEVELOPMENT_VERSION"
+      "Presto SQL Version"="$PRESTO_VERSION"
 
 COPY get_presto_versions.sh /
 
 RUN set -euxo pipefail && \
     apk add --no-cache curl wget tar && \
-    if [ -z "$PRESTO_DEVELOPMENT_VERSION" ]; then \
-        # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_DEVELOPMENT_VERSION as part of make build to know the image to push
-        PRESTO_DEVELOPMENT_VERSION=$(./get_presto_versions.sh | head -n1); \
+    if [ "$PRESTO_VERSION" = "latest" ]; then \
+        # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_VERSION as part of make build to know the image to push
+        set +o pipefail; \
+        PRESTO_VERSION=$(./get_presto_versions.sh | head -n1); \
+        set -o pipefail; \
     fi && \
-    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_DEVELOPMENT_VERSION}/presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
+    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar" && \
     wget -t 10 --retry-connrefused "$cli_url" && \
-    test -s "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
-    chmod +x "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
-    ln -s "/presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" /usr/bin/presto && \
+    test -s "presto-cli-${PRESTO_VERSION}-executable.jar" && \
+    chmod +x "presto-cli-${PRESTO_VERSION}-executable.jar" && \
+    ln -s "/presto-cli-${PRESTO_VERSION}-executable.jar" /usr/bin/presto && \
     rm -v get_presto_versions.sh && \
     apk del curl tar wget
 

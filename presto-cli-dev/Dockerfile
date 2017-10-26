@@ -28,7 +28,7 @@ WORKDIR /
 
 ENV PATH $PATH:/presto/bin
 
-ARG PRESTO_VERSION="latest"
+ARG PRESTO_VERSION=0.167
 
 LABEL Description="Presto SQL" \
       "Presto SQL Version"="$PRESTO_VERSION"

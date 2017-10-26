@@ -22,18 +22,20 @@ highest_tag="unknown"
 current_scala="2.11"
 
 if [ -z "${IMAGE_NAME:-}" ]; then
-    IMAGE_NAME="$(awk -F= '/^[[:space:]]*REPO[[:space:]]*:*=/{gsub (" ", "", $2); print $2}' "$srcdir/../Makefile")"
+    echo "IMAGE_NAME not set, determining from Makefile"
+    IMAGE_NAME="$(awk -F= '/^[[:space:]]*REPO[[:space:]]*:*=/{print $2}' "$srcdir/../Makefile" | sed 's/[[:space:]]//g;s/"//g')"
     if [ -z "$IMAGE_NAME" ]; then
         echo "FAILED to determine IMAGE_NAME From Makefile"
         exit 1
     fi
-    echo "IMAGE_NAME not set, determined from Makefile to be '$IMAGE_NAME'"
+    echo "determined image name from Makefile to be '$IMAGE_NAME'"
 fi
 DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 
 if [ -z "${SOURCE_BRANCH:-}" ]; then
+    echo "SOURCE_BRANCH not set, determining from Makefile"
     SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
-    echo "SOURCE_BRANCH not set, determined from git to be '$SOURCE_BRANCH'"
+    echo "determined source branch from git to be '$SOURCE_BRANCH'"
 fi
 # readlink is not portable across Linux + Mac
 # readlink is not portable across Linux + Mac
@@ -73,15 +75,19 @@ else
 fi
 
 if ! grep ':' <<< "$IMAGE_NAME";  then
-    current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}.*_VERSION=" "$srcdir/../Dockerfile" | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}' || :)"
+    echo "current tag not found in IMAGE_NAME=$IMAGE_NAME, determining from Dockerfile"
+    current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}.*_VERSION=" "$srcdir/../Dockerfile" | sed -n '$s/.*=//;s/[[:space:]]*//g;s/"//g;p' || :)"
     if [ -z "$current_tag" ]; then
         echo "ERROR: failed to determine current tag from Dockerfile!"
         exit 1
     fi
+    if [ "$current_tag" != "latest" ]; then
+        current_tag="$(awk -F. '{print $1"."$2}' <<< "$current_tag")"
+    fi
     if [ "$docker_branch_base" = "kafka" ]; then
         current_tag="${current_scala}_$current_tag"
     fi
-    echo "current tag not found in IMAGE_NAME=$IMAGE_NAME, determined from Dockerfile to be '$current_tag'"
+    echo "current tag determined from Dockerfile to be '$current_tag'"
     IMAGE_NAME="$IMAGE_NAME:$current_tag"
 fi
 

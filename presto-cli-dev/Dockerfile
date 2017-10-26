@@ -39,7 +39,9 @@ RUN set -euxo pipefail && \
     apk add --no-cache curl wget tar && \
     if [ "$PRESTO_VERSION" = "latest" ]; then \
         # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_VERSION as part of make build to know the image to push
+        set +o pipefail; \
         PRESTO_VERSION=$(./get_presto_versions.sh | head -n1); \
+        set -o pipefail; \
     fi && \
     cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar" && \
     wget -t 10 --retry-connrefused "$cli_url" && \

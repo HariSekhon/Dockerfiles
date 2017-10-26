@@ -28,34 +28,36 @@ WORKDIR /
 
 ENV PATH $PATH:/presto/bin
 
-ARG PRESTO_DEVELOPMENT_VERSION=""
+ARG PRESTO_VERSION="latest"
 
 LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_DEVELOPMENT_VERSION"
+      "Presto SQL Version"="$PRESTO_VERSION"
 
 COPY get_presto_versions.sh /
 
 RUN set -euxo pipefail && \
-    TAR="presto-server-${PRESTO_DEVELOPMENT_VERSION}.tar.gz" && \
+    TAR="presto-server-${PRESTO_VERSION}.tar.gz" && \
     apk add --no-cache curl wget tar && \
-    if [ -z "$PRESTO_DEVELOPMENT_VERSION" ]; then \
-        # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_DEVELOPMENT_VERSION as part of make build to know the image to push
-        PRESTO_DEVELOPMENT_VERSION=$(./get_presto_versions.sh | head -n1); \
+    if [ "$PRESTO_VERSION" = "latest" ]; then \
+        # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_VERSION as part of make build to know the image to push
+        set +o pipefail; \
+        PRESTO_VERSION=$(./get_presto_versions.sh | head -n1); \
+        set -o pipefail; \
     fi && \
-    server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_DEVELOPMENT_VERSION}/presto-server-${PRESTO_DEVELOPMENT_VERSION}.tar.gz" && \
-    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_DEVELOPMENT_VERSION}/presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
+    server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz" && \
+    cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar" && \
     wget -t 10 --retry-connrefused -O "${TAR}" "$server_url" && \
     test -s "${TAR}" && \
     tar zxf "${TAR}" && \
     # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
-    test -d "presto-server-${PRESTO_DEVELOPMENT_VERSION}" && \
+    test -d "presto-server-${PRESTO_VERSION}" && \
     rm -fv  "${TAR}" && \
-    ln -sv "presto-server-${PRESTO_DEVELOPMENT_VERSION}" presto && \
+    ln -sv "presto-server-${PRESTO_VERSION}" presto && \
     wget -t 10 --retry-connrefused "$cli_url" && \
-    test -s "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
-    chmod +x "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" && \
-    mv -v "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/ && \
-    ln -sv "presto-cli-${PRESTO_DEVELOPMENT_VERSION}-executable.jar" presto/bin/presto && \
+    test -s "presto-cli-${PRESTO_VERSION}-executable.jar" && \
+    chmod +x "presto-cli-${PRESTO_VERSION}-executable.jar" && \
+    mv -v "presto-cli-${PRESTO_VERSION}-executable.jar" presto/bin/ && \
+    ln -sv "presto-cli-${PRESTO_VERSION}-executable.jar" presto/bin/presto && \
     rm -v get_presto_versions.sh && \
     apk del curl tar wget
 

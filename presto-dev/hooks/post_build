@@ -2,7 +2,7 @@
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
-#  Date: 2017-09-13 14:47:28 +0200 (Wed, 13 Sep 2017)
+#  Date: 2016-12-17 19:47:36 +0000 (Sat, 17 Dec 2016)
 #
 #  https://github.com/harisekhon/Dockerfiles
 #
@@ -17,27 +17,95 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# DockerHub will always build latest from master, so find out what the latest tag is and tag this build as such
+highest_tag="unknown"
 
-IMAGE_NAME="${IMAGE_NAME:-$(awk -F= '/^[[:space:]]*REPO[[:space:]]*:*=/{gsub (" ", "", $2); print $2}' "$srcdir/../Makefile")}"
-DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME%:*}}"
+current_scala="2.11"
 
-# There is a race condition here between the time we call get_presto_versions.sh in Dockerfile to do the build and
-# calling it again here to get the latest version, Facebook could potentially publish a new build in the interim
-# which would result in an incorrect tagging until the next run
-latest_version="$("$srcdir/../get_presto_versions.sh" | head -n1)"
+if [ -z "${IMAGE_NAME:-}" ]; then
+    echo "IMAGE_NAME not set, determining from Makefile"
+    IMAGE_NAME="$(awk -F= '/^[[:space:]]*REPO[[:space:]]*:*=/{print $2}' "$srcdir/../Makefile" | sed 's/[[:space:]]//g;s/"//g')"
+    if [ -z "$IMAGE_NAME" ]; then
+        echo "FAILED to determine IMAGE_NAME From Makefile"
+        exit 1
+    fi
+    echo "determined image name from Makefile to be '$IMAGE_NAME'"
+fi
+DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 
-tag="${IMAGE_NAME#*:}"
-
-if [ "$tag" = "latest" ]; then
-    # we are running in DockerHub latest build and should tag the actual version number and push that
-    docker tag "$IMAGE_NAME:latest" "$DOCKER_REPO:$latest_version"
-    docker push "$DOCKER_REPO:$latest_version"
-# tag will end up being harisekhon/presto-dev if there is no :version to strip up to as with Make builds
-# if [ "$tag" = "$latest_version" ]; then
+if [ -z "${SOURCE_BRANCH:-}" ]; then
+    echo "SOURCE_BRANCH not set, determining from Makefile"
+    SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
+    echo "determined source branch from git to be '$SOURCE_BRANCH'"
+fi
+# readlink is not portable across Linux + Mac
+# readlink is not portable across Linux + Mac
+docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
+if ! git branch -a | grep -q "$docker_branch_base"; then
+    docker_branch_base="${docker_branch_base%-dev}"
+    docker_branch_base="${docker_branch_base%-cluster}"
+    if ! git branch -a | grep -q "$docker_branch_base"; then
+        docker_branch_base="${docker_branch_base%-*}"
+    fi
+    # solrcloud -> solr
+    docker_branch_base="${docker_branch_base%cloud}"
+    if ! git branch -a | grep -q "$docker_branch_base"; then
+        echo "ERROR: failed to determine docker branch base even after normalization rules, tried $docker_branch_base"
+        exit 1
+    fi
+fi
+echo "determined docker branch base = $docker_branch_base"
+docker_version_base="${docker_branch_base//-/_}"
+echo "will search Dockerfile using docker version base = $docker_version_base"
+if [ "$docker_branch_base" = "kafka" ]; then
+    highest_tag="${current_scala}_0.9"
+    echo "Kafka detected, overriding highest tag to be $highest_tag"
 else
-    # we are running locally via Make which explicitly builds newest version
-    # in which case we should tag as latest and push latest
-    docker tag "$IMAGE_NAME:$latest_version" "$DOCKER_REPO:latest"
+    # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging improvements from master so not storing all previous versions commented out any more as it's more of an inconvenience
+    #highest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
+    # use Git branch versions as the source of truth
+    branches="$(git branch -a | grep -i "remotes/.*/$docker_branch_base")"
+    if [ -n "$branches" ]; then
+        if [ "$(wc -l <<< "$branches")" -ge 2 ]; then
+            highest_tag="$(sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' <<< "$branches" | sed 's/\./ /g' | sort -n -k1 -k2 | sed 's/ /./g' | tail -n 1)"
+            echo "determined highest tag from git branches to be $highest_tag"
+        else
+            echo "WARNING: less than 2 matching branches found, cannot determine the highest tag"
+        fi
+    fi
+fi
+
+if ! grep ':' <<< "$IMAGE_NAME";  then
+    echo "current tag not found in IMAGE_NAME=$IMAGE_NAME, determining from Dockerfile"
+    current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}.*_VERSION=" "$srcdir/../Dockerfile" | sed -n '$s/.*=//;s/[[:space:]]*//g;s/"//g;p' || :)"
+    if [ -z "$current_tag" ]; then
+        echo "ERROR: failed to determine current tag from Dockerfile!"
+        exit 1
+    fi
+    if [ "$current_tag" != "latest" ]; then
+        current_tag="$(awk -F. '{print $1"."$2}' <<< "$current_tag")"
+    fi
+    if [ "$docker_branch_base" = "kafka" ]; then
+        current_tag="${current_scala}_$current_tag"
+    fi
+    echo "current tag determined from Dockerfile to be '$current_tag'"
+    IMAGE_NAME="$IMAGE_NAME:$current_tag"
+fi
+
+is_latest(){
+    if [ "$SOURCE_BRANCH" = "master" ]; then
+        echo "determined to be latest build, due to running on master branch"
+        return 0
+    elif [ "$SOURCE_BRANCH" = "$docker_branch_base-$highest_tag" ]; then
+        echo "determined to be highest tagged build, due to SOURCE_BRANCH = '$SOURCE_BRANCH' == \$docker_branch_base-\$highest_tag = '$docker_branch_base-$highest_tag'"
+        return 0
+    fi
+    echo "$SOURCE_BRANCH is not the latest build, which is $docker_branch_base-$highest_tag"
+    return 1
+}
+
+if is_latest; then
+    echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:latest\""
+    docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
+    echo "docker push \"$DOCKER_REPO:latest\""
     docker push "$DOCKER_REPO:latest"
 fi

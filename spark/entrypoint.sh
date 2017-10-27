@@ -23,27 +23,41 @@ export SPARK_DAEMON_MEMORY="${SPARK_DAEMON_MEMORY:-128M}"
 export SPARK_HOME="/spark"
 
 mkdir -pv "$SPARK_HOME/logs"
+echo
 
+echo "reconfiguring memory to $SPARK_DAEMON_MEMORY"
 if grep -q "^[[:space:]]*SPARK_DAEMON_MEMORY" "$SPARK_HOME/conf/spark-env.sh"; then
     sed -i "s/^[[:space:]]SPARK_DAEMON_MEMORY.*/SPARK_DAEMON_MEMORY=$SPARK_DAEMON_MEMORY/" "$SPARK_HOME/conf/spark-env.sh"
 else
     echo "export SPARK_DAEMON_MEMORY=$SPARK_DAEMON_MEMORY" >> "$SPARK_HOME/conf/spark-env.sh" >> "$SPARK_HOME/conf/spark-env.sh"
 fi
+echo
 
 spark_version="$(ls -d /spark-* | sed 's|/spark-||;s/-.*//')"
 
-ip_address="$(ifconfig | awk '/inet/{print $2;exit}' | sed 's/.*://')"
+echo "Spark Version = $spark_version"
+echo
 
-echo -e "\nStarting Master"
-$SPARK_HOME/bin/spark-class org.apache.spark.deploy.master.Master &>/spark/logs/master.log &
+ip_address="$(ifconfig | awk '/inet/{print $2;exit}' | sed 's/.*://')"
+echo "IP Address = $ip_address"
+echo
+
+echo "Starting Master"
+echo "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.master.Master
+"$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.master.Master &>/spark/logs/master.log &
+echo
 sleep 2
 
-echo -e "\nStarting Worker"
-if [ "${spark_version:0:3}" = "1.4" ]; then 
-    "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$ip_address:7077 &>/spark/logs/worker.log &
-else
+echo "Starting Worker"
+# 1.3 worker only registers successfully if calling master by hostname
+if [ "${spark_version:0:3}" = "1.3" ]; then
+    echo "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077
     "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>/spark/logs/worker.log &
+else
+    echo "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker "spark://$ip_address:7077"
+    "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker "spark://$ip_address:7077" &>/spark/logs/worker.log &
 fi
+echo
 sleep 2
 
 if [ -t 0 ]; then

@@ -42,6 +42,7 @@ RUN set -euxo pipefail && \
     alluxio format && \
     apk del wget tar
 
+COPY conf/alluxio-site.properties alluxio/conf/
 COPY entrypoint.sh /
 
 EXPOSE 19999 30000

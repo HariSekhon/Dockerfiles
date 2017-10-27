@@ -30,12 +30,20 @@ else
     echo "export SPARK_DAEMON_MEMORY=$SPARK_DAEMON_MEMORY" >> "$SPARK_HOME/conf/spark-env.sh" >> "$SPARK_HOME/conf/spark-env.sh"
 fi
 
+spark_version="$(ls -d /spark-* | sed 's|/spark-||;s/-.*//')"
+
+ip_address="$(ifconfig | awk '/inet/{print $2;exit}' | sed 's/.*://')"
+
 echo -e "\nStarting Master"
 $SPARK_HOME/bin/spark-class org.apache.spark.deploy.master.Master &>/spark/logs/master.log &
 sleep 2
 
 echo -e "\nStarting Worker"
-$SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>/spark/logs/worker.log &
+if [ "${spark_version:0:3}" = "1.4" ]; then 
+    "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$ip_address:7077 &>/spark/logs/worker.log &
+else
+    "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>/spark/logs/worker.log &
+fi
 sleep 2
 
 if [ -t 0 ]; then

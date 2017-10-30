@@ -5,4 +5,12 @@
         <name>dfs.replication</name>
         <value>1</value>
     </property>
+    <property>
+        <name>dfs.namenode.stale.datanode.interval</name>
+        <value>10000</value>
+    </property>
+    <property>
+        <name>dfs.namenode.heartbeat.recheck-interval</name>
+        <value>10000</value>
+    </property>
 </configuration>

@@ -79,7 +79,7 @@ push-versions:
 .PHONY: run
 run:
 	@if [ -n "$(MAP_PORTS)" ]; then \
-		ports=$$(for port in $(MAP_PORTS); do echo -n "-p $$port:$$port "; done); \
+		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo "docker run -ti $$ports $(REPO_TAG)"; \
 		docker run -ti $$ports $(REPO_TAG); \
 	else \
@@ -90,7 +90,7 @@ run:
 .PHONY: run-foreground
 run-foreground:
 	@if [ -n "$(MAP_PORTS)" ]; then \
-		ports=$$(for port in $(MAP_PORTS); do echo -n "-p $$port:$$port "; done); \
+		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo "docker run -ti $$ports $(REPO_TAG)"; \
 		docker run $$ports $(REPO_TAG); \
 	else \

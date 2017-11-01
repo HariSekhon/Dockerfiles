@@ -8,4 +8,8 @@
         <name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name>
         <value>100</value>
     </property>
+    <property>
+        <name>yarn.nm.liveness-monitor.expiry-interval-ms</name>
+        <value>30000</value>
+    </property>
 </configuration>

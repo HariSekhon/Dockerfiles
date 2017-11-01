@@ -20,9 +20,12 @@ endif
 # solrcloud-dev     -> solrcloud
 # rabbitmq-cluster  -> rabbitmq
 # solrloud          -> solr
-BRANCH = $(shell echo "$(REPO)" | sed 's,.*/,,;s/-dev$$//;s/-cluster$$//;s/cloud$$//')
+# presto-cli		-> presto
+BRANCH = $(shell echo "$(REPO)" | sed 's,.*/,,;s/-dev$$//;s/-cli$$//;s/-cluster$$//;s/cloud$$//')
 
-MAP_PORTS := ""
+ifndef MAP_PORTS
+	MAP_PORTS := ""
+endif
 
 ifdef LATEST
 	TAG=latest

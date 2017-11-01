@@ -14,7 +14,7 @@
 FROM harisekhon/centos-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HADOOP_VERSION=2.7.3
+ARG HADOOP_VERSION=2.8.2
 
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 

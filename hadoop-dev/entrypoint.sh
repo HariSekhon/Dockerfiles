@@ -37,8 +37,22 @@ else
 
     if ! pgrep -x sshd &>/dev/null; then
         /usr/sbin/sshd
-        sleep 1
     fi
+    echo
+    SECONDS=0
+    while true; do
+        if ssh-keyscan localhost 2>&1 | grep -q OpenSSH; then
+            echo "SSH is ready to rock"
+            break
+        fi
+        if [ "$SECONDS" -gt 20 ]; then
+            echo "FAILED: SSH failed to come up after 20 secs"
+            exit 1
+        fi
+        echo "waiting for SSH to come up"
+        sleep 1
+    done
+    echo
     if ! [ -f /root/.ssh/known_hosts ]; then
         ssh-keyscan localhost || :
         ssh-keyscan 0.0.0.0   || :

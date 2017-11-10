@@ -43,7 +43,9 @@ for version in $versions_to_build; do
     fi
     let count+=1
     section2 "Building Presto version $version"
-    docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_DEVELOPMENT_VERSION="$version" $no_cache .
+    # might not use cache due to Docker caching issue but can try using PULL=1
+    [ -z "${PULL:-}" ] || docker pull "harisekhon/presto-dev:$version"
+    docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_VERSION="$version" $no_cache .
     [ -n "${NOPUSH:-}" ] || docker push "harisekhon/presto-dev:$version"
     # do not fill up all your space keeping each version around!!
     # do not remove every version, leave the first latest one, this will allow layer re-use for packages between all versions as the dependent layers for the latest version will not be removed and can be re-used as cache for all subsequent version builds saving time and space

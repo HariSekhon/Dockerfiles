@@ -19,7 +19,11 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir"
 
+srcdir2="$srcdir"
+
 . "$srcdir/../bash-tools/utils.sh"
+
+srcdir="$srcdir2"
 
 section "Presto SQL - building Development Versions"
 
@@ -43,6 +47,14 @@ for version in $versions_to_build; do
     fi
     let count+=1
     section2 "Building Presto version $version"
+    if [ "${version#*.}" -lt 168 ]; then
+        if [ -f "$srcdir/etc/catalog/memory.properties" ]; then
+            echo "ERROR: memory connector not available in Presto version $version (< 0.168), make sure you've removed $srcdir/etc/catalog/memory.properties file before continuing to build the image otherwise it won't start up!"
+            echo
+            exit 1
+        fi
+        echo
+    fi
     # might not use cache due to Docker caching issue but can try using PULL=1
     [ -z "${PULL:-}" ] || docker pull "harisekhon/presto-dev:$version"
     docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_VERSION="$version" $no_cache .

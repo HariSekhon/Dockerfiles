@@ -46,9 +46,14 @@ check_connector(){
     local name="$2"
     if [ "${version#*.}" -lt "${min_version#*.}" ]; then
         if [ -f "$srcdir/etc/catalog/$name.properties" ]; then
-            echo "ERROR: $name connector not available in Presto version $version (< $min_version), make sure you've removed $srcdir/etc/catalog/$name.properties file before continuing to build the image otherwise it won't start up!"
-            echo
-            exit 1
+            if [ -n "${FORCE_FIX:-}" ]; then
+                echo "FORCE_FIX set, removing unavailable catalog $name.properties to correctly build version $version:"
+                rm -vf "$srcdir/etc/catalog/$name.properties"
+            else
+                echo "ERROR: $name connector not available in Presto version $version (< $min_version), make sure you've removed $srcdir/etc/catalog/$name.properties file before continuing to build the image otherwise it won't start up!"
+                echo
+                exit 1
+            fi
         fi
     fi
 }
@@ -58,8 +63,13 @@ check_config_property(){
     local name="$2"
     if [ "${version#*.}" -lt "${min_version#*.}" ]; then
         if grep "^[[:space:]]*$name[[:space:]]*=" "$srcdir/etc/config.properties"; then
-            echo "ERROR: $name config property not available in Presto version $version (< $min_version), make sure to comment it out in $srcdir/etc/config.properties file before continuing to build the image other it won't start up!"
-            exit 1
+            if [ -n "${FORCE_FIX:-}" ]; then
+                echo "FORCE_FIX set, commenting out unavailable property setting '$name' to correctly build version $version:"
+                sed -i "s/^\([[:space:]]*$name[[:space:]]*=\)/#\\1/" "$srcdir/etc/config.properties"
+            else
+                echo "ERROR: $name config property not available in Presto version $version (< $min_version), make sure to comment it out in $srcdir/etc/config.properties file before continuing to build the image other it won't start up!"
+                exit 1
+            fi
         fi
     fi
 }

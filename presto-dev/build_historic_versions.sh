@@ -19,7 +19,11 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir"
 
+srcdir2="$srcdir"
+
 . "$srcdir/../bash-tools/utils.sh"
+
+srcdir="$srcdir2"
 
 section "Presto SQL - building Development Versions"
 
@@ -43,7 +47,25 @@ for version in $versions_to_build; do
     fi
     let count+=1
     section2 "Building Presto version $version"
-    docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_DEVELOPMENT_VERSION="$version" $no_cache .
+    if [ "${version#*.}" -lt 168 ]; then
+        if [ -f "$srcdir/etc/catalog/memory.properties" ]; then
+            echo "ERROR: memory connector not available in Presto version $version (< 0.168), make sure you've removed $srcdir/etc/catalog/memory.properties file before continuing to build the image otherwise it won't start up!"
+            echo
+            exit 1
+        fi
+        echo
+    fi
+    if [ "${version#*.}" -lt 147 ]; then
+        if [ -f "$srcdir/etc/catalog/memory.properties" ]; then
+            echo "ERROR: localfile connector not available in Presto version $version (< 0.147), make sure you've removed $srcdir/etc/catalog/localfile.properties file before continuing to build the image otherwise it won't start up!"
+            echo
+            exit 1
+        fi
+        echo
+    fi
+    # might not use cache due to Docker caching issue but can try using PULL=1
+    [ -z "${PULL:-}" ] || docker pull "harisekhon/presto-dev:$version"
+    docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_VERSION="$version" $no_cache .
     [ -n "${NOPUSH:-}" ] || docker push "harisekhon/presto-dev:$version"
     # do not fill up all your space keeping each version around!!
     # do not remove every version, leave the first latest one, this will allow layer re-use for packages between all versions as the dependent layers for the latest version will not be removed and can be re-used as cache for all subsequent version builds saving time and space

@@ -55,6 +55,14 @@ for version in $versions_to_build; do
         fi
         echo
     fi
+    if [ "${version#*.}" -lt 147 ]; then
+        if [ -f "$srcdir/etc/catalog/memory.properties" ]; then
+            echo "ERROR: localfile connector not available in Presto version $version (< 0.147), make sure you've removed $srcdir/etc/catalog/localfile.properties file before continuing to build the image otherwise it won't start up!"
+            echo
+            exit 1
+        fi
+        echo
+    fi
     # might not use cache due to Docker caching issue but can try using PULL=1
     [ -z "${PULL:-}" ] || docker pull "harisekhon/presto-dev:$version"
     docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_VERSION="$version" $no_cache .

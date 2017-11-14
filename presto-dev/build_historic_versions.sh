@@ -41,28 +41,28 @@ fi
 
 count=0
 
+check_connector(){
+    local min_version="$1"
+    local name="$2"
+    if [ "${version#*.}" -lt "${min_version#*.}" ]; then
+        if [ -f "$srcdir/etc/catalog/$name.properties" ]; then
+            echo "ERROR: $name connector not available in Presto version $version (< $min_version), make sure you've removed $srcdir/etc/catalog/$name.properties file before continuing to build the image otherwise it won't start up!"
+            echo
+            exit 1
+        fi
+        echo
+    fi
+}
+
 for version in $versions_to_build; do
     if [ "$version" = "latest" ]; then
         version="$(./get_presto_versions.sh | head -n1)"
     fi
     let count+=1
     section2 "Building Presto version $version"
-    if [ "${version#*.}" -lt 168 ]; then
-        if [ -f "$srcdir/etc/catalog/memory.properties" ]; then
-            echo "ERROR: memory connector not available in Presto version $version (< 0.168), make sure you've removed $srcdir/etc/catalog/memory.properties file before continuing to build the image otherwise it won't start up!"
-            echo
-            exit 1
-        fi
-        echo
-    fi
-    if [ "${version#*.}" -lt 147 ]; then
-        if [ -f "$srcdir/etc/catalog/memory.properties" ]; then
-            echo "ERROR: localfile connector not available in Presto version $version (< 0.147), make sure you've removed $srcdir/etc/catalog/localfile.properties file before continuing to build the image otherwise it won't start up!"
-            echo
-            exit 1
-        fi
-        echo
-    fi
+    check_connector 0.168 memory
+    check_connector 0.147 localfile
+    check_connector 0.108 blackhole
     # might not use cache due to Docker caching issue but can try using PULL=1
     [ -z "${PULL:-}" ] || docker pull "harisekhon/presto-dev:$version"
     docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_VERSION="$version" $no_cache .

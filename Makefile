@@ -87,8 +87,8 @@ push:
 
 .PHONY: pull
 pull:
-	git checkout master; \
-	git pull; \
+	git checkout master && \
+	git pull && \
 	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
 		echo "git checkout $$branch" && \
 		git checkout "$$branch" && \

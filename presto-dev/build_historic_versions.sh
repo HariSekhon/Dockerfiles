@@ -69,7 +69,7 @@ for version in $versions_to_build; do
     [ -n "${NOPUSH:-}" ] || docker push "harisekhon/presto-dev:$version"
     # do not fill up all your space keeping each version around!!
     # do not remove every version, leave the first latest one, this will allow layer re-use for packages between all versions as the dependent layers for the latest version will not be removed and can be re-used as cache for all subsequent version builds saving time and space
-    if [ $count -gt 1 ]; then
+    if [ $count -gt 1 -a -z "${NODELETE:-}" ]; then
         docker rmi "harisekhon/presto-dev:$version"
     fi
     echo

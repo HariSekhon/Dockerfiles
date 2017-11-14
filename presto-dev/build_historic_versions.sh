@@ -50,7 +50,17 @@ check_connector(){
             echo
             exit 1
         fi
-        echo
+    fi
+}
+
+check_config_property(){
+    local min_version="$1"
+    local name="$2"
+    if [ "${version#*.}" -lt "${min_version#*.}" ]; then
+        if grep "^[[:space:]]*$name[[:space:]]*=" "$srcdir/etc/config.properties"; then
+            echo "ERROR: $name config property not available in Presto version $version (< $min_version), make sure to comment it out in $srcdir/etc/config.properties file before continuing to build the image other it won't start up!"
+            exit 1
+        fi
     fi
 }
 
@@ -63,6 +73,8 @@ for version in $versions_to_build; do
     check_connector 0.168 memory
     check_connector 0.147 localfile
     check_connector 0.108 blackhole
+    check_config_property 0.101 query.max-memory
+    check_config_property 0.101 query.max-memory-per-node
     # might not use cache due to Docker caching issue but can try using PULL=1
     [ -z "${PULL:-}" ] || docker pull "harisekhon/presto-dev:$version"
     docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_VERSION="$version" $no_cache .

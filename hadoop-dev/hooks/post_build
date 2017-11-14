@@ -49,12 +49,16 @@ if ! git branch -a | grep -q "$docker_branch_base"; then
     # solrcloud -> solr
     docker_branch_base="${docker_branch_base%cloud}"
     if ! git branch -a | grep -q "$docker_branch_base"; then
-        echo "ERROR: failed to determine docker branch base even after normalization rules, tried $docker_branch_base"
-        echo
-        echo "These are the branches found:"
-        echo
-        git branch -a
-        exit 1
+        if [ "$SOURCE_BRANCH" = "master" ]; then
+            echo "WARNING: cannot determine if docker branch base $docker_branch_base is correct while running on master branch (DockerHub only checks out master branch)"
+        else
+            echo "ERROR: failed to determine docker branch base even after normalization rules, tried $docker_branch_base"
+            echo
+            echo "These are the branches found:"
+            echo
+            git branch -a
+            exit 1
+        fi
     fi
 fi
 echo "determined docker branch base = $docker_branch_base"

@@ -86,6 +86,7 @@ for version in $versions_to_build; do
     check_config_property 0.101 query.max-memory
     check_config_property 0.101 query.max-memory-per-node
     check_config_property 0.69  node-scheduler.include-coordinator
+    # TODO: versions 0.68 and below do not start up properly due to requiring this and other now obsolete settings
     if [ "${version#*.}" -le 68 ]; then
         if ! grep presto-metastore.db.type "$srcdir/etc/config.properties"; then
             if [ -n "${FORCE_FIX:-}" ]; then

@@ -85,6 +85,18 @@ for version in $versions_to_build; do
     check_connector 0.108 blackhole
     check_config_property 0.101 query.max-memory
     check_config_property 0.101 query.max-memory-per-node
+    check_config_property 0.69  node-scheduler.include-coordinator
+    if [ "${version#*.}" -le 68 ]; then
+        if ! grep presto-metastore.db.type "$srcdir/etc/config.properties"; then
+            if [ -n "${FORCE_FIX:-}" ]; then
+                echo "FORCE_FIX set, added necessary config presto-metastore.db.type=h2 to $srcdir/etc/config.properties"
+                echo "presto-metastore.db.type=h2" >> "$srcdir/etc/config.properties"
+            else
+                echo "ERROR: required config presto-metastore.db.type is not set in $srcdir/etc/config.properties, image won't start up without this in this version!"
+                exit 1
+            fi
+        fi
+    fi
     # might not use cache due to Docker caching issue but can try using PULL=1
     [ -z "${PULL:-}" ] || docker pull "harisekhon/presto-dev:$version"
     docker build -t "harisekhon/presto-dev:$version" --build-arg PRESTO_VERSION="$version" $no_cache .

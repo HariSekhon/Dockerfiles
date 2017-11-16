@@ -50,9 +50,9 @@ if ! git branch -a | grep -q "$docker_branch_base"; then
     docker_branch_base="${docker_branch_base%cloud}"
     if ! git branch -a | grep -q "$docker_branch_base"; then
         if [ "$SOURCE_BRANCH" = "master" ]; then
-            echo "WARNING: cannot determine if docker branch base $docker_branch_base is correct while running on master branch (DockerHub only checks out master branch)"
+            echo "WARNING: cannot determine if docker branch base '$docker_branch_base' is correct while running on master branch (DockerHub only checks out master branch)"
         else
-            echo "ERROR: failed to determine docker branch base even after normalization rules, tried $docker_branch_base"
+            echo "ERROR: failed to determine docker branch base even after normalization rules, tried '$docker_branch_base'"
             echo
             echo "These are the branches found:"
             echo
@@ -71,11 +71,13 @@ else
     # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging improvements from master so not storing all previous versions commented out any more as it's more of an inconvenience
     #highest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
     # use Git branch versions as the source of truth
+    set +o pipefail
     branches="$(git branch -a | grep -i "remotes/.*/$docker_branch_base")"
+    set -o pipefail
     if [ -n "$branches" ]; then
         if [ "$(wc -l <<< "$branches")" -ge 2 ]; then
             highest_tag="$(sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' <<< "$branches" | sed 's/\./ /g' | sort -n -k1 -k2 | sed 's/ /./g' | tail -n 1)"
-            echo "determined highest tag from git branches to be $highest_tag"
+            echo "determined highest tag from git branches to be '$highest_tag'"
         else
             echo "WARNING: less than 2 matching branches found, cannot determine the highest tag"
         fi

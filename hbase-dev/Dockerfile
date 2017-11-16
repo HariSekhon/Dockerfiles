@@ -27,24 +27,27 @@ WORKDIR /
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget && \
-    # HBase 0.94
-    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
+    # older versions have to use apache archive
+    # HBase 0.90, 0.92, 0.94
+    if  [ "${HBASE_VERSION:0:4}" = "0.90" -o \
+          "${HBASE_VERSION:0:4}" = "0.92" -o \
+          "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
-    # HBase 0.96 usually missing from mirrors, have to use apache archive
-    elif [ "${HBASE_VERSION:0:4}" = "0.96" ]; then \
+    # HBase 0.95 / 0.96
+    elif [ "${HBASE_VERSION:0:4}" = "0.95" -o "${HBASE_VERSION:0:4}" = "0.96" ]; then \
         url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98
     elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
-    # HBase 1.0
-    elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then \
+    # HBase 0.99 / 1.0
+    elif [ "${HBASE_VERSION:0:4}" = "0.99" -o "${HBASE_VERSION:0:3}" = "1.0" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     # HBase 1.1+
-    elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then \
+    elif [ "${HBASE_VERSION:0:1}" = "1" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     else \

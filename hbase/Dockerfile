@@ -47,12 +47,12 @@ RUN set -euxo pipefail && \
     elif [ "${HBASE_VERSION:0:4}" = "0.98" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
-    # HBase 1.0
-    elif [ "${HBASE_VERSION:0:3}" = "1.0"  ]; then \
+    # HBase 0.99 / 1.0
+    elif [ "${HBASE_VERSION:0:4}" = "0.99" -o "${HBASE_VERSION:0:3}" = "1.0" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     # HBase 1.1+
-    elif [ "${HBASE_VERSION:0:1}" = "1"    ]; then \
+    elif [ "${HBASE_VERSION:0:1}" = "1" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     else \

@@ -45,7 +45,8 @@ echo
 # HBase versions < 1.0 fail to start RegionServer without SSH being installed
 if [ "$(echo /hbase-* | sed 's,/hbase-,,' | cut -c 1)" = 0 ]; then
     echo "Starting local RegionServer"
-    /hbase/bin/local-regionservers.sh start 1
+    # appears to be started already in this version, probably by start-hbase.sh
+    /hbase/bin/local-regionservers.sh start 1 || :
     echo
 fi
 

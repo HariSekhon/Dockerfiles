@@ -14,7 +14,7 @@
 FROM harisekhon/alpine-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=0.90.6
+ARG HBASE_VERSION=0.95.2
 
 ENV PATH $PATH:/hbase/bin
 
@@ -27,14 +27,15 @@ WORKDIR /
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget && \
+    # older versions have to use apache archive
     # HBase 0.90, 0.92, 0.94
     if  [ "${HBASE_VERSION:0:4}" = "0.90" -o \
           "${HBASE_VERSION:0:4}" = "0.92" -o \
           "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
-    # HBase 0.96 usually missing from mirrors, have to use apache archive
-    elif [ "${HBASE_VERSION:0:4}" = "0.96" ]; then \
+    # HBase 0.95 / 0.96
+    elif [ "${HBASE_VERSION:0:4}" = "0.95" -o "${HBASE_VERSION:0:4}" = "0.96" ]; then \
         url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98

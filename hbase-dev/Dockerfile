@@ -14,7 +14,7 @@
 FROM harisekhon/alpine-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=1.3.1
+ARG HBASE_VERSION=0.92.2
 
 ENV PATH $PATH:/hbase/bin
 
@@ -27,8 +27,9 @@ WORKDIR /
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget && \
-    # HBase 0.94
-    if   [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
+    # HBase 0.92, 0.94
+    if  [ "${HBASE_VERSION:0:4}" = "0.92" -o \
+          "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
     # HBase 0.96 usually missing from mirrors, have to use apache archive

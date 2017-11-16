@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=0.92.2
+ARG HBASE_VERSION=0.90.6
 
 ENV PATH $PATH:/hbase/bin
 
@@ -32,8 +32,9 @@ RUN set -euxo pipefail && \
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget tar && \
-    # HBase 0.92, 0.94
-    if  [ "${HBASE_VERSION:0:4}" = "0.92" -o \
+    # HBase 0.90, 0.92, 0.94
+    if  [ "${HBASE_VERSION:0:4}" = "0.90" -o \
+          "${HBASE_VERSION:0:4}" = "0.92" -o \
           "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \

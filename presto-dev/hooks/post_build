@@ -13,7 +13,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -euo pipefail
+set -eu
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -37,7 +37,6 @@ if [ -z "${SOURCE_BRANCH:-}" ]; then
     SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
     echo "determined source branch from git to be '$SOURCE_BRANCH'"
 fi
-# readlink is not portable across Linux + Mac
 # readlink is not portable across Linux + Mac
 docker_branch_base="$(basename "$(cd "$(dirname "${BASH_SOURCE[0]}")/.."; echo "$PWD")")"
 if ! git branch -a | grep -q "$docker_branch_base"; then
@@ -71,9 +70,7 @@ else
     # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging improvements from master so not storing all previous versions commented out any more as it's more of an inconvenience
     #highest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
     # use Git branch versions as the source of truth
-    set +o pipefail
     branches="$(git branch -a | grep -i "remotes/.*/$docker_branch_base")"
-    set -o pipefail
     if [ -n "$branches" ]; then
         if [ "$(wc -l <<< "$branches")" -ge 2 ]; then
             highest_tag="$(sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' <<< "$branches" | sed 's/\./ /g' | sort -n -k1 -k2 | sed 's/ /./g' | tail -n 1)"

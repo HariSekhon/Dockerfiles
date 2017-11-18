@@ -31,7 +31,7 @@ WORKDIR /github
 
 # bash, openjdk8 and alpine-sdk are for the JVM projects further down
 RUN set -euxo pipefail && \
-    apk add --no-cache make git bash openjdk7 alpine-sdk
+    apk add --no-cache make git bash openjdk8 alpine-sdk procps
 
 RUN set -euxo pipefail && \
     x=bash-tools && git clone https://github.com/harisekhon/$x /github/$x && cd /github/$x && make build test clean

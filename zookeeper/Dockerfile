@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ZOOKEEPER_VERSION=3.4.8
+ARG ZOOKEEPER_VERSION=3.4.11
 ARG TAR=zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
 ENV PATH $PATH:/zookeeper/bin

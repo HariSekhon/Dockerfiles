@@ -23,6 +23,8 @@ ENV ADVERTISED_HOSTNAME=127.0.0.1
 
 ENV PATH $PATH:/kafka/bin
 
+ENV TAR="kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz"
+
 LABEL Description="Apache Kafka by LinkedIn" \
       "Scala Version"="$SCALA_VERSION" \
       "Kafka Version"="$KAFKA_VERSION"
@@ -35,7 +37,8 @@ RUN set -euxo pipefail && \
 
 RUN set -euxo pipefail && \
     apk add --no-cache tar wget && \
-    wget -t 100 --retry-connrefused -O "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" && \
+    wget -t 10 --retry-connrefused -O "$TAR" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" || \
+    wget -t 10 --retry-connrefused -O "$TAR" "http://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     tar zxf "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     rm -fv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
     ln -sv "kafka_${SCALA_VERSION}-${KAFKA_VERSION}" kafka && \

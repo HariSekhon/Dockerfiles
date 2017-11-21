@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SCALA_VERSION=2.11
 # 0.10 fails to come up
-ARG KAFKA_VERSION=0.10.0.0
+ARG KAFKA_VERSION=0.10.2.1
 
 ENV ADVERTISED_HOSTNAME=127.0.0.1
 

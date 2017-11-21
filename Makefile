@@ -160,7 +160,6 @@ mergemasterpull:
 
 .PHONY: mergeall
 mergeall:
-	git pull
 	bash-tools/git_merge_all.sh
 
 .PHONY: update

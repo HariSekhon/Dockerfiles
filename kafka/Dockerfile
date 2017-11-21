@@ -15,7 +15,7 @@ FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SCALA_VERSION=2.10
-ARG KAFKA_VERSION=0.10.0.0
+ARG KAFKA_VERSION=0.10.2.1
 
 ENV ADVERTISED_HOSTNAME=127.0.0.1
 

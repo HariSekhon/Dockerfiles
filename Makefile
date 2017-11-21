@@ -152,19 +152,15 @@ postbuild: post-build
 
 .PHONY: mergemaster
 mergemaster:
-	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
-		echo "Merging branch $$branch" && \
-		echo "git checkout $$branch" && \
-		git checkout "$$branch" && \
-		git merge -m "merged master" master && \
-		echo || \
-		exit 1; \
-	done; \
-	git checkout master
+	bash-tools/git_merge_master.sh
 
-.PHONY: mergemasterall
-mergemasterall: pull mergemaster
-	:
+.PHONY: mergemasterpull
+mergemasterpull:
+	bash-tools/git_merge_master_pull.sh
+
+.PHONY: mergeall
+mergeall:
+	bash-tools/git_merge_all.sh
 
 .PHONY: update
 update: update2 build

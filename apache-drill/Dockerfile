@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG APACHE_DRILL_VERSION=1.10.0
+ARG APACHE_DRILL_VERSION=1.11.0
 
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 
@@ -35,7 +35,7 @@ WORKDIR /
 # supervisor => drillbit standalone runner for nagios checks
 # which      => drill-embedded script
 RUN set -euxo pipefail && \
-    apk add --no-cache bash openjdk8-jre-base supervisor which && \
+    apk add --no-cache bash openjdk8 supervisor which && \
     mkdir -p /etc/supervisor.d
 
 RUN set -euxo pipefail && \

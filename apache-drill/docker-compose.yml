@@ -19,3 +19,5 @@ services:
     ports:
       - 8047:8047
     command: ['supervisord', '-n']
+  zookeeper:
+    image: harisekhon/zookeeper:${ZOOKEEPER_VERSION:-latest}

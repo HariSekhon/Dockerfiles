@@ -1,9 +1,9 @@
-Alluxio
+Tachyon
 =======
 
 http://www.alluxio.org/
 
-Distributed in-memory filesystem for cluster computing frameworks, formerly called Tachyon (older versions are found under harisekhon/tachyon and the tachyon directory adjacent in this repo)
+Distributed in-memory filesystem for cluster computing frameworks, now called Alluxio (newer versions 1.0+ are found under harisekhon/alluxio and the alluxio directory adjacent in this repo)
 
 Starts one master and one worker and then tails the logs, maps the master and worker ports 19999 and 30000.
 

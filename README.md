@@ -90,7 +90,7 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 
 More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
 
-- [Alluxio](http://www.alluxio.org/) - distributed memory base storage by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
+- [Alluxio](http://www.alluxio.org/) - distributed memory based storage by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
 - [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell)
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)

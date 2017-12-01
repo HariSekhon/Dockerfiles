@@ -90,8 +90,8 @@ docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:1002
 
 More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
 
-- [Alluxio](http://www.alluxio.org/) - distributed in-memory filesystem for cluster computing frameworks by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
-- [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell)
+- [Alluxio](http://www.alluxio.org/) - distributed in-memory filesystem for cluster computing frameworks by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/alluxio/README-alluxio.md)
+- [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/apache-drill/README-apache-drill.md)
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
 - [H2O](https://www.h2o.ai/) - distributed machine learning framework by [0xdata](https://www.h2o.ai/)
@@ -101,8 +101,8 @@ More specific information can be found in the readme page under each respective 
 - [Kafka](https://kafka.apache.org/) - pub-sub data broker by [LinkedIn](https://www.linkedin.com) and [Confluent](https://www.confluent.io/)
 - [Mesos](http://mesos.apache.org/) - datacenter resource manager by [Mesosphere](https://mesosphere.com/) (mostly obsoleted by more free Hortonworks / Hadoop Yarn resource manager)
 - [Nifi](https://nifi.apache.org/) - IOT data flow engine by NSA and [Hortonworks](https://hortonworks.com/)
-- [Presto](https://prestodb.io/) - distributed SQL engine by Facebook (opens Presto SQL shell)
-- [Presto (Teradata distribution)](http://www.teradata.com/products-and-services/Presto/Presto-Download) - Teradata's Presto distribution including ODBC and JDBC drivers (opens Presto SQL shell)
+- [Presto](https://prestodb.io/) - distributed SQL engine by Facebook (opens Presto SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/presto-dev/README-presto.md)
+- [Presto (Teradata distribution)](http://www.teradata.com/products-and-services/Presto/Presto-Download) - Teradata's Presto distribution including ODBC and JDBC drivers (opens Presto SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/presto/README-presto.md)
 - [RabbitMQ](https://www.rabbitmq.com/) Cluster - pub-sub message queue broker by [Pivotal](https://pivotal.io/) (extension of RabbitMQ official image with added plugins)
 - [Riak KV](http://basho.com/products/riak-kv/) - distributed NoSQL datastore by [Basho](http://basho.com/)
 - [Riak KV](http://basho.com/products/riak-kv/) (bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
@@ -118,7 +118,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 
-- [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 350+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
+- [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 350+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, CouchDB, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, Presto, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
   - Tags:
     - nagios-plugins:latest (centos)
     - nagios-plugins:alpine

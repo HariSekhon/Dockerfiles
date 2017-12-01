@@ -25,7 +25,7 @@ if [ -t 0 ]; then
     # start as a daemon
     echo "Starting Presto engine as a daemon:
 "
-    "$PRESTO_HOME/bin/launcher" start
+    su presto -c "$PRESTO_HOME/bin/launcher start"
     sleep 5
     echo "
 waiting for 5 secs for Presto engine to initialize
@@ -36,7 +36,7 @@ See sample data from logs:
 
 SHOW TABLES FROM localfile.logs;
 "
-    /usr/bin/presto --server localhost:8080 # --catalog hive --schema default
+    su presto -c "/usr/bin/presto --server localhost:8080" # --catalog hive --schema default
 else
     echo "
 Running non-interactively, will not open Presto SQL shell
@@ -46,5 +46,5 @@ For Presto SQL shell start this image with 'docker run -t -i' switches
 Starting Presto engine as foreground process:
 "
     # start in foreground
-    "$PRESTO_HOME/bin/launcher" run
+    su presto -c "$PRESTO_HOME/bin/launcher run"
 fi

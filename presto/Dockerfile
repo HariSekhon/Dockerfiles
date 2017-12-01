@@ -71,6 +71,12 @@ RUN set -euxo pipefail && \
     yum clean all && \
     rm -rf /var/cache/yum
 
+# Add user support not running as root
+RUN set -euxo pipefail && \
+    mkdir -vp /var/lib/presto /var/log/presto && \
+    useradd presto && \
+    chown -R presto /etc/presto /usr/lib/presto /var/lib/presto /var/log/presto
+
 COPY entrypoint.sh /
 COPY etc /etc/presto/
 

@@ -20,7 +20,7 @@
 FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG CONSUL_VERSION=0.9.2
+ARG CONSUL_VERSION=0.9.3
 
 ENV PATH $PATH:/
 

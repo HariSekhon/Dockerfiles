@@ -51,7 +51,6 @@ RUN set -euxo pipefail && \
     # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
     test -d "solr-$SOLR_VERSION" && \
     ln -sv "solr-$SOLR_VERSION" solr && \
-    chown -R solr /solr* && \
     rm -fv "$TAR" && \
     { rm -rf solr/doc; : ; } && \
     apk del tar wget

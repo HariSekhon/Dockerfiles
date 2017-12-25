@@ -61,6 +61,12 @@ RUN set -euxo pipefail && \
     rm -v get_presto_versions.sh && \
     apk del curl tar wget
 
+# Add user support not running as root
+RUN set -euxo pipefail && \
+    adduser -D presto && \
+    mkdir -pv /presto/logs /var/lib/presto && \
+    chown -R presto /presto/logs /var/lib/presto
+
 COPY entrypoint.sh /
 COPY etc /presto/etc
 

@@ -82,6 +82,5 @@ For HBase shell start this image with 'docker run -t -i' switches
     # so I rely on the sig trap handler above
     wait || :
 fi
-# this doesn't Control-C , get's stuck
+# this doesn't Control-C , gets stuck
 #tail -f /hbase/logs/*
-

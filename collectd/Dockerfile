@@ -12,7 +12,6 @@
 #
 
 FROM centos:7
-#FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ENV PATH $PATH:/NAME/bin

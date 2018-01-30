@@ -14,7 +14,7 @@
 FROM centos:7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ENV PATH $PATH:/NAME/bin
+ENV PATH $PATH:/tcollector/bin
 
 LABEL Description="OpenTSDB TCollector"
 
@@ -27,4 +27,4 @@ RUN \
     yum clean all && \
     rm -rf /var/cache/yum
 
-CMD ["/tcollector/tcollector.py", "-c /tcollector/collectors", "-H opentsdb"]
+CMD ["/tcollector/tcollector.py", "-c /tcollector/collectors", "--logfile /dev/stdout",  "--pidfile /tmp/tcollector.pid", "-H opentsdb"]

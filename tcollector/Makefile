@@ -13,4 +13,15 @@
 
 REPO := harisekhon/tcollector
 
+# Makefile.in assumes to drop in to bash if no ports mapped, set NOPORTS explicitly instead of redefining run and run-foreground targets
+NOPORTS := 1
+
 include ../Makefile.in
+
+#.PHONY: run
+#run:
+#	docker run -ti $(REPO_TAG)
+#
+#.PHONY: run-foreground
+#run-foreground:
+#	docker run $(REPO_TAG)

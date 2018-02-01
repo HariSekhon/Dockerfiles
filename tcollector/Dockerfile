@@ -14,17 +14,29 @@
 FROM centos:7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ENV PATH $PATH:/tcollector/bin
+ENV PATH $PATH:/tcollector:/usr/local/tcollector
 
 LABEL Description="OpenTSDB TCollector"
 
 WORKDIR /
 
 RUN \
-    yum install -y git python && \
+    yum install -y python && \
+    # 1.3.0 seems to have no collectors and therefore sends no metrics to OpenTSDB, must use latest release from GitHub
+    #yum install -y https://github.com/OpenTSDB/tcollector/releases/download/v1.3.0/tcollector-1.3.0-1.noarch.rpm && \
+    yum install -y git && \
     git clone https://github.com/OpenTSDB/tcollector /tcollector && \
     yum autoremove -y && \
     yum clean all && \
     rm -rf /var/cache/yum
 
-CMD ["/tcollector/tcollector.py", "-H", "opentsdb", "-c", "/tcollector/collectors", "--logfile", "/dev/stdout",  "--pidfile", "/tmp/tcollector.pid"]
+# RPM
+#ENV TCOLLECTOR_HOME="/usr/local/tcollector"
+# GIT
+ENV TCOLLECTOR_HOME="/tcollector"
+
+# RPM
+#CMD ["/usr/local/tcollector/tcollector.py", "-H", "opentsdb", "-c", "/usr/local/tcollector/collectors", "--logfile", "/dev/stdout", "--pidfile", "/tmp/tcollector.pid"]
+
+# GIT
+CMD ["/tcollector/tcollector.py", "-H", "opentsdb", "-c", "/tcollector/collectors", "--logfile", "/dev/stdout", "--pidfile", "/tmp/tcollector.pid"]

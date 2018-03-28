@@ -64,6 +64,7 @@ RUN set -euxo pipefail && \
     ln -sv "hbase-$HBASE_VERSION" hbase && \
     rm -fv "hbase-$HBASE_VERSION-bin.tar.gz" && \
     { rm -rf hbase/{docs,src}; : ; } && \
+    mkdir /hbase-data && \
     apk del wget
 
 VOLUME /hbase-data

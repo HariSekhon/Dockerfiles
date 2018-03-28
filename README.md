@@ -16,7 +16,7 @@ Overview - this repo contains:
 
 These images are all available pre-built on [My DockerHub - https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 
-**Quality and Testing** - this repo has entire test suites run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images' functionality, branches vs tagged versions align, latest contains correct version from master branch, syntax checks against all build files found in the repo covering all common file formats (JSON/INI/Make/XML/YAML configurations) etc.
+**Quality and Testing** - this repo has entire test suites run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images' functionality, branches vs tagged versions align, latest contains correct version from master branch, syntax checks covering all common build and file formats (Make/JSON/CSV/INI/XML/YAML configurations) etc.
 
 These are reusable tests that can anybody can implement and can be found in my [PyTools](https://github.com/HariSekhon/pytools) and [Bash-Tools](https://github.com/HariSekhon/bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs to ensure the docker images are functioning as intended.
 
@@ -46,13 +46,11 @@ docker run harisekhon/pytools dockerhub_search.py harisekhon
 
 There are lots of tagged versions of official software in my repos to allow development testing across multiple versions, usually more versions than available from the official repos (and new version updates available on request, just [raise a GitHub issue](https://github.com/harisekhon/Dockerfiles/issues)).
 
-DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image - eg. to see an organized list of all tags for the official CentOS & Ubuntu repos dynamically using the DockerHub API:
+DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [PyTools github repo](https://github.com/harisekhon/pytools) and as a pre-built docker image - eg. to see an organized list of all CentOS tags:
 
 ```
-docker run harisekhon/pytools dockerhub_show_tags.py centos ubuntu
+docker run harisekhon/pytools dockerhub_show_tags.py centos
 ```
-
-(you might need to add --timeout 60 as ubuntu has a lot of tags now I've noticed to stop it timing out while fetching all the pages)
 
 For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:
 
@@ -74,7 +72,7 @@ which is much easier to type and remember than the equivalent bigger commands li
 docker run -ti -p 2181:2181 harisekhon/zookeeper
 ```
 
-which gets much worse for more complex services like Hadoop / HBase:
+and avoid this for more complex services like Hadoop / HBase:
 
 ```
 docker run -ti -p 2181:2181 -p 8080:8080 -p 8085:8085 -p 9090:9090 -p 9095:9095 -p 16000:16000 -p 16010:16010 -p 16201:16201 -p 16301:16301 harisekhon/hbase
@@ -101,6 +99,7 @@ More specific information can be found in the readme page under each respective 
 - [Kafka](https://kafka.apache.org/) - pub-sub data broker by [LinkedIn](https://www.linkedin.com) and [Confluent](https://www.confluent.io/)
 - [Mesos](http://mesos.apache.org/) - datacenter resource manager by [Mesosphere](https://mesosphere.com/) (mostly obsoleted by more free Hortonworks / Hadoop Yarn resource manager)
 - [Nifi](https://nifi.apache.org/) - IOT data flow engine by NSA and [Hortonworks](https://hortonworks.com/)
+- [OpenTSDB TCollector](http://opentsdb.net/docs/build/html/user_guide/utilities/tcollector.html) - metrics collector - sends metrics to OpenTSDB - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/tcollector/README-tcollector.md)
 - [Presto](https://prestodb.io/) - distributed SQL engine by Facebook (opens Presto SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/presto-dev/README-presto.md)
 - [Presto (Teradata distribution)](http://www.teradata.com/products-and-services/Presto/Presto-Download) - Teradata's Presto distribution including ODBC and JDBC drivers (opens Presto SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/presto/README-presto.md)
 - [RabbitMQ](https://www.rabbitmq.com/) Cluster - pub-sub message queue broker by [Pivotal](https://pivotal.io/) (extension of RabbitMQ official image with added plugins)

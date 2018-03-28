@@ -60,6 +60,9 @@ echo
 
 trap_func(){
     echo -e "\n\nShutting down HBase:"
+    /hbase/bin/hbase-daemon.sh stop rest || :
+    /hbase/bin/hbase-daemon.sh stop thrift || :
+    /hbase/bin/local-regionservers.sh stop || :
     /hbase/bin/stop-hbase.sh | grep -v "ssh: command not found"
     sleep 2
     ps -ef | grep org.apache.hadoop.hbase | grep -v -i org.apache.hadoop.hbase.zookeeper | awk '{print $1}' | xargs kill || :

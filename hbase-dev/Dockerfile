@@ -66,6 +66,8 @@ RUN set -euxo pipefail && \
     { rm -rf hbase/{docs,src}; : ; } && \
     apk del wget
 
+VOLUME /data
+
 COPY entrypoint.sh /
 COPY conf/hbase-site.xml /hbase/conf/
 

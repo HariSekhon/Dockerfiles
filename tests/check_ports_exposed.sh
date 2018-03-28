@@ -41,8 +41,8 @@ for x in *; do
     # using Perl because sed requires ERE for .+ which uses a different switch on Max OSX (-E) vs Linux (-r)
     ports=$(perl -ne 'print "$1\n" if /\s+-\s*(\d{4,5})(:\d{4,5})?\s*$/' "$x/"*docker-compose*.yml)
     if [ -z "$ports" ]; then
-        echo "No ports found"
-        exit 1
+        echo "no ports found"
+        continue
     fi
     expected_port_mapping=""
     for port in $ports; do

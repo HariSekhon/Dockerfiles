@@ -38,7 +38,7 @@ RUN set -euxo pipefail && \
 
 # make HTTP listen on 0.0.0.0 not 127.0.0.1
 # Riak 1.x
-COPY conf/app.config /etc/riak/
+#COPY conf/app.config /etc/riak/
 # Riak 2.x
 COPY conf/riak.conf /etc/riak/
 

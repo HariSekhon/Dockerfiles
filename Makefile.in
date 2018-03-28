@@ -82,6 +82,9 @@ run:
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run -ti $$ports $(REPO_TAG); \
 		docker run -ti $$ports $(REPO_TAG); \
+	elif [ -n "$(NOPORTS)" ]; then \
+		echo docker run -ti $(REPO_TAG); \
+		docker run -ti $(REPO_TAG); \
 	else \
 		echo "docker run -ti $(REPO_TAG) bash"; \
 		docker run -ti $(REPO_TAG) bash; \
@@ -93,6 +96,9 @@ run-foreground:
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run -ti $$ports $(REPO_TAG); \
 		docker run $$ports $(REPO_TAG); \
+	elif [ -n "$(NOPORTS)" ]; then \
+		echo docker run $(REPO_TAG); \
+		docker run $(REPO_TAG); \
 	else \
 		echo "docker run -ti $(REPO_TAG) bash"; \
 		docker run $(REPO_TAG); \

@@ -5,15 +5,21 @@ https://drill.apache.org/
 
 Schema-free SQL Query Engine for Hadoop, NoSQL and Cloud Storage
 
-Starts a single Apache Drillbit and maps port 8047.
+Starts a single Apache Drillbit and maps port 8047 which you can browse to for Drill UI.
 
 If started interactively will drop in to a SQL shell.
+
+```
+docker run -ti -p 8047:8047 harisekhon/apache-drill
+```
+
+or with docker-compose:
 
 ```
 docker-compose up
 ```
 
-or without `docker-compose`
+or without `docker-compose`, a shortcut for the docker run command:
 
 ```
 make run

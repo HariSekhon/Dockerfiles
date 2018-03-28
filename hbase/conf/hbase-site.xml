@@ -5,4 +5,8 @@
     <name>hbase.cluster.distributed</name>
     <value>true</value>
   </property>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>/hbase-data</value>
+  </property>
 </configuration>

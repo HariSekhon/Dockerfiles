@@ -65,9 +65,9 @@ trap_func(){
     /hbase/bin/local-regionservers.sh stop || :
     /hbase/bin/stop-hbase.sh | grep -v "ssh: command not found"
     sleep 2
-    ps -ef | grep org.apache.hadoop.hbase | grep -v -i org.apache.hadoop.hbase.zookeeper | awk '{print $1}' | xargs kill || :
+    ps -ef | grep org.apache.hadoop.hbase | grep -v -i org.apache.hadoop.hbase.zookeeper | awk '{print $1}' | xargs kill 2>&1 || :
     sleep 3
-    pkill -f org.apache.hadoop.hbase.zookeeper || :
+    pkill -f org.apache.hadoop.hbase.zookeeper 2>&1 || :
     sleep 2
 }
 trap trap_func INT QUIT TRAP ABRT TERM EXIT

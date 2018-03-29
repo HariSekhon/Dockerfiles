@@ -10,7 +10,7 @@ Starts a single pseudo-distributed HBase cluster including HBase Master, RegionS
 If started interactively will drop in to an HBase shell.
 
 ```
-docker run -ti harisekhon/hbase
+docker run -ti harisekhon/hbase-dev
 ```
 
 There are a lot of ports, so if you want to start the container and map all of them, use docker-compose:

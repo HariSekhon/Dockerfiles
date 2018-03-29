@@ -63,7 +63,7 @@ trap_func(){
     /hbase/bin/hbase-daemon.sh stop rest || :
     /hbase/bin/hbase-daemon.sh stop thrift || :
     /hbase/bin/local-regionservers.sh stop 1 || :
-    /hbase/bin/stop-hbase.sh | grep -v "ssh: command not found"
+    /hbase/bin/stop-hbase.sh | grep -v -e "ssh: command not found" -e "kill: you need to specify whom to kill"
     sleep 2
     ps -ef | grep org.apache.hadoop.hbase | grep -v -i org.apache.hadoop.hbase.zookeeper | awk '{print $1}' | xargs kill 2>&1 || :
     sleep 3

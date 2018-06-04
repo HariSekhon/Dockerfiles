@@ -14,7 +14,7 @@
 FROM harisekhon/alpine-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=1.3.1
+ARG HBASE_VERSION=2.0.0
 
 ENV PATH $PATH:/hbase/bin
 
@@ -26,7 +26,7 @@ LABEL Description="HBase Dev", \
 WORKDIR /
 
 RUN set -euxo pipefail && \
-    apk add --no-cache wget && \
+    apk add --no-cache wget libc6-compat jruby jruby-irb && \
     # older versions have to use apache archive
     # HBase 0.90, 0.92, 0.94
     if  [ "${HBASE_VERSION:0:4}" = "0.90" -o \
@@ -47,7 +47,7 @@ RUN set -euxo pipefail && \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     # HBase 1.1+
-    elif [ "${HBASE_VERSION:0:1}" = "1" ]; then \
+    elif [ "${HBASE_VERSION:0:1}" = "1" ] || [ "${HBASE_VERSION:0:1}" = "2" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     else \

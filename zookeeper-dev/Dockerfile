@@ -26,7 +26,10 @@ WORKDIR /
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget && \
-    wget -t 100 --retry-connrefused -O "$TAR" "http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
+    url="http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
+    url_archive="http://archive.apache.org/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" && \
+    wget -t 5 --retry-connrefused -O "$TAR" "$url" || \
+    wget -t 5 --retry-connrefused -O "$TAR" "$url_archive" && \
     tar zxf "${TAR}" && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \

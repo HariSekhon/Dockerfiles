@@ -50,7 +50,7 @@ build-versions:
 	@echo "Building all versions from branches with base '$(BRANCH)'"
 	for x in $$(git branch -a | grep $(BRANCH) | sed 's,remotes/origin/,,' | sort -u); do \
 		git checkout "$$x" && \
-		make build && \
+		$(MAKE) build && \
 		echo || \
 		exit 1; \
 	done; \
@@ -70,7 +70,7 @@ push:
 push-versions:
 	for x in $$(git branch -a | grep $(BRANCH) | sed 's,remotes/origin/,,' | sort -u); do \
 		git checkout "$$x" && \
-		make push && \
+		$(MAKE) push && \
 		echo || \
 		exit 1; \
 	done; \

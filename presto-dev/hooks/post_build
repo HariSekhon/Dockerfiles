@@ -13,7 +13,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -eux
+set -eu
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -72,12 +72,12 @@ else
     # use Git branch versions as the source of truth
     branches="$(git branch -a | grep -i "remotes/.*/$docker_branch_base")"
     if [ -n "$branches" ]; then
-        if [ "$(wc -l <<< "$branches")" -ge 2 ]; then
+        #if [ "$(wc -l <<< "$branches")" -ge 2 ]; then
             highest_tag="$(sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' <<< "$branches" | sed 's/\./ /g' | sort -n -k1 -k2 | sed 's/ /./g' | tail -n 1)"
             echo "determined highest tag from git branches to be '$highest_tag'"
-        else
-            echo "WARNING: less than 2 matching branches found, cannot determine the highest tag"
-        fi
+        #else
+        #    echo "WARNING: less than 2 matching branches found, cannot determine the highest tag"
+        #fi
     fi
 fi
 

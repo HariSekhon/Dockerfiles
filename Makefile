@@ -33,7 +33,7 @@ build:
 	for x in *; do \
 		[ -d $$x ] || continue; \
 		pushd $$x && \
-		make build && \
+		$(MAKE) build && \
 		popd || \
 		exit 1; \
 	done
@@ -50,7 +50,7 @@ nocache:
 	for x in *; do \
 		[ -d $$x ] || continue; \
 		pushd $$x && \
-		make nocache && \
+		$(MAKE) nocache && \
 		popd || \
 		exit 1; \
 	done
@@ -68,16 +68,16 @@ nocache:
 #
 #.PHONY: test-deps
 #test-deps:
-#	if [ -x /usr/bin/apt-get ]; then make apt-packages; fi
-#	if [ -x /usr/bin/yum ];     then make yum-packages; fi
+#	if [ -x /usr/bin/apt-get ]; then $(MAKE) apt-packages; fi
+#	if [ -x /usr/bin/yum ];     then $(MAKE) yum-packages; fi
 #	# this is clearly too basic - it doesn't even recognize LABEL instruction, nor line continuations
 #	which docklint &>/dev/null || npm install -g validate-dockerfile
 
 .PHONY: test
 test:
 	@# this would test everything but would call test-deps over and over inefficiently
-	@#for x in *; do [ -d $$x ] || continue; pushd $$x; make test; popd; done
-	@#make test-deps
+	@#for x in *; do [ -d $$x ] || continue; pushd $$x; $(MAKE) test; popd; done
+	@#$(MAKE) test-deps
 	@#find . -name Dockerfile | xargs -n1 docklint
 	tests/all.sh
 
@@ -108,7 +108,7 @@ dockerpush:
 	for x in *; do \
 		[ -d "$$x" ] || continue; \
 		pushd "$$x" && \
-		make push && \
+		$(MAKE) push && \
 		popd || \
 		exit 1; \
 	done
@@ -193,8 +193,8 @@ nagios-plugins:
 		nagios-plugins-alpine \
 		; do \
 		pushd $$x && \
-		make nocache test && \
-		{ make push & popd; } || \
+		$(MAKE) nocache test && \
+		{ $(MAKE) push & popd; } || \
 		break; \
 	done
 
@@ -208,7 +208,7 @@ github:
 		alpine-github \
 		; do \
 		pushd $$x && \
-		make nocache push && \
-		{ make push & popd; } || \
+		$(MAKE) nocache push && \
+		{ $(MAKE) push & popd; } || \
 		break; \
 	done

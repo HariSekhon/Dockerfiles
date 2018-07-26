@@ -51,7 +51,9 @@ RUN set -euxo pipefail && \
     # gets autoremoved, ensure it's added back as Hadoop scripts need it
     yum install -y hostname && \
     yum clean all && \
-    rm -rf /var/cache/yum
+    rm -rf /var/cache/yum && \
+    mkdir /root/.ssh && \
+    chmod 0700 /root/.ssh
 
 COPY entrypoint.sh /
 COPY conf/core-site.xml /hadoop/etc/hadoop/
@@ -59,6 +61,7 @@ COPY conf/hdfs-site.xml /hadoop/etc/hadoop/
 COPY conf/yarn-site.xml /hadoop/etc/hadoop/
 COPY conf/mapred-site.xml /hadoop/etc/hadoop/
 COPY profile.d/hadoop.sh /etc/profile.d/
+COPY ssh/config /root/.ssh/
 
 EXPOSE 8020 8042 8088 9000 10020 19888 50010 50020 50070 50075 50090
 

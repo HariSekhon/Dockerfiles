@@ -130,6 +130,10 @@ sync-hooks:
 		fi; \
 	done; \
 
+.PHONY: commit-hooks
+commit-hooks:
+	git commit -m "updated post build hooks" `git status -s */hooks | grep ^.M | awk '{print $$2}'`
+
 # TODO: finish and remove ranger
 .PHONY: post-build
 post-build:

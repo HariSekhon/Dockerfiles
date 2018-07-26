@@ -8,4 +8,12 @@
         <name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name>
         <value>100</value>
     </property>
+    <property>
+        <name>yarn.nodemanager.resource.cpu-vcores</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.resource.memory-mb</name>
+        <value>1024</value>
+    </property>
 </configuration>

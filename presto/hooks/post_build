@@ -81,6 +81,7 @@ else
     fi
 fi
 
+current_tag=""
 if ! grep ':' <<< "$IMAGE_NAME";  then
     echo "current tag not found in IMAGE_NAME=$IMAGE_NAME, determining from Dockerfile"
     current_tag="$(grep -i "^[[:space:]]*ARG.*${docker_version_base}.*_VERSION=" "$srcdir/../Dockerfile" | sed -n '$s/.*=//;s/[[:space:]]*//g;s/"//g;p' || :)"
@@ -96,6 +97,10 @@ if ! grep ':' <<< "$IMAGE_NAME";  then
     fi
     echo "current tag determined from Dockerfile to be '$current_tag'"
     IMAGE_NAME="$IMAGE_NAME:$current_tag"
+fi
+if [ -z "$current_tag" ]; then
+    echo "WARNING: failed to determine current tag - IMAGE_NAME '$IMAGE_NAME' did not contain version?"
+    exit 0
 fi
 
 is_latest(){

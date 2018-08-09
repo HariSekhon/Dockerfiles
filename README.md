@@ -158,7 +158,7 @@ https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.htm
 All images come pre-built on [DockerHub](https://hub.docker.com/u/harisekhon/) but if you want to compile from source for any reason such as developing improvements, I've made this easy to do:
 
 ```
-git clone https://github/harisekhon/Dockerfiles
+git clone https://github.com/harisekhon/Dockerfiles
 
 cd Dockerfiles
 ```

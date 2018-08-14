@@ -32,13 +32,15 @@ WORKDIR /github
 RUN bash -c ' \
     set -euxo pipefail && \
     apt-get update && \
-    apt-get install -y make git openjdk-8-jdk-headless && \
+    # gnupg needed for SBT download
+    apt-get install -y make git openjdk-8-jdk-headless gnupg2 && \
     # For SBT
     apt-get install -y --no-install-recommends apt-transport-https && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
     apt-get install -y --no-install-recommends sbt && \
+    apt-get purge gnupg2 -y && \
     apt-get autoremove -y && \
     apt-get clean \
     '

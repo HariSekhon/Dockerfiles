@@ -23,7 +23,7 @@ cd "$srcdir/.."
 
 section "Dockerfiles checks"
 
-tests/devops-python-tools_checks.sh
+tests/pytools_checks.sh
 
 # in Travis we only test master branch
 # - don't want PyTools checks applying to all branches because

@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ENV PATH $PATH:/nifi/bin
 
-ARG NIFI_VERSION=0.3.0
+ARG NIFI_VERSION=0.2.1
 
 ARG TAR=nifi-${NIFI_VERSION}-bin.tar.gz
 

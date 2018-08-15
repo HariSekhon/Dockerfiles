@@ -41,7 +41,7 @@ docker run harisekhon/nagios-plugins
 To see more than the 25 DockerHub repos limited by ```docker search``` ([docker issue 23055](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [DevOps Python Tools github repo](https://github.com/harisekhon/devops-python-tools) and as a pre-built docker image:
 
 ```
-docker run harisekhon/devops-python-tools dockerhub_search.py harisekhon
+docker run harisekhon/pytools dockerhub_search.py harisekhon
 ```
 
 There are lots of tagged versions of official software in my repos to allow development testing across multiple versions, usually more versions than available from the official repos (and new version updates available on request, just [raise a GitHub issue](https://github.com/harisekhon/Dockerfiles/issues)).
@@ -49,7 +49,7 @@ There are lots of tagged versions of official software in my repos to allow deve
 DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [DevOps Python Tools github repo](https://github.com/harisekhon/devops-python-tools) and as a pre-built docker image - eg. to see an organized list of all CentOS tags:
 
 ```
-docker run harisekhon/devops-python-tools dockerhub_show_tags.py centos
+docker run harisekhon/pytools dockerhub_show_tags.py centos
 ```
 
 For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/harisekhon/dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:

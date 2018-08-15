@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/pytools
+REPO := harisekhon/devops-python-tools
 
 include ../Makefile.in

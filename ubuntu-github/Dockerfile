@@ -18,7 +18,7 @@ LABEL Description="Ubuntu + my GitHub repos pre-built"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
+ENV PATH $PATH:/github/nagios-plugins:/github/devops-perl-tools:/github/devops-python-tools:/github/bash-tools:/github/spotify
 
 ENV JAVA_HOME=/usr
 

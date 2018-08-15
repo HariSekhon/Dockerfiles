@@ -11,10 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/tools
+REPO := harisekhon/devops-python-tools
 
 include ../Makefile.in
-
-#.PHONY: test
-#test:
-#	docker run -ti $(REPO) tests/all.sh

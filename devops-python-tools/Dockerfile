@@ -54,7 +54,7 @@ RUN bash -c ' \
     #tests/help.sh
     '
 
-WORKDIR /github/pytools
+WORKDIR /github/devops-python-tools
 
 # Jython
 #
@@ -70,10 +70,10 @@ WORKDIR /github/pytools
 #    '
 
 #ENV JYTHON_HOME=/opt/jython
-#ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
-ENV PATH $PATH:/github/pytools
+#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
+ENV PATH $PATH:/github/devops-python-tools
 
 #COPY profile.d/java.sh /etc/profile.d/
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD /bin/bash -c "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"
+CMD /bin/bash -c "find /github/devops-python-tools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"

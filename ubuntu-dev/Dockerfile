@@ -58,7 +58,7 @@ RUN bash -c ' \
                        wget \
                        zip && \
     # for sbt https repo
-    apt-get install -y --no-install-recommends apt-transport-https && \
+    apt-get install -y --no-install-recommends apt-transport-https gnupg2 && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \

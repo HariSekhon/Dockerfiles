@@ -16,7 +16,7 @@
 FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Perl Tools"
+LABEL Description="DevOps Perl Tools"
 
 ENV PATH $PATH:/github/tools
 

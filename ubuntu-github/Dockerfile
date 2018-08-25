@@ -18,7 +18,7 @@ LABEL Description="Ubuntu + my GitHub repos pre-built"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV PATH $PATH:/github/nagios-plugins:/github/tools:/github/pytools:/github/bash-tools:/github/spotify
+ENV PATH $PATH:/github/nagios-plugins:/github/devops-perl-tools:/github/devops-python-tools:/github/bash-tools:/github/spotify
 
 ENV JAVA_HOME=/usr
 
@@ -29,17 +29,18 @@ WORKDIR /github
 # this is too big and unwieldy and makes caching/maintenance hard
 #RUN git clone https://github.com/harisekhon/bash-tools /github/bash-tools && /github/bash-tools/get-my-repos.sh && cd /github/nagios-plugins && make zookeeper && /github/bash-tools/clean-my-repos.sh && apt-get clean
 
-<<<<<<< HEAD
 RUN bash -c ' \
     set -euxo pipefail && \
     apt-get update && \
-    apt-get install -y make git openjdk-7-jdk-headless && \
+    # gnupg needed for SBT download
+    apt-get install -y make git openjdk-8-jdk-headless gnupg2 && \
     # For SBT
     apt-get install -y --no-install-recommends apt-transport-https && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
     apt-get install -y --no-install-recommends sbt && \
+    apt-get purge gnupg2 -y && \
     apt-get autoremove -y && \
     apt-get clean \
     '

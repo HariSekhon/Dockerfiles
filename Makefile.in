@@ -76,6 +76,10 @@ push-versions:
 	done; \
 	git checkout master
 
+.PHONY: up
+up: build test push
+	:
+
 .PHONY: run
 run:
 	@if [ -n "$(MAP_PORTS)" ]; then \

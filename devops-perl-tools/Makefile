@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/devops-perl-tools
+REPO := harisekhon/tools
 
 include ../Makefile.in
 

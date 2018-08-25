@@ -70,7 +70,7 @@ WORKDIR /github/pytools
 #    '
 
 #ENV JYTHON_HOME=/opt/jython
-#ENV PATH $PATH:$JYTHON_HOME/bin:/github/pytools
+#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
 ENV PATH $PATH:/github/pytools
 
 #COPY profile.d/java.sh /etc/profile.d/

@@ -29,11 +29,13 @@ cd "$srcdir"
 versions="$(
     curl -s http://archive.apache.org/dist/drill/ |
     egrep -i -o 'href="drill-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
-    sed 's/href="drill-//' || :
+    sed 's/href="drill-//; s/\./ /g' |
+    sort -k1n -k2n -k3n |
+    sed 's/ /./g' || :
 )"
 
 if [ -z "$versions" ]; then
-    echo "WARNING: could not determine versions"
+    echo "WARNING: could not determine versions of $name"
 fi
 
 latest_version="$(tail -n 1 <<< "$versions")"

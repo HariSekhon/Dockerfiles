@@ -42,6 +42,8 @@ dockerfile_version="$(
     awk -F= '{print $2}'
 )"
 
-if [ "$dockerfile_version" != "$latest_version" ]; then
+if [ "$dockerfile_version" = "$latest_version" ]; then
+    echo "$name dockerfile version = latest upstream version ($dockerfile_version = $latest_version)"
+else
     echo "WARNING: newer version of $name available, current in Dockerfile = $dockerfile_version, latest available upstream = $latest_version"
 fi

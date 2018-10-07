@@ -33,7 +33,8 @@ for dir in *; do
     [ -d "$dir" ] || continue
     if [ -x "$dir/check_for_new_version" ]; then
         #echo -n "$dir/check_for_new_version: "
-        "$dir/check_for_new_version"
+        "$dir/check_for_new_version" ||
+            { echo "FAILED to run $dir/check_for_new_version"; exit 1; }
     fi
 done
 

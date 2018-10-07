@@ -29,7 +29,9 @@ cd "$srcdir"
 versions="$(
     curl -s http://archive.apache.org/dist/hbase/ |
     egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
-    sed 's/href="//' || :
+    sed 's/href="//; s/\./ /g' |
+    sort -k1n -k2n -k3n |
+    sed 's/ /./g' || :
 )"
 
 if [ -z "$versions" ]; then

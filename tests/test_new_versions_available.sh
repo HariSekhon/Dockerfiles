@@ -35,8 +35,8 @@ for dir in *; do
     [ -d "$dir" ] || continue
     if [ -x "$dir/get_versions" ]; then
         #echo -n "$dir/check_for_new_version $dir: "
-        "$srcdir/check_for_new_version" "$dir" ||
-            echo "WARNING: FAILED to run $srcdir/check_for_new_version $dir"
+        "$srcdir/check_for_new_version.sh" "$dir" ||
+            echo "WARNING: FAILED to run $srcdir/check_for_new_version.sh $dir"
     fi
 done
 

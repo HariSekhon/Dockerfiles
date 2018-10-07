@@ -14,17 +14,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-# Check for new upstream version
+# Get list of versions to be used by tests/check_for_new_version
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
-srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-name="${srcdir##*/}"
-
-cd "$srcdir"
-
-. "$srcdir/../bash-tools/utils.sh"
 
 get_versions(){
     curl -s http://archive.apache.org/dist/drill/ |

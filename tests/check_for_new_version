@@ -45,7 +45,7 @@ latest_version="$(
 )"
 
 dockerfile_version="$(
-    egrep '^ARG [[:alnum:]]+_VERSION' "$srcdir/../$name/Dockerfile" |
+    egrep '^ARG [[:alnum:]_]+_VERSION' "$srcdir/../$name/Dockerfile" |
     awk -F= '{print $2}' || :
 )"
 

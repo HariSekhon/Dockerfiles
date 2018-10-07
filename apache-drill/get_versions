@@ -26,31 +26,10 @@ cd "$srcdir"
 
 . "$srcdir/../bash-tools/utils.sh"
 
-versions="$(
+get_versions(){
     curl -s http://archive.apache.org/dist/drill/ |
     egrep -i -o 'href="drill-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
-    sed 's/href="drill-//; s/\./ /g' |
-    sort -k1n -k2n -k3n |
-    sed 's/ /./g' || :
-)"
+    sed 's/href="drill-//'
+}
 
-if [ -z "$versions" ]; then
-    echo "WARNING: could not determine upstream versions of $name"
-fi
-
-latest_version="$(tail -n 1 <<< "$versions")"
-
-dockerfile_version="$(
-    egrep '^ARG [[:alnum:]_]+_VERSION' Dockerfile |
-    awk -F= '{print $2}' || :
-)"
-
-if [ -z "$dockerfile_version" ]; then
-    echo "WARNING: failed to determine Dockerfile version of $name"
-fi
-
-if [ "$dockerfile_version" = "$latest_version" ]; then
-    echo "$name Dockerfile version = latest upstream version ($dockerfile_version = $latest_version)"
-else
-    echo "WARNING: newer version of $name available, current in Dockerfile = $dockerfile_version, latest upstream version = $latest_version"
-fi
+get_versions

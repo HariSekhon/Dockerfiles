@@ -28,7 +28,8 @@ cd "$srcdir"
 
 versions="$(
     curl -s http://archive.apache.org/dist/hbase/ |
-    egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' | sed 's/href="//'
+    egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
+    sed 's/href="//' || :
 )"
 
 if [ -z "$versions" ]; then
@@ -39,11 +40,14 @@ latest_version="$(tail -n 1 <<< "$versions")"
 
 dockerfile_version="$(
     egrep '^ARG [[:alnum:]]+_VERSION' Dockerfile |
-    awk -F= '{print $2}'
+    awk -F= '{print $2}' || :
 )"
 
+if [ -z "$dockerfile_version" ]; then
+    echo "WARNING: failed to determine Dockerfile version"
+
 if [ "$dockerfile_version" = "$latest_version" ]; then
-    echo "$name dockerfile version = latest upstream version ($dockerfile_version = $latest_version)"
+    echo "$name Dockerfile version = latest upstream version ($dockerfile_version = $latest_version)"
 else
     echo "WARNING: newer version of $name available, current in Dockerfile = $dockerfile_version, latest available upstream = $latest_version"
 fi

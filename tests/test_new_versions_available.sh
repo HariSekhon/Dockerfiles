@@ -17,11 +17,13 @@
 
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
-srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+srcdir2="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cd "$srcdir/.."
+cd "$srcdir2/.."
 
 . bash-tools/utils.sh
+
+srcdir="$srcdir2"
 
 branch="${1:-}"
 
@@ -31,10 +33,10 @@ start_time=$(date +%s)
 
 for dir in *; do
     [ -d "$dir" ] || continue
-    if [ -x "$dir/check_for_new_version" ]; then
-        #echo -n "$dir/check_for_new_version: "
-        "$dir/check_for_new_version" ||
-            echo "WARNING: FAILED to run $dir/check_for_new_version"
+    if [ -x "$dir/get_versions" ]; then
+        #echo -n "$dir/check_for_new_version $dir: "
+        "$srcdir/check_for_new_version" "$dir" ||
+            echo "WARNING: FAILED to run $srcdir/check_for_new_version"
     fi
 done
 

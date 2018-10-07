@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+#
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  Author: Hari Sekhon
+#  Date: 2018-10-07 13:57:07 +0100 (Sun, 07 Oct 2018)
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+# Check for new upstream version
+
+set -euo pipefail
+[ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+name="${srcdir##*/}"
+
+cd "$srcdir"
+
+. "$srcdir/../bash-tools/utils.sh"
+
+versions="$(
+    curl -s http://archive.apache.org/dist/drill/ |
+    egrep -i -o 'href="drill-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
+    sed 's/href="drill-//' || :
+)"
+
+if [ -z "$versions" ]; then
+    echo "WARNING: could not determine versions"
+fi
+
+latest_version="$(tail -n 1 <<< "$versions")"
+
+dockerfile_version="$(
+    egrep '^ARG [[:alnum:]_]+_VERSION' Dockerfile |
+    awk -F= '{print $2}' || :
+)"
+
+if [ -z "$dockerfile_version" ]; then
+    echo "WARNING: failed to determine Dockerfile version"
+fi
+
+if [ "$dockerfile_version" = "$latest_version" ]; then
+    echo "$name Dockerfile version = latest upstream version ($dockerfile_version = $latest_version)"
+else
+    echo "WARNING: newer version of $name available, current in Dockerfile = $dockerfile_version, latest upstream version = $latest_version"
+fi

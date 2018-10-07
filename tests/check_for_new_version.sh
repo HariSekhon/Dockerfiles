@@ -54,7 +54,7 @@ if [ -z "$dockerfile_version" ]; then
 fi
 
 if [ "$dockerfile_version" = "$latest_version" ]; then
-    echo "$name Dockerfile version = latest upstream version ($dockerfile_version = $latest_version)"
+    echo "$name up-to-date Dockerfile version / latest upstream version = $dockerfile_version / $latest_version"
 else
     echo "WARNING: $name: newer version available, current in Dockerfile = $dockerfile_version, latest upstream version = $latest_version"
 fi

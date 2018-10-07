@@ -35,7 +35,7 @@ versions="$(
 )"
 
 if [ -z "$versions" ]; then
-    echo "WARNING: could not determine versions of $name"
+    echo "WARNING: could not determine upstream versions of $name"
 fi
 
 latest_version="$(tail -n 1 <<< "$versions")"

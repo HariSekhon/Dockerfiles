@@ -13,6 +13,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# Get list of versions to be used by tests/check_for_new_version
+
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 

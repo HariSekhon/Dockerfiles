@@ -20,28 +20,32 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-name="${srcdir##*/}"
+name="${1:-}"
 
-cd "$srcdir"
+if [ -z "$name" ]; then
+    echo "usage: ${0##*/} <name>"
+    exit 1
+fi
+
+cd "$srcdir/.."
 
 . "$srcdir/../bash-tools/utils.sh"
 
-versions="$(
-    curl -s http://archive.apache.org/dist/hbase/ |
-    egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
-    sed 's/href="//; s/\./ /g' |
-    sort -k1n -k2n -k3n |
-    sed 's/ /./g' || :
-)"
+versions="$($name/get_versions || :)"
 
 if [ -z "$versions" ]; then
     echo "WARNING: could not determine upstream versions of $name"
 fi
 
-latest_version="$(tail -n 1 <<< "$versions")"
+latest_version="$(
+    sed 's/\./ /g' <<< "$versions" |
+    sort -k1n -k2n -k3n |
+    sed 's/ /./g' |
+    tail -n 1 || :
+)"
 
 dockerfile_version="$(
-    egrep '^ARG [[:alnum:]]+_VERSION' Dockerfile |
+    egrep '^ARG [[:alnum:]]+_VERSION' "$srcdir/../$name/Dockerfile" |
     awk -F= '{print $2}' || :
 )"
 

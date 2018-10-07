@@ -45,6 +45,7 @@ dockerfile_version="$(
 
 if [ -z "$dockerfile_version" ]; then
     echo "WARNING: failed to determine Dockerfile version"
+fi
 
 if [ "$dockerfile_version" = "$latest_version" ]; then
     echo "$name Dockerfile version = latest upstream version ($dockerfile_version = $latest_version)"

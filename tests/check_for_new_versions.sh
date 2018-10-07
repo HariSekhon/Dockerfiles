@@ -25,20 +25,58 @@ cd "$srcdir2/.."
 
 srcdir="$srcdir2"
 
-branch="${1:-}"
-
 section "Checks for new upstream software versions"
 
 start_time=$(date +%s)
 
-for dir in *; do
-    [ -d "$dir" ] || continue
-    if [ -x "$dir/get_versions" ]; then
-        #echo -n "$dir/check_for_new_version $dir: "
-        "$srcdir/check_for_new_version.sh" "$dir" ||
-            echo "WARNING: FAILED to run $srcdir/check_for_new_version.sh $dir"
+check_for_new_version(){
+    local name="$1"
+    versions="$($name/get_versions || :)"
+
+    if [ -z "$versions" ]; then
+        echo "WARNING: could not determine upstream versions of $name"
     fi
-done
+
+    latest_version="$(
+        sed 's/\./ /g' <<< "$versions" |
+        sort -k1n -k2n -k3n |
+        sed 's/ /./g' |
+        tail -n 1 || :
+    )"
+
+    dockerfile_version="$(
+        egrep -i "^ARG .*${name%-*}.*_VERSION=" "$srcdir/../$name/Dockerfile" |
+        awk -F= '{print $2}' || :
+    )"
+
+    if [ -z "$dockerfile_version" ]; then
+        echo "WARNING: $name: failed to determine Dockerfile version"
+    fi
+
+    if [ "$dockerfile_version" = "$latest_version" ]; then
+        echo "$name up-to-date Dockerfile version / latest upstream version = $dockerfile_version / $latest_version"
+    else
+        echo "WARNING: $name: newer version available, current in Dockerfile = $dockerfile_version, latest upstream version = $latest_version"
+    fi
+}
+
+if [ -n "$*" ]; then
+    echo "Running check for: $@"
+    echo
+    for name in $@; do
+        check_for_new_version "$name"
+    done
+else
+    echo "Finding and running check for all builds with get_versions"
+    echo
+    for dir in *; do
+        [ -d "$dir" ] || continue
+        if [ -x "$dir/get_versions" ]; then
+            #echo -n "$dir/check_for_new_version $dir: "
+            check_for_new_version "$dir"
+        fi
+    done
+fi
 
 secs=$(($(date +%s) - $start_time))
 

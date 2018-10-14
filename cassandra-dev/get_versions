@@ -21,7 +21,7 @@ set -euo pipefail
 
 get_versions(){
     curl -s http://archive.apache.org/dist/cassandra/ |
-    egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
+    egrep -i -o 'href="[[:digit:]]+(\.[[:digit:]]+)+' |
     sed 's/href="//'
 }
 

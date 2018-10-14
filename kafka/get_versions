@@ -20,7 +20,7 @@ set -euo pipefail
 
 get_versions(){
     curl -s  http://archive.apache.org/dist/kafka/ |
-    egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
+    egrep -i -o 'href="[[:digit:]]+(\.[[:digit:]]+)+' |
     sed 's/href="//'
 }
 

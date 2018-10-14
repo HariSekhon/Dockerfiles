@@ -15,7 +15,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SOLR_VERSION=7.5.0
+ARG SOLR_VERSION=7.2.1
 
 ARG TAR="solr-$SOLR_VERSION.tgz"
 

@@ -14,7 +14,7 @@
 FROM harisekhon/nagios-plugins:alpine
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SOLRCLOUD_VERSION=7.1.0
+ARG SOLRCLOUD_VERSION=7.2.1
 
 ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 

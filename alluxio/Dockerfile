@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ALLUXIO_VERSION=1.6.0
+ARG ALLUXIO_VERSION=1.8.1
 
 ENV PATH $PATH:/alluxio/bin
 

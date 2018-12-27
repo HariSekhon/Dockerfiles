@@ -58,3 +58,5 @@ fi
 tests/projects_without_docker-compose_yet.sh
 
 tests/projects_without_README_yet.sh
+
+tests/check_for_new_versions.sh

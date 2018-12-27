@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=1.3.1
+ARG HBASE_VERSION=2.1.1
 
 ENV PATH $PATH:/hbase/bin
 
@@ -40,7 +40,8 @@ RUN set -euxo pipefail && \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
     # HBase 0.95 / 0.96
-    elif [ "${HBASE_VERSION:0:4}" = "0.95" -o "${HBASE_VERSION:0:4}" = "0.96" ]; then \
+    elif [ "${HBASE_VERSION:0:4}" = "0.95" -o \
+           "${HBASE_VERSION:0:4}" = "0.96" ]; then \
         url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98
@@ -52,11 +53,9 @@ RUN set -euxo pipefail && \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     # HBase 1.1+
-    elif [ "${HBASE_VERSION:0:1}" = "1" ]; then \
+    else \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
-    else \
-        echo "unrecognized HBase version"; exit 1; \
     fi && \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
@@ -71,6 +70,16 @@ RUN set -euxo pipefail && \
     { rm -rf hbase/{docs,src}; : ; } && \
     mkdir /hbase-data && \
     apk del tar wget
+
+# Needed for HBase 2.0+ hbase-shell
+# asciidoctor solves 'NotImplementedError: fstat unimplemented unsupported or native support failed to load'
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    apk update && \
+    apk add jruby && \
+    apk add jruby-irb && \
+    apk add asciidoctor && \
+    echo exit | hbase shell
+    # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit && \
 
 VOLUME /hbase-data
 

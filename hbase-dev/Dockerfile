@@ -65,6 +65,15 @@ RUN set -euxo pipefail && \
     mkdir /hbase-data && \
     apk del wget
 
+# Needed for HBase 2.0+ hbase-shell
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    apk update && \
+    apk add jruby && \
+    apk add jruby-irb && \
+    apk add asciidoctor && \
+    echo exit | hbase shell
+    # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit
+
 VOLUME /hbase-data
 
 COPY entrypoint.sh /

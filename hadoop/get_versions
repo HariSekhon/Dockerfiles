@@ -19,9 +19,11 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 get_versions(){
-    curl -s  http://archive.apache.org/dist/kafka/ |
-    egrep -i -o 'href="[[:digit:]]+(\.[[:digit:]]+)+' |
-    sed 's/href="//'
+    curl -s http://archive.apache.org/dist/hadoop/common/ |
+    # no grep -P on Mac, requires GNU grep :-/
+    egrep -i -o 'href="hadoop-[[:digit:]]+(\.[[:digit:]]+)+(-[[:alpha:]]+)?' |
+    grep -v -e alpha -e beta |
+    sed 's/href="hadoop-//'
 }
 
 get_versions

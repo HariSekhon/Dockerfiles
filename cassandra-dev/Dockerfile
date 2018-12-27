@@ -20,7 +20,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ENV PATH $PATH:/cassandra/bin
 
-ARG CASSANDRA_VERSION=3.11.0
+ARG CASSANDRA_VERSION=3.11.3
 
 ARG TAR="apache-cassandra-$CASSANDRA_VERSION-bin.tar.gz"
 

@@ -104,13 +104,17 @@ run-foreground:
 		echo docker run $(REPO_TAG); \
 		docker run $(REPO_TAG); \
 	else \
-		echo "docker run -ti $(REPO_TAG) bash"; \
+		echo "docker run $(REPO_TAG)"; \
 		docker run $(REPO_TAG); \
 	fi
 
 .PHONY: run-fg
 run-fg: run-foreground
 	:
+
+.PHONY: sh
+sh:
+	make -e MAP_PORTS="" run
 
 .PHONY: test
 test:

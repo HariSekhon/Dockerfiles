@@ -14,7 +14,7 @@
     </property>
     <property>
         <name>yarn.nodemanager.resource.memory-mb</name>
-        <value>1024</value>
+        <value>2048</value>
     </property>
     <!-- detect NM failure in 30 secs not 10 mins so we can test NM failure scenarios -->
     <property>

@@ -3,7 +3,7 @@ Apache Hadoop
 
 https://hadoop.apache.org/
 
-Distributed High-Scale Big Data Cluster Storage and Processing Software
+Big Data Distributed Storage and Compute Software
 
 - Yarn - Distributed Processing Framework for running MapReduce, Spark and other application frameworks
 - HDFS - Distributed Storage

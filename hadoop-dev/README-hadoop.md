@@ -17,7 +17,9 @@ By default starts a pseudo-distributed cluster of 4 daemons in a single containe
   - NameNode - Filesystem Master
   - DataNode - Filesystem Worker
 
-Perfect for development and testing. For real scaling just start a single daemon in each container for fully distributed setup.
+Perfect for development and testing. Recommended to use Docker with 4GB+ RAM for this pseudo-cluster container.
+
+For real scaling just start a single daemon in each container for fully distributed setup.
 
 
 To run the all-in-one-container cluster and expose all the UIs for NodeManager, ResourceManager, NameNode and DataNode respectively, do:

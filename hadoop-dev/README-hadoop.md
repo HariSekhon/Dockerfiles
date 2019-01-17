@@ -22,9 +22,9 @@ Perfect for development and testing. Recommended to use Docker with 4GB+ RAM for
 For real scaling just start a single daemon in each container for fully distributed setup.
 
 
-To run the all-in-one-container cluster and expose all the UIs for NodeManager, ResourceManager, NameNode and DataNode respectively, do:
+To run the all-in-one-container cluster and expose all the UIs for NodeManager, ResourceManager, Job History, DataNode and NameNode respectively, do:
 ```
-docker run -ti -p 8042 -p 8088 -p 19888 -p 50070 -p 50075 harisekhon/hadoop-dev
+docker run -ti -p 8042 -p 8088 -p 19888 -p 9064 -p 9070 harisekhon/hadoop-dev
 ```
 
 or with docker-compose:

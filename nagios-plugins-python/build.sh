@@ -22,7 +22,7 @@ x=nagios-plugins
 
 apt-get update
 
-apt-get install -y git make gcc
+apt-get install -y git make
 
 if ! [ -d "/github/$x" ]; then
     git clone "https://github.com/harisekhon/$x" "/github/$x"

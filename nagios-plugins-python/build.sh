@@ -43,7 +43,9 @@ apt-get autoremove -y
 apt-get clean
 
 # run tests after autoremove to check that no important packages we need get removed
-make test deep-clean
+pushd pylib
+make deep-clean
+popd
 
 # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
 # leave make, it's needed for quick updates
@@ -55,10 +57,10 @@ apt-get clean
 
 bash-tools/check_docker_clean.sh
 
-rm -fr bash-tools lib
-
 # basic test for missing dependencies again
+
+find . -name '*.pl' -exec rm -v {} \;
 
 tests/help.sh
 
-find . -name '*.pl' -exec rm -v {} \;
+rm -fr bash-tools lib

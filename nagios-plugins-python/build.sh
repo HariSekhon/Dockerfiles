@@ -22,7 +22,7 @@ x=nagios-plugins
 
 apt-get update
 
-apt-get install -y git make gcc
+apt-get install -y git make
 
 if ! [ -d "/github/$x" ]; then
     git clone "https://github.com/harisekhon/$x" "/github/$x"
@@ -36,9 +36,7 @@ git pull
 
 git submodule update --recursive
 
-apt-get install -y `sed 's/#.*//' setup/deb-packages-pip.txt`
-
-make init python-libs
+make python
 
 apt-get autoremove -y
 

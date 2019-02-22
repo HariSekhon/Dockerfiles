@@ -123,4 +123,4 @@ test:
 
 .PHONY: interactive
 interactive:
-	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` bash
+	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` sh

@@ -36,9 +36,7 @@ git pull
 
 git submodule update --recursive
 
-apt-get install -y `sed 's/#.*//' setup/deb-packages-pip.txt`
-
-make init python-libs
+make python
 
 apt-get autoremove -y
 

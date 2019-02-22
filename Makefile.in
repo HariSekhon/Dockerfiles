@@ -114,7 +114,8 @@ run-fg: run-foreground
 
 .PHONY: sh
 sh:
-	make -e MAP_PORTS="" run
+	#make -e MAP_PORTS="" run
+	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) sh
 
 .PHONY: test
 test:

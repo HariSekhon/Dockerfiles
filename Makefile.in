@@ -84,28 +84,28 @@ up: build test push
 run:
 	@if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
-		echo docker run -ti $$ports $(REPO_TAG); \
-		docker run -ti $$ports $(REPO_TAG); \
+		echo docker run --rm $$ports $(REPO_TAG); \
+		docker run --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
-		echo docker run -ti $(REPO_TAG); \
-		docker run -ti $(REPO_TAG); \
+		echo docker run --rm $(REPO_TAG); \
+		docker run --rm $(REPO_TAG); \
 	else \
-		echo "docker run -ti $(REPO_TAG) bash"; \
-		docker run -ti $(REPO_TAG) bash; \
+		echo "docker run -ti --rm $(REPO_TAG) bash"; \
+		docker run -ti --rm $(REPO_TAG) bash; \
 	fi
 
 .PHONY: run-foreground
 run-foreground:
 	@if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
-		echo docker run -ti $$ports $(REPO_TAG); \
-		docker run $$ports $(REPO_TAG); \
+		echo docker run -ti --rm $$ports $(REPO_TAG); \
+		docker run -ti --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
-		echo docker run $(REPO_TAG); \
-		docker run $(REPO_TAG); \
+		echo docker run --rm $(REPO_TAG); \
+		docker run --rm $(REPO_TAG); \
 	else \
-		echo "docker run $(REPO_TAG)"; \
-		docker run $(REPO_TAG); \
+		echo "docker run --rm $(REPO_TAG)"; \
+		docker run --rm $(REPO_TAG); \
 	fi
 
 .PHONY: run-fg

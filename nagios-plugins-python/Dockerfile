@@ -20,9 +20,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV PATH $PATH:/github/nagios-plugins
 
-RUN mkdir -v /github
-
-WORKDIR /github
+RUN apt-get update && apt-get install -y git make
 
 COPY build.sh /
 

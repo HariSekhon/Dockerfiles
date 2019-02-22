@@ -120,3 +120,7 @@ sh:
 test:
 	#docker run -ti $(REPO) sh -c 'if test -f tests/all.sh; then tests/all.sh; fi;'
 	docker run -ti $(REPO) tests/all.sh
+
+.PHONY: interactive
+interactive:
+	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` bash

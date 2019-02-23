@@ -13,43 +13,43 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -euo pipefail
-[ -n "${DEBUG:-}" ] && set -x
-
 set -euxo pipefail
+#[ -n "${DEBUG:-}" ] && set -x
 
-x=nagios-plugins
+mkdir -pv /github
+
+repo=nagios-plugins
 
 apt-get update
 
 apt-get install -y git make
 
-if ! [ -d "/github/$x" ]; then
-    git clone "https://github.com/harisekhon/$x" "/github/$x"
-    cd "/github/$x"
+if ! [ -d "/github/$repo" ]; then
+    git clone "https://github.com/harisekhon/$repo" "/github/$repo"
+    cd "/github/$repo"
     git submodule update --init --recursive
 fi
 
-cd "/github/$x"
-
-git pull
-
-git submodule update --recursive
+cd "/github/$repo"
 
 make python
+
+make system-packages-remove
 
 apt-get autoremove -y
 
 apt-get clean
 
+#EXT=py make deep-clean test
+
 # run tests after autoremove to check that no important packages we need get removed
 pushd pylib
-make deep-clean
+make test deep-clean
 popd
 
 # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
 # leave make, it's needed for quick updates
-#apt-get remove -y make
+#apt-get purge -y make
 
 apt-get autoremove -y
 
@@ -57,10 +57,9 @@ apt-get clean
 
 bash-tools/check_docker_clean.sh
 
-# basic test for missing dependencies again
-
 find . -name '*.pl' -exec rm -v {} \;
 
+# basic test for missing dependencies again
 tests/help.sh
 
-rm -fr bash-tools lib
+rm -fr bash-tools lib pylib/bash-tools

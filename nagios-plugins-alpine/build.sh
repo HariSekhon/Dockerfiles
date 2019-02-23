@@ -13,8 +13,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -eu
-[ -n "${DEBUG:-}" ] && set -x
+set -eux
+#[ -n "${DEBUG:-}" ] && set -x
 
 mkdir -pv /github
 

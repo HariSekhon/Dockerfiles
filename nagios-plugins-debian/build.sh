@@ -13,14 +13,12 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -euo pipefail
-[ -n "${DEBUG:-}" ] && set -x
-
-set -x
+set -euxo pipefail
+#[ -n "${DEBUG:-}" ] && set -x
 
 mkdir -pv /github
 
-x=nagios-plugins
+repo=nagios-plugins
 
 apt-get update
 
@@ -29,13 +27,13 @@ apt-get install -y git make
 # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
 #apt-get install -y ruby
 
-if ! [ -d "/github/$x" ]; then
-    git clone "https://github.com/harisekhon/$x" "/github/$x"
-    cd "/github/$x"
+if ! [ -d "/github/$repo" ]; then
+    git clone "https://github.com/harisekhon/$repo" "/github/$repo"
+    cd "/github/$repo"
     git submodule update --init --recursive
 fi
 
-cd "/github/$x"
+cd "/github/$repo"
 
 git pull
 

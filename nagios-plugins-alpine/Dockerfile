@@ -23,7 +23,8 @@ COPY build.sh /
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN apk add --no-cache bash && /build.sh
 
-ADD http://date.jsontest.com /etc/builddate
+#ADD http://date.jsontest.com /etc/builddate
+ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
 
 RUN /build.sh
 

@@ -26,7 +26,8 @@ COPY build.sh /
 
 RUN /build.sh
 
-ADD http://date.jsontest.com /etc/builddate
+#ADD http://date.jsontest.com /etc/builddate
+ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
 
 RUN /build.sh
 

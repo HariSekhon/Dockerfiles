@@ -16,6 +16,10 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS + my GitHub repos pre-built"
 
+RUN mkdir -pv /github
+
+WORKDIR /github
+
 RUN curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 
@@ -58,7 +62,5 @@ ENV JAVA_HOME=/usr
 
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
 ENV PATH /bin:$PATH:/github/nagios-plugins:/github/devops-perl-tools:/github/devops-python-tools:/github/bash-tools:/github/spotify
-
-WORKDIR /github
 
 CMD /bin/bash

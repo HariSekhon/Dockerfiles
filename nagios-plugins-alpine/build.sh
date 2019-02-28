@@ -14,7 +14,7 @@
 #
 
 set -eux
-#[ -n "${DEBUG:-}" ] && set -x
+[ -n "${DEBUG:-}" ] && set -x
 
 mkdir -pv /github
 

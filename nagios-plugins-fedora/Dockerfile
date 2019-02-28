@@ -16,12 +16,6 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Advanced Nagios Plugins Collection (Fedora build)"
 
-ENV PATH $PATH:/github/nagios-plugins
-
-RUN mkdir -v /github
-
-WORKDIR /github
-
 COPY build.sh /
 
 RUN /build.sh
@@ -29,6 +23,8 @@ RUN /build.sh
 ADD http://date.jsontest.com /etc/builddate
 
 RUN /build.sh
+
+ENV PATH $PATH:/github/nagios-plugins
 
 WORKDIR /github/nagios-plugins
 

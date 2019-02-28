@@ -48,7 +48,7 @@ RUN REPOS=nagios-plugin-kafka BUILD=mvn \
 #    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 
 # inherited instead now
-#RUN REPOS=nagios-plugins MAKE_OPTS="zookeeper" NO_TEST=1 \
+#RUN REPOS=nagios-plugins OPTS="zookeeper" NO_TEST=1 \
 #    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/get_my_repos.sh | sh && \
 #    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 

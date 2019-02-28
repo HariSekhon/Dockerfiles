@@ -18,10 +18,6 @@ LABEL Description="Advanced Nagios Plugins Collection (Python plugins only)"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV PATH $PATH:/github/nagios-plugins
-
-RUN apt-get update && apt-get install -y git make
-
 COPY build.sh /
 
 RUN /build.sh
@@ -30,6 +26,8 @@ RUN /build.sh
 ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
 
 RUN /build.sh
+
+ENV PATH $PATH:/github/nagios-plugins
 
 WORKDIR /github/nagios-plugins
 

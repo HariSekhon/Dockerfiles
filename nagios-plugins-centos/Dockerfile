@@ -18,10 +18,6 @@ LABEL Description="Advanced Nagios Plugins Collection (CentOS build)"
 
 ENV PATH $PATH:/github/nagios-plugins
 
-RUN mkdir -v /github
-
-WORKDIR /github
-
 COPY build.sh /
 
 RUN /build.sh

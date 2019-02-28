@@ -24,9 +24,9 @@ ADD http://date.jsontest.com /etc/builddate
 
 RUN /build.sh
 
-WORKDIR /github/nagios-plugins
-
 ENV PATH $PATH:/github/nagios-plugins
+
+WORKDIR /github/nagios-plugins
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD /bin/bash -c "find /github/nagios-plugins -maxdepth 2 -type f -iname '[A-Za-z]*.pl' -o -iname '[A-Za-z]*.py' | grep -iv makefile | xargs -n1 basename | sort"

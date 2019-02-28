@@ -1,6 +1,6 @@
 #
 #  Author: Hari Sekhon
-#  Date: 2016-04-24 21:32:37 +0100 (Sun, 24 Apr 2016)
+#  Date: 2016-01-16 12:21:15 +0000 (Sat, 16 Jan 2016)
 #
 #  vim:ts=4:sts=4:sw=4:noet
 #
@@ -11,8 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/hadoop-dev
+REPO := harisekhon/nagios-plugins:fedora
 
 include ../Makefile.in
-
-MAP_PORTS := 8042 8088 9868 9870 19888 50010 50020 50070 50075 50090

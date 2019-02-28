@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM python:2.7-slim
+FROM perl:5.28.1-slim-threaded
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection (Python plugins only)"
+LABEL Description="Advanced Nagios Plugins Collection (Perl plugins only)"
 
 ENV DEBIAN_FRONTEND noninteractive
 

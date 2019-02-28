@@ -11,23 +11,22 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM python:2.7-slim
+FROM fedora:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection (Python plugins only)"
-
-ENV DEBIAN_FRONTEND noninteractive
+LABEL Description="Advanced Nagios Plugins Collection (Fedora build)"
 
 ENV PATH $PATH:/github/nagios-plugins
 
-RUN apt-get update && apt-get install -y git make
+RUN mkdir -v /github
+
+WORKDIR /github
 
 COPY build.sh /
 
 RUN /build.sh
 
-#ADD http://date.jsontest.com /etc/builddate
-ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
+ADD http://date.jsontest.com /etc/builddate
 
 RUN /build.sh
 

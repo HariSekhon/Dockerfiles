@@ -12,8 +12,9 @@
         <name>yarn.nodemanager.resource.cpu-vcores</name>
         <value>1</value>
     </property>
+    <!-- needs to be set to 3GB in order for MapReduce MonteCarlo default job to succeed, see tests/test_hadoop.sh in Advanced Nagios Plugins Collection which does extensive tests against harisekhon/hadoop-dev image -->
     <property>
         <name>yarn.nodemanager.resource.memory-mb</name>
-        <value>2048</value>
+        <value>3072</value>
     </property>
 </configuration>

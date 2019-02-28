@@ -2,7 +2,7 @@
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
-#  Date: 2019-02-21 14:38:20 +0000 (Thu, 21 Feb 2019)
+#  Date: 2019-02-22 22:37:02 +0000 (Fri, 22 Feb 2019)
 #
 #  https://github.com/harisekhon/Dockerfiles
 #
@@ -24,9 +24,6 @@ apt-get update
 
 apt-get install -y git make
 
-# just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
-#apt-get install -y ruby
-
 if ! [ -d "/github/$repo" ]; then
     git clone "https://github.com/harisekhon/$repo" "/github/$repo"
     cd "/github/$repo"
@@ -35,24 +32,9 @@ fi
 
 cd "/github/$repo"
 
-git pull
+make perl zookeeper
 
-git submodule update --init --recursive
-
-make update zookeeper
-
-make apt-packages-remove
-
-apt-get autoremove -y
-
-apt-get clean
-
-# run tests after autoremove to check that no important packages we need get removed
-make test deep-clean
-
-# leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
-# leave make for easier updates
-#apt-get remove -y make
+make system-packages-remove
 
 apt-get autoremove -y
 
@@ -60,5 +42,18 @@ apt-get clean
 
 bash-tools/check_docker_clean.sh
 
+#EXT=pl make deep-clean test
+
+# run tests after autoremove to check that no important packages we need get removed
+pushd lib
+make test deep-clean
+popd
+
+
+# run tests after autoremove to check that no important packages we need get removed
+find . -iname "*.py" -exec rm {} \;
+
 # basic test for missing dependencies again
 tests/help.sh
+
+rm -fr bash-tools pylib lib/bash-tools

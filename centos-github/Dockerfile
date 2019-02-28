@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="CentOS + my GitHub repos pre-built"
 
-RUN curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt_yum.sh | sh && \
+RUN curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 
 RUN REPOS=bash-tools lib tools \

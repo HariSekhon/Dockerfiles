@@ -18,7 +18,7 @@ LABEL Description="Debian + my GitHub repos pre-built"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN mkdir -vp /github
+RUN mkdir -pv /github
 
 WORKDIR /github
 

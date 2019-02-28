@@ -14,7 +14,7 @@
 FROM harisekhon/alpine-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=2.1.0
+ARG HBASE_VERSION=2.1.1
 
 ENV PATH $PATH:/hbase/bin
 
@@ -69,7 +69,10 @@ RUN set -euxo pipefail && \
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk update && \
     apk add jruby && \
-    apk add jruby-irb # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit
+    apk add jruby-irb && \
+    apk add asciidoctor && \
+    echo exit | hbase shell
+    # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit
 
 VOLUME /hbase-data
 

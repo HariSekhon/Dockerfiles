@@ -11,16 +11,16 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM centos:latest
+FROM python:2.7-slim
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection (CentOS build)"
+LABEL Description="Advanced Nagios Plugins Collection (Python plugins only)"
+
+ENV DEBIAN_FRONTEND noninteractive
 
 ENV PATH $PATH:/github/nagios-plugins
 
-RUN mkdir -v /github
-
-WORKDIR /github
+RUN apt-get update && apt-get install -y git make
 
 COPY build.sh /
 

@@ -18,24 +18,14 @@ LABEL Description="Advanced Nagios Plugins Collection"
 
 ENV PATH $PATH:/github/nagios-plugins
 
-RUN mkdir -v /github
-
-WORKDIR /github
+COPY build.sh /
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN set -euxo pipefail && \
-    x=nagios-plugins && \
-    apk add --no-cache git make && \
-    git clone https://github.com/harisekhon/$x /github/$x && \
-    cd /github/$x && \
-    make build zookeeper && \
-    make apk-packages-remove && \
-    make test deep-clean && \
-    # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
-    apk del make && \
-    bash-tools/check_docker_clean.sh && \
-    # basic test for missing dependencies again
-    tests/help.sh
+RUN apk add --no-cache bash && /build.sh
+
+ADD http://date.jsontest.com /etc/builddate
+
+RUN /build.sh
 
 WORKDIR /github/nagios-plugins
 

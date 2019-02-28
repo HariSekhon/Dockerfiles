@@ -21,34 +21,14 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV PATH $PATH:/github/nagios-plugins
 
-RUN mkdir -v /github
+COPY build.sh /
 
-WORKDIR /github
+RUN /build.sh
 
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN bash -c ' \
-    set -euxo pipefail && \
-    x=nagios-plugins && \
-    apt-get update && \
-    apt-get install -y git make && \
-    # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
-    #apt-get install -y ruby && \
-    git clone https://github.com/harisekhon/$x /github/$x && \
-    cd /github/$x && \
-    make build zookeeper && \
-    make apt-packages-remove && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    # run tests after autoremove to check that no important packages we need get removed
-    make test deep-clean && \
-    # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
-    apt-get remove -y make && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    bash-tools/check_docker_clean.sh && \
-    # basic test for missing dependencies again
-    tests/help.sh \
-    '
+ADD http://date.jsontest.com /etc/builddate
+
+# get updates, faster rebuild
+RUN /build.sh
 
 WORKDIR /github/nagios-plugins
 

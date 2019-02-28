@@ -14,7 +14,7 @@
 #
 
 set -euxo pipefail
-#[ -n "${DEBUG:-}" ] && set -x
+[ -n "${DEBUG:-}" ] && set -x
 
 mkdir -pv /github
 

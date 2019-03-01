@@ -39,4 +39,4 @@ install:
   - echo nothing to install
 
 script:
-  - make test
+  - travis_retry make test

@@ -33,4 +33,4 @@ ADD opentsdb.conf /etc/opentsdb/
 
 EXPOSE 4242
 
-CMD /entrypoint.sh
+CMD ["/entrypoint.sh"]

@@ -14,7 +14,7 @@
 FROM centos:7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG OPENTSDB_VERSION=2.1.4
+ARG OPENTSDB_VERSION=2.0.1
 
 LABEL Description="OpenTSDB"
 

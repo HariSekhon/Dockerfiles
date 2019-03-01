@@ -31,4 +31,6 @@ ADD hbase-site.xml /etc/hbase/conf/
 ADD entrypoint.sh /
 ADD opentsdb.conf /etc/opentsdb/
 
+EXPOSE 4242
+
 CMD /entrypoint.sh

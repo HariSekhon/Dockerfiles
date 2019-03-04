@@ -33,6 +33,7 @@ RUN bash -c ' \
                        expect \
                        ethtool \
                        git \
+                       golang \
                        gradle \
                        groovy \
                        libdbd-mysql-perl \

@@ -11,15 +11,15 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM harisekhon/alpine-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Alpine Dev Build"
 
-ENV GRADLE_HOME=/opt/gradle
+#ENV GRADLE_HOME=/opt/gradle
 ENV GROOVY_HOME=/opt/groovy
 ENV JYTHON_HOME=/opt/jython
-ENV MAVEN_HOME=/opt/maven
+#ENV MAVEN_HOME=/opt/maven
 ENV SBT_HOME=/opt/sbt
 
 ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bin:$SBT_HOME/bin
@@ -27,54 +27,60 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bi
 RUN set -euxo pipefail && \
     mkdir -p /opt && \
     apk add --no-cache \
-    acf-openssl \
-    bash \
-    curl \
-    cyrus-sasl-dev \
-    expat-dev \
-    expect \
-    ethtool \
-    gcc \
-    git \
-    jwhois \
-    libev \
-    libevdev \
-    make \
-    mariadb-dev \
-    net-tools \
-    openjdk7 \
-    libressl-dev \
-    perl \
-    perl-dbd-mysql \
-    perl-libwww \
-    py-mysqldb \
-    py-pip \
-    py-setuptools \
-    python-dev \
-    ruby \
-    ruby-dev \
-    snappy-dev \
-    sysstat \
-    tar \
-    unzip \
-    vim \
-    wget \
-    which \
-    zip
+        acf-openssl \
+        bash \
+        curl \
+        cyrus-sasl-dev \
+        expat-dev \
+        expect \
+        ethtool \
+        gcc \
+        git \
+        go \
+        gradle \
+        jwhois \
+        libev \
+        libevdev \
+        make \
+        mariadb-dev \
+        maven \
+        net-tools \
+        libressl-dev \
+        perl \
+        perl-dbd-mysql \
+        perl-libwww \
+        py-mysqldb \
+        py-pip \
+        py-setuptools \
+        python-dev \
+        ruby \
+        ruby-dev \
+        snappy-dev \
+        sysstat \
+        tar \
+        unzip \
+        vim \
+        wget \
+        which \
+        zip
 
-# doesn't have Gradle / Groovy / Maven / SBT packages ...
+# didn't have Gradle / Groovy / Maven / SBT packages ...
 
-# Gradle
+# Maven - has this now
+#RUN set -euxo pipefail && \
+#    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh | sh
+
+# Gradle - has this now
+#RUN set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh | sh
+
+# SBT
 RUN set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
-    sh install_gradle.sh && \
-    rm -f install_gradle.sh
+    cd /opt && \
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh
 
 # Groovy
 RUN set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh && \
-    sh install_groovy.sh && \
-    rm -f install_groovy.sh
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh | sh
 
 # Jython
 RUN set -euxo pipefail && \
@@ -82,20 +88,5 @@ RUN set -euxo pipefail && \
     wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
     sh jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
-
-# Maven
-RUN set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh && \
-    sh install_maven.sh && \
-    rm -f install_maven.sh
-
-# SBT
-RUN set -euxo pipefail && \
-    cd /opt && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh && \
-    sh install_sbt.sh && \
-    rm -f install_sbt.sh
-
-COPY profile.d/java.sh   /etc/profile.d/
 
 CMD /bin/bash

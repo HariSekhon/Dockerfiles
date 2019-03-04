@@ -16,43 +16,17 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Advanced Nagios Plugins Collection (CentOS build)"
 
+COPY build.sh /
+
+RUN /build.sh
+
+#ADD http://date.jsontest.com /etc/builddate
+ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
+
+# get updates, faster rebuild
+RUN /build.sh
+
 ENV PATH $PATH:/github/nagios-plugins
-
-RUN mkdir -v /github
-
-WORKDIR /github
-
-# drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN set -euxo pipefail && \
-    x=nagios-plugins && \
-    yum install -y git make && \
-    # just for check_puppet.rb, but it doesn't make sense to use that plugin in a container as it's a local style plugin
-    #yum install -y ruby && \
-    git clone https://github.com/harisekhon/$x /github/$x && \
-    cd /github/$x && \
-    # The first compile fails with an upstream perl cpan error, second compile works
-    make build || : ; \
-    make build zookeeper && \
-    make yum-packages-remove && \
-    # run tests after autoremove to check that no important packages we need get removed
-    make test deep-clean && \
-    # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
-    yum remove -y make && \
-    # these will get autoremoved as dependencies of make
-    # setting these as yum install manually doesn't protect them from autoremove by this point, must re-install afterwards :-/
-    yum install -y perl-HTTP-Parser perl-Digest && \
-    yum autoremove -y && \
-    # the above yum install should work in theory to mark these packages as manually installed but in practice doesn't :-/
-    yum install -y perl-HTTP-Parser perl-Digest && \
-    # try autoremove again and then test to ensure these packages are safe by this point
-    yum autoremove -y && \
-    # for some reason openssl ends up being missing here when it doesn't show up on manual autoremove
-    yum install -y openssl jwhois && \
-    yum clean all && \
-    rm -rf /var/cache/yum && \
-    bash-tools/check_docker_clean.sh && \
-    # basic test for missing dependencies again
-    tests/help.sh
 
 WORKDIR /github/nagios-plugins
 

@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM harisekhon/alpine-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Alpine Dev Build"
@@ -42,7 +42,6 @@ RUN set -euxo pipefail && \
     make \
     mariadb-dev \
     net-tools \
-    openjdk8 \
     libressl-dev \
     perl \
     perl-dbd-mysql \

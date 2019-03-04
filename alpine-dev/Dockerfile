@@ -16,10 +16,10 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Alpine Dev Build"
 
-ENV GRADLE_HOME=/opt/gradle
+#ENV GRADLE_HOME=/opt/gradle
 ENV GROOVY_HOME=/opt/groovy
 ENV JYTHON_HOME=/opt/jython
-ENV MAVEN_HOME=/opt/maven
+#ENV MAVEN_HOME=/opt/maven
 ENV SBT_HOME=/opt/sbt
 
 ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bin:$SBT_HOME/bin
@@ -37,11 +37,13 @@ RUN set -euxo pipefail && \
         gcc \
         git \
         go \
+        gradle \
         jwhois \
         libev \
         libevdev \
         make \
         mariadb-dev \
+        maven \
         net-tools \
         libressl-dev \
         perl \
@@ -62,11 +64,19 @@ RUN set -euxo pipefail && \
         which \
         zip
 
-# doesn't have Gradle / Groovy / Maven / SBT packages ...
+# didn't have Gradle / Groovy / Maven / SBT packages ...
 
-# Gradle
+# Maven - has this now
+#RUN set -euxo pipefail && \
+#    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh | sh
+
+# Gradle - has this now
+#RUN set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh | sh
+
+# SBT
 RUN set -euxo pipefail && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh | sh
+    cd /opt && \
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh
 
 # Groovy
 RUN set -euxo pipefail && \
@@ -78,14 +88,5 @@ RUN set -euxo pipefail && \
     wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
     sh jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
-
-# Maven
-RUN set -euxo pipefail && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh | sh
-
-# SBT
-RUN set -euxo pipefail && \
-    cd /opt && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh
 
 CMD /bin/bash

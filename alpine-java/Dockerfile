@@ -16,8 +16,10 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Alpine Java (OpenJDK)"
 
-RUN set -euxo pipefail && apk add --no-cache openjdk8
+RUN set -euxo pipefail && apk add --no-cache openjdk7-jre-base
 
 COPY profile.d/java.sh   /etc/profile.d/
+
+ENV JAVA_HOME=/usr
 
 CMD /bin/sh

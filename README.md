@@ -153,9 +153,10 @@ All builds use OpenJDK with ```jre``` and ```jdk``` numbered tags. See this arti
 
 https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
 
-- CentOS latest combinations of Java 7/8 and Scala 2.10/2.11
+- Alpine latest with Java 8
+- CentOS latest combinations of Java 7 / 8 and Scala 2.10 / 2.11
+- Debian latest with Java 7, 8
 - Fedora latest combinations of Java 7/8 and Scala 2.10/2.11
-- Debian latest with Java 7
 - Ubuntu 14.04 with Java 7
 - Ubuntu latest with Java 8, 9
 

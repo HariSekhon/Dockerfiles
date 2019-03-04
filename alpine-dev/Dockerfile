@@ -87,6 +87,4 @@ RUN set -euxo pipefail && \
     cd /opt && \
     curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh
 
-COPY profile.d/java.sh   /etc/profile.d/
-
 CMD /bin/bash

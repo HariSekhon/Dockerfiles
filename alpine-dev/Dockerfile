@@ -27,40 +27,40 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bi
 RUN set -euxo pipefail && \
     mkdir -p /opt && \
     apk add --no-cache \
-    acf-openssl \
-    bash \
-    curl \
-    cyrus-sasl-dev \
-    expat-dev \
-    expect \
-    ethtool \
-    gcc \
-    git \
-    go \
-    jwhois \
-    libev \
-    libevdev \
-    make \
-    mariadb-dev \
-    net-tools \
-    libressl-dev \
-    perl \
-    perl-dbd-mysql \
-    perl-libwww \
-    py-mysqldb \
-    py-pip \
-    py-setuptools \
-    python-dev \
-    ruby \
-    ruby-dev \
-    snappy-dev \
-    sysstat \
-    tar \
-    unzip \
-    vim \
-    wget \
-    which \
-    zip
+        acf-openssl \
+        bash \
+        curl \
+        cyrus-sasl-dev \
+        expat-dev \
+        expect \
+        ethtool \
+        gcc \
+        git \
+        go \
+        jwhois \
+        libev \
+        libevdev \
+        make \
+        mariadb-dev \
+        net-tools \
+        libressl-dev \
+        perl \
+        perl-dbd-mysql \
+        perl-libwww \
+        py-mysqldb \
+        py-pip \
+        py-setuptools \
+        python-dev \
+        ruby \
+        ruby-dev \
+        snappy-dev \
+        sysstat \
+        tar \
+        unzip \
+        vim \
+        wget \
+        which \
+        zip
 
 # doesn't have Gradle / Groovy / Maven / SBT packages ...
 

@@ -1,1 +1,1 @@
-export JAVA_HOME=/usr/lib/jvm/default-jvm
+export JAVA_HOME=/usr

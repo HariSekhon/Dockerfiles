@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/debian-java
+REPO := harisekhon/debian-java:jdk7
 
 include ../Makefile.in

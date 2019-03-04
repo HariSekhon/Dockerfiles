@@ -65,15 +65,11 @@ RUN set -euxo pipefail && \
 
 # Gradle
 RUN set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
-    sh install_gradle.sh && \
-    rm -f install_gradle.sh
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh | sh
 
 # Groovy
 RUN set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh && \
-    sh install_groovy.sh && \
-    rm -f install_groovy.sh
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh | sh
 
 # Jython
 RUN set -euxo pipefail && \
@@ -84,16 +80,12 @@ RUN set -euxo pipefail && \
 
 # Maven
 RUN set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh && \
-    sh install_maven.sh && \
-    rm -f install_maven.sh
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh | sh
 
 # SBT
 RUN set -euxo pipefail && \
     cd /opt && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh && \
-    sh install_sbt.sh && \
-    rm -f install_sbt.sh
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh
 
 COPY profile.d/java.sh   /etc/profile.d/
 

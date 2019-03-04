@@ -35,6 +35,7 @@ RUN set -euxo pipefail && \
     expect \
     ethtool \
     gcc \
+    go \
     git \
     jwhois \
     libev \

@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/alpine-java
+REPO := harisekhon/alpine-java:jre9
 
 include ../Makefile.in

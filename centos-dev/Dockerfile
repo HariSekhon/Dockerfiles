@@ -21,7 +21,6 @@ ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
 RUN set -euxo pipefail && \
-    yum update -y && \
     yum install -y \
     curl \
     cyrus-sasl-devel \
@@ -43,6 +42,7 @@ RUN set -euxo pipefail && \
     openssl-devel \
     perl \
     perl-CPAN \
+    #perl-App-cpanminus \
     perl-DBD-MySQL \
     perl-libwww-perl \
     python-devel \

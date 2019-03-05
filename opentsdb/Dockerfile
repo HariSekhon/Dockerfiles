@@ -27,9 +27,9 @@ RUN \
     yum clean all && \
     rm -rf /var/cache/yum
 
-ADD hbase-site.xml /etc/hbase/conf/
-ADD entrypoint.sh /
-ADD opentsdb.conf /etc/opentsdb/
+COPY hbase-site.xml /etc/hbase/conf/
+COPY entrypoint.sh /
+COPY opentsdb.conf /etc/opentsdb/
 
 EXPOSE 4242
 

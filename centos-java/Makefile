@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/centos-java
+REPO := harisekhon/centos-java:jre8
 
 include ../Makefile.in

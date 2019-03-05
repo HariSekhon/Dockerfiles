@@ -20,7 +20,7 @@ LABEL Description="Java + Debian (OpenJDK)"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG JAVA_VERSION=8
+ARG JAVA_VERSION=9
 ARG JAVA_RELEASE=JRE
 
 RUN bash -c ' \

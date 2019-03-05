@@ -16,8 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + CentOS (OpenJDK)"
 
-ARG JAVA_VERSION=8
-ARG JAVA_RELEASE=JDK
+ARG JAVA_VERSION=9
+ARG JAVA_RELEASE=JRE
 
 RUN set -euxo pipefail && \
     pkg="java-1.$JAVA_VERSION.0-openjdk" && \

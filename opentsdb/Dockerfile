@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM centos:7
+FROM harisekhon/centos-java:jdk8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG OPENTSDB_VERSION=2.4.0
@@ -21,7 +21,7 @@ LABEL Description="OpenTSDB"
 WORKDIR /
 
 RUN \
-    yum install -y java "https://github.com/OpenTSDB/opentsdb/releases/download/v${OPENTSDB_VERSION}/opentsdb-${OPENTSDB_VERSION}.noarch.rpm" && \
+    yum install -y "https://github.com/OpenTSDB/opentsdb/releases/download/v${OPENTSDB_VERSION}/opentsdb-${OPENTSDB_VERSION}.noarch.rpm" && \
     yum autoremove -y && \
     mkdir -pv /etc/hbase/conf && \
     yum clean all && \

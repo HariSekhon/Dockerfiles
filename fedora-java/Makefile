@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/fedora-java
+REPO := harisekhon/fedora-java:jre7
 
 include ../Makefile.in

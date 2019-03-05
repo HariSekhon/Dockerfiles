@@ -28,44 +28,45 @@ RUN bash -c ' \
     apt-get upgrade -y && \
     # --no-install-recommends breaks sbt download due to missing gnupg, even adding gnupg + gnupg1 + gnupg2 manually it still breaks on download manager when trying to get sbt
     apt-get install -y \
-                       build-essential \
-                       curl \
-                       dstat \
-                       ethtool \
-                       expect \
-                       git \
-                       #gradle \
-                       groovy2 \
-                       libdbd-mysql-perl \
-                       libev4 \
-                       libexpat1-dev \
-                       libkrb5-dev \
-                       libmariadbd-dev \
-                       libsasl2-dev \
-                       libsnappy-dev \
-                       libssl-dev \
-                       make \
-                       maven \
-                       net-tools \
-                       python-dev \
-                       python-pip \
-                       python-setuptools \
-                       ruby \
-                       ruby-dev \
-                       # TODO: Scala 2.9, put newer scala on here
-                       scala \
-                       sysstat \
-                       unzip \
-                       vim \
-                       wget \
-                       zip \
-                       && \
+        build-essential \
+        curl \
+        dstat \
+        ethtool \
+        expect \
+        git \
+        golang \
+        gradle \
+        groovy2 \
+        libdbd-mysql-perl \
+        libev4 \
+        libexpat1-dev \
+        libkrb5-dev \
+        libmariadbd-dev \
+        libsasl2-dev \
+        libsnappy-dev \
+        libssl-dev \
+        make \
+        maven \
+        net-tools \
+        python-dev \
+        python-pip \
+        python-setuptools \
+        ruby \
+        ruby-dev \
+        # TODO: Scala 2.9, put newer scala on here
+        scala \
+        sysstat \
+        unzip \
+        vim \
+        wget \
+        zip \
+        && \
     # for sbt https repo
     apt-get install -y --no-install-recommends apt-transport-https \
-                       #gnupg \
-                       #gnupg1 \
-                       #gnupg2 \
-                       && \
+        #gnupg \
+        #gnupg1 \
+        #gnupg2 \
+        && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
@@ -78,13 +79,8 @@ RUN bash -c ' \
     apt-get clean \
     '
 
-# Gradle in Debian is old 1.5 :-(
-RUN bash -c ' \
-    set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
-    bash install_gradle.sh && \
-    rm -f install_gradle.sh \
-    '
+# Gradle in Debian was old 1.5
+#RUN bash -c 'set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh | sh'
 
 # Jython
 RUN bash -c ' \

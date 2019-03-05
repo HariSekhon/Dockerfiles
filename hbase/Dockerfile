@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM harisekhon/alpine-java:jre8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG HBASE_VERSION=2.1.3
@@ -20,15 +20,13 @@ ENV PATH $PATH:/hbase/bin
 
 ENV JAVA_HOME=/usr
 
-LABEL Description="HBase Dev", \
+LABEL Description="HBase", \
       "HBase Version"="$HBASE_VERSION"
 
 WORKDIR /
 
-# bash => entrypoint.sh
-# java => hbase engine
-RUN set -euxo pipefail && \
-    apk add --no-cache bash openjdk8-jre-base
+# bash - needed for entrypoint.sh
+RUN apk add --no-cache bash
 
 RUN set -euxo pipefail && \
     apk add --no-cache wget tar && \
@@ -93,4 +91,4 @@ COPY profile.d/java.sh /etc/profile.d/
 # RS        16201 / 16301
 EXPOSE 2181 8080 8085 9090 9095 16000 16010 16201 16301
 
-CMD "/entrypoint.sh"
+ENTRYPOINT "/entrypoint.sh"

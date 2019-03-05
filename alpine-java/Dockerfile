@@ -18,7 +18,7 @@ LABEL Description="Alpine Java (OpenJDK)"
 
 RUN set -euxo pipefail && apk add --no-cache openjdk8
 
-COPY profile.d/java.sh   /etc/profile.d/
+COPY profile.d/java.sh /etc/profile.d/
 
 ENV JAVA_HOME=/usr
 

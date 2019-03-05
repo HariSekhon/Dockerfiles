@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/ubuntu-java
+REPO := harisekhon/ubuntu-java:jre8
 
 include ../Makefile.in

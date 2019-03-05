@@ -16,8 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Fedora (OpenJDK)"
 
-ARG JAVA_VERSION=8
-ARG JAVA_RELEASE=JDK
+ARG JAVA_VERSION=9
+ARG JAVA_RELEASE=JRE
 
 ENV JAVA_HOME=/usr
 

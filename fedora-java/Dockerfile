@@ -16,10 +16,8 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + Fedora (OpenJDK)"
 
-ARG JAVA_VERSION=8
+ARG JAVA_VERSION=7
 ARG JAVA_RELEASE=JDK
-
-ENV JAVA_HOME=/usr
 
 RUN set -euxo pipefail && \
     pkg="java-1.$JAVA_VERSION.0-openjdk" && \
@@ -33,5 +31,7 @@ RUN set -euxo pipefail && \
     rm -rf /var/cache/yum
 
 COPY profile.d/java.sh /etc/profile.d/
+
+ENV JAVA_HOME=/usr
 
 CMD /bin/bash

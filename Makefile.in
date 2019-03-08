@@ -20,7 +20,7 @@ endif
 # solrcloud-dev     -> solrcloud
 # rabbitmq-cluster  -> rabbitmq
 # solrloud          -> solr
-# presto-cli		-> presto
+# presto-cli        -> presto
 BRANCH = $(shell echo "$(REPO)" | sed 's,.*/,,; s/-dev$$//; s/-cli$$//; s/-cluster$$//; s/cloud$$//')
 
 ifndef MAP_PORTS

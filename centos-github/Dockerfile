@@ -28,7 +28,7 @@ WORKDIR /github
 RUN curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | bash && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 
-RUN DEBUB=1 REPOS="bash-tools lib tools" \
+RUN REPOS="bash-tools lib tools" \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh | bash && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 

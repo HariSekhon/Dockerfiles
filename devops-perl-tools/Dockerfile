@@ -13,10 +13,16 @@
 
 # Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
 #FROM alpine:latest
-FROM centos:latest
+# after all dependencies are built:
+# - Ubuntu 331MB
+# - CentOS 392MB
+# - Debian 632MB
+FROM ubuntu:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools"
+
+ENV DEBIAN_FRONTEND noninteractive
 
 ENV PATH $PATH:/github/tools
 
@@ -25,7 +31,7 @@ RUN mkdir -v /github
 WORKDIR /github
 
 RUN export REPOS=tools && \
-    yum install -y make git && \
+    apt-get update && apt-get install -y make git curl && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 

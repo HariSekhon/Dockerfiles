@@ -12,11 +12,6 @@
 #
 
 # Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
-#FROM alpine:latest
-# after all dependencies are built:
-# - CentOS 392MB
-# - Ubuntu 578MB
-# - Debian 632MB
 FROM debian:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
@@ -30,9 +25,13 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-RUN export REPOS=tools && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    export REPOS=tools && \
+    apt-get update && apt-get install -y curl && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
+    '
 
 WORKDIR /github/tools
 

@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/tools
+REPO := harisekhon/tools:debian
 
 include ../Makefile.in
 

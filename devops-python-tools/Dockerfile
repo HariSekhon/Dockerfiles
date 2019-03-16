@@ -13,46 +13,32 @@
 
 # Alpine's underlying libraries are causing find_active_server.py --https mode to run all threads concurrently without respecting the --num causing indeterministic results and failing tests/test_find_active_server.sh
 #FROM alpine:latest
-FROM ubuntu:latest
+FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools"
 
-ENV DEBIAN_FRONTEND noninteractive
+# not using Ubuntu any more
+#ENV DEBIAN_FRONTEND noninteractive
 
 RUN mkdir -v /github
 
 WORKDIR /github
 
+# not using Alpine any more
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 #RUN set -euxo pipefail && \
     #apk add --no-cache make git && \
     # allows numpy to compile with musl instead of glibc
     #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
-RUN bash -c ' \
-    set -euxo pipefail && \
-    apt-get update && \
-    apt-get install -y make git && \
-    x=pytools && \
-    git clone https://github.com/harisekhon/$x /github/$x && \
-    cd /github/$x && \
-    NOJAVA=1 make && \
-    pip uninstall -y certifi && pip install certifi==2015.04.28 && \
-    make apt-packages-remove && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    make test deep-clean && \
-    # leave git package as some tools use git
-#    apk del make py-pip
-    apt-get purge -y make && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    bash-tools/check_docker_clean.sh \
-    # fails after make clean as local spark installations are removed
-    # basic test for missing dependencies again
-    #tests/help.sh
-    '
+
+RUN export REPOS=pytools NOJAVA=1 && \
+    yum install make git -y && \
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+    # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
+    #pip uninstall -y certifi && pip install certifi==2015.04.28
 
 WORKDIR /github/pytools
 
@@ -60,14 +46,15 @@ WORKDIR /github/pytools
 #
 # Not realistically gonna use Hadoop Jython utils from docker when they need -Jcp `hadoop classpath` anyway, leave it for harisekhon/hadoop-dev docker image
 #
-#RUN bash -c ' \
-#    set -euxo pipefail && \
-#    apt-get install -y wget expect && \
-#    sh jython_install.sh && \
-#    apt-get purge -y wget expect && \
-#    apt-get autoremove -y && \
-#    apt-get clean \
-#    '
+#RUN set -euxo pipefail && \
+#    yum install -y wget expect && \
+#    wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_install.sh && \
+#    wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
+#    bash jython_install.sh && \
+#    yum remove -y wget expect && \
+#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+#    rm -f jython_install.sh jython_autoinstall.exp
+
 
 #ENV JYTHON_HOME=/opt/jython
 #ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools

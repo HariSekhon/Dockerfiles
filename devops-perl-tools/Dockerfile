@@ -17,8 +17,6 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools (CentOS)"
 
-#ENV DEBIAN_FRONTEND noninteractive
-
 ENV PATH $PATH:/github/tools
 
 RUN mkdir -v /github

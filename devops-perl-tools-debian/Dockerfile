@@ -21,13 +21,11 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV PATH $PATH:/github/tools
 
-RUN mkdir -v /github
-
-WORKDIR /github
-
 RUN bash -c ' \
     set -euxo pipefail && \
     export REPOS=tools && \
+    mkdir -pv /github && \
+    cd /github && \
     apt-get update && apt-get install -y curl && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \

@@ -17,6 +17,6 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 export REPOS=tools
-yum install make git -y
+apt-get update && apt-get install -y curl
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

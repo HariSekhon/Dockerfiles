@@ -13,7 +13,7 @@
 
 # Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
 #FROM alpine:latest
-FROM ubuntu:latest
+FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools"
@@ -24,23 +24,10 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    x=tools && \
-    #apk add --no-cache git make && \
-    apt-get update && apt-get install -y git make && \
-    git clone https://github.com/harisekhon/$x /github/$x && \
-    cd /github/$x && \
-    make build && \
-    make apt-packages-remove && \
-    make test deep-clean && \
-    # leave git for bash-tools/check_pytools.sh
-    apt-get remove -y make && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    bash-tools/check_docker_clean.sh && \
-    # basic test for missing dependencies again
-    tests/help.sh'
+RUN export REPOS=tools && \
+    yum install -y make git && \
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 
 WORKDIR /github/tools
 

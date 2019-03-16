@@ -20,7 +20,7 @@
 FROM centos:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="DevOps Perl Tools"
+LABEL Description="DevOps Perl Tools (CentOS)"
 
 #ENV DEBIAN_FRONTEND noninteractive
 

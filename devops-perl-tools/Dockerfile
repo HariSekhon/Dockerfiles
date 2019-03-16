@@ -19,12 +19,10 @@ LABEL Description="DevOps Perl Tools (CentOS)"
 
 ENV PATH $PATH:/github/tools
 
-RUN mkdir -v /github
-
-WORKDIR /github
-
 RUN set -euxo pipefail && \
     export REPOS=tools && \
+    mkdir -pv /github && \
+    cd /github && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 

@@ -17,6 +17,10 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 ARG JYTHON_VERSION=2.7.0
 ARG JYTHON_HOME=/opt/jython-$JYTHON_VERSION
 
+ENV JYTHON_VERSION=$JYTHON_VERSION
+ENV JYTHON_HOME=$JYTHON_HOME
+ENV PATH=$PATH:$JYTHON_HOME/bin
+
 LABEL Description="Jython $JYTHON_VERSION on Alpine + OpenJDK, minimal container"
 
 RUN set -euxo pipefail && \

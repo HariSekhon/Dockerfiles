@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/pytools
+REPO := harisekhon/pytools:centos
 
 include ../Makefile.in

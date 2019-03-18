@@ -190,17 +190,16 @@ updatem: update-submodules
 #.ONESHELL:
 .PHONY: nagios-plugins
 nagios-plugins:
-	for x in \
-		nagios-plugins-centos \
-		nagios-plugins-ubuntu \
-		nagios-plugins-debian \
-		nagios-plugins-alpine \
-		; do \
+	for x in nagios-plugins*; do \
 		pushd $$x && \
-		$(MAKE) nocache test && \
-		{ $(MAKE) push & popd; } || \
-		break; \
+		$(MAKE) nocache test push; \
+		popd; \
 	done
+	docker images | grep nagios-plugins
+
+.PHONY: nagios
+nagios: nagios-plugins
+	:
 
 .PHONY: github
 github:

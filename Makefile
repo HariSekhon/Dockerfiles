@@ -204,14 +204,9 @@ nagios: nagios-plugins
 .PHONY: github
 github:
 	# has no test target, consider adding one
-	for x in \
-		centos-github \
-		ubuntu-github \
-		debian-github \
-		alpine-github \
-		; do \
+	for x in *-github; do \
 		pushd $$x && \
-		$(MAKE) nocache push && \
-		{ $(MAKE) push & popd; } || \
-		break; \
+		$(MAKE) nocache push; \
+		popd
 	done
+	docker images | grep github

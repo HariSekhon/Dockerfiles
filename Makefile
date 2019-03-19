@@ -192,7 +192,7 @@ updatem: update-submodules
 nagios-plugins:
 	for x in nagios-plugins*; do \
 		pushd $$x && \
-		$(MAKE) nocache test push; \
+		$(MAKE) nocache push; \
 		popd; \
 	done
 	docker images | grep nagios-plugins

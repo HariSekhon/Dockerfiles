@@ -59,6 +59,7 @@ RUN set -euxo pipefail && \
     strace \
     sysstat \
     tar \
+    tcpdump \
     unzip \
     vim-enhanced \
     wget \

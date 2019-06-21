@@ -23,6 +23,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 RUN set -euxo pipefail && \
     yum update -y && \
     yum install -y \
+    bind-utils \
     curl \
     cyrus-sasl-devel \
     dstat \

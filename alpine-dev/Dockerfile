@@ -34,6 +34,7 @@ RUN set -euxo pipefail && \
         expat-dev \
         expect \
         ethtool \
+        fping \
         gcc \
         git \
         go \
@@ -44,8 +45,11 @@ RUN set -euxo pipefail && \
         make \
         mariadb-dev \
         maven \
+        netcat-openbsd \
         net-tools \
+        nmap \
         libressl-dev \
+        lsof \
         perl \
         perl-dbd-mysql \
         perl-libwww \
@@ -56,6 +60,7 @@ RUN set -euxo pipefail && \
         ruby \
         ruby-dev \
         snappy-dev \
+        strace \
         sysstat \
         tar \
         unzip \

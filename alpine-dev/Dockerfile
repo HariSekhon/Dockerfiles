@@ -29,6 +29,7 @@ RUN set -euxo pipefail && \
     apk add --no-cache \
         acf-openssl \
         bash \
+        bind-tools \
         curl \
         cyrus-sasl-dev \
         expat-dev \
@@ -48,6 +49,7 @@ RUN set -euxo pipefail && \
         netcat-openbsd \
         net-tools \
         nmap \
+        nmap-ncat \
         libressl-dev \
         lsof \
         perl \

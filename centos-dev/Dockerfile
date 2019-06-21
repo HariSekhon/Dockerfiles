@@ -29,6 +29,7 @@ RUN set -euxo pipefail && \
     expat-devel \
     expect \
     ethtool \
+    fping \
     gcc \
     gcc-c++ \
     git \
@@ -36,10 +37,13 @@ RUN set -euxo pipefail && \
     hostname \
     libev \
     libev-devel \
+    lsof \
     make \
     maven \
     mysql-devel \
     net-tools \
+    nmap \
+    nmap-ncat \
     openssl-devel \
     perl \
     perl-CPAN \
@@ -51,6 +55,7 @@ RUN set -euxo pipefail && \
     ruby \
     ruby-devel \
     snappy-devel \
+    strace \
     sysstat \
     tar \
     unzip \

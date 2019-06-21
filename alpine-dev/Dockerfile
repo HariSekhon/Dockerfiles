@@ -65,6 +65,7 @@ RUN set -euxo pipefail && \
         strace \
         sysstat \
         tar \
+        tcpdump \
         unzip \
         vim \
         wget \

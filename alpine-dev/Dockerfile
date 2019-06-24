@@ -62,6 +62,7 @@ RUN set -euxo pipefail && \
         ruby \
         ruby-dev \
         snappy-dev \
+        socat \
         strace \
         sysstat \
         tar \

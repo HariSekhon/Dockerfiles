@@ -29,6 +29,7 @@ RUN bash -c ' \
     apt-get install -y --no-install-recommends \
                        bind9-host \
                        build-essential \
+                       cpanminus \
                        curl \
                        dnsutils \
                        dstat \
@@ -54,6 +55,7 @@ RUN bash -c ' \
                        nmap \
                        ncat \
                        net-tools \
+                       procps \
                        python-dev \
                        python-pip \
                        python-setuptools \

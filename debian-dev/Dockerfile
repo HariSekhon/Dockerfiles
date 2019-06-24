@@ -61,8 +61,9 @@ RUN bash -c ' \
         ruby-dev \
         # TODO: Scala 2.9, put newer scala on here
         scala \
-        sysstat \
+        socat \
         strace \
+        sysstat \
         tcpdump \
         unzip \
         vim \

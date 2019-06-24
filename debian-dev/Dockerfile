@@ -35,6 +35,7 @@ RUN bash -c ' \
         dstat \
         ethtool \
         expect \
+        fping \
         git \
         golang \
         gradle \

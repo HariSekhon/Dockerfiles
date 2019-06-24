@@ -28,6 +28,7 @@ RUN set -euxo pipefail && \
     mkdir -p /opt && \
     apk add --no-cache \
         acf-openssl \
+        alpine-sdk \
         bash \
         bind-tools \
         curl \
@@ -40,6 +41,7 @@ RUN set -euxo pipefail && \
         git \
         go \
         gradle \
+        grep \
         jwhois \
         libev \
         libevdev \

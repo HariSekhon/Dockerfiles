@@ -27,8 +27,10 @@ RUN bash -c ' \
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
+                       bind9-host \
                        build-essential \
                        curl \
+                       dnsutils \
                        dstat \
                        expect \
                        ethtool \
@@ -44,8 +46,12 @@ RUN bash -c ' \
                        libsasl2-dev \
                        libsnappy-dev \
                        libssl-dev \
+                       lsof \
                        make \
                        maven \
+                       netcat \
+                       nmap \
+                       ncat \
                        net-tools \
                        python-dev \
                        python-pip \
@@ -54,6 +60,8 @@ RUN bash -c ' \
                        ruby-dev \
                        scala \
                        sysstat \
+                       strace \
+                       tcpdump \
                        unzip \
                        vim \
                        wget \

@@ -28,8 +28,10 @@ RUN bash -c ' \
     apt-get upgrade -y && \
     # --no-install-recommends breaks sbt download due to missing gnupg, even adding gnupg + gnupg1 + gnupg2 manually it still breaks on download manager when trying to get sbt
     apt-get install -y \
+        bind9-host \
         build-essential \
         curl \
+        dnsutils \
         dstat \
         ethtool \
         expect \
@@ -45,8 +47,12 @@ RUN bash -c ' \
         libsasl2-dev \
         libsnappy-dev \
         libssl-dev \
+        lsof \
         make \
         maven \
+        netcat \
+        nmap \
+        ncat \
         net-tools \
         python-dev \
         python-pip \
@@ -56,6 +62,8 @@ RUN bash -c ' \
         # TODO: Scala 2.9, put newer scala on here
         scala \
         sysstat \
+        strace \
+        tcpdump \
         unzip \
         vim \
         wget \

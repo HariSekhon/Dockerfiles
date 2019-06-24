@@ -42,6 +42,7 @@ RUN set -euxo pipefail && \
     make \
     maven \
     mysql-devel \
+    nc \
     net-tools \
     nmap \
     nmap-ncat \

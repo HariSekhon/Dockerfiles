@@ -58,6 +58,7 @@ RUN bash -c ' \
                        python-setuptools \
                        ruby \
                        ruby-dev \
+                       socat \
                        scala \
                        sysstat \
                        strace \

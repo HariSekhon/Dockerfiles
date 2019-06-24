@@ -45,6 +45,8 @@ RUN set -euxo pipefail && \
         jwhois \
         libev \
         libevdev \
+        libressl-dev \
+        lsof \
         make \
         mariadb-dev \
         maven \
@@ -52,11 +54,10 @@ RUN set -euxo pipefail && \
         net-tools \
         nmap \
         nmap-ncat \
-        libressl-dev \
-        lsof \
         perl \
         perl-dbd-mysql \
         perl-libwww \
+        procps \
         py-mysqldb \
         py-pip \
         py-setuptools \

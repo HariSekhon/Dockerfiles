@@ -51,6 +51,7 @@ RUN set -euxo pipefail && \
     perl-CPAN \
     perl-DBD-MySQL \
     perl-libwww-perl \
+    procps \
     python-devel \
     python-pip \
     python-setuptools \

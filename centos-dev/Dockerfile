@@ -36,6 +36,7 @@ RUN set -euxo pipefail && \
     git \
     groovy \
     hostname \
+    httping \
     libev \
     libev-devel \
     lsof \

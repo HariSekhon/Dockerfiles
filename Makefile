@@ -210,3 +210,7 @@ github:
 		popd
 	done
 	docker images | grep github
+
+.PHONY: travis
+travis:
+	travis_last_log.py /Dockerfiles

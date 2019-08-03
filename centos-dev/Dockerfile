@@ -22,37 +22,48 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
 RUN set -euxo pipefail && \
     yum install -y \
+    bind-utils \
     curl \
     cyrus-sasl-devel \
     dstat \
     expat-devel \
     expect \
     ethtool \
+    fping \
     gcc \
     gcc-c++ \
     git \
     groovy \
     hostname \
+    httping \
     libev \
     libev-devel \
+    lsof \
     make \
     maven \
     mysql-devel \
+    nc \
     net-tools \
+    nmap \
+    nmap-ncat \
     openssl-devel \
     perl \
     perl-CPAN \
     #perl-App-cpanminus \
     perl-DBD-MySQL \
     perl-libwww-perl \
+    procps \
     python-devel \
     python-pip \
     python-setuptools \
     ruby \
     ruby-devel \
     snappy-devel \
+    socat \
+    strace \
     sysstat \
     tar \
+    tcpdump \
     unzip \
     vim-enhanced \
     wget \

@@ -28,27 +28,36 @@ RUN set -euxo pipefail && \
     mkdir -p /opt && \
     apk add --no-cache \
         acf-openssl \
+        alpine-sdk \
         bash \
+        bind-tools \
         curl \
         cyrus-sasl-dev \
         expat-dev \
         expect \
         ethtool \
+        fping \
         gcc \
         git \
         go \
         gradle \
+        grep \
         jwhois \
         libev \
         libevdev \
+        libressl-dev \
+        lsof \
         make \
         mariadb-dev \
         maven \
+        netcat-openbsd \
         net-tools \
-        libressl-dev \
+        nmap \
+        nmap-ncat \
         perl \
         perl-dbd-mysql \
         perl-libwww \
+        procps \
         py-mysqldb \
         py-pip \
         py-setuptools \
@@ -56,8 +65,11 @@ RUN set -euxo pipefail && \
         ruby \
         ruby-dev \
         snappy-dev \
+        socat \
+        strace \
         sysstat \
         tar \
+        tcpdump \
         unzip \
         vim \
         wget \

@@ -107,7 +107,7 @@ if [ -n "$*" ]; then
     elif [ "$1" = regionserver ] || [ "$1" = rs ]; then
         start_regionserver
         tail -f /dev/null "$HBASE_HOME/logs/"* &
-    elif [ "$1" = rest ]; then
+    elif [ "$1" = rest ] || [ "$1" = stargate ]; then
         start_stargate
         tail -f /dev/null "$HBASE_HOME/logs/"* &
     elif [ "$1" = thrift ]; then

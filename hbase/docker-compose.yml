@@ -17,13 +17,16 @@ services:
   hbase:
     image: harisekhon/hbase:${VERSION:-latest}
     ports:
-      - 2181:2181
       - 8080:8080
       - 8085:8085
       - 9090:9090
       - 9095:9095
       - 16000:16000
       - 16010:16010
-      - 16201:16201
       - 16030:16030
+      - 16201:16201
       - 16301:16301
+  zookeeper:
+    image: harisekhon/zookeeper:latest
+    ports:
+      - 2181:2181

@@ -17,7 +17,6 @@ set -x
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 export HBASE_HOME="/hbase"
 export JAVA_HOME="${JAVA_HOME:-/usr}"
@@ -102,10 +101,10 @@ trap_func(){
 trap trap_func INT QUIT TRAP ABRT TERM EXIT
 
 if [ -n "$*" ]; then
-    if [ "$1" = master -o "$1" = m ]; then
+    if [ "$1" = master ] || [ "$1" = m ]; then
         start_master
         tail -f /dev/null "$HBASE_HOME/logs/"* &
-    elif [ "$1" = regionserver -o "$1" = rs ]; then
+    elif [ "$1" = regionserver ] || [ "$1" = rs ]; then
         start_regionserver
         tail -f /dev/null "$HBASE_HOME/logs/"* &
     elif [ "$1" = rest ]; then

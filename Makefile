@@ -14,6 +14,10 @@
 # On Ubuntu this fails to pushd otherwise
 SHELL=/usr/bin/env bash
 
+REPO := HariSekhon/Dockerfiles
+
+CODE_FILES := $(shell find . -type f -name '*.py' -o -type f -name '*.sh' | grep -v -e bash-tools)
+
 # EUID /  UID not exported in Make
 # USER not populated in Docker
 #ifeq '$(shell id -u)' '0'

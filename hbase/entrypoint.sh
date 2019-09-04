@@ -62,7 +62,7 @@ start_stargate(){
 
 start_thrift(){
     # kill any pre-existing thrift instances before starting new ones
-    pgrep -f proc_rest && pkill -9 -f proc_rest
+    pgrep -f proc_thrift && pkill -9 -f proc_thrift
     echo "Starting HBase Thrift API server..."
     "$HBASE_HOME/bin/hbase-daemon.sh" start thrift
     #"$HBASE_HOME/bin/hbase-daemon.sh" start thrift2

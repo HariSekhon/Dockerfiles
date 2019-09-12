@@ -80,19 +80,19 @@ RUN set -euxo pipefail && \
 
 # Maven - has this now
 #RUN set -euxo pipefail && \
-#    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_maven.sh | sh
+#    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_maven.sh | sh
 
 # Gradle - has this now
-#RUN set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh | sh
+#RUN set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh | sh
 
 # SBT
 RUN set -euxo pipefail && \
     cd /opt && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | sh
 
 # Groovy
 RUN set -euxo pipefail && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_groovy.sh | sh
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_groovy.sh | sh
 
 # Jython
 RUN set -euxo pipefail && \

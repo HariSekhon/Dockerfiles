@@ -83,7 +83,7 @@ RUN set -euxo pipefail && \
 
 # Gradle doesn't have an RPM :-(
 RUN set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_gradle.sh && \
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh && \
     bash install_gradle.sh && \
     rm -f install_gradle.sh
 

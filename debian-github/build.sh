@@ -20,7 +20,7 @@ mkdir -pv /github
 
 cd /github
 
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | bash
+curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | bash
 
 if [ -n "$@" ]; then
     export REPOS="bash-tools lib pylib tools pytools" # spotify-tools

@@ -12,9 +12,9 @@
 #
 
 FROM harisekhon/nagios-plugins:centos
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-LABEL Description="CentOS + my GitHub repos pre-built"
+LABEL Maintainer="Hari Sekhon (https://www.linkedin.com/in/harisekhon)" \
+      Description="CentOS + my GitHub repos pre-built"
 
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
 ENV PATH /bin:$PATH:/github/nagios-plugins:/github/devops-perl-tools:/github/devops-python-tools:/github/bash-tools:/github/spotify
@@ -27,4 +27,4 @@ RUN /build.sh
 
 COPY profile.d/java.sh /etc/profile.d/
 
-CMD /bin/bash
+CMD ["/bin/bash"]

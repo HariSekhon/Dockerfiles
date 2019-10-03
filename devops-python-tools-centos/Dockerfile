@@ -33,12 +33,15 @@ WORKDIR /github
     #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
 
-RUN export REPOS=pytools NOJAVA=1 && \
+RUN bash -c ' \
+    set -euxo pipefail && \
+    export REPOS=pytools NOJAVA=1 && \
     yum install make git -y && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
     # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
     #pip uninstall -y certifi && pip install certifi==2015.04.28
+    '
 
 WORKDIR /github/pytools
 
@@ -63,4 +66,4 @@ ENV PATH $PATH:/github/pytools
 #COPY profile.d/java.sh /etc/profile.d/
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD /bin/bash -c "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"
+CMD ["/bin/bash", "-c", "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]

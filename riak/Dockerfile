@@ -30,11 +30,13 @@ LABEL Description="Riak" \
 #    yum autoremove -y && \
 #    yum clean all
 # Riak 2.x
-RUN set -euxo pipefail && \
+RUN bash -c ' \
+    set -euxo pipefail && \
     yum install -y "http://s3.amazonaws.com/downloads.basho.com/riak/$(sed 's/.[[:digit:]]*$//' <<< "$RIAK_VERSION")/$RIAK_VERSION/rhel/6/riak-$RIAK_VERSION-1.el6.x86_64.rpm" && \
     yum autoremove -y && \
     yum clean all && \
-    rm -rf /var/cache/yum
+    rm -rf /var/cache/yum \
+    '
 
 # make HTTP listen on 0.0.0.0 not 127.0.0.1
 # Riak 1.x
@@ -44,4 +46,5 @@ COPY conf/riak.conf /etc/riak/
 
 EXPOSE 8087 8098
 
+# hadolint ignore=DL3025
 CMD su - riak -c '/usr/sbin/riak start'; sleep 5; cat /var/log/riak/*; tail -f /dev/null /var/log/riak/*

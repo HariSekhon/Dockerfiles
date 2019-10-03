@@ -3,7 +3,7 @@
 #  Author: Hari Sekhon
 #  Date: 2019-10-01 16:14:15 +0100 (Tue, 01 Oct 2019)
 #
-#  https://github.com/harisekhon/bash-tools
+#  https://github.com/harisekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
@@ -19,6 +19,8 @@ ignored:
   - DL3007
   # apk add versions need not be pinned
   - DL3018
+  # fine to use curl and wget, many images have both packages due to being dev builds
+  - DL4001
   #- SC1010
 
 trustedRegistries:

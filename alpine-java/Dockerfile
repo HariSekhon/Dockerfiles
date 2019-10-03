@@ -19,7 +19,7 @@ LABEL Description="Alpine Java (OpenJDK)"
 ARG JAVA_VERSION=8
 ARG JAVA_RELEASE=JDK
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     pkg="openjdk$JAVA_VERSION" && \
     if [ "$JAVA_RELEASE" != "JDK" ]; then \
         pkg="$pkg-jre"; \
@@ -30,4 +30,4 @@ COPY profile.d/java.sh /etc/profile.d/
 
 ENV JAVA_HOME=/usr
 
-CMD /bin/sh
+CMD ["/bin/sh"]

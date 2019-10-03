@@ -21,7 +21,8 @@ ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
-RUN set -euxo pipefail && \
+RUN bash -c ' \
+    set -euxo pipefail && \
     yum install -y \
     curl \
     cyrus-sasl-devel \
@@ -68,19 +69,24 @@ RUN set -euxo pipefail && \
     yum clean all && \
     rm -rf /var/cache/yum && \
     # workaround for CentOS (found via strace) otherwise incorrectly states "Warning: You do not have write permission for Perl library directories." and local::lib hits use of uninitialized variables errors in base modules like even core File::Basename :-/
-    mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5
+    mkdir -v /usr/local/share/perl5 /usr/local/lib64/perl5 \
+    '
 
 # Gradle doesn't have an RPM :-(
-RUN set -euxo pipefail && \
+RUN bash -c ' \
+    set -euxo pipefail && \
     wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh && \
     bash install_gradle.sh && \
-    rm -f install_gradle.sh
+    rm -f install_gradle.sh \
+    '
 
 # Jython
-RUN set -euxo pipefail && \
+RUN bash -c ' \
+    set -euxo pipefail && \
     wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
     bash jython_install.sh && \
-    rm -f jython_install.sh jython_autoinstall.exp
+    rm -f jython_install.sh jython_autoinstall.exp \
+    '
 
-CMD /bin/bash
+CMD ["/bin/bash"]

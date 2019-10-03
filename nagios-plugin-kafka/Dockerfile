@@ -28,7 +28,7 @@ RUN set -eux && \
     apk add --no-cache bash openjdk8
 
 # hadolint ignore=DL3003
-RUN set -eux \
+RUN set -eux && \
     apk add --no-cache git make alpine-sdk && \
     x=nagios-plugin-kafka; \
     git clone https://github.com/harisekhon/$x /github/$x && \

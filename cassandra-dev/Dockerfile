@@ -31,11 +31,11 @@ WORKDIR /
 
 # java   => cassandra engine
 # py-pip => cassandra python driver
-RUN set -eux; \
+RUN set -eux && \
     apk add --no-cache openjdk8-jre-base py-pip
 
 # hadolint ignore=DL3013
-RUN set -eux; \
+RUN set -eux && \
     apk add --no-cache wget && \
     url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     url_archive="http://archive.apache.org/dist/cassandra/$CASSANDRA_VERSION/$TAR"; \
@@ -57,7 +57,7 @@ RUN set -eux; \
     apk del wget
 
 # cassandra refuses to run as root without -R, just run as regular useraddgroup -S cassandra id=501 && adduser -S -G cassandra --uid=501 cassandra && \
-RUN set -eux; \
+RUN set -eux && \
     adduser -D -u 501 cassandra && \
     mkdir /var/lib/cassandra /var/log/cassandra && \
     chown -R cassandra "apache-cassandra-${CASSANDRA_VERSION}" /home/cassandra /var/lib/cassandra /var/log/cassandra && \

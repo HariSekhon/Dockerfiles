@@ -25,10 +25,10 @@ LABEL Description="Hadoop Dev" \
 
 WORKDIR /
 
-RUN set -eux \
+RUN set -eux && \
     yum install -y openssh-server openssh-clients wget tar which
 
-RUN set -eux \
+RUN set -eux && \
     yum install -y hostname && \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
@@ -57,7 +57,7 @@ COPY conf/mapred-site.xml /hadoop/etc/hadoop/
 COPY profile.d/hadoop.sh /etc/profile.d/
 COPY ssh/config /root/.ssh/
 
-RUN set -eux \
+RUN set -eux && \
     # Hadoop 1.x
     #/hadoop/bin/hadoop namenode -format && \
     # Hadoop 2.x

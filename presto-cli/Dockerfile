@@ -19,7 +19,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 # bash   => entrypoint.sh
 # java   => presto cli
 # less   => presto pager
-RUN set -eux \
+RUN set -eux && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 less && \
     yum clean all
 

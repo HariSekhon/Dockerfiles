@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG APACHE_DRILL_VERSION=1.15.0
+ARG APACHE_DRILL_VERSION=1.16.0
 
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 

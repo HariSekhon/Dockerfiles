@@ -36,7 +36,8 @@ RUN set -eux && \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
     # HBase 0.95 / 0.96
-    elif [ "${HBASE_VERSION:0:4}" = "0.95" ] || [ "${HBASE_VERSION:0:4}" = "0.96" ]; then \
+    elif [ "${HBASE_VERSION:0:4}" = "0.95" ] || \
+         [ "${HBASE_VERSION:0:4}" = "0.96" ]; then \
         url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98

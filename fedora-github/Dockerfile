@@ -31,4 +31,4 @@ RUN /build.sh
 
 COPY profile.d/java.sh /etc/profile.d/
 
-CMD /bin/bash
+CMD ["/bin/bash"]

@@ -20,15 +20,15 @@ ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
 
-LABEL Description="Hadoop Dev", \
+LABEL Description="Hadoop Dev" \
       "Hadoop Version"="$HADOOP_VERSION"
 
 WORKDIR /
 
-RUN set -euxo pipefail && \
+RUN set -eux \
     yum install -y openssh-server openssh-clients wget tar which
 
-RUN set -euxo pipefail && \
+RUN set -eux \
     yum install -y hostname && \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
@@ -57,7 +57,7 @@ COPY conf/mapred-site.xml /hadoop/etc/hadoop/
 COPY profile.d/hadoop.sh /etc/profile.d/
 COPY ssh/config /root/.ssh/
 
-RUN set -euxo pipefail && \
+RUN set -eux \
     # Hadoop 1.x
     #/hadoop/bin/hadoop namenode -format && \
     # Hadoop 2.x
@@ -87,4 +87,4 @@ ENV YARN_NODEMANAGER_USER=yarn
 # Hadoop 3.0 changed ports :-(
 EXPOSE 8020 8042 8088 9000 9868 9870 10020 19888 50010 50020 50090
 
-CMD "/entrypoint.sh"
+CMD ["/entrypoint.sh"]

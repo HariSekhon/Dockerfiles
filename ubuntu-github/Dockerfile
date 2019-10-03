@@ -28,4 +28,4 @@ ENV JAVA_HOME=/usr
 
 ENV PATH $PATH:/github/nagios-plugins:/github/devops-perl-tools:/github/devops-python-tools:/github/bash-tools:/github/spotify
 
-CMD /bin/bash
+CMD ["/bin/bash"]

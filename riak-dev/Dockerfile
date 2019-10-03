@@ -45,4 +45,5 @@ COPY conf/riak.conf /etc/riak/
 
 EXPOSE 8087 8098
 
-CMD ["bash", "-c", "su - riak -c '/usr/sbin/riak start'; sleep 5; cat /var/log/riak/*; tail -f /dev/null /var/log/riak/*"]
+# hadolint ignore=DL3025
+CMD su - riak -c '/usr/sbin/riak start'; sleep 5; cat /var/log/riak/*; tail -f /dev/null /var/log/riak/*

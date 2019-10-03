@@ -103,4 +103,4 @@ RUN bash -c ' \
     rm -f jython_install.sh jython_autoinstall.exp \
     '
 
-CMD /bin/bash
+CMD ["/bin/bash"]

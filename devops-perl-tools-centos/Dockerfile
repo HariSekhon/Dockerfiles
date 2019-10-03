@@ -19,14 +19,16 @@ LABEL Description="DevOps Perl Tools (CentOS)"
 
 ENV PATH $PATH:/github/tools
 
-RUN set -euxo pipefail && \
+RUN bash -c ' \
+    set -euxo pipefail && \
     export REPOS=tools && \
     mkdir -pv /github && \
     cd /github && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
+    '
 
 WORKDIR /github/tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD /bin/bash -c "find /github/tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"
+CMD ["/bin/bash", "-c", "find /github/tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"]

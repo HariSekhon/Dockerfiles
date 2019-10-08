@@ -16,7 +16,7 @@ ifneq ("$(wildcard bash-tools/Makefile.in)", "")
 endif
 
 # On Ubuntu this fails to pushd otherwise
-SHELL=/usr/bin/env bash
+SHELL := /usr/bin/env bash
 
 REPO := HariSekhon/Dockerfiles
 

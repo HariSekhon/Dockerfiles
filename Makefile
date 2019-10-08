@@ -11,6 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+ifneq ("$(wildcard bash-tools/Makefile.in)", "")
+	include bash-tools/Makefile.in
+endif
+
 # On Ubuntu this fails to pushd otherwise
 SHELL=/usr/bin/env bash
 
@@ -170,26 +174,6 @@ mergemasterpull:
 mergeall:
 	bash-tools/git_merge_all.sh
 
-.PHONY: update
-update: update2 build
-	:
-
-.PHONY: update2
-update2: update-no-recompile
-	:
-
-.PHONY: update-no-recompile
-update-no-recompile:
-	git pull
-	git submodule update --init --recursive
-
-.PHONY: update-submodules
-update-submodules:
-	git submodule update --init --remote
-.PHONY: updatem
-updatem: update-submodules
-	:
-
 # this would apply to all recipes
 #.ONESHELL:
 .PHONY: nagios-plugins
@@ -214,7 +198,3 @@ github:
 		popd
 	done
 	docker images | grep github
-
-.PHONY: travis
-travis:
-	travis_last_log.py /Dockerfiles

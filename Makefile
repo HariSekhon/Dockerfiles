@@ -40,9 +40,7 @@ build:
 	# do not just break as it will fail and move to next push target in build-push
 	for x in *; do \
 		[ -d $$x ] || continue; \
-		[ $$x = old ] && continue; \
-		[ $$x = ranger ] && continue; \
-		[ $$x = tests ] && continue; \
+		tests/exclude.sh "$$x" && continue; \
 		pushd $$x && \
 		$(MAKE) build && \
 		popd || \
@@ -60,6 +58,7 @@ tags:
 nocache:
 	for x in *; do \
 		[ -d $$x ] || continue; \
+		tests/exclude.sh "$$x" && continue; \
 		pushd $$x && \
 		$(MAKE) nocache && \
 		popd || \
@@ -118,6 +117,7 @@ dockerpush:
 	# use make push which will also call hooks/post_build
 	for x in *; do \
 		[ -d "$$x" ] || continue; \
+		tests/exclude.sh "$$x" && continue; \
 		pushd "$$x" && \
 		$(MAKE) push && \
 		popd || \
@@ -192,8 +192,8 @@ nagios-plugins:
 nagios: nagios-plugins
 	:
 
-.PHONY: github
-github:
+.PHONY: build-github
+build-github:
 	# has no test target, consider adding one
 	for x in *-github; do \
 		pushd $$x && \

@@ -11,8 +11,12 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-ifeq "$(TAG)" ""
+ifndef TAG
 	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile)
+endif
+
+ifndef REPO
+	REPO :=
 endif
 
 # cassandra-dev     -> cassandra
@@ -25,6 +29,10 @@ BRANCH = $(shell echo "$(REPO)" | sed 's,.*/,,; s/-dev$$//; s/-cli$$//; s/-clust
 
 ifndef MAP_PORTS
 	MAP_PORTS := ""
+endif
+
+ifndef NOPORTS
+	NOPORTS :=
 endif
 
 ifdef LATEST

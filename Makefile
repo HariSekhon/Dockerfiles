@@ -40,6 +40,9 @@ build:
 	# do not just break as it will fail and move to next push target in build-push
 	for x in *; do \
 		[ -d $$x ] || continue; \
+		[ $$x = old ] && continue; \
+		[ $$x = ranger ] && continue; \
+		[ $$x = tests ] && continue; \
 		pushd $$x && \
 		$(MAKE) build && \
 		popd || \

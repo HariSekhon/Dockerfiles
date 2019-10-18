@@ -18,6 +18,7 @@ set -euo pipefail
 
 # dirs to exclude from iterating in Makefiles
 exclude_list="
+bash-tools
 old
 ranger
 tests

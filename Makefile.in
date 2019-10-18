@@ -70,8 +70,9 @@ build-push-versions: build-versions push-versions
 
 .PHONY: push
 push:
-	docker push $(REPO_TAG)
-	[ -f hooks/post_build ] && hooks/post_build || :
+#	docker push $(REPO_TAG)
+#	[ -f hooks/post_build ] && hooks/post_build || :
+	git push --all
 
 # use 'make push' rather than just 'docker push' to trigger hooks/post_build
 .PHONY: push-versions

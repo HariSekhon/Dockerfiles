@@ -92,6 +92,7 @@ More specific information can be found in the readme page under each respective 
 - [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/apache-drill/README-apache-drill.md)
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
+- [FakeS3](https://supso.org/projects/fake-s3) - Amazon S3 API simulator for testing without incurring AWS S3 costs - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/fakes3/README-fakes3.md)
 - [H2O](https://www.h2o.ai/) - distributed machine learning framework by [0xdata](https://www.h2o.ai/)
 - [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn) - distributed storage and compute cluster by Yahoo, [Cloudera](https://www.cloudera.com/) and [Hortonworks](https://hortonworks.com/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hadoop/README-hadoop.md)
 - [HBase](https://hbase.apache.org/) - distributed NoSQL datastore by Facebook (opens HBase shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hbase/README-hbase.md)

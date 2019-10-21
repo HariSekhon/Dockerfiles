@@ -3,7 +3,7 @@ FakeS3
 
 https://github.com/jubos/fake-s3
 
-Local lightweight S3 API server, useful for running tests without incurring S3 costs.
+Local lightweight Amazon S3 API server simulator. Useful for running tests without incurring AWS S3 costs.
 
 You must supply your license key as the argument (you can get one free for personal use and small projects from https://supso.org/projects/fake-s3).
 

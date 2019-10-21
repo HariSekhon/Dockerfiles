@@ -142,6 +142,22 @@ test:
 interactive:
 	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` sh
 
+.PHONY: browse
+browse:
+	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://github.com/harisekhon/dockerfiles"
+
+.PHONY: github
+github: browse
+	@:
+
+.PHONY: github-url
+github-url:
+	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://github.com/harisekhon/dockerfiles" | tee /dev/stderr | tr -d '\n' | paste_clipboard
+
 .PHONY: dockerhub
 dockerhub:
 	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://hub.docker.com/r/$(REPO)"
+
+.PHONY: dockerhub-url
+dockerhub-url:
+	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://hub.docker.com/r/$(REPO)" | tee /dev/stderr | tr -d '\n' | paste_clipboard

@@ -11,6 +11,14 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+ifneq ("$(wildcard bash-tools)", "")
+	BASH_TOOLS := bash-tools
+else ifneq ("$(wildcard ../bash-tools)", "")
+	BASH_TOOLS := ../bash-tools
+else
+	BASH_TOOLS := .
+endif
+
 ifndef TAG
 	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile)
 endif
@@ -70,9 +78,8 @@ build-push-versions: build-versions push-versions
 
 .PHONY: push
 push:
-#	docker push $(REPO_TAG)
-#	[ -f hooks/post_build ] && hooks/post_build || :
-	git push --all
+	docker push $(REPO_TAG)
+	[ -f hooks/post_build ] && hooks/post_build || :
 
 # use 'make push' rather than just 'docker push' to trigger hooks/post_build
 .PHONY: push-versions
@@ -134,3 +141,7 @@ test:
 .PHONY: interactive
 interactive:
 	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` sh
+
+.PHONY: dockerhub
+dockerhub:
+	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://hub.docker.com/r/$(REPO)"

@@ -54,7 +54,7 @@ bash-tools/check_bash_syntax.sh */hooks/post_build
 echo
 echo
 
-bash-tools/all.sh
+bash-tools/check_all.sh
 
 echo
 if [ -n "$branch" ]; then

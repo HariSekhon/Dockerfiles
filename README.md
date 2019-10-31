@@ -205,3 +205,7 @@ See the top level `Makefile` as well as the `Makefile.in` which is sourced per p
 ### Support
 
 Please raise tickets for issues and improvements at https://github.com/harisekhon/dockerfiles/issues
+
+### Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/HariSekhon/Dockerfiles.svg)](https://starchart.cc/HariSekhon/Dockerfiles)

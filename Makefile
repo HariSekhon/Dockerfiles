@@ -201,3 +201,16 @@ build-github:
 		popd
 	done
 	docker images | grep github
+
+.PHONY: status
+status:
+	@# skips bash-tools/Makefile
+	@#awk -F= '/REPO.*=/{print $$2}' */Makefile
+	@git grep -h 'REPO.*=' */Makefile | \
+	awk -F= '{print $$2}' | \
+	sed 's/:.*$$//' | \
+	sort -u | \
+	while read -r repo; do \
+		echo -n "$$repo:  "; \
+		check_dockerhub_repo_build_status.py -r "$$repo"; \
+	done

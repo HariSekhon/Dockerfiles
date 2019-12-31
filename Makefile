@@ -129,7 +129,8 @@ sync-hooks:
 	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
 	latest_hook=`ls -t */hooks/post_build | egrep -v "nagios-plugins-centos" | head -n1`; \
 	for x in */hooks/post_build; do \
-		if [[ "$$x" =~ nagios-plugins-centos ]]; then \
+		if [[ "$$x" =~ nagios-plugins-centos ]] || \
+		   [[ "$$x" =~ devops-.*-tools ]]; then \
 			continue; \
 		fi; \
 		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \

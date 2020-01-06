@@ -12,7 +12,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-version: '2.1'
+version: '3'
 services:
   solr:
     # using my own Docker images now as official solr doesn't have builds < 5

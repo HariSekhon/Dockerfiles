@@ -19,7 +19,7 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$srcdir/.."
 
-. bash-tools/utils.sh
+. bash-tools/lib/utils.sh
 
 section "Dockerfiles checks"
 
@@ -58,3 +58,5 @@ fi
 tests/projects_without_docker-compose_yet.sh
 
 tests/projects_without_README_yet.sh
+
+tests/check_for_new_versions.sh

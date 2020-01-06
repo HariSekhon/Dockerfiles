@@ -39,17 +39,19 @@ start_zookeeper(){
 
 start_master(){
     echo "Starting HBase Master..."
-    "$HBASE_HOME/bin/start-hbase.sh"
+    "$HBASE_HOME/hbase-daemon.sh" start master
     echo
 }
 
 start_regionserver(){
+    echo "Starting HBase RegionServer..."
     # HBase versions < 1.0 fail to start RegionServer without SSH being installed
     if [ "$(echo /hbase-* | sed 's,/hbase-,,' | cut -c 1)" = 0 ]; then
-        echo "Starting HBase RegionServer..."
         "$HBASE_HOME/bin/local-regionservers.sh" start 1
-        echo
+    else
+        "$HBASE_HOME/hbase-daemon.sh" start regionserver
     fi
+    echo
 }
 
 start_stargate(){

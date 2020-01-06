@@ -14,21 +14,21 @@
 FROM harisekhon/centos-java:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HADOOP_VERSION=2.9.0
+ARG HADOOP_VERSION=3.0.0
 
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
 
-LABEL Description="Hadoop Dev", \
+LABEL Description="Hadoop Dev" \
       "Hadoop Version"="$HADOOP_VERSION"
 
 WORKDIR /
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     yum install -y openssh-server openssh-clients tar which
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     yum install -y wget hostname && \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
@@ -39,21 +39,15 @@ RUN set -euxo pipefail && \
     # check tarball was extracted to the right place, helps ensure it's the right version and the link will work
     test -d "hadoop-$HADOOP_VERSION" && \
     ln -sv "hadoop-$HADOOP_VERSION" hadoop && \
+    mkdir /etc/hadoop && \
+    ln -s /hadoop/etc/hadoop /etc/hadoop/conf && \
     rm -fv "$TAR" && \
     { rm -rf hadoop/share/doc; : ; } && \
-    # Hadoop 1.x
-    #/hadoop/bin/hadoop namenode -format && \
-    # Hadoop 2.x
-    /hadoop/bin/hdfs namenode -format && \
-    # removing tar tries to remove systemd, which breaks
-    yum remove -y wget && \
     yum autoremove -y && \
     # gets autoremoved, ensure it's added back as Hadoop scripts need it
     yum install -y hostname && \
     yum clean all && \
-    rm -rf /var/cache/yum && \
-    mkdir /root/.ssh && \
-    chmod 0700 /root/.ssh
+    rm -rf /var/cache/yum
 
 COPY entrypoint.sh /
 COPY conf/core-site.xml /hadoop/etc/hadoop/
@@ -63,6 +57,34 @@ COPY conf/mapred-site.xml /hadoop/etc/hadoop/
 COPY profile.d/hadoop.sh /etc/profile.d/
 COPY ssh/config /root/.ssh/
 
-EXPOSE 8020 8042 8088 9000 10020 19888 50010 50020 50070 50075 50090
+RUN set -eux && \
+    # Hadoop 1.x
+    #/hadoop/bin/hadoop namenode -format && \
+    # Hadoop 2.x
+    /hadoop/bin/hdfs namenode -format && \
+    groupadd hadoop && \
+    useradd -g hadoop hdfs && \
+    useradd -g hadoop yarn && \
+    chown -R hdfs:hadoop /dfs/name && \
+    chgrp -R hadoop /hadoop/logs && \
+    chmod -R 0770 /hadoop/logs && \
+    mkdir -p /root/.ssh \
+          /home/hdfs/.ssh \
+          /home/yarn/.ssh && \
+    chown hdfs /home/hdfs/.ssh && \
+    chown yarn /home/yarn/.ssh && \
+    chmod 0700 /root/.ssh \
+               /home/hdfs/.ssh \
+               /home/yarn/.ssh
 
-CMD "/entrypoint.sh"
+ENV HDFS_NAMENODE_USER=hdfs
+ENV HDFS_SECONDARYNAMENODE_USER=hdfs
+ENV HDFS_DATANODE_USER=hdfs
+ENV YARN_RESOURCEMANAGER_USER=yarn
+ENV YARN_NODEMANAGER_USER=yarn
+
+#EXPOSE 8020 8042 8088 9000 10020 19888 50010 50020 50070 50075 50090
+# Hadoop 3.0 changed ports :-(
+EXPOSE 8020 8042 8088 9000 9868 9870 10020 19888 50010 50020 50090
+
+CMD ["/entrypoint.sh"]

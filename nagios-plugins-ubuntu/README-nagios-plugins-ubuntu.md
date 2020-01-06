@@ -4,7 +4,7 @@
 
 Docker image containing the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) - the largest, most advanced collection of production-grade Nagios monitoring code (over 350 programs).
 
-This docker image contains all dependencies pre-built on Alpine, CentOS, Debian and Ubuntu latest docker base images and are tagged as `:alpine`, `:centos` (`:latest`), `:debian` and `:ubuntu` respectively. The source for each OS build is available in adjacent directories in the [Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).
+This docker image contains all dependencies pre-built on Alpine, CentOS, Debian, Fedora and Ubuntu latest docker base images and are tagged as `:alpine`, `:centos` (`:latest`), `:debian`, `:fedora` and `:ubuntu` respectively. There are also `:python` and `:perl` tags containing only those respective plugins and dependencies, built on the python-slim and perl-slim standard images (which are built off debian). The source for each OS build is available in adjacent directories in the [Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).
 
 Specialised plugins for Hadoop, Big Data & NoSQL technologies, written by a former Clouderan ([Cloudera](http://www.cloudera.com) was the first Hadoop Big Data vendor) and current [Hortonworks](http://www.hortonworks.com) consultant.
 

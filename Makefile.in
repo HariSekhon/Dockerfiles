@@ -11,8 +11,20 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-ifeq "$(TAG)" ""
+ifneq ("$(wildcard bash-tools)", "")
+	BASH_TOOLS := bash-tools
+else ifneq ("$(wildcard ../bash-tools)", "")
+	BASH_TOOLS := ../bash-tools
+else
+	BASH_TOOLS := .
+endif
+
+ifndef TAG
 	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile)
+endif
+
+ifndef REPO
+	REPO :=
 endif
 
 # cassandra-dev     -> cassandra
@@ -25,6 +37,10 @@ BRANCH = $(shell echo "$(REPO)" | sed 's,.*/,,; s/-dev$$//; s/-cli$$//; s/-clust
 
 ifndef MAP_PORTS
 	MAP_PORTS := ""
+endif
+
+ifndef NOPORTS
+	NOPORTS :=
 endif
 
 ifdef LATEST
@@ -125,3 +141,27 @@ test:
 .PHONY: interactive
 interactive:
 	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` sh
+
+.PHONY: browse
+browse:
+	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://github.com/harisekhon/dockerfiles"
+
+.PHONY: github
+github: browse
+	@:
+
+.PHONY: github-url
+github-url:
+	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://github.com/harisekhon/dockerfiles" | tee /dev/stderr | tr -d '\n' | paste_clipboard
+
+.PHONY: dockerhub
+dockerhub:
+	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://hub.docker.com/r/$(REPO)"
+
+.PHONY: dockerhub-url
+dockerhub-url:
+	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://hub.docker.com/r/$(REPO)" | tee /dev/stderr | tr -d '\n' | paste_clipboard
+
+.PHONY: dockerhub-status
+dockerhub-status:
+	check_dockerhub_repo_build_status.py -r $(REPO)

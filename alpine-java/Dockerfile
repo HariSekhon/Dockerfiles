@@ -16,8 +16,18 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Alpine Java (OpenJDK)"
 
-RUN set -euxo pipefail && apk add --no-cache openjdk8
+ARG JAVA_VERSION=8
+ARG JAVA_RELEASE=JDK
 
-COPY profile.d/java.sh   /etc/profile.d/
+RUN set -eux && \
+    pkg="openjdk$JAVA_VERSION" && \
+    if [ "$JAVA_RELEASE" != "JDK" ]; then \
+        pkg="$pkg-jre"; \
+    fi && \
+    apk add --no-cache $pkg
 
-CMD /bin/sh
+COPY profile.d/java.sh /etc/profile.d/
+
+ENV JAVA_HOME=/usr
+
+CMD ["/bin/sh"]

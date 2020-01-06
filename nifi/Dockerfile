@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ENV PATH $PATH:/nifi/bin
 
-ARG NIFI_VERSION=1.8.0
+ARG NIFI_VERSION=1.9.0
 
 ARG TAR=nifi-${NIFI_VERSION}-bin.tar.gz
 
@@ -25,10 +25,10 @@ LABEL Description="Nifi" \
 
 WORKDIR /
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=nifi/${NIFI_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/nifi/${NIFI_VERSION}/${TAR}"; \
@@ -47,4 +47,4 @@ RUN set -euxo pipefail && \
 
 EXPOSE 8080
 
-CMD nifi.sh start; tail -f /dev/null /nifi/log*/*
+CMD ["bash", "-c", "nifi.sh start; tail -f /dev/null /nifi/log*/*"]

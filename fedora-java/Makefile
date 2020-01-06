@@ -11,10 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/tools
+REPO := harisekhon/fedora-java
 
 include ../Makefile.in
-
-#.PHONY: test
-#test:
-#	docker run -ti $(REPO) tests/all.sh

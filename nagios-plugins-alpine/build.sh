@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
@@ -13,22 +13,22 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -eu
+set -eux
 [ -n "${DEBUG:-}" ] && set -x
 
-mkdir -v /github
+mkdir -pv /github
 
-x=nagios-plugins
+repo=nagios-plugins
 
 apk add --no-cache git make
 
-if ! [ -d "/github/$x" ]; then
-    git clone "https://github.com/harisekhon/$x" "/github/$x"
-    cd "/github/$x"
+if ! [ -d "/github/$repo" ]; then
+    git clone "https://github.com/harisekhon/$repo" "/github/$repo"
+    cd "/github/$repo"
     git submodule update --init --recursive
 fi
 
-cd "/github/$x"
+cd "/github/$repo"
 
 make update zookeeper
 

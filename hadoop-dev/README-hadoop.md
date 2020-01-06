@@ -17,12 +17,14 @@ By default starts a pseudo-distributed cluster of 4 daemons in a single containe
   - NameNode - Filesystem Master
   - DataNode - Filesystem Worker
 
-Perfect for development and testing. For real scaling just start a single daemon in each container for fully distributed setup.
+Perfect for development and testing. Recommended to use Docker with 4GB+ RAM for this pseudo-cluster container.
+
+For real scaling just start a single daemon in each container for fully distributed setup.
 
 
-To run the all-in-one-container cluster and expose all the UIs for NodeManager, ResourceManager, NameNode and DataNode respectively, do:
+To run the all-in-one-container cluster and expose all the UIs for NodeManager, ResourceManager, Job History, DataNode and NameNode respectively, do:
 ```
-docker run -ti -p 8042 -p 8088 -p 19888 -p 50070 -p 50075 harisekhon/hadoop-dev
+docker run -ti -p 8042 -p 8088 -p 19888 -p 9064 -p 9070 harisekhon/hadoop-dev
 ```
 
 or with docker-compose:

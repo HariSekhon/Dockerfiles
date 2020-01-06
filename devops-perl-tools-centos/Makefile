@@ -11,6 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/pytools
+REPO := harisekhon/tools:centos
 
 include ../Makefile.in
+
+#.PHONY: test
+#test:
+#	docker run -ti $(REPO) tests/all.sh

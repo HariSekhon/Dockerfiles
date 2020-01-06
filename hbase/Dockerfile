@@ -11,37 +11,36 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM harisekhon/alpine-java:jre8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=2.1.1
+ARG HBASE_VERSION=2.1.3
 
 ENV PATH $PATH:/hbase/bin
 
 ENV JAVA_HOME=/usr
 
-LABEL Description="HBase Dev", \
+LABEL Description="HBase" \
       "HBase Version"="$HBASE_VERSION"
 
 WORKDIR /
 
-# bash => entrypoint.sh
-# java => hbase engine
-RUN set -euxo pipefail && \
-    apk add --no-cache bash openjdk8-jre-base
+# bash - needed for entrypoint.sh
+RUN apk add --no-cache bash
 
-RUN set -euxo pipefail && \
+# hadolint ignore=SC2039
+RUN set -eux && \
     apk add --no-cache wget tar && \
     # older versions have to use apache archive
     # HBase 0.90, 0.92, 0.94
-    if  [ "${HBASE_VERSION:0:4}" = "0.90" -o \
-          "${HBASE_VERSION:0:4}" = "0.92" -o \
-          "${HBASE_VERSION:0:4}" = "0.94" ]; then \
+    if  [ "${HBASE_VERSION:0:4}" = "0.90" ] || \
+        [ "${HBASE_VERSION:0:4}" = "0.92" ] || \
+        [ "${HBASE_VERSION:0:4}" = "0.94" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION.tar.gz"; \
     # HBase 0.95 / 0.96
-    elif [ "${HBASE_VERSION:0:4}" = "0.95" -o \
-           "${HBASE_VERSION:0:4}" = "0.96" ]; then \
+    elif [ "${HBASE_VERSION:0:4}" = "0.95" ] || \
+         [ "${HBASE_VERSION:0:4}" = "0.96" ]; then \
         url="https://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.98
@@ -49,7 +48,8 @@ RUN set -euxo pipefail && \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/$HBASE_VERSION/hbase-$HBASE_VERSION-hadoop2-bin.tar.gz"; \
     # HBase 0.99 / 1.0
-    elif [ "${HBASE_VERSION:0:4}" = "0.99" -o "${HBASE_VERSION:0:3}" = "1.0" ]; then \
+    elif [ "${HBASE_VERSION:0:4}" = "0.99" ] || \
+         [ "${HBASE_VERSION:0:3}" = "1.0" ]; then \
         url="http://www.apache.org/dyn/closer.lua?filename=hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz&action=download"; \
         url_archive="http://archive.apache.org/dist/hbase/hbase-$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz"; \
     # HBase 1.1+
@@ -67,19 +67,19 @@ RUN set -euxo pipefail && \
     test -d "hbase-$HBASE_VERSION" && \
     ln -sv "hbase-$HBASE_VERSION" hbase && \
     rm -fv "hbase-$HBASE_VERSION-bin.tar.gz" && \
-    { rm -rf hbase/{docs,src}; : ; } && \
+    rm -rf hbase/docs hbase/src && \
     mkdir /hbase-data && \
     apk del tar wget
 
 # Needed for HBase 2.0+ hbase-shell
 # asciidoctor solves 'NotImplementedError: fstat unimplemented unsupported or native support failed to load'
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    apk update && \
-    apk add jruby && \
-    apk add jruby-irb && \
-    apk add asciidoctor && \
-    echo exit | hbase shell
+RUN bash -c ' \
+    set -euxo pipefail && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    apk add --no-cache jruby jruby-irb asciidoctor && \
+    echo exit | hbase shell \
     # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit && \
+    '
 
 VOLUME /hbase-data
 
@@ -93,4 +93,4 @@ COPY profile.d/java.sh /etc/profile.d/
 # RS        16201 / 16301
 EXPOSE 2181 8080 8085 9090 9095 16000 16010 16201 16301
 
-CMD "/entrypoint.sh"
+ENTRYPOINT ["/entrypoint.sh"]

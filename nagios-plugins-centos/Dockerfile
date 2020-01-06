@@ -16,21 +16,19 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Advanced Nagios Plugins Collection (CentOS build)"
 
-ENV PATH $PATH:/github/nagios-plugins
-
-RUN mkdir -v /github
-
-WORKDIR /github
-
 COPY build.sh /
 
 RUN /build.sh
 
-ADD http://date.jsontest.com /etc/builddate
+#ADD http://date.jsontest.com /etc/builddate
+ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
 
+# get updates, faster rebuild
 RUN /build.sh
+
+ENV PATH $PATH:/github/nagios-plugins
 
 WORKDIR /github/nagios-plugins
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD /bin/bash -c "find /github/nagios-plugins -maxdepth 2 -type f -iname '[A-Za-z]*.pl' -o -iname '[A-Za-z]*.py' | grep -iv makefile | xargs -n1 basename | sort"
+CMD ["/bin/bash", "-c", "find /github/nagios-plugins -maxdepth 2 -type f -iname '[A-Za-z]*.pl' -o -iname '[A-Za-z]*.py' | grep -iv makefile | xargs -n1 basename | sort"]

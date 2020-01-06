@@ -20,7 +20,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 get_versions(){
-    curl -s http://downloads.alluxio.org/downloads/files/ |
+    curl -s https://downloads.alluxio.io/downloads/files/ |
     egrep -i -o 'href="[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
     sed 's/href="//'
 }

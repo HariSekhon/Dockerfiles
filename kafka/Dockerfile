@@ -32,10 +32,10 @@ LABEL Description="Apache Kafka by LinkedIn" \
 # bash => entrypoint.sh
 # perl => entrypoint.sh kafka configs in place edit for advertised hostname
 # java => kafka
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash perl openjdk8-jre-base
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache tar wget && \
     wget -t 10 --retry-connrefused -O "$TAR" "https://www.apache.org/dyn/closer.cgi?filename=/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz&action=download" || \
     wget -t 10 --retry-connrefused -O "$TAR" "http://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" && \
@@ -48,4 +48,4 @@ COPY entrypoint.sh /
 
 EXPOSE 2181 9092
 
-CMD /entrypoint.sh
+CMD ["/entrypoint.sh"]

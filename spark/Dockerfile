@@ -30,10 +30,10 @@ LABEL Description="Apache Spark" \
 
 WORKDIR /
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache wget tar && \
     wget -t 100 --retry-connrefused -O "${TAR}" "http://d3kbcqa49mib13.cloudfront.net/${TAR}" && \
     tar zxf "${TAR}" && \
@@ -48,4 +48,4 @@ COPY entrypoint.sh /
 
 EXPOSE 4040 7077 8080 8081
 
-CMD /entrypoint.sh
+CMD ["/entrypoint.sh"]

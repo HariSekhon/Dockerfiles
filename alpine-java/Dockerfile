@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Alpine Java (OpenJDK)"
 
-ARG JAVA_VERSION=8
+ARG JAVA_VERSION=7
 ARG JAVA_RELEASE=JDK
 
 RUN set -eux && \

@@ -29,7 +29,7 @@ LABEL Description="HashiCorp's Serf minimal" \
 
 WORKDIR /
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache wget unzip ca-certificates && \
     wget -t 100 --retry-connrefused -O "serf_${SERF_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/serf/${SERF_VERSION}/serf_${SERF_VERSION}_linux_amd64.zip" && \
     unzip "serf_${SERF_VERSION}_linux_amd64.zip" && \

@@ -28,14 +28,15 @@ WORKDIR /
 # bash   => entrypoint.sh
 # java   => presto engine
 # python => presto admin
-RUN set -euxo pipefail && \
+RUN set -eux && \
     #yum install -y bash java-1.8.0-openjdk-headless python
     # pycrypto # resolves to python2-crypto
     yum install -y bash python && \
     yum clean all && \
     rm -rf /var/cache/yum
 
-RUN set -euxo pipefail && \
+# hadolint ignore=DL3003
+RUN set -eux && \
     yum install -y gcc python-devel tar wget && \
     url="https://github.com/prestodb/presto-admin/releases/download/$PRESTO_ADMIN_VERSION/$TAR" && \
     wget -t 10 --retry-connrefused -O "${TAR}" "$url" && \

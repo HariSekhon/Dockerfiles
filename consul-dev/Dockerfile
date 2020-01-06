@@ -22,7 +22,7 @@
 FROM harisekhon/centos-github:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG CONSUL_VERSION=1.4.2
+ARG CONSUL_VERSION=1.3.0
 
 ENV PATH $PATH:/
 

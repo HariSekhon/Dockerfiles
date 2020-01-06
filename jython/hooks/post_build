@@ -70,7 +70,7 @@ else
     # This depends on the Dockerfiles content and version ordering being correct, but this also causes a lot of merge conflicts when merging improvements from master so not storing all previous versions commented out any more as it's more of an inconvenience
     #highest_tag="$(grep -i ARG.*${docker_version_base}_VERSION= Dockerfile | sed -n '$s/.*=//p' | awk -F. '{print $1"."$2}')"
     # use Git branch versions as the source of truth
-    branches="$(git branch -a | grep -i "remotes/.*/$docker_branch_base")"
+    branches="$(git branch -a | grep -i -e "[[:space:]]$docker_branch_base\\>" -e "remotes/.*/$docker_branch_base\\>")"
     if [ -n "$branches" ]; then
         #if [ "$(wc -l <<< "$branches")" -ge 2 ]; then
             highest_tag="$(sed 's/.*\/// ; s/.*-\([[:digit:]]\)/\1/' <<< "$branches" | sed 's/\./ /g' | sort -n -k1 -k2 | sed 's/ /./g' | tail -n 1)"
@@ -116,7 +116,8 @@ is_latest(){
 }
 
 if is_latest; then
-    if [ "$current_tag" = "latest" -a -x "$srcdir/../get_latest_version.sh" ]; then
+    if [ "$current_tag" = "latest" ] &&
+       [ -x "$srcdir/../get_latest_version.sh" ]; then
         newest_version="$("$srcdir/../get_latest_version.sh")"
         echo "docker tag \"$IMAGE_NAME\" \"$DOCKER_REPO:$newest_version\""
         docker tag "$IMAGE_NAME" "$DOCKER_REPO:$newest_version"

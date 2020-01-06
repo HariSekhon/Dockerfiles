@@ -11,8 +11,16 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+ifneq ("$(wildcard bash-tools/Makefile.in)", "")
+	include bash-tools/Makefile.in
+endif
+
 # On Ubuntu this fails to pushd otherwise
-SHELL=/usr/bin/env bash
+SHELL := /usr/bin/env bash
+
+REPO := HariSekhon/Dockerfiles
+
+CODE_FILES := $(shell find . -type f -name '*.py' -o -type f -name '*.sh' | grep -v -e bash-tools)
 
 # EUID /  UID not exported in Make
 # USER not populated in Docker
@@ -32,6 +40,7 @@ build:
 	# do not just break as it will fail and move to next push target in build-push
 	for x in *; do \
 		[ -d $$x ] || continue; \
+		tests/exclude.sh "$$x" && continue; \
 		pushd $$x && \
 		$(MAKE) build && \
 		popd || \
@@ -49,6 +58,7 @@ tags:
 nocache:
 	for x in *; do \
 		[ -d $$x ] || continue; \
+		tests/exclude.sh "$$x" && continue; \
 		pushd $$x && \
 		$(MAKE) nocache && \
 		popd || \
@@ -107,6 +117,7 @@ dockerpush:
 	# use make push which will also call hooks/post_build
 	for x in *; do \
 		[ -d "$$x" ] || continue; \
+		tests/exclude.sh "$$x" && continue; \
 		pushd "$$x" && \
 		$(MAKE) push && \
 		popd || \
@@ -118,7 +129,8 @@ sync-hooks:
 	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
 	latest_hook=`ls -t */hooks/post_build | egrep -v "nagios-plugins-centos" | head -n1`; \
 	for x in */hooks/post_build; do \
-		if [[ "$$x" =~ nagios-plugins-centos ]]; then \
+		if [[ "$$x" =~ nagios-plugins-centos ]] || \
+		   [[ "$$x" =~ devops-.*-tools ]]; then \
 			continue; \
 		fi; \
 		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
@@ -166,53 +178,31 @@ mergemasterpull:
 mergeall:
 	bash-tools/git_merge_all.sh
 
-.PHONY: update
-update: update2 build
-	:
-
-.PHONY: update2
-update2: update-no-recompile
-	:
-
-.PHONY: update-no-recompile
-update-no-recompile:
-	git pull
-	git submodule update --init --recursive
-
-.PHONY: update-submodules
-update-submodules:
-	git submodule update --init --remote
-.PHONY: updatem
-updatem: update-submodules
-	:
-
 # this would apply to all recipes
 #.ONESHELL:
 .PHONY: nagios-plugins
 nagios-plugins:
-	for x in \
-		nagios-plugins-centos \
-		nagios-plugins-ubuntu \
-		nagios-plugins-debian \
-		nagios-plugins-alpine \
-		; do \
+	for x in nagios-plugins*; do \
 		pushd $$x && \
-		$(MAKE) nocache test && \
-		{ $(MAKE) push & popd; } || \
-		break; \
+		$(MAKE) nocache push; \
+		popd; \
 	done
+	docker images | grep nagios-plugins
 
-.PHONY: github
-github:
+.PHONY: nagios
+nagios: nagios-plugins
+	:
+
+.PHONY: build-github
+build-github:
 	# has no test target, consider adding one
-	for x in \
-		centos-github \
-		ubuntu-github \
-		debian-github \
-		alpine-github \
-		; do \
+	for x in *-github; do \
 		pushd $$x && \
-		$(MAKE) nocache push && \
-		{ $(MAKE) push & popd; } || \
-		break; \
+		$(MAKE) nocache push; \
+		popd
 	done
+	docker images | grep github
+
+.PHONY: status
+status:
+	@tests/check_dockerhub_statuses.sh

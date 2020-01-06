@@ -96,37 +96,36 @@ push-versions:
 up: build test push
 	:
 
-.PHONY: run
-run:
+.PHONY: runcmd
+runcmd:
 	@if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run --rm $$ports $(REPO_TAG); \
-		docker run --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
-		docker run --rm $(REPO_TAG); \
 	else \
-		echo "docker run -ti --rm $(REPO_TAG) bash"; \
-		docker run -ti --rm $(REPO_TAG) bash; \
+		echo docker run -ti --rm $(REPO_TAG) bash; \
 	fi
 
-.PHONY: run-foreground
-run-foreground:
+.PHONY: runcmd-fg
+runcmd-fg:
 	@if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run -ti --rm $$ports $(REPO_TAG); \
-		docker run -ti --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
-		docker run --rm $(REPO_TAG); \
 	else \
 		echo "docker run --rm $(REPO_TAG)"; \
-		docker run --rm $(REPO_TAG); \
 	fi
 
+.PHONY: run
+run:
+	@#$(MAKE) run | tee /dev/stderr | sh
+	@cmd=`$(MAKE) runcommand`; echo "$$cmd"; $$cmd
+
 .PHONY: run-fg
-run-fg: run-foreground
-	:
+run-fg:
+	@cmd=`$(MAKE) runcommand-fg`; echo "$$cmd"; $$cmd
 
 .PHONY: sh
 sh:

@@ -19,7 +19,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 # bash   => entrypoint.sh
 # java   => presto cli
 # less   => presto pager
-RUN set -euxo pipefail && \
+RUN set -eux && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 less && \
     yum clean all
 
@@ -34,7 +34,7 @@ LABEL Description="Presto SQL" \
 # for faster build testing without having to download
 #COPY $CLI_TAR /
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     CLI_TAR="presto_client_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.tar.gz" && \
     CLI_TAR_DIR="presto_client_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}" && \
     CLI_JAR="presto-cli-${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}-executable.jar" && \

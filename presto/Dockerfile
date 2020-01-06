@@ -20,7 +20,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 # java   => presto engine
 # python => launcher script
 # less   => presto pager
-RUN set -euxo pipefail && \
+RUN set -eux && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 python less && \
     yum clean all
 
@@ -36,7 +36,7 @@ LABEL Description="Presto SQL" \
 #COPY $TAR /
 #COPY $CLI_TAR /
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     # not doing these as ARG above as that doesn't catch imperfections in the re-use of env vars via set -u
     TAR="presto_server_pkg.${PRESTO_VERSION}-t.${PRESTO_PKG_RELEASE}.tar.gz" && \
     # server package contains CLI but we need CLI package for ODBC + JDBC drivers
@@ -72,7 +72,7 @@ RUN set -euxo pipefail && \
     rm -rf /var/cache/yum
 
 # Add user support not running as root
-RUN set -euxo pipefail && \
+RUN set -eux && \
     mkdir -vp /var/lib/presto /var/log/presto && \
     useradd presto && \
     chown -R presto /etc/presto /usr/lib/presto /var/lib/presto /var/log/presto
@@ -82,4 +82,4 @@ COPY etc /etc/presto/
 
 EXPOSE 8080
 
-CMD /entrypoint.sh
+CMD ["/entrypoint.sh"]

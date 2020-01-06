@@ -16,28 +16,20 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Advanced Nagios Plugins Collection"
 
-ENV PATH $PATH:/github/nagios-plugins
-
-RUN mkdir -v /github
-
-WORKDIR /github
+COPY build.sh /
 
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
-RUN set -euxo pipefail && \
-    x=nagios-plugins && \
-    apk add --no-cache git make && \
-    git clone https://github.com/harisekhon/$x /github/$x && \
-    cd /github/$x && \
-    make build zookeeper && \
-    make apk-packages-remove && \
-    make test deep-clean && \
-    # leave git it's needed for Git-Python and check_git_branch_checkout.pl/py
-    apk del make && \
-    bash-tools/check_docker_clean.sh && \
-    # basic test for missing dependencies again
-    tests/help.sh
+RUN apk add --no-cache bash && /build.sh
+
+#ADD http://date.jsontest.com /etc/builddate
+ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
+
+# get updates, faster rebuild
+RUN /build.sh
+
+ENV PATH $PATH:/github/nagios-plugins
 
 WORKDIR /github/nagios-plugins
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD /bin/bash -c "find /github/nagios-plugins -maxdepth 2 -type f -iname '[A-Za-z]*.pl' -o -iname '[A-Za-z]*.py' | grep -iv makefile | xargs -n1 basename | sort"
+CMD ["/bin/bash", "-c", "find /github/nagios-plugins -maxdepth 2 -type f -iname '[A-Za-z]*.pl' -o -iname '[A-Za-z]*.py' | grep -iv makefile | xargs -n1 basename | sort"]

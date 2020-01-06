@@ -28,11 +28,11 @@ WORKDIR /
 # org.apache.jasper.JasperException: PWC6033: Error in Javac compilation for JSP PWC6199: Generated servlet error: The type java.io.ObjectInputStream cannot be resolved. It is indirectly referenced from required .class files
 #
 # use OpenJDK7 instead
-RUN set -euxo pipefail && \
+RUN set -eux && \
     # needs a full JDK now for master, not just JRE
     apk add --no-cache bash openjdk8 sudo
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache wget tar && \
     wget -t 100 --retry-connrefused -O "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" "http://alluxio.org/downloads/files/${ALLUXIO_VERSION}/alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \
     tar zxf "alluxio-${ALLUXIO_VERSION}-bin.tar.gz" && \

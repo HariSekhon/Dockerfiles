@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Java + CentOS (OpenJDK)"
 
-ARG JAVA_VERSION=8
+ARG JAVA_VERSION=9
 ARG JAVA_RELEASE=JDK
 
 RUN set -eux && \

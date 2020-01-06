@@ -18,7 +18,8 @@ LABEL Description="SuperSet (open source Analytics UI by AirBNB)"
 
 WORKDIR /
 
-RUN set -euxo pipefail && \
+RUN bash -c ' \
+    set -euxo pipefail && \
     yum upgrade python-setuptools && \
     yum install -y epel-release && \
     yum install -y gcc gcc-c++ libffi-devel python-devel python-pip python-wheel openssl-devel libsasl2-devel openldap-devel mysql-devel && \
@@ -34,8 +35,10 @@ RUN set -euxo pipefail && \
     yum remove -y gcc gcc-c++ libffi-devel python-devel openssl-devel libsasl2-devel openldap-devel mysql-devel && \
     yum autoremove -y && \
     yum clean all && \
-    rm -rf /var/cache/yum
+    rm -rf /var/cache/yum \
+    '
 
 EXPOSE 8088
 
-CMD bash -c "/usr/bin/superset runserver -p 8088"
+# hadolint ignore=DL3025
+CMD /usr/bin/superset runserver -p 8088

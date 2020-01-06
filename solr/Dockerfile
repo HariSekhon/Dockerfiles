@@ -15,22 +15,23 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SOLR_VERSION=7.6.0
+ARG SOLR_VERSION=7.7.1
 
 ARG TAR="solr-$SOLR_VERSION.tgz"
 
 ENV PATH $PATH:/solr/bin
 
-LABEL Description="Solr", \
+LABEL Description="Solr" \
       "Solr Version"="$SOLR_VERSION"
 
 WORKDIR /
 
 # Solr start script needs jar or unzip to extract war
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base
 
-RUN set -euxo pipefail && \
+# hadolint ignore=SC2039
+RUN set -eux && \
     apk add --no-cache wget tar && \
     # Solr 3.x has a different tarball
     if [ "${SOLR_VERSION:0:1}" = 3 ]; then \
@@ -58,8 +59,7 @@ RUN set -euxo pipefail && \
 COPY entrypoint.sh /
 COPY solr-start.sh /
 
-RUN set -euxo pipefail && \
-    set -euxo pipefail && \
+RUN set -eux && \
     adduser -S -s /bin/bash solr && \
     chown -R solr /solr* && \
     chmod 0555 /entrypoint.sh /solr-start.sh

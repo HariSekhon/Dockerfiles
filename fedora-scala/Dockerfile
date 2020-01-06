@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/fedora-java:jdk8
+FROM harisekhon/fedora-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SCALA_VERSION=2.10.6

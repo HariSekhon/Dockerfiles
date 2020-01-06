@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG ZOOKEEPER_VERSION=3.4.12
+ARG ZOOKEEPER_VERSION=3.4.13
 ARG TAR=zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
 ENV PATH $PATH:/zookeeper/bin
@@ -26,10 +26,10 @@ WORKDIR /
 
 # bash => entrypoint.sh
 # java => zookeeper
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}&action=download" && \
     url_archive="http://archive.apache.org/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/${TAR}" && \
@@ -39,11 +39,11 @@ RUN set -euxo pipefail && \
     rm -fv "${TAR}" && \
     ln -sv /zookeeper-${ZOOKEEPER_VERSION} /zookeeper && \
     cp -av /zookeeper/conf/zoo_sample.cfg /zookeeper/conf/zoo.cfg && \
-    { rm -rf zookeeper/{src,docs}; : ; } && \
+    rm -rf zookeeper/src zookeeper/docs && \
     apk del wget tar
 
 EXPOSE 2181 3181 4181
 
 COPY entrypoint.sh /
 
-CMD /entrypoint.sh
+CMD ["/entrypoint.sh"]

@@ -46,4 +46,4 @@ RUN bash -c ' \
 
 EXPOSE 54321
 
-CMD java -jar /h2o/h2o.jar
+CMD ["java", "-jar", "/h2o/h2o.jar"]

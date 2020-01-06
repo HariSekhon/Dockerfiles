@@ -23,8 +23,6 @@ ENV DEBIAN_FRONTEND noninteractive
 ARG JAVA_VERSION=8
 ARG JAVA_RELEASE=JRE
 
-ENV JAVA_HOME=/usr
-
 RUN bash -c ' \
     set -euxo pipefail && \
     apt-get update && \
@@ -40,4 +38,6 @@ RUN bash -c ' \
 
 COPY profile.d/java.sh /etc/profile.d/
 
-CMD /bin/bash
+ENV JAVA_HOME=/usr
+
+CMD ["/bin/bash"]

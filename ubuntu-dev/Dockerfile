@@ -27,12 +27,17 @@ RUN bash -c ' \
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
+                       bind9-host \
                        build-essential \
+                       cpanminus \
                        curl \
+                       dnsutils \
                        dstat \
                        expect \
                        ethtool \
+                       fping \
                        git \
+                       golang \
                        gradle \
                        groovy \
                        libdbd-mysql-perl \
@@ -43,22 +48,30 @@ RUN bash -c ' \
                        libsasl2-dev \
                        libsnappy-dev \
                        libssl-dev \
+                       lsof \
                        make \
                        maven \
+                       netcat \
+                       nmap \
+                       ncat \
                        net-tools \
+                       procps \
                        python-dev \
                        python-pip \
                        python-setuptools \
                        ruby \
                        ruby-dev \
+                       socat \
                        scala \
                        sysstat \
+                       strace \
+                       tcpdump \
                        unzip \
                        vim \
                        wget \
                        zip && \
     # for sbt https repo
-    apt-get install -y --no-install-recommends apt-transport-https && \
+    apt-get install -y --no-install-recommends apt-transport-https gnupg2 && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
@@ -73,9 +86,9 @@ RUN bash -c ' \
 # Jython
 RUN bash -c ' \
     set -euxo pipefail && \
-    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_install.sh && \
-    wget https://raw.githubusercontent.com/HariSekhon/pytools/master/jython_autoinstall.exp && \
+    wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_install.sh && \
+    wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
     bash jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp'
 
-CMD /bin/bash
+CMD ["/bin/bash"]

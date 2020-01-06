@@ -21,7 +21,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 # python => launcher script
 # less   => presto pager
 # curl   => ./get_presto_version.sh
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base python less
 
 WORKDIR /
@@ -35,7 +35,8 @@ LABEL Description="Presto SQL" \
 
 COPY get_presto_versions.sh /
 
-RUN set -euxo pipefail && \
+RUN bash -c ' \
+    set -euxo pipefail && \
     apk add --no-cache curl wget tar && \
     if [ "$PRESTO_VERSION" = "latest" ]; then \
         # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_VERSION as part of make build to know the image to push
@@ -49,6 +50,7 @@ RUN set -euxo pipefail && \
     chmod +x "presto-cli-${PRESTO_VERSION}-executable.jar" && \
     ln -s "/presto-cli-${PRESTO_VERSION}-executable.jar" /usr/bin/presto && \
     rm -v get_presto_versions.sh && \
-    apk del curl tar wget
+    apk del curl tar wget \
+    '
 
 ENTRYPOINT ["/usr/bin/presto"]

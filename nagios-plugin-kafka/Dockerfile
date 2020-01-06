@@ -24,10 +24,11 @@ WORKDIR /github
 
 # bash => test scripts
 # java => kafka
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8
 
-RUN set -euxo pipefail && \
+# hadolint ignore=DL3003
+RUN set -eux && \
     apk add --no-cache git make alpine-sdk && \
     x=nagios-plugin-kafka; \
     git clone https://github.com/harisekhon/$x /github/$x && \
@@ -42,4 +43,4 @@ RUN set -euxo pipefail && \
 
 WORKDIR /github/nagios-plugin-kafka
 
-CMD ./check_kafka --help
+CMD ["./check_kafka", "--help"]

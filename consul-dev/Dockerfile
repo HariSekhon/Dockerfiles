@@ -36,7 +36,7 @@ WORKDIR /
 
 #ADD https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     yum install -y wget unzip net-tools && \
     wget -t 100 --retry-connrefused -O "consul_${CONSUL_VERSION}_linux_amd64.zip" "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip" && \
     unzip "consul_${CONSUL_VERSION}_linux_amd64.zip" && \
@@ -50,4 +50,4 @@ RUN set -euxo pipefail && \
 
 EXPOSE 8400 8500 8600
 
-CMD /consul agent -dev -data-dir /tmp -client 0.0.0.0
+CMD ["/consul", "agent", "-dev", "-data-dir", "/tmp", "-client", "0.0.0.0"]

@@ -22,7 +22,8 @@ RUN mkdir -v /github
 
 WORKDIR /github
 
-RUN set -euxo pipefail && \
+# hadolint ignore=DL3003
+RUN set -eux && \
     x=spotify-tools; \
     apk add --no-cache make git && \
     git clone https://github.com/harisekhon/$x /github/$x && \
@@ -34,4 +35,5 @@ RUN set -euxo pipefail && \
 WORKDIR /github/spotify-tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD sh -c "find /github/spotify-tools -maxdepth 1 -type f -name '[A-Za-z]*.pl' | xargs -n1 basename | sort"
+# hadolint ignore=DL3025
+CMD find /github/spotify-tools -maxdepth 1 -type f -name '[A-Za-z]*.pl' | xargs -n1 basename | sort

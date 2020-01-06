@@ -16,23 +16,23 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG SOLRCLOUD_VERSION=7.6.0
+ARG SOLRCLOUD_VERSION=7.7.1
 
 ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 
 ENV PATH $PATH:/solr/bin
 
-LABEL Description="SolrCloud", \
+LABEL Description="SolrCloud" \
       "Solr Version"="$SOLRCLOUD_VERSION"
 
 WORKDIR /
 
 # SolrCloud solr -e cloud asks for lsof to detect if something is listening on 8983
 # Solr start script needs jar or unzip to extract war
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base lsof
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache wget tar && \
     # Solr 4+ only
     url="http://www.apache.org/dyn/closer.lua?filename=lucene/solr/$SOLRCLOUD_VERSION/$TAR&action=download"; \
@@ -54,7 +54,7 @@ RUN set -euxo pipefail && \
 COPY entrypoint.sh /
 COPY solr-start.sh /
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     adduser -S -s /bin/bash solr && \
     chown -R solr /solr* && \
     chmod 0555 /entrypoint.sh /solr-start.sh

@@ -20,7 +20,9 @@ set -euo pipefail
 
 get_versions(){
     curl -s http://archive.apache.org/dist/zookeeper/ |
-    egrep -i -o 'href="zookeeper-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
+    # no grep -P on Mac, requires GNU grep :-/
+    egrep -i -o 'href="zookeeper-[[:digit:]]+(\.[[:digit:]]+)+(-[[:alpha:]]+)?' |
+    grep -v -e alpha -e beta |
     sed 's/href="zookeeper-//'
 }
 

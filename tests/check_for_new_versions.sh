@@ -21,7 +21,7 @@ srcdir2="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir2/.."
 
-. bash-tools/utils.sh
+. bash-tools/lib/utils.sh
 
 srcdir="$srcdir2"
 

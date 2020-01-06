@@ -19,12 +19,12 @@ ARG TAR="TeamCity-$TEAMCITY_VERSION.tar.gz"
 
 ENV PATH $PATH:/opt/TeamCity/bin
 
-LABEL Description="TeamCity", \
+LABEL Description="TeamCity" \
       "TeamCity Version"="$TEAMCITY_VERSION"
 
 WORKDIR /opt
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     yum install -y tar && \
     curl -L "https://download.jetbrains.com/teamcity/$TAR" > "$TAR" && \
     tar zxf "$TAR" && \
@@ -36,4 +36,4 @@ RUN set -euxo pipefail && \
 
 EXPOSE 8111
 
-CMD teamcity-server.sh start
+CMD ["teamcity-server.sh", "start"]

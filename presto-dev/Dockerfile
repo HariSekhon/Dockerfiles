@@ -21,7 +21,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 # python => launcher script
 # less   => presto pager
 # curl   => ./get_presto_version.sh
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base python less
 
 WORKDIR /
@@ -35,14 +35,13 @@ LABEL Description="Presto SQL" \
 
 COPY get_presto_versions.sh /
 
-RUN set -euxo pipefail && \
+# hadolint ignore=DL4006
+RUN set -eux && \
     TAR="presto-server-${PRESTO_VERSION}.tar.gz" && \
     apk add --no-cache curl wget tar && \
     if [ "$PRESTO_VERSION" = "latest" ]; then \
         # determine latest version automatically - this will be used by DockerHub automated builds but if calling Make it will pre-populate PRESTO_VERSION as part of make build to know the image to push
-        set +o pipefail; \
         PRESTO_VERSION=$(./get_presto_versions.sh | head -n1); \
-        set -o pipefail; \
     fi && \
     server_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz" && \
     cli_url="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar" && \
@@ -62,7 +61,7 @@ RUN set -euxo pipefail && \
     apk del curl tar wget
 
 # Add user support not running as root
-RUN set -euxo pipefail && \
+RUN set -eux && \
     adduser -D presto && \
     mkdir -pv /presto/logs /var/lib/presto && \
     chown -R presto /presto/logs /var/lib/presto
@@ -72,4 +71,4 @@ COPY etc /presto/etc
 
 EXPOSE 8080
 
-CMD /entrypoint.sh
+CMD ["/entrypoint.sh"]

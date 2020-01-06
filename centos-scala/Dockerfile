@@ -18,10 +18,10 @@ ARG SCALA_VERSION=2.10.6
 
 LABEL Description="Scala + CentOS (+OpenJDK)"
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     rpm -ivh http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm && \
     yum autoremove -y && \
     yum clean all && \
     rm -rf /var/cache/yum
 
-CMD /bin/bash
+CMD ["/bin/bash"]

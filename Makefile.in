@@ -121,11 +121,11 @@ runcmd-fg:
 .PHONY: run
 run:
 	@#$(MAKE) run | tee /dev/stderr | sh
-	@cmd=`$(MAKE) runcommand`; echo "$$cmd"; $$cmd
+	@cmd=`$(MAKE) runcmd`; echo "$$cmd"; $$cmd
 
 .PHONY: run-fg
 run-fg:
-	@cmd=`$(MAKE) runcommand-fg`; echo "$$cmd"; $$cmd
+	@cmd=`$(MAKE) runcmd-fg`; echo "$$cmd"; $$cmd
 
 .PHONY: sh
 sh:

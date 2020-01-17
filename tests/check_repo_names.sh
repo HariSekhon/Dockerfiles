@@ -29,6 +29,7 @@ for x in *; do
     [ -f "$x/Makefile" ] || continue
     # exclude things not in Git yet
     #git log -1 "$x" 2>/dev/null | grep -q '.*' || continue
+    # shellcheck disable=SC2001
     y="$(sed 's/\(.*nagios-plugins\)-\([[:alpha:]]*\)$/\1:\2/' <<< "$x")"
     grep -q -e "^REPO := harisekhon/$y" "$x/Makefile" ||
         { echo "$x Makefile REPO mismatch!"; exit 1; }

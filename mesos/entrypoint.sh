@@ -17,7 +17,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 if [ $# -gt 0 ]; then
-    exec $@
+    exec "$@"
 else
     # This only runs a master
     #/usr/bin/mesos-local

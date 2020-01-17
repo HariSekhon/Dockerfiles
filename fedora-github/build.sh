@@ -22,10 +22,10 @@ cd /github
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | bash
 
-if [ -n "$@" ]; then
-    export REPOS="bash-tools lib pylib tools pytools" # spotify-tools
+if [ -n "$*" ]; then
+    export REPOS="$*"
 else
-    export REPOS="$@"
+    export REPOS="bash-tools lib pylib tools pytools" # spotify-tools
 fi
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 

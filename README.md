@@ -28,7 +28,7 @@ Cloud & Big Data Contractor, United Kingdom
 
 (ex-Cloudera, former Hortonworks Consultant)
 
-https://www.linkedin.com/in/harisekhon
+[https://www.linkedin.com/in/harisekhon](https://www.linkedin.com/in/harisekhon)
 ###### (you're welcome to connect with me on LinkedIn)
 
 ### Ready to run Docker images

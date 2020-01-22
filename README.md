@@ -24,7 +24,7 @@ These are reusable tests that can anybody can implement and can be found in my [
 
 Hari Sekhon
 
-Big Data Contractor, United Kingdom
+Cloud & Big Data Contractor, United Kingdom
 
 (ex-Cloudera, former Hortonworks Consultant)
 

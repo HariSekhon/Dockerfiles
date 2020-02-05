@@ -28,6 +28,12 @@ export PROJECT=Dockerfiles
 # shellcheck disable=SC1090
 . "$srcdir/../bash-tools/check_pytools.sh"
 
+# set in check_pytools.sh
+# shellcheck disable=SC2154
+if [ -n "${}skip_checks:-}" ]; then
+    exit 0
+fi
+
 pushd "$srcdir/.."
 
 dockerfiles_check_git_branches.py .

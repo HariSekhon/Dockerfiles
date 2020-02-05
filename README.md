@@ -1,6 +1,10 @@
 Hadoop, Big Data, NoSQL & DevOps Docker Images
 ==================
 [![Build Status](https://travis-ci.org/HariSekhon/Dockerfiles.svg?branch=master)](https://travis-ci.org/HariSekhon/Dockerfiles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/network) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
+[![CI Mac](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Mac/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Mac%22)
+[![CI Ubuntu](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Ubuntu/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Ubuntu%22)
+[![CI CentOS](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20CentOS/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+CentOS%22)
+[![CI Alpine](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Alpine/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Alpine%22)
 
 ##### Contains 50+ DockerHub repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.
 

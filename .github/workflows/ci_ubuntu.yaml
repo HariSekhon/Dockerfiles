@@ -41,5 +41,5 @@ jobs:
         key: ${{ runner.os }}-pip-dockerfiles
         restore-keys: |
           ${{ runner.os }}-pip-
-    - name: build & test
-      run: make build test
+    - name: test
+      run: make test

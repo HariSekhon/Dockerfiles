@@ -41,4 +41,5 @@ jobs:
         cd /tmp &&
         git clone https://github.com/harisekhon/dockerfiles &&
         cd dockerfiles &&
-        make build test
+        git submodule update --init &&
+        make test

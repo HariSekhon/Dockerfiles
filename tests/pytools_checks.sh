@@ -30,7 +30,7 @@ export PROJECT=Dockerfiles
 
 # set in check_pytools.sh
 # shellcheck disable=SC2154
-if [ -n "${}skip_checks:-}" ]; then
+if [ -n "${skip_checks:-}" ]; then
     exit 0
 fi
 

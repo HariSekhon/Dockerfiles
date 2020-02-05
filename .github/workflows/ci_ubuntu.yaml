@@ -37,9 +37,9 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/cache@v1
       with:
-        path: ~/.cpanm
-        key: ${{ runner.os }}-cpanm-${{ hashFiles('**/cpan-requirements.txt') }}
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-dockerfiles
         restore-keys: |
-          ${{ runner.os }}-cpanm-
+          ${{ runner.os }}-pip-
     - name: build & test
       run: make build test

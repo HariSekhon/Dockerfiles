@@ -45,6 +45,6 @@ jobs:
         git clone https://github.com/harisekhon/dockerfiles
     - name: test
       run: |
-        cd dockerfiles &&
+        cd /tmp/dockerfiles &&
         git submodule update --init &&
         make test

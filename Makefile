@@ -128,9 +128,10 @@ dockerpush:
 .PHONY: sync-hooks
 sync-hooks:
 	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
-	latest_hook=`ls -t */hooks/post_build | egrep -v "nagios-plugins-centos" | head -n1`; \
+	latest_hook=`ls -t */hooks/post_build | egrep -v -e github -e "nagios-plugins" | head -n1`; \
 	for x in */hooks/post_build; do \
-		if [[ "$$x" =~ nagios-plugins-centos ]] || \
+		if [[ "$$x" =~ nagios-plugins ]] || \
+		   [[ "$$x" =~ github ]] || \
 		   [[ "$$x" =~ devops-.*-tools ]]; then \
 			continue; \
 		fi; \
@@ -141,7 +142,19 @@ sync-hooks:
 		if [ "$$latest_hook" != "$$x" ]; then \
 			cp -v "$$latest_hook" "$$x"; \
 		fi; \
-	done; \
+	done
+	echo
+	latest_hook=`ls -t *github/hooks/post_build | head -n1`; \
+	for x in *-github/hooks/post_build; do \
+		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
+			echo "$$x/hooks/post_build has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
+
 
 .PHONY: commit-hooks
 commit-hooks:

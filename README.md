@@ -5,6 +5,8 @@ Hadoop, Big Data, NoSQL & DevOps Docker Images
 [![CI Mac](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Mac/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Mac%22)
 [![CI Ubuntu](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Ubuntu/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Ubuntu%22)
 [![CI CentOS](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20CentOS/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+CentOS%22)
+[![CI CentOS 7](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20CentOS%207/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+CentOS+7%22)
+[![CI CentOS 8](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20CentOS%208/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+CentOS+8%22)
 [![CI Alpine](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Alpine/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Alpine%22)
 
 ##### Contains 50+ DockerHub repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.

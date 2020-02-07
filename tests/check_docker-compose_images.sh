@@ -29,7 +29,7 @@ for x in *; do
     for compose_file in "$x/"*docker-compose*.yml; do
         # this allows us to skip things like rabbitmq-cluster
         if grep -q image "$compose_file"; then
-            if ! grep -Eq "^[[:space:]]*image:[[:space:]]*harisekhon/$x(:\\\${VERSION:-latest}|:latest)?[[:space:]]*$" "$compose_file"; then
+            if ! grep -Eq "^[[:space:]]*image:[[:space:]]*harisekhon/$x(:\\$\\{VERSION:-latest\\}|:latest)?[[:space:]]*$" "$compose_file"; then
                 echo "$x docker-compose.yml image mismatch!"
                 exit 1
             fi

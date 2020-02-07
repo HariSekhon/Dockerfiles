@@ -39,5 +39,7 @@ jobs:
           ${{ runner.os }}-pip-
     - name: git submodules
       run: git submodule update --init
+    - name: build
+      run: make
     - name: test
       run: make test

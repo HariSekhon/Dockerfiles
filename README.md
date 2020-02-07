@@ -125,33 +125,34 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 - [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 450+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, CouchDB, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, Presto, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
   - Tags:
-    - nagios-plugins:latest (centos)
-    - nagios-plugins:alpine
-    - nagios-plugins:centos
-    - nagios-plugins:fedora
-    - nagios-plugins:debian
-    - nagios-plugins:ubuntu
-    - nagios-plugins:perl
-    - nagios-plugins:python
+    - `harisekhon/nagios-plugins:latest` (centos)
+    - `harisekhon/nagios-plugins:alpine`
+    - `harisekhon/nagios-plugins:centos`
+    - `harisekhon/nagios-plugins:fedora`
+    - `harisekhon/nagios-plugins:debian`
+    - `harisekhon/nagios-plugins:ubuntu`
+    - `harisekhon/nagios-plugins:perl`
+    - `harisekhon/nagios-plugins:python`
 - [DevOps Python Tools](https://github.com/harisekhon/devops-python-tools) - 75+ tools for Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython - CLI tools
 - [DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools) - 25+ tools for Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
 - [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript for automation, auto timed track flick through etc.
 
-- Alpine + all Github repos pre-built
-- CentOS + all Github repos pre-built
-- Debian + all Github repos pre-built
-- Fedora + all Github repos pre-built
-- Ubuntu + all Github repos pre-built
+- all Github repos pre-built on major Linux distros with CLI programs located at `/github/<project>`
+  - `harisekhon/github:alpine`
+  - `harisekhon/github:centos`
+  - `harisekhon/github:debian`
+  - `harisekhon/github:fedora`
+  - `harisekhon/github:ubuntu`
 
 ##### Base Images:
 
 Dev images:
 
-- Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
-- Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- `harisekhon/github:alpine-dev` - Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- `harisekhon/github:centos-dev` - CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- `harisekhon/github:debian-dev` - Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- `harisekhon/github:fedora-dev` - Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- `harisekhon/github:ubuntu-dev` - Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images of Java / Scala:
 

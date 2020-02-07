@@ -32,12 +32,20 @@ CODE_FILES := $(shell find . -type f -name '*.py' -o -type f -name '*.sh' | grep
 #	SUDO = sudo
 #endif
 
-.PHONY: all
-all: build
-	:
-
 .PHONY: build
-build:
+build: init
+	@$(MAKE) system-packages
+
+.PHONY: init
+init:
+	git submodule update --init --recursive
+
+.PHONY: all
+all: build test docker-build
+	@:
+
+.PHONY: docker-build
+docker-build:
 	# do not just break as it will fail and move to next push target in build-push
 	for x in *; do \
 		[ -d $$x ] || continue; \
@@ -49,7 +57,7 @@ build:
 	done
 
 .PHONY: build-push
-build-push: build dockerpush
+build-push: docker-build docker-push
 	:
 
 tags:
@@ -113,8 +121,8 @@ pull:
 dockerpull:
 	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x || exit 1; done
 
-.PHONY: dockerpush
-dockerpush:
+.PHONY: docker-push
+docker-push:
 	# use make push which will also call hooks/post_build
 	for x in *; do \
 		[ -d "$$x" ] || continue; \

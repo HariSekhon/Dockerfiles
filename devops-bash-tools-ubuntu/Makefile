@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/bash-tools:centos
+REPO := harisekhon/bash-tools:ubuntu
 
 include ../Makefile.in

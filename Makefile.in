@@ -43,6 +43,10 @@ ifndef NOPORTS
 	NOPORTS :=
 endif
 
+ifndef RUN_ARGS
+	RUN_ARGS := bash
+endif
+
 ifdef LATEST
 	TAG=latest
 endif
@@ -104,7 +108,7 @@ runcmd:
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
 	else \
-		echo docker run -ti --rm $(REPO_TAG) bash; \
+		echo docker run -ti --rm $(REPO_TAG) $(RUN_ARGS); \
 	fi
 
 .PHONY: runcmd-fg

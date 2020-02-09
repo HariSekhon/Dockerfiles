@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/bash-tools:ubuntu
+REPO := harisekhon/bash-tools:debian
 
 include ../Makefile.in

@@ -136,10 +136,11 @@ docker-push:
 .PHONY: sync-hooks
 sync-hooks:
 	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
-	latest_hook=`ls -t */hooks/post_build | egrep -v -e github -e "nagios-plugins" | head -n1`; \
+	latest_hook=`ls -t */hooks/post_build | grep -Ev -e github -e '(alpine|centos|debian|fedora|ubuntu)-dev' -e "nagios-plugins" | head -n1`; \
 	for x in */hooks/post_build; do \
 		if [[ "$$x" =~ nagios-plugins ]] || \
 		   [[ "$$x" =~ github ]] || \
+		   [[ "$$x" =~ (alpine|centos|debian|fedora|ubuntu)-dev ]] || \
 		   [[ "$$x" =~ devops-.*-tools ]]; then \
 			continue; \
 		fi; \
@@ -154,6 +155,17 @@ sync-hooks:
 	echo
 	latest_hook=`ls -t *github/hooks/post_build | head -n1`; \
 	for x in *-github/hooks/post_build; do \
+		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
+			echo "$$x/hooks/post_build has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
+	echo
+	latest_hook=`ls -t {alpine,centos,debian,fedora,ubuntu}-dev/hooks/post_build | head -n1`; \
+	for x in {alpine,centos,debian,fedora,ubuntu}-dev/hooks/post_build; do \
 		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
 			echo "$$x/hooks/post_build has pending modifications, skipping..."; \
 			continue; \

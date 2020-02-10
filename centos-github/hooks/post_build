@@ -48,6 +48,12 @@ else
     new_tag="${new_tag/\///github:}"
 fi
 
+if [[ "$IMAGE_NAME" =~ centos ]]; then
+    set -x
+    docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
+    docker push "$DOCKER_REPO:latest"
+fi
+
 set -x
 docker tag "$IMAGE_NAME" "$new_tag"
 docker push "$new_tag"

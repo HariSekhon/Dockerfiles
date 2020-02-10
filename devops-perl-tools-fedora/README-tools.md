@@ -17,7 +17,7 @@ docker run harisekhon/perl-tools
 Run any given program:
 
 ```
-docker run harisekhon/tools <program> <args>
+docker run harisekhon/perl-tools <program> <args>
 ```
 
 All programs have `--help` to list the available options.

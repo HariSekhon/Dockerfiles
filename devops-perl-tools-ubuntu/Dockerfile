@@ -19,19 +19,13 @@ LABEL Description="DevOps Perl Tools (Ubuntu)"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV PATH $PATH:/github/tools
+COPY build.sh /
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    export REPOS=tools && \
-    apt-get update && apt-get install -y curl && \
-    mkdir -pv /github && \
-    cd /github && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
-    '
+RUN /build.sh
 
 WORKDIR /github/tools
+
+ENV PATH $PATH:/github/tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD ["/bin/bash", "-c", "find /github/tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"]

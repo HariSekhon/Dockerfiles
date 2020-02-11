@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Bash Tools"
 
-ADD build.sh /
+COPY build.sh /
 
 RUN mkdir -pv /github && \
     cd /github && \

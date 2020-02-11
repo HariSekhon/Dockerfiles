@@ -23,7 +23,7 @@ COPY build.sh /
 
 RUN /build.sh
 
-WORKDIR /github/tools
+WORKDIR /github/perl-tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD ["/bin/bash", "-c", "find /github/perl-tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"]

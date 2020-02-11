@@ -22,6 +22,8 @@ mkdir -pv /github
 
 cd /github
 
+# don't --no-cache because you'll just re-download it later
+# instead cache for duration of build and rely on docker_clean.sh at end to optimize layer
 apk update
 
 apk add bash curl

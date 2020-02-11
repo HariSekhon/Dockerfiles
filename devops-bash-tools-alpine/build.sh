@@ -22,7 +22,11 @@ mkdir -pv /github
 
 cd /github
 
-apk add --no-cache bash curl git make
+# don't --no-cache because you'll just re-download it later
+# instead cache for duration of build and rely on docker_clean.sh at end to optimize layer
+apk update
+
+apk add bash curl git make
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 

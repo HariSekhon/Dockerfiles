@@ -17,16 +17,9 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools (Alpine)"
 
-RUN apk add --no-cache curl bash
+COPY build.sh /
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    export REPOS=pytools NOJAVA=1 && \
-    mkdir -pv /github && \
-    cd /github && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
-    '
+RUN /build.sh
     # allows numpy to compile with musl instead of glibc
     #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \

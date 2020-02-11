@@ -21,10 +21,6 @@ LABEL Description="Python Tools"
 # not using Ubuntu any more
 #ENV DEBIAN_FRONTEND noninteractive
 
-RUN mkdir -v /github
-
-WORKDIR /github
-
 # not using Alpine any more
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 #RUN set -euxo pipefail && \
@@ -33,15 +29,11 @@ WORKDIR /github
     #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    export REPOS=pytools NOJAVA=1 && \
-    yum install make git -y && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
+COPY build.sh /
+
+RUN /build.sh
     # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
     #pip uninstall -y certifi && pip install certifi==2015.04.28
-    '
 
 WORKDIR /github/pytools
 

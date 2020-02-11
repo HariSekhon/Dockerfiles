@@ -17,12 +17,21 @@ set -eu #o pipefail  # not available in sh
 [ -n "${DEBUG:-}" ] && set -x
 
 export REPOS=tools
-apk update && apk add bash curl
+
+mkdir -pv /github
+
+cd /github
+
+apk update
+
+apk add bash curl
 
 exec bash <<EOF
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+
 EOF

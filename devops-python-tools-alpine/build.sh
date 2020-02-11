@@ -17,7 +17,12 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 export REPOS=pytools
-apk update && apk add bash curl
+
+# don't --no-cache because you'll just re-download it later
+# instead cache for duration of build and rely on docker_clean.sh at end to optimize layer
+apk update
+
+apk add bash curl
 
 exec bash <<EOF
 set -euo pipefail

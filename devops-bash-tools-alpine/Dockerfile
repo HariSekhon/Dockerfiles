@@ -18,10 +18,7 @@ LABEL Description="Bash Tools"
 
 COPY build.sh /
 
-RUN mkdir -pv /github && \
-    cd /github && \
-    /build.sh && \
-    rm /build.sh
+RUN /build.sh
 
 WORKDIR /github/bash-tools
 

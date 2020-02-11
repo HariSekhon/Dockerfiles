@@ -18,9 +18,6 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools"
 
-# not using Ubuntu any more
-#ENV DEBIAN_FRONTEND noninteractive
-
 # not using Alpine any more
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 #RUN set -euxo pipefail && \

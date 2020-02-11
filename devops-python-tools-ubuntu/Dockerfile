@@ -20,15 +20,9 @@ LABEL Description="Python Tools (Ubuntu)"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    export REPOS=pytools NOJAVA=1 && \
-    mkdir -pv /github && \
-    cd /github && \
-    apt-get update && apt-get install -y curl && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
-    '
+COPY build.sh /
+
+RUN /build.sh
 
 # Jython
 #

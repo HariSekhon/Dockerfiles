@@ -11,6 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+#FROM golang:alpine AS builder
 FROM golang:stretch AS builder
 
 WORKDIR /
@@ -32,6 +33,11 @@ WORKDIR /
 #   #apt-get purge -y curl && apt-get autoremove -y && apt-get clean -y
 
 # just build straight from source instead
+
+# musl-dev vs libc-dev results in the same size binary
+#RUN apk add --no-cache git gcc musl-dev && \
+#    go get -ldflags "-linkmode external -extldflags -static" -u github.com/wallix/awless
+
 RUN go get -ldflags "-linkmode external -extldflags -static" -u github.com/wallix/awless
 
 # ============

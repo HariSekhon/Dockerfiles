@@ -17,6 +17,13 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 export REPOS=bash-tools
+
+mkdir -pv /github
+
+cd /github
+
 apk add --no-cache bash curl git make
+
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

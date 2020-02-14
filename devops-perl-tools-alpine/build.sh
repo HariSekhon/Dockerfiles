@@ -16,7 +16,7 @@
 set -eu #o pipefail  # not available in sh
 [ -n "${DEBUG:-}" ] && set -x
 
-export REPOS=tools
+export REPOS=perl-tools
 
 mkdir -pv /github
 

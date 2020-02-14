@@ -16,7 +16,7 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-export REPOS=tools
+export REPOS=perl-tools
 
 mkdir -pv /github
 

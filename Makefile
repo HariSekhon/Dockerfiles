@@ -50,9 +50,9 @@ docker-build:
 	for x in *; do \
 		[ -d $$x ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) build && \
-		popd || \
+		cd - || \
 		exit 1; \
 	done
 
@@ -68,9 +68,9 @@ nocache:
 	for x in *; do \
 		[ -d $$x ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) nocache && \
-		popd || \
+		cd - || \
 		exit 1; \
 	done
 
@@ -95,7 +95,7 @@ nocache:
 .PHONY: test
 test:
 	@# this would test everything but would call test-deps over and over inefficiently
-	@#for x in *; do [ -d $$x ] || continue; pushd $$x; $(MAKE) test; popd; done
+	@#for x in *; do [ -d $$x ] || continue; cd "$$x"; $(MAKE) test; cd -; done
 	@#$(MAKE) test-deps
 	@#find . -name Dockerfile | xargs -n1 docklint
 	tests/all.sh
@@ -127,9 +127,9 @@ docker-push:
 	for x in *; do \
 		[ -d "$$x" ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
-		pushd "$$x" && \
+		cd "$$x" && \
 		$(MAKE) push && \
-		popd || \
+		cd - || \
 		exit 1; \
 	done
 
@@ -217,9 +217,9 @@ mergeall:
 .PHONY: nagios-plugins
 nagios-plugins:
 	for x in nagios-plugins*; do \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) nocache push; \
-		popd; \
+		cd -; \
 	done
 	docker images | grep nagios-plugins
 
@@ -231,9 +231,9 @@ nagios: nagios-plugins
 build-github:
 	# has no test target, consider adding one
 	for x in *-github; do \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) nocache push; \
-		popd
+		cd -
 	done
 	docker images | grep github
 

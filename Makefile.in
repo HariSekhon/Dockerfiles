@@ -100,36 +100,48 @@ push-versions:
 up: build test push
 	:
 
-.PHONY: runcmd
-runcmd:
-	@if [ -n "$(MAP_PORTS)" ]; then \
+# ============================================================================ #
+# complex fix to allow makefile testing to work
+CMD := $(shell \
+	if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
 	else \
 		echo docker run -ti --rm $(REPO_TAG) $(RUN_ARGS); \
-	fi
+	fi \
+)
 
-.PHONY: runcmd-fg
-runcmd-fg:
-	@if [ -n "$(MAP_PORTS)" ]; then \
+CMD_FG := $(shell \
+	if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run -ti --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
 	else \
 		echo "docker run --rm $(REPO_TAG)"; \
-	fi
+	fi \
+)
+
+.PHONY: runcmd
+runcmd:
+	echo "$(CMD)"
+
+.PHONY: runcmd-fg
+runcmd-fg:
+	echo "$(CMD_FG)"
 
 .PHONY: run
-run:
+run: runcmd
 	@#$(MAKE) run | tee /dev/stderr | sh
-	@cmd=`$(MAKE) runcmd`; echo "$$cmd"; $$cmd
+	@$(CMD)
 
 .PHONY: run-fg
-run-fg:
-	@cmd=`$(MAKE) runcmd-fg`; echo "$$cmd"; $$cmd
+run-fg: runcmd-fg
+	@$(CMD_FG)
+
+# ============================================================================ #
 
 .PHONY: sh
 sh:

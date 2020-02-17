@@ -144,7 +144,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
     - `harisekhon/nagios-plugins:ubuntu`
     - `harisekhon/nagios-plugins:perl`
     - `harisekhon/nagios-plugins:python`
-- `harisekhon/tools` - DevOps Tools containing hundreds of programs from all 3 of the below repos:
+- `harisekhon/tools` - DevOps Tools superset of the below images, containing hundreds of programs:
   - `harisekhon/pytools` - [DevOps Python Tools](https://github.com/harisekhon/devops-python-tools) - 80+ DevOps CLI tools tools for AWS, Log Anonymizer, Spark, Hadoop, HBase, Hive, Impala, Linux, Docker, Spark Data Converters & Validators (Avro/Parquet/JSON/CSV/INI/XML/YAML), Travis CI, Ambari, Blueprints, CloudFormation, Elasticsearch, Solr, Pig etc.
   - `harisekhon/bash-tools` - [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools) - 100+ DevOps CLI tools for AWS, GCP, Kubernetes, Hadoop, Hive, Impala, Kafka, Docker, LDAP, Git, Code & build linting, package management for Linux / Mac / Python / Perl / Ruby / NodeJS / Golang, and lots more random goodies
   - `harisekhon/perl-tools` - [DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools) - 25+ DevOps CLI Tools - Log Anonymizer, Hadoop HDFS & Hive tools, Solr/SolrCloud CLI, SQL ReCaser (MySQL, PostgreSQL, AWS Redshift, Snowflake, Apache Drill, Hive, Impala, Cassandra CQL, Microsoft SQL Server, Oracle, Couchbase N1QL, Dockerfiles, Pig Latin, Neo4j, InfluxDB), Linux, Nginx stats & HTTP(S) URL watchers for load balanced web farms, Ambari FreeIPA Kerberos, Datameer etc.

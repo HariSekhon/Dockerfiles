@@ -162,7 +162,8 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 Dev images:
 
-- `harisekhon/dev:centos` / `harisekhon/dev:latest`- CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- `harisekhon/dev:latest` = `harisekhon/dev:centos`
+- `harisekhon/dev:centos` / - CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
 - `harisekhon/dev:alpine` - Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 - `harisekhon/dev:debian` - Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 - `harisekhon/dev:fedora` - Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.

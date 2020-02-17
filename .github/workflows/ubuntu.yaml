@@ -1,6 +1,6 @@
 #
 #  Author: Hari Sekhon
-#  Date: 2020-02-04 21:40:04 +0000 (Tue, 04 Feb 2020)
+#  Date: Tue Feb 4 09:53:28 2020 +0000
 #
 #  vim:ts=2:sts=2:sw=2:et
 #
@@ -16,7 +16,7 @@ name: CI Ubuntu
 #env:
 #  DEBUG: 1
 
-on:
+on: # [push]
   push:
     branches:
       - master
@@ -27,16 +27,16 @@ on:
 jobs:
   build:
     #name: build
-    timeout-minutes: 10
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v1
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-dockerfiles
+        key: ${{ runner.os }}-pip-dockerfiles  # ${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
-          ${{ runner.os }}-pip-
+          ${{ runner.os }}-pip-dockerfiles
     - name: build
       run: make
     - name: test

@@ -38,7 +38,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-dockerfiles
     - name: brew update
-      run: which brew && brew update || :
+      run: which brew && brew update || echo
     - name: build
       run: make
     - name: test

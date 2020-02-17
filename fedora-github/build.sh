@@ -25,7 +25,7 @@ curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/ins
 if [ -n "$*" ]; then
     export REPOS="$*"
 else
-    export REPOS="bash-tools lib pylib tools pytools" # spotify-tools
+    export REPOS="bash-tools lib pylib perl-tools pytools" # spotify-tools
 fi
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 

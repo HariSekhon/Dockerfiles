@@ -227,6 +227,28 @@ nagios-plugins:
 nagios: nagios-plugins
 	:
 
+.PHONY: perl-tools
+perl-tools:
+	for x in devops-perl-tools-*; do \
+		cd "$$x" && \
+		$(MAKE) nocache push; \
+		cd -; \
+	done
+	docker images | grep perl-tools
+
+.PHONY: pytools
+pytools: python-tools
+	@:
+
+.PHONY: python-tools
+python-tools:
+	for x in devops-python-tools-*; do \
+		cd "$$x" && \
+		$(MAKE) nocache push; \
+		cd -; \
+	done
+	docker images | grep pytools
+
 .PHONY: build-github
 build-github:
 	# has no test target, consider adding one

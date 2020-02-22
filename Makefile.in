@@ -61,6 +61,10 @@ endif
 build:
 	docker build -t $(REPO_TAG) .
 
+.PHONY: cloudbuild
+cloudbuild:
+	gcloud builds submit --tag gcr.io/$(REPO_TAG) .
+
 .PHONY: nocache
 nocache:
 	docker build -t $(REPO_TAG) --no-cache .

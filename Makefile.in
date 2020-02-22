@@ -63,6 +63,10 @@ build:
 
 .PHONY: cloudbuild
 cloudbuild:
+	gcloud builds submit --tag $(REPO_TAG) .
+
+.PHONY: gcp-cloudbuild
+gcp-cloudbuild:
 	gcloud builds submit --tag gcr.io/$(REPO_TAG) .
 
 .PHONY: nocache

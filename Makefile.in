@@ -67,7 +67,8 @@ cloudbuild:
 
 .PHONY: gcp-cloudbuild
 gcp-cloudbuild:
-	gcloud builds submit --tag gcr.io/$(REPO_TAG) .
+	@# replace the prefix with the project ID
+	gcloud builds submit --tag gcr.io/$$GOOGLE_CLOUD_PROJECT/`echo "$(REPO_TAG)" | sed 's,.*/,,'` .
 
 .PHONY: nocache
 nocache:

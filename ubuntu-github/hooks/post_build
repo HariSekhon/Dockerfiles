@@ -57,3 +57,10 @@ fi
 set -x
 docker tag "$IMAGE_NAME" "$new_tag"
 docker push "$new_tag"
+set +x
+if [[ "$new_tag" =~ centos ]]; then
+    set -x
+    new_tag_latest="${new_tag%%:*}:latest"
+    docker tag "$new_tag" "$new_tag_latest"
+    docker push "$new_tag_latest"
+fi

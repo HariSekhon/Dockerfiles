@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
@@ -32,4 +32,6 @@ else
     args="-rpc-addr $ip"
 fi
 
-exec /consul $@ $args
+# want arg splitting
+# shellcheck disable=SC2086
+exec /consul "$@" $args

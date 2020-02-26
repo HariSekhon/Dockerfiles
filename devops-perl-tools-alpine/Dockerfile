@@ -17,20 +17,14 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools (Alpine)"
 
-RUN apk add --no-cache curl bash
+# used by build.sh to figure out which repo to bootstrap
+ENV PATH $PATH:/github/perl-tools
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    export REPOS=tools && \
-    mkdir -pv /github && \
-    cd /github && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
-    '
+COPY build.sh /
 
-ENV PATH $PATH:/github/tools
+RUN /build.sh
 
-WORKDIR /github/tools
+WORKDIR /github/perl-tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD ["/bin/bash", "-c", "find /github/tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"]
+CMD ["/bin/bash", "-c", "find /github/perl-tools -maxdepth 1 -type f -iname '[A-Za-z]*.pl' | xargs -n1 basename | sort"]

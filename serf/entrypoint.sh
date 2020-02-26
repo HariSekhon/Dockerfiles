@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
@@ -23,8 +23,10 @@ ip="$(ifconfig | grep -m1 'inet addr:' | sed 's/.*inet addr://;s/ .*$//')"
 
 # none of this seems necessary with serf
 args=""
-if [ $# -eq 0 -o "${1:-}" = "agent" ]; then
+if [ $# -eq 0 ] || [ "${1:-}" = "agent" ]; then
     args="-bind $ip -rpc-addr $ip:7373"
 fi
 
-exec /serf $@ $args
+# want arg splitting
+# shellcheck disable=SC2086
+exec /serf "$@" $args

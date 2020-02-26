@@ -16,14 +16,12 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 export JAVA_HOME="${JAVA_HOME:-/usr}"
 
 export PATH="$PATH:/hadoop/sbin:/hadoop/bin"
 
 if [ $# -gt 0 ]; then
-    exec $@
+    exec "$@"
 else
     for x in root hdfs yarn; do
         if ! [ -f "$x/.ssh/id_rsa" ]; then
@@ -67,9 +65,9 @@ EOF
         ssh-keyscan localhost || :
         ssh-keyscan 0.0.0.0   || :
     fi | tee -a /root/.ssh/known_hosts
-    hostname=$(hostname -f)
+    hostname="$(hostname -f)"
     if ! grep -q "$hostname" /root/.ssh/known_hosts; then
-        ssh-keyscan $hostname || :
+        ssh-keyscan "$hostname" || :
     fi | tee -a /root/.ssh/known_hosts
 
     mkdir -pv /hadoop/logs

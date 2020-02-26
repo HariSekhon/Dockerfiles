@@ -20,9 +20,10 @@ ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython
 ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 
+# behaviour has changed in RHEL 8 - dnf doesn't install any packages if any of them can't be found
 RUN bash -c ' \
     set -euxo pipefail && \
-    yum install -y \
+    for x in \
     bind-utils \
     curl \
     cyrus-sasl-devel \
@@ -54,9 +55,18 @@ RUN bash -c ' \
     perl-DBD-MySQL \
     perl-libwww-perl \
     procps \
+    python \
     python-devel \
     python-pip \
     python-setuptools \
+    python2 \
+    python2-devel \
+    python2-pip \
+    python2-setuptools \
+    python3 \
+    python3-devel \
+    python3-pip \
+    python3-setuptools \
     ruby \
     ruby-devel \
     snappy-devel \
@@ -72,8 +82,10 @@ RUN bash -c ' \
     yum-plugin-security \
     yum-security \
     zip \
-    epel-release && \
-    yum install -y jwhois && \
+    epel-release \
+    jwhois; do \
+        rpm -q "$x" >/dev/null || yum install -y "$x" || :; \
+    done; \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
     yum install -y --nogpgcheck sbt && \
     yum autoremove -y && \

@@ -16,12 +16,10 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 export SOLR_USER="solr"
 
 if [ $# -gt 0 ]; then
-    exec $@
+    exec "$@"
 else
     if [ "$(whoami)" = "root" ]; then
         su - "$SOLR_USER" <<-EOF

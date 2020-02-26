@@ -19,6 +19,7 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir"
 
+# shellcheck disable=SC1090
 . "$srcdir/../bash-tools/utils.sh"
 
 section "Presto CLI - building Development Versions"
@@ -29,7 +30,7 @@ if [ -n "${NOCACHE:-}" ]; then
 fi
 
 if [ -n "$*" ]; then
-    versions_to_build="$@"
+    versions_to_build="$*"
 else
     # do not build latest version by default, leave that to automated build
     # originally did ../presto-dev/get_presto_versions.sh but it's needed inside the Dockerfile too to determine the latest version so much exist in this local context anyway
@@ -42,7 +43,7 @@ for version in $versions_to_build; do
     if [ "$version" = "latest" ]; then
         version="$(./get_presto_versions.sh | head -n1)"
     fi
-    let count+=1
+    ((count+=1))
     section2 "Building Presto CLI version $version"
     docker build -t "harisekhon/presto-cli-dev:$version" --build-arg PRESTO_DEVELOPMENT_VERSION="$version" $no_cache .
     [ -n "${NOPUSH:-}" ] || docker push "harisekhon/presto-cli-dev:$version"

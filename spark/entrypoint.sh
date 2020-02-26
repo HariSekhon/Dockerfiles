@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
@@ -33,7 +33,7 @@ else
 fi
 echo
 
-spark_version="$(ls -d /spark-* | sed 's|/spark-||;s/-.*//')"
+spark_version="$(find / -maxdepth 1 -type d -name 'spark-*' | sed 's|/spark-||;s/-.*//')"
 
 echo "Spark Version = $spark_version"
 echo
@@ -51,8 +51,8 @@ sleep 2
 echo "Starting Worker"
 # 1.3 worker only registers successfully if calling master by hostname
 if [ "${spark_version:0:3}" = "1.3" ]; then
-    echo "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077
-    "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077 &>/spark/logs/worker.log &
+    echo "$SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077"
+    "$SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$(hostname -f):7077" &>/spark/logs/worker.log &
 else
     echo "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker "spark://$ip_address:7077"
     "$SPARK_HOME"/bin/spark-class org.apache.spark.deploy.worker.Worker "spark://$ip_address:7077" &>/spark/logs/worker.log &
@@ -63,7 +63,7 @@ sleep 2
 if [ -t 0 ]; then
     echo -e "\nStarting Spark Shell to connect to standalone daemons\n"
     # less than about 480m SQLContext fails to load and gets a bunch of NPEs
-    $SPARK_HOME/bin/spark-shell --driver-memory 500m --master spark://$(hostname -f):7077
+    "$SPARK_HOME/bin/spark-shell" --driver-memory 500m --master "spark://$(hostname -f):7077"
     echo -e "\n\nSpark Shell exited\n\n"
 else
     echo -e "

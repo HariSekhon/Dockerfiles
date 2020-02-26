@@ -13,21 +13,13 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -euo pipefail
+set -eu #o pipefail
 [ -n "${DEBUG:-}" ] && set -x
-
-export REPOS=bash-tools
 
 mkdir -pv /github
 
 cd /github
 
-# don't --no-cache because you'll just re-download it later
-# instead cache for duration of build and rely on docker_clean.sh at end to optimize layer
-apk update
-
-apk add bash curl git make
-
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+wget -O- https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/bootstrap.sh | sh
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

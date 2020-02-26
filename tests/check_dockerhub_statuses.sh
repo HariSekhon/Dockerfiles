@@ -25,7 +25,7 @@ cd "$srcdir/.."
 
 # using git grep skips bash-tools/Makefile in submodule as well as any uncommitted Makefiles for new docker images
 #awk -F= '/REPO.*=/{print $$2}' */Makefile
-git grep -h 'REPO.*=' */Makefile |
+git grep -h 'REPO.*=' -- */Makefile |
 awk -F= '{print $2}' |
 sed 's/:/ /g' |
 sort -u |
@@ -37,5 +37,7 @@ while read -r repo tag; do
         echo -n "($tag)"
     fi
     echo -n ":  "
+    # want opts splitting
+    # shellcheck disable=SC2086
     check_dockerhub_repo_build_status.py --repo "$repo" --pages 3 $opts || :
 done

@@ -29,11 +29,11 @@ tags=$(git tag)
 for tag in $tags; do
     tag_base="${tag%%-[[:digit:]]*}"
     tag_version="${tag##*[[:alpha:]]-}"
-    [ -n "$selection" -a "$selection" != "$tag_base" ] && continue
+    [ -n "$selection" ] && [ "$selection" != "$tag_base" ] && continue
     echo "checking out tag $tag"
     git checkout "$tag"
     find . -maxdepth 1 -type d |
-    while read directory; do
+    while read -r directory; do
         directory="${directory##*/}"
         if [ "$directory" = "$tag_base" ]; then
             pushd "$directory" &>/dev/null

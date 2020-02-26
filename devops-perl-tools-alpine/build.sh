@@ -13,27 +13,13 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -eu #o pipefail  # not available in sh
+set -eu #o pipefail
 [ -n "${DEBUG:-}" ] && set -x
-
-export REPOS=perl-tools
 
 mkdir -pv /github
 
 cd /github
 
-# don't --no-cache because you'll just re-download it later
-# instead cache for duration of build and rely on docker_clean.sh at end to optimize layer
-apk update
+wget -O- https://raw.githubusercontent.com/HariSekhon/devops-perl-tools/master/setup/bootstrap.sh | sh
 
-apk add bash curl
-
-exec bash <<EOF
-set -euo pipefail
-[ -n "${DEBUG:-}" ] && set -x
-
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
-
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-
-EOF
+curl -s https://raw.githubusercontent.com/HariSekhon/devops-perl-tools/master/docker_clean.sh | sh

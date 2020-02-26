@@ -16,12 +16,13 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Bash Tools"
 
+# used by build.sh to figure out which repo to bootstrap
+ENV PATH $PATH:/github/bash-tools
+
 COPY build.sh /
 
 RUN /build.sh
 
 WORKDIR /github/bash-tools
-
-ENV PATH $PATH:/github/bash-tools
 
 CMD ["/bin/bash", "-c", "find /github/bash-tools -maxdepth 1 -type f -iname '[A-Za-z]*.sh' | xargs -n1 basename | sort"]

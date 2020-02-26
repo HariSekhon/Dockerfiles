@@ -26,7 +26,7 @@ For many more tools see the [Tools](https://github.com/harisekhon/devops-perl-to
 
 Hari Sekhon
 
-Big Data Contractor, United Kingdom
+Cloud & Big Data Contractor, United Kingdom
 
 https://www.linkedin.com/in/harisekhon
 

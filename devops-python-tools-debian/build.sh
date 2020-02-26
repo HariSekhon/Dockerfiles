@@ -16,7 +16,27 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-export REPOS=pytools NOJAVA=1
-apt-get update && apt-get install -y curl
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+# doesn't work because it executes from within docker container where Makefile isn't available
+#srcdir="$(dirname "$0")"
+#repo="$(sed -n '/REPO/ s,.*/,,; s/:.*//; /tools/ p' Makefile)"
+
+repo="$(env | grep ^PATH= | sed 's/.*github\///; s/:.*//')"
+
+github="/github"
+
+mkdir -pv "$github"
+
+cd "$github"
+
+if type -P apt-get &>/dev/null; then
+    apt-get update
+    apt-get install -y curl
+fi
+
+curl -sS "https://raw.githubusercontent.com/HariSekhon/$repo/master/setup/bootstrap.sh" | sh
+
+cd "$github/$repo"
+
+make test
+
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

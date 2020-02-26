@@ -18,6 +18,12 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools"
 
+#ENV JYTHON_HOME=/opt/jython
+#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
+
+# used by build.sh to figure out which repo to bootstrap
+ENV PATH $PATH:/github/pytools
+
 # not using Alpine any more
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 #RUN set -euxo pipefail && \
@@ -46,11 +52,6 @@ WORKDIR /github/pytools
 #    yum remove -y wget expect && \
 #    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
 #    rm -f jython_install.sh jython_autoinstall.exp
-
-
-#ENV JYTHON_HOME=/opt/jython
-#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
-ENV PATH $PATH:/github/pytools
 
 #COPY profile.d/java.sh /etc/profile.d/
 

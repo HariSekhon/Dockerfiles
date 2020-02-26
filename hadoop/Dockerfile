@@ -65,6 +65,8 @@ RUN set -eux && \
     groupadd hadoop && \
     useradd -g hadoop hdfs && \
     useradd -g hadoop yarn && \
+    mkdir -p /dfs/name && \
+    mkdir -p /hadoop/logs && \
     chown -R hdfs:hadoop /dfs/name && \
     chgrp -R hadoop /hadoop/logs && \
     chmod -R 0770 /hadoop/logs && \

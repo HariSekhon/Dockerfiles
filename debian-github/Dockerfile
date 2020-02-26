@@ -22,41 +22,9 @@ RUN mkdir -pv /github
 
 WORKDIR /github
 
-RUN curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install_sbt.sh | sh && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+COPY build.sh /
 
-RUN REPOS=bash-tools lib tools \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh.sh | sh && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-
-#RUN REPOS=spotify-tools NO_TEST=1 \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh.sh | sh && \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-
-RUN REPOS=pylib pytools \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh.sh | sh && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-    # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
-    #pip uninstall -y certifi && pip install certifi==2015.04.28
-
-# could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
-# instead build each project with a different build tool and don't deep-clean so we have them cached for faster development in docker
-RUN REPOS=lib-java BUILD=gradle \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh.sh | sh && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-
-RUN REPOS=nagios-plugin-kafka BUILD=mvn \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh.sh | sh && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-
-#RUN REPOS=spark-apps BUILD=sbt \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh.sh | sh && \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-
-# inherited instead now
-#RUN REPOS=nagios-plugins OPTS="zookeeper" NO_TEST=1 \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/fetch_build_git_repos.sh.sh | sh && \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+RUN /build.sh
 
 COPY profile.d/java.sh /etc/profile.d/
 
@@ -64,4 +32,4 @@ ENV JAVA_HOME=/usr
 
 ENV PATH $PATH:/github/nagios-plugins:/github/devops-perl-tools:/github/devops-python-tools:/github/bash-tools:/github/spotify
 
-CMD /bin/bash
+CMD ["/bin/bash"]

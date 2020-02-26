@@ -19,7 +19,9 @@ LABEL Description="Java + Fedora (OpenJDK)"
 ARG JAVA_VERSION=7
 ARG JAVA_RELEASE=JDK
 
-RUN set -euxo pipefail && \
+ENV JAVA_HOME=/usr
+
+RUN set -eux && \
     pkg="java-1.$JAVA_VERSION.0-openjdk" && \
     if [ "$JAVA_RELEASE" = "JDK" ]; then \
         pkg="$pkg-devel"; \
@@ -32,6 +34,4 @@ RUN set -euxo pipefail && \
 
 COPY profile.d/java.sh /etc/profile.d/
 
-ENV JAVA_HOME=/usr
-
-CMD /bin/bash
+CMD ["/bin/bash"]

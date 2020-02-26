@@ -14,7 +14,7 @@
 FROM alpine:latest
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG APACHE_DRILL_VERSION=1.15.0
+ARG APACHE_DRILL_VERSION=1.17.0
 
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 
@@ -34,11 +34,11 @@ WORKDIR /
 # java       => apache drill engine
 # supervisor => drillbit standalone runner for nagios checks
 # which      => drill-embedded script
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache bash openjdk8 supervisor which && \
     mkdir -p /etc/supervisor.d
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     apk add --no-cache wget tar && \
     url="http://www.apache.org/dyn/closer.lua?filename=drill/drill-${APACHE_DRILL_VERSION}/${TAR}&action=download"; \
     url_archive="http://archive.apache.org/dist/drill/drill-${APACHE_DRILL_VERSION}/${TAR}"; \
@@ -55,7 +55,7 @@ RUN set -euxo pipefail && \
     apk del tar wget
 
 # need to keep this here to make it easier to launch supervisor with just a ZOOKEEPER_HOST and DRILL_HEAP environment variables
-RUN set -euxo pipefail && \
+RUN set -eux && \
     # for older versions
     sed -i -e "s/-Xms1G/-Xms\$DRILL_MAX_HEAP/" apache-drill/conf/drill-env.sh && \
     sed -i -e "s/^DRILL_MAX_HEAP=.*/DRILL_MAX_HEAP=\"${DRILL_HEAP}\"/" apache-drill/conf/drill-env.sh && \
@@ -68,4 +68,4 @@ COPY supervisord.d/drill.ini /etc/supervisor.d/
 
 EXPOSE 8047
 
-CMD /entrypoint.sh
+CMD ["/entrypoint.sh"]

@@ -54,7 +54,6 @@ RUN bash -c ' \
         maven \
         netcat \
         nmap \
-        ncat \
         net-tools \
         procps \
         python-dev \

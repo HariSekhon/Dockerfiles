@@ -16,16 +16,10 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-export REPOS=bash-tools
-
 mkdir -pv /github
 
 cd /github
 
-apt-get update
-
-apt-get install -y curl git make
-
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/bootstrap.sh | sh
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

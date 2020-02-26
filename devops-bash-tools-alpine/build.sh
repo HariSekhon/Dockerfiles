@@ -30,4 +30,4 @@ cd "$github/$repo"
 
 make test
 
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

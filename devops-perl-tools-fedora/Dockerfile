@@ -17,6 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools (Fedora)"
 
+# used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/perl-tools
 
 COPY build.sh /

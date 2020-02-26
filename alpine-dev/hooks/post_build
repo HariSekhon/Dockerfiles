@@ -47,6 +47,7 @@ else
     new_tag="${new_tag//-}"
     new_tag="${new_tag/\///dev:}"
 fi
+echo "docker repo built as $DOCKER_REPO, going to tag as $new_tag"
 
 if [[ "$IMAGE_NAME" =~ dev:centos ]]; then
     set -x

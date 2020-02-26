@@ -175,6 +175,34 @@ sync-hooks:
 		fi; \
 	done
 
+.PHONY: sync-builds
+sync-builds:
+	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
+	latest_hook=`ls -t devops-*-tools-*/build.sh | grep -v alpine | head -n1`; \
+	for x in devops-*-tools-*/build.sh; do \
+		if [[ "$$x" =~ alpine ]]; then \
+			continue; \
+		fi; \
+		if git status --porcelain "$$x/build.sh" | grep -q '^.M'; then \
+			echo "$$x/build.sh has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
+	echo
+	latest_hook=`ls -t devops-*-tools-alpine/build.sh | head -n1`; \
+	for x in devops-*-tools-alpine/build.sh; do \
+		if git status --porcelain "$$x/build.sh" | grep -q '^.M'; then \
+			echo "$$x/build.sh has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
+
 
 .PHONY: commit-hooks
 commit-hooks:

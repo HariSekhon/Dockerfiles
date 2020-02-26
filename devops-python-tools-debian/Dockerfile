@@ -20,15 +20,15 @@ LABEL Description="Python Tools (Debian)"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    export REPOS=pytools NOJAVA=1 && \
-    mkdir -pv /github && \
-    cd /github && \
-    apt-get update && apt-get install -y curl && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
-    '
+#ENV JYTHON_HOME=/opt/jython
+#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
+
+# used by build.sh to figure out which repo to bootstrap
+ENV PATH $PATH:/github/pytools
+
+COPY build.sh /
+
+RUN /build.sh
 
 # Jython
 #
@@ -44,10 +44,6 @@ RUN bash -c ' \
 #    rm -f jython_install.sh jython_autoinstall.exp
 
 #COPY profile.d/java.sh /etc/profile.d/
-
-#ENV JYTHON_HOME=/opt/jython
-#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
-ENV PATH $PATH:/github/pytools
 
 WORKDIR /github/pytools
 

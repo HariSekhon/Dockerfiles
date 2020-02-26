@@ -16,10 +16,16 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-mkdir -pv /github
+github="/github"
 
-cd /github
+mkdir -pv "$github"
+
+cd "$github"
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/bootstrap.sh | sh
+
+cd "$github/$repo"
+
+make test
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

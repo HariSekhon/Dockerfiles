@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/tools:alpine
+REPO := harisekhon/perl-tools:alpine
 
 include ../Makefile.in
 

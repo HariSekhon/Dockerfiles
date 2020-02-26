@@ -16,7 +16,8 @@ ifneq ("$(wildcard bash-tools/Makefile.in)", "")
 endif
 
 # On Ubuntu this fails to pushd otherwise
-SHELL := /usr/bin/env bash
+# fails to bootstrap on Alpine
+#SHELL := /usr/bin/env bash
 
 REPO := HariSekhon/Dockerfiles
 
@@ -31,24 +32,32 @@ CODE_FILES := $(shell find . -type f -name '*.py' -o -type f -name '*.sh' | grep
 #	SUDO = sudo
 #endif
 
-.PHONY: all
-all: build
-	:
-
 .PHONY: build
-build:
+build: init
+	@$(MAKE) system-packages
+
+.PHONY: init
+init:
+	git submodule update --init --recursive
+
+.PHONY: all
+all: build test docker-build
+	@:
+
+.PHONY: docker-build
+docker-build:
 	# do not just break as it will fail and move to next push target in build-push
 	for x in *; do \
 		[ -d $$x ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) build && \
-		popd || \
+		cd - || \
 		exit 1; \
 	done
 
 .PHONY: build-push
-build-push: build dockerpush
+build-push: docker-build docker-push
 	:
 
 tags:
@@ -59,9 +68,9 @@ nocache:
 	for x in *; do \
 		[ -d $$x ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) nocache && \
-		popd || \
+		cd - || \
 		exit 1; \
 	done
 
@@ -86,7 +95,7 @@ nocache:
 .PHONY: test
 test:
 	@# this would test everything but would call test-deps over and over inefficiently
-	@#for x in *; do [ -d $$x ] || continue; pushd $$x; $(MAKE) test; popd; done
+	@#for x in *; do [ -d $$x ] || continue; cd "$$x"; $(MAKE) test; cd -; done
 	@#$(MAKE) test-deps
 	@#find . -name Dockerfile | xargs -n1 docklint
 	tests/all.sh
@@ -112,24 +121,26 @@ pull:
 dockerpull:
 	for x in *; do [ -d $$x ] || continue; docker pull harisekhon/$$x || exit 1; done
 
-.PHONY: dockerpush
-dockerpush:
+.PHONY: docker-push
+docker-push:
 	# use make push which will also call hooks/post_build
 	for x in *; do \
 		[ -d "$$x" ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
-		pushd "$$x" && \
+		cd "$$x" && \
 		$(MAKE) push && \
-		popd || \
+		cd - || \
 		exit 1; \
 	done
 
 .PHONY: sync-hooks
 sync-hooks:
 	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
-	latest_hook=`ls -t */hooks/post_build | egrep -v "nagios-plugins-centos" | head -n1`; \
+	latest_hook=`ls -t */hooks/post_build | grep -Ev -e github -e '(alpine|centos|debian|fedora|ubuntu)-dev' -e "nagios-plugins" | head -n1`; \
 	for x in */hooks/post_build; do \
-		if [[ "$$x" =~ nagios-plugins-centos ]] || \
+		if [[ "$$x" =~ nagios-plugins ]] || \
+		   [[ "$$x" =~ github ]] || \
+		   [[ "$$x" =~ (alpine|centos|debian|fedora|ubuntu)-dev ]] || \
 		   [[ "$$x" =~ devops-.*-tools ]]; then \
 			continue; \
 		fi; \
@@ -140,11 +151,65 @@ sync-hooks:
 		if [ "$$latest_hook" != "$$x" ]; then \
 			cp -v "$$latest_hook" "$$x"; \
 		fi; \
-	done; \
+	done
+	echo
+	latest_hook=`ls -t *github/hooks/post_build | head -n1`; \
+	for x in *-github/hooks/post_build; do \
+		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
+			echo "$$x/hooks/post_build has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
+	echo
+	latest_hook=`ls -t {alpine,centos,debian,fedora,ubuntu}-dev/hooks/post_build | head -n1`; \
+	for x in {alpine,centos,debian,fedora,ubuntu}-dev/hooks/post_build; do \
+		if git status --porcelain "$$x/hooks/post_build" | grep -q '^.M'; then \
+			echo "$$x/hooks/post_build has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
+
+.PHONY: sync-builds
+sync-builds:
+	# some hooks are different to the rest so excluded, not git checkout overwritten in case they have pending changes
+	latest_hook=`ls -t devops-*-tools-*/build.sh | grep -v alpine | head -n1`; \
+	for x in devops-*-tools-*/build.sh; do \
+		if [[ "$$x" =~ alpine ]]; then \
+			continue; \
+		fi; \
+		if git status --porcelain "$$x/build.sh" | grep -q '^.M'; then \
+			echo "$$x/build.sh has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
+	echo
+	latest_hook=`ls -t devops-*-tools-alpine/build.sh | head -n1`; \
+	for x in devops-*-tools-alpine/build.sh; do \
+		if git status --porcelain "$$x/build.sh" | grep -q '^.M'; then \
+			echo "$$x/build.sh has pending modifications, skipping..."; \
+			continue; \
+		fi; \
+		if [ "$$latest_hook" != "$$x" ]; then \
+			cp -v "$$latest_hook" "$$x"; \
+		fi; \
+	done
 
 .PHONY: commit-hooks
 commit-hooks:
 	git commit -m "updated post build hooks" `git status -s */hooks | grep ^.M | awk '{print $$2}'`
+
+.PHONY: commit-builds
+commit-builds:
+	git commit -m "updated */build.sh" `git status -s */build.sh | grep ^.M | awk '{print $$2}'`
 
 # TODO: finish and remove ranger
 .PHONY: post-build
@@ -183,9 +248,9 @@ mergeall:
 .PHONY: nagios-plugins
 nagios-plugins:
 	for x in nagios-plugins*; do \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) nocache push; \
-		popd; \
+		cd -; \
 	done
 	docker images | grep nagios-plugins
 
@@ -193,13 +258,35 @@ nagios-plugins:
 nagios: nagios-plugins
 	:
 
+.PHONY: perl-tools
+perl-tools:
+	for x in devops-perl-tools-*; do \
+		cd "$$x" && \
+		$(MAKE) nocache push; \
+		cd -; \
+	done
+	docker images | grep perl-tools
+
+.PHONY: pytools
+pytools: python-tools
+	@:
+
+.PHONY: python-tools
+python-tools:
+	for x in devops-python-tools-*; do \
+		cd "$$x" && \
+		$(MAKE) nocache push; \
+		cd -; \
+	done
+	docker images | grep pytools
+
 .PHONY: build-github
 build-github:
 	# has no test target, consider adding one
 	for x in *-github; do \
-		pushd $$x && \
+		cd "$$x" && \
 		$(MAKE) nocache push; \
-		popd
+		cd -
 	done
 	docker images | grep github
 

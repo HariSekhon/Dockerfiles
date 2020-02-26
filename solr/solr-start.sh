@@ -16,8 +16,6 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 export JAVA_HOME="${JAVA_HOME:-/usr}"
 
 export SOLR_HOME="/solr"

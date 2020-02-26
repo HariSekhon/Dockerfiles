@@ -11,13 +11,13 @@ See a list of included programs with descriptions on the [GitHub project page](h
 Running the docker container without arguments will show just the list of programs:
 
 ```
-docker run harisekhon/tools
+docker run harisekhon/perl-tools
 ```
 
 Run any given program:
 
 ```
-docker run harisekhon/tools <program> <args>
+docker run harisekhon/perl-tools <program> <args>
 ```
 
 All programs have `--help` to list the available options.
@@ -26,7 +26,7 @@ For many more tools see [DevOps Python Tools](https://github.com/harisekhon/devo
 
 Hari Sekhon
 
-Big Data Contractor, United Kingdom
+Cloud & Big Data Contractor, United Kingdom
 
 https://www.linkedin.com/in/harisekhon
 

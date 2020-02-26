@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/tools:fedora
+REPO := harisekhon/perl-tools:fedora
 
 include ../Makefile.in
 

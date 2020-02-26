@@ -20,6 +20,12 @@ LABEL Description="Python Tools (Ubuntu)"
 
 ENV DEBIAN_FRONTEND noninteractive
 
+#ENV JYTHON_HOME=/opt/jython
+#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
+
+# used by build.sh to figure out which repo to bootstrap
+ENV PATH $PATH:/github/pytools
+
 COPY build.sh /
 
 RUN /build.sh
@@ -38,10 +44,6 @@ RUN /build.sh
 #    rm -f jython_install.sh jython_autoinstall.exp
 
 #COPY profile.d/java.sh /etc/profile.d/
-
-#ENV JYTHON_HOME=/opt/jython
-#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
-ENV PATH $PATH:/github/pytools
 
 WORKDIR /github/pytools
 

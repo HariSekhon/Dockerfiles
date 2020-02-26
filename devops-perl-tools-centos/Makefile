@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/tools:centos
+REPO := harisekhon/perl-tools:centos
 
 include ../Makefile.in
 

@@ -37,4 +37,4 @@ COPY profile.d/java.sh /etc/profile.d/
 
 ENV JAVA_HOME=/usr
 
-CMD /bin/bash
+CMD ["/bin/bash"]

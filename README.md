@@ -2,7 +2,7 @@ Hadoop, Big Data, NoSQL & DevOps Docker Images
 ==================
 [![Build Status](https://travis-ci.org/HariSekhon/Dockerfiles.svg?branch=master)](https://travis-ci.org/HariSekhon/Dockerfiles) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/network) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
 
-##### Contains 45 DockerHub repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.
+##### Contains 50+ DockerHub repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.
 
 These docker images are tested by hundreds of tools and also used in the full functional test suites of various other GitHub repos.
 
@@ -18,7 +18,7 @@ These images are all available pre-built on [My DockerHub - https://hub.docker.c
 
 **Quality and Testing** - this repo has entire test suites run against it from various [GitHub repositories](https://github.com/HariSekhon) to validate the docker images' functionality, branches vs tagged versions align, latest contains correct version from master branch, syntax checks covering all common build and file formats (Make/JSON/CSV/INI/XML/YAML configurations) etc.
 
-These are reusable tests that can anybody can implement and can be found in my [DevOps Python Tools](https://github.com/HariSekhon/devops-python-tools) and [Bash-Tools](https://github.com/HariSekhon/bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs to ensure the docker images are functioning as intended.
+These are reusable tests that can anybody can implement and can be found in my [DevOps Python Tools](https://github.com/HariSekhon/devops-python-tools) and [DevOps Bash Tools](https://github.com/HariSekhon/devops-bash-tools) repos as well as the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) which contains hundreds of technology specific API-level test programs to ensure the docker images are functioning as intended.
 
 [Continuous Integration](https://travis-ci.org/HariSekhon/Dockerfiles) in run on this and adjacent repos that form a bi-directional validation between these docker images and several other repositories full of hundreds of programs. All of this is intended to keep the quality of this repo as high as possible.
 
@@ -26,7 +26,7 @@ Hari Sekhon
 
 Big Data Contractor, United Kingdom
 
-(ex-Cloudera, Hortonworks Consultant)
+(ex-Cloudera, former Hortonworks Consultant)
 
 https://www.linkedin.com/in/harisekhon
 ###### (you're welcome to connect with me on LinkedIn)
@@ -92,6 +92,7 @@ More specific information can be found in the readme page under each respective 
 - [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/apache-drill/README-apache-drill.md)
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
+- [FakeS3](https://supso.org/projects/fake-s3) - Amazon S3 API simulator for testing without incurring AWS S3 costs - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/fakes3/README-fakes3.md)
 - [H2O](https://www.h2o.ai/) - distributed machine learning framework by [0xdata](https://www.h2o.ai/)
 - [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn) - distributed storage and compute cluster by Yahoo, [Cloudera](https://www.cloudera.com/) and [Hortonworks](https://hortonworks.com/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hadoop/README-hadoop.md)
 - [HBase](https://hbase.apache.org/) - distributed NoSQL datastore by Facebook (opens HBase shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hbase/README-hbase.md)
@@ -117,7 +118,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 ##### My GitHub Repos (with all libs + deps pre-built):
 
-- [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 350+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, CouchDB, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, Presto, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
+- [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 450+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, CouchDB, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, Presto, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
   - Tags:
     - nagios-plugins:latest (centos)
     - nagios-plugins:alpine
@@ -127,7 +128,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
     - nagios-plugins:ubuntu
     - nagios-plugins:perl
     - nagios-plugins:python
-- [DevOps Python Tools](https://github.com/harisekhon/devops-python-tools) - 50+ tools for Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython - CLI tools
+- [DevOps Python Tools](https://github.com/harisekhon/devops-python-tools) - 75+ tools for Hadoop, Spark, Pig, Ambari Blueprints, AWS CloudFormation, Linux, Data Converters & Validators (Avro/Parquet/JSON/CSV/XML/YAML), Elasticsearch, Solr, IPython - CLI tools
 - [DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools) - 25+ tools for Hadoop, Hive, Solr, Linux, SQL, Ambari, Datameer, Web and various Linux CLI Tools
 - [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript for automation, auto timed track flick through etc.
 
@@ -204,3 +205,7 @@ See the top level `Makefile` as well as the `Makefile.in` which is sourced per p
 ### Support
 
 Please raise tickets for issues and improvements at https://github.com/harisekhon/dockerfiles/issues
+
+### Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/HariSekhon/Dockerfiles.svg)](https://starchart.cc/HariSekhon/Dockerfiles)

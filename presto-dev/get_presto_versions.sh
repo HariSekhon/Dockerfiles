@@ -20,7 +20,7 @@ set -euo pipefail
 # parse all versions, return numerically newest first (as you may want to Control-C but have the latest ones built by the point rather than have to wait for all the old versions before getting the newest one
 get_presto_versions(){
     curl -s https://repo1.maven.org/maven2/com/facebook/presto/presto-server/ |
-    egrep -o '>[[:digit:]]+\.[[:digit:]]+/' |
+    grep -Eo '>[[:digit:]]+\.[[:digit:]]+/' |
     sed 's/[>/]//g ; s/\./ /' |
     sort -rnk1 -k 2 |
     sed 's/ /./'

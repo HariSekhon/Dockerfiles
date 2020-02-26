@@ -21,6 +21,7 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir/.."
 
+# shellcheck disable=SC1091
 . bash-tools/lib/utils.sh
 
 branch="${1:-}"
@@ -50,7 +51,7 @@ tests/check_ports_exposed.sh
 #tests/devops-python-tools_checks_per_branch.sh
 
 echo "Checking post build hook scripts separately as they're not inferred by .sh extension"
-bash-tools/check_bash_syntax.sh */hooks/post_build
+bash-tools/check_bash_syntax.sh ./*/hooks/post_build
 echo
 echo
 

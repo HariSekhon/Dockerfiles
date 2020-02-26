@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
@@ -17,7 +17,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 if [ $# -gt 0 ]; then
-    exec $@
+    exec "$@"
 else
     #if ! [ -f /root/.ssh/authorized_keys ]; then
     #    ssh-keygen -t rsa -b 1024 -f /root/.ssh/id_rsa -N ""

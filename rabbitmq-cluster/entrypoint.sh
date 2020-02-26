@@ -68,5 +68,5 @@ if [ "${1:-}" = "rabbitmq-cluster" ]; then
     echo "Now starting RabbitMQ cluster"
     /docker-entrypoint.sh rabbitmq-cluster
 elif [ $# -gt 0 ]; then
-    /docker-entrypoint.sh $@
+    /docker-entrypoint.sh "$@"
 fi

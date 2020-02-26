@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/tools:ubuntu
+REPO := harisekhon/perl-tools:ubuntu
 
 include ../Makefile.in
 

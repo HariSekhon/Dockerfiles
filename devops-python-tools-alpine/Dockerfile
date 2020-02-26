@@ -17,16 +17,15 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools (Alpine)"
 
-RUN apk add --no-cache curl bash
+#ENV JYTHON_HOME=/opt/jython
+#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
 
-RUN bash -c ' \
-    set -euxo pipefail && \
-    export REPOS=pytools NOJAVA=1 && \
-    mkdir -pv /github && \
-    cd /github && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh \
-    '
+# used by build.sh to figure out which repo to bootstrap
+ENV PATH $PATH:/github/pytools
+
+COPY build.sh /
+
+RUN /build.sh
     # allows numpy to compile with musl instead of glibc
     #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
@@ -45,10 +44,6 @@ RUN bash -c ' \
 #    rm -f jython_install.sh jython_autoinstall.exp
 
 #COPY profile.d/java.sh /etc/profile.d/
-
-#ENV JYTHON_HOME=/opt/jython
-#ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
-ENV PATH $PATH:/github/pytools
 
 WORKDIR /github/pytools
 

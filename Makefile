@@ -203,10 +203,13 @@ sync-builds:
 		fi; \
 	done
 
-
 .PHONY: commit-hooks
 commit-hooks:
 	git commit -m "updated post build hooks" `git status -s */hooks | grep ^.M | awk '{print $$2}'`
+
+.PHONY: commit-builds
+commit-builds:
+	git commit -m "updated */build.sh" `git status -s */build.sh | grep ^.M | awk '{print $$2}'`
 
 # TODO: finish and remove ranger
 .PHONY: post-build

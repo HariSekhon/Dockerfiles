@@ -23,7 +23,9 @@ RUN mkdir -vp /github
 
 WORKDIR /github
 
-RUN set -euxo pipefail && \
+# hadolint ignore=DL3003
+RUN bash -c ' \
+    set -euxo pipefail && \
     x=spark-apps; \
     yum install -y make git maven && \
     curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
@@ -33,8 +35,9 @@ RUN set -euxo pipefail && \
     make build clean && \
     yum autoremove -y && \
     yum clean all && \
-    rm -rf /var/cache/yum
+    rm -rf /var/cache/yum \
+    '
 
 WORKDIR /github/spark-apps
 
-CMD /bin/bash
+CMD ["/bin/bash"]

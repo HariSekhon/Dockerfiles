@@ -33,7 +33,7 @@ if type -P apt-get &>/dev/null; then
     apt-get install -y curl
 fi
 
-curl -sS "https://raw.githubusercontent.com/HariSekhon/devops-$repo/master/setup/bootstrap.sh" | sh
+curl -sS "https://raw.githubusercontent.com/HariSekhon/$repo/master/setup/bootstrap.sh" | sh
 
 cd "$github/$repo"
 

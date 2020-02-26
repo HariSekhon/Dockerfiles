@@ -16,19 +16,19 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-if [ "$@" ]; then
-    $@
+if [ "$*" ]; then
+    "$@"
 else
     # recent versions 3.5+ refuse to run as root
     #cassandra
-    su cassandra $(which cassandra)
+    su cassandra "$(type -P cassandra)"
     count=0
     while true; do
         logfile="/cassandra/logs/system.log"
         [ -f "/var/log/cassandra/system.log" ] &&
             logfile="/var/log/cassandra/system.log"
         grep 'Starting listening for CQL clients' "$logfile" && break
-        let count+=1
+        ((count+=1))
         if [ $count -gt 20 ]; then
             echo
             echo
@@ -46,9 +46,9 @@ else
     #cqlsh
     if [ -t 0 ]; then
         bind_address="$(netstat -lnt | awk '/:9042/{print $4}' | sed 's/:[[:digit:]]*.*//')"
-        cqlsh="$(which cqlsh)"
+        cqlsh="$(type -P cqlsh)"
         echo "su cassandra $cqlsh $bind_address"
-        su cassandra $cqlsh "$bind_address"
+        su cassandra "$cqlsh" "$bind_address"
         echo -e "\n\nCQL shell exited"
     else
         echo "

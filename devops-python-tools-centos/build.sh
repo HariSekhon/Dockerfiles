@@ -16,14 +16,10 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-export REPOS=pytools NOJAVA=1
-
 mkdir -pv /github
 
 cd /github
 
-yum install -y git make
+curl -s https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/setup/bootstrap.sh | sh
 
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
-
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+curl -s https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/docker_clean.sh | sh

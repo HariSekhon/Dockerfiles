@@ -13,21 +13,13 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -euo pipefail
+set -eu #o pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-export REPOS=pytools
+mkdir -pv /github
 
-# don't --no-cache because you'll just re-download it later
-# instead cache for duration of build and rely on docker_clean.sh at end to optimize layer
-apk update
+cd /github
 
-apk add bash curl
+wget -O- https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/setup/bootstrap.sh | sh
 
-exec bash <<EOF
-set -euo pipefail
-[ -n "${DEBUG:-}" ] && set -x
-
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-EOF
+curl -s https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/docker_clean.sh | sh

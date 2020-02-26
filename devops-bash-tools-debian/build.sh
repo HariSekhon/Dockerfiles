@@ -16,14 +16,27 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-mkdir -pv /github
+# doesn't work because it executes from within docker container where Makefile isn't available
+#srcdir="$(dirname "$0")"
+#repo="$(sed -n '/REPO/ s,.*/,,; s/:.*//; /tools/ p' Makefile)"
 
-cd /github
+repo="$(env | grep ^PATH= | sed 's/.*github\///; s/:.*//')"
 
-apt-get update
+github="/github"
 
-apt-get install -y curl
+mkdir -pv "$github"
 
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/bootstrap.sh | sh
+cd "$github"
+
+if type -P apt-get &>/dev/null; then
+    apt-get update
+    apt-get install -y curl
+fi
+
+curl -s "https://raw.githubusercontent.com/HariSekhon/devops-$repo/master/setup/bootstrap.sh" | sh
+
+cd "$github/$repo"
+
+make test
 
 curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

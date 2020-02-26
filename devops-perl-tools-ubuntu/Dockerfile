@@ -19,6 +19,7 @@ LABEL Description="DevOps Perl Tools (Ubuntu)"
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/perl-tools
 
 COPY build.sh /

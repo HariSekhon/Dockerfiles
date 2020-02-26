@@ -19,6 +19,7 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir/.."
 
+# shellcheck disable=SC1091
 . "bash-tools/lib/utils.sh"
 
 # Checks ports exposed by docker-compose and Makefile run target are the same to catch things like HBase versions having different port numbers and making sure they were updated in both places

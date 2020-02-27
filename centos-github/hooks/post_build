@@ -46,7 +46,8 @@ echo "DOCKER_REPO = $DOCKER_REPO"
 if [ "$DOCKER_REPO" = "harisekhon/github" ]; then
     new_tag="$(sed 's/\/github:\(.*\)/\/\1-github/' <<< "$IMAGE_NAME")"
 else
-    new_tag="${IMAGE_NAME//github}"
+    new_tag="${IMAGE_NAME//*\//}"
+    new_tag="${new_tag//github}"
     new_tag="${new_tag//-}"
     new_tag="${new_tag/\///github:}"
 fi

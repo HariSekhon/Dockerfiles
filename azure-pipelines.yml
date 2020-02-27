@@ -21,5 +21,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-18.04'
 
+steps:
 - script: sudo docker run -v "$PWD":/pwd ubuntu:18.04 /bin/bash -c "set -ex && cd /pwd && apt update && apt install -y git make && make default test"
   displayName: docker build

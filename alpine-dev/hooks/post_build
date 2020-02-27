@@ -38,10 +38,10 @@ if [ -z "${IMAGE_NAME:-}" ]; then
     echo "determined image name from Makefile to be '$IMAGE_NAME'"
 fi
 
+DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
+
 echo "IMAGE_NAME = $IMAGE_NAME"
 echo "DOCKER_REPO = $DOCKER_REPO"
-
-DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
 
 if [ "$DOCKER_REPO" = "harisekhon/dev" ]; then
     new_tag="$(sed 's/\/dev:\(.*\)/\/\1-dev/' <<< "$IMAGE_NAME")"

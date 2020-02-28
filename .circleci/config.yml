@@ -5,7 +5,7 @@
 #
 #  vim:ts=2:sts=2:sw=2:et
 #
-#  https://github.com/harisekhon/dockerfiles
+#  https://github.com/harisekhon/bash-tools
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
@@ -24,5 +24,6 @@ jobs:
       image: default
     steps:
       - checkout
-      - run: make
+      - run: make init
+      - run: make ci
       - run: make test

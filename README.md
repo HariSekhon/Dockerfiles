@@ -12,7 +12,7 @@ Big Data, NoSQL & DevOps Docker Images
 [![wercker status](https://app.wercker.com/status/26a0f1151450a0de3d8a339345b70019/s/master "wercker status")](https://app.wercker.com/project/byKey/26a0f1151450a0de3d8a339345b70019)
 
 [![Azure DevOps Pipeline](https://dev.azure.com/harisekhon/GitHub/_apis/build/status/HariSekhon.Dockerfiles?branchName=master)](https://dev.azure.com/harisekhon/GitHub/_build/latest?definitionId=6&branchName=master)
-[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/Dockerfiles/master?logo=bitbucket)](https://bitbucket.org/harisekhon/Dockerfiles/addon/pipelines/home#!/)
+[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/dockerfiles/master?logo=bitbucket)](https://bitbucket.org/harisekhon/dockerfiles/addon/pipelines/home#!/)
 [![GitLab Pipeline](https://img.shields.io/gitlab/pipeline/harisekhon/Dockerfiles?logo=gitlab)](https://gitlab.com/HariSekhon/Dockerfiles/pipelines)
 
 [![CI Mac](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Mac/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Mac%22)

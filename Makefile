@@ -51,7 +51,7 @@ docker-build:
 		[ -f "$$x/Dockerfile" ] || continue; \
 		[ -f "$$x/Makefile" ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
-		echo "building $$x" && \
+		echo "building: $$x" && \
 		cd "$$x" && \
 		$(MAKE) build && \
 		echo && \
@@ -69,10 +69,13 @@ tags:
 .PHONY: nocache
 nocache:
 	for x in *; do \
-		[ -d $$x ] || continue; \
+		[ -f "$$x/Dockerfile" ] || continue; \
+		[ -f "$$x/Makefile" ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
+		echo "building without cache: $$x" && \
 		cd "$$x" && \
 		$(MAKE) nocache && \
+		echo && \
 		cd - || \
 		exit 1; \
 	done

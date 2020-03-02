@@ -157,6 +157,11 @@ sh:
 	#make -e MAP_PORTS="" run
 	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) sh
 
+.PHONY: bash
+bash:
+	#make -e MAP_PORTS="" run
+	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) bash
+
 .PHONY: test
 test:
 	#docker run -ti $(REPO) sh -c 'if test -f tests/all.sh; then tests/all.sh; fi;'

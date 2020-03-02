@@ -21,7 +21,7 @@ build:
   steps:
     - script:
         name: install git & make
-        code: apt-get update && apt-get install -y git make
+        code: apt-get update -qq && apt-get install -qy git make
     - script:
         name: init
         code: make init

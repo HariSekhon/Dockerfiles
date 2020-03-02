@@ -1,6 +1,6 @@
 #
 #  Author: Hari Sekhon
-#  Date: 2020-02-24 16:19:35 +0000 (Mon, 24 Feb 2020)
+#  Date: 2020-02-24 16:55:36 +0000 (Mon, 24 Feb 2020)
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
@@ -13,16 +13,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-# https://www.appveyor.com/docs/appveyor-yml/
+container:
+  image: ubuntu:18.04
 
-image: Ubuntu
-
-install:
-- sudo apt update -qq
-- sudo apt install -qy git make
-- make
-
-test_script:
-- make test
-
-build: off
+task:
+  script: sudo apt update -qq && apt install -qy git make && make init && make ci test

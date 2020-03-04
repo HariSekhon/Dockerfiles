@@ -39,7 +39,7 @@ start_zookeeper(){
 
 start_master(){
     echo "Starting HBase Master..."
-    "$HBASE_HOME/hbase-daemon.sh" start master
+    "$HBASE_HOME/bin/hbase-daemon.sh" start master
     echo
 }
 
@@ -49,7 +49,7 @@ start_regionserver(){
     if [ "$(echo /hbase-* | sed 's,/hbase-,,' | cut -c 1)" = 0 ]; then
         "$HBASE_HOME/bin/local-regionservers.sh" start 1
     else
-        "$HBASE_HOME/hbase-daemon.sh" start regionserver
+        "$HBASE_HOME/bin/hbase-daemon.sh" start regionserver
     fi
     echo
 }

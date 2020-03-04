@@ -48,10 +48,13 @@ all: build test docker-build
 docker-build:
 	# do not just break as it will fail and move to next push target in build-push
 	for x in *; do \
-		[ -d $$x ] || continue; \
+		[ -f "$$x/Dockerfile" ] || continue; \
+		[ -f "$$x/Makefile" ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
+		echo "building: $$x" && \
 		cd "$$x" && \
 		$(MAKE) build && \
+		echo && \
 		cd - || \
 		exit 1; \
 	done
@@ -66,10 +69,13 @@ tags:
 .PHONY: nocache
 nocache:
 	for x in *; do \
-		[ -d $$x ] || continue; \
+		[ -f "$$x/Dockerfile" ] || continue; \
+		[ -f "$$x/Makefile" ] || continue; \
 		tests/exclude.sh "$$x" && continue; \
+		echo "building without cache: $$x" && \
 		cd "$$x" && \
 		$(MAKE) nocache && \
+		echo && \
 		cd - || \
 		exit 1; \
 	done

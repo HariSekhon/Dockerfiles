@@ -70,7 +70,7 @@ RUN set -eux && \
 # Needed for HBase 2.0+ hbase-shell
 RUN bash -c ' \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    apk add --no-cache jruby jruby-irb add asciidoctor && \
+    apk add --no-cache jruby jruby-irb asciidoctor && \
     echo exit | hbase shell \
     # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit
     '

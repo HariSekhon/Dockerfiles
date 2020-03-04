@@ -20,7 +20,7 @@ else
 endif
 
 ifndef TAG
-	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile)
+	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile 2>/dev/null)
 endif
 
 ifndef REPO
@@ -157,6 +157,11 @@ run-fg: runcmd-fg
 sh:
 	#make -e MAP_PORTS="" run
 	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) sh
+
+.PHONY: bash
+bash:
+	#make -e MAP_PORTS="" run
+	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) bash
 
 .PHONY: test
 test:

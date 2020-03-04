@@ -27,9 +27,13 @@ for x in *; do
     # exclude things not in Git yet
     git log -1 "$x" 2>/dev/null | grep -q '.*' || continue
     for compose_file in "$x/"*docker-compose*.yml; do
+        # this allows us to skip things like rabbitmq-cluster
         if grep -q image "$compose_file"; then
-            grep -q -e "^[[:space:]]*image:[[:space:]]*harisekhon/$x:\${VERSION:-latest}" "$compose_file" ||
-                { echo "$x docker-compose.yml image mismatch!"; exit 1; }
+            if ! grep -Eq "^[[:space:]]*image:[[:space:]]*harisekhon/$x(:\\$\\{VERSION:-latest\\}|:latest)?[[:space:]]*$" "$compose_file"; then
+                echo "$x docker-compose.yml image mismatch!"
+                exit 1
+            fi
         fi
     done
 done
+echo "Docker-compose images matched expected names for directory tree"

@@ -13,9 +13,31 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
-language: python
-python:
-  - "2.7"
+version: ~> 1.0
+
+matrix:
+  include:
+
+    - os: linux
+      language: python
+      python:
+        - "2.7"
+
+    - os: linux
+      language: python
+      python:
+        - "3.7"
+
+# GitHub Workflows has better badged stratification at a glance
+#    - os: linux
+#      dist: trusty
+#      language: python
+#      python:
+#        - "2.7"
+
+    # Travis CI doesn't support Python virtual envs on Mac OS X yet, workaround is to use generic and install to system python
+    - os: osx
+      language: generic
 
 sudo: required
 
@@ -34,6 +56,11 @@ cache:
     - .cache
     - bash-tools
     - pytools_checks
+
+# avoid package checksum mismatches when installing packages
+before_install:
+  - sudo rm -f "${TRAVIS_ROOT}/etc/apt/apt.conf.d/99-travis-apt-proxy"
+  - sudo rm -rf "${TRAVIS_ROOT}/var/lib/apt/lists/"*
 
 install:
   - echo nothing to install

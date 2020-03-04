@@ -21,7 +21,7 @@ ARG JAVA_RELEASE=JDK
 
 ENV JAVA_HOME=/usr
 
-RUN set -euxo pipefail && \
+RUN set -eux && \
     pkg="java-1.$JAVA_VERSION.0-openjdk" && \
     if [ "$JAVA_RELEASE" = "JDK" ]; then \
         pkg="$pkg-devel"; \
@@ -34,4 +34,4 @@ RUN set -euxo pipefail && \
 
 COPY profile.d/java.sh /etc/profile.d/
 
-CMD /bin/bash
+CMD ["/bin/bash"]

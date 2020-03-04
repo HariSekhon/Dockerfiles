@@ -17,14 +17,22 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-. "$srcdir/../bash-tools/utils.sh"
+# shellcheck disable=SC1090
+. "$srcdir/../bash-tools/lib/utils.sh"
 
 section "Dockerfiles PyTools Checks"
 
 export PROJECT=Dockerfiles
 
 # start time is run in here
+# shellcheck disable=SC1090
 . "$srcdir/../bash-tools/check_pytools.sh"
+
+# set in check_pytools.sh
+# shellcheck disable=SC2154
+if [ -n "${skip_checks:-}" ]; then
+    exit 0
+fi
 
 pushd "$srcdir/.."
 
@@ -36,6 +44,8 @@ echo
 
 popd
 
+# start_time is defined in check_pytools.sh imported above
+# shellcheck disable=SC2154
 time_taken "$start_time"
 section2 "PyTools validations SUCCEEDED"
 echo

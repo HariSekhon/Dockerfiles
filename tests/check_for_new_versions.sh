@@ -21,7 +21,8 @@ srcdir2="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir2/.."
 
-. bash-tools/utils.sh
+# shellcheck disable=SC1091
+. bash-tools/lib/utils.sh
 
 srcdir="$srcdir2"
 
@@ -31,21 +32,20 @@ start_time=$(date +%s)
 
 check_for_new_version(){
     local name="$1"
-    versions="$($name/get_versions || :)"
+    versions="$("$name/get_versions" || :)"
 
     if [ -z "$versions" ]; then
         echo "WARNING: could not determine upstream versions of $name"
     fi
 
     latest_version="$(
-        sed 's/\./ /g' <<< "$versions" |
-        sort -k1n -k2n -k3n |
+        sort -k1n -k2n -k3n <<< "${versions//./ }" |
         sed 's/ /./g' |
         tail -n 1 || :
     )"
 
     dockerfile_version="$(
-        egrep -i "^ARG .*${name%-*}.*_VERSION=" "$srcdir/../$name/Dockerfile" |
+        grep -Ei "^ARG .*${name%-*}.*_VERSION=" "$srcdir/../$name/Dockerfile" |
         awk -F= '{print $2}' || :
     )"
 
@@ -61,9 +61,9 @@ check_for_new_version(){
 }
 
 if [ -n "$*" ]; then
-    echo "Running check for: $@"
+    echo "Running check for: $*"
     echo
-    for name in $@; do
+    for name in "$@"; do
         check_for_new_version "$name"
     done
 else
@@ -78,7 +78,7 @@ else
     done
 fi
 
-secs=$(($(date +%s) - $start_time))
+secs=$(($(date +%s) - start_time))
 
 echo
 section2 "Upstream checks completed in $secs secs"

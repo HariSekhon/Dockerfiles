@@ -12,17 +12,34 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-version: '2.1'
+version: '3'
 services:
-  hbase-dev:
+  hbase-master:
     image: harisekhon/hbase-dev:${VERSION:-latest}
+    command: master
     ports:
-      - 2181:2181
-      - 8080:8080
-      - 8085:8085
-      - 9090:9090
-      - 9095:9095
       - 16000:16000
       - 16010:16010
+  hbase-regionserver:
+    image: harisekhon/hbase-dev:${VERSION:-latest}
+    command: regionserver
+    ports:
+      - 16030:16030
       - 16201:16201
       - 16301:16301
+  hbase-thrift:
+    image: harisekhon/hbase-dev:${VERSION:-latest}
+    command: thrift
+    ports:
+      - 9090:9090
+      - 9095:9095
+  hbase-stargate:
+    image: harisekhon/hbase-dev:${VERSION:-latest}
+    command: stargate
+    ports:
+      - 8080:8080
+      - 8085:8085
+  zookeeper:
+    image: harisekhon/zookeeper-dev:latest
+    ports:
+      - 2181:2181

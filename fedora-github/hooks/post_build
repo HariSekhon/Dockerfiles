@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  Author: Hari Sekhon
+#  Date: 2016-12-17 19:47:36 +0000 (Sat, 17 Dec 2016)
+#
+#  https://github.com/harisekhon/Dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+set -eu
+[ -n "${DEBUG:-}" ] && set -x
+srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [ "${SOURCE_BRANCH:-}" != master ]; then
+    echo "SOURCE_BRANCH not set, determining from Makefile"
+    SOURCE_BRANCH="$(git branch  | sed -n 's/*[[:space:]]*//p')"
+    echo "determined source branch from git to be '$SOURCE_BRANCH'"
+fi
+
+if [ "$SOURCE_BRANCH" != master ]; then
+    echo "branch is not master, skipping hook..."
+    exit 0
+fi
+
+if [ -z "${IMAGE_NAME:-}" ]; then
+    echo "IMAGE_NAME not set, determining from Makefile"
+    IMAGE_NAME="$(awk -F= '/^[[:space:]]*REPO[[:space:]]*:*=/{print $2}' "$srcdir/../Makefile" | sed 's/[[:space:]]//g;s/"//g')"
+    if [ -z "$IMAGE_NAME" ]; then
+        echo "FAILED to determine IMAGE_NAME From Makefile"
+        exit 1
+    fi
+    echo "determined image name from Makefile to be '$IMAGE_NAME'"
+fi
+
+DOCKER_REPO="${DOCKER_REPO:-${IMAGE_NAME/:*}}"
+
+echo "IMAGE_NAME = $IMAGE_NAME"
+echo "DOCKER_REPO = $DOCKER_REPO"
+
+if [ "$DOCKER_REPO" = "harisekhon/github" ]; then
+    new_tag="$(sed 's/\/github:\(.*\)/\/\1-github/' <<< "$IMAGE_NAME")"
+else
+    new_tag="${IMAGE_NAME//*\//}"
+    new_tag="${new_tag//github}"
+    new_tag="${new_tag//-}"
+    new_tag="${new_tag/\///github:}"
+fi
+echo "docker repo built as $DOCKER_REPO, going to tag as $new_tag"
+
+if [[ "$IMAGE_NAME" =~ centos ]]; then
+    set -x
+    docker tag "$IMAGE_NAME" "$DOCKER_REPO:latest"
+    docker push "$DOCKER_REPO:latest"
+fi
+
+set -x
+docker tag "$IMAGE_NAME" "$new_tag"
+docker push "$new_tag"
+set +x
+if [[ "$new_tag" =~ centos ]]; then
+    set -x
+    new_tag_latest="${new_tag%%:*}:latest"
+    docker tag "$new_tag" "$new_tag_latest"
+    docker push "$new_tag_latest"
+fi

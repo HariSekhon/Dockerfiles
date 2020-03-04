@@ -19,11 +19,16 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$srcdir/.."
 
-. bash-tools/utils.sh
+# shellcheck disable=SC1091
+. bash-tools/lib/utils.sh
 
 section "Projects without README yet"
 
-find . -maxdepth 1 -type d | while read dir; do [ -f "$dir/README.md" ] || echo "$(basename "$dir")"; done |
-egrep -v '^(alpine|centos|debian|ubuntu)-(dev|java|github)|pytools|tools|nagios-plugins|nagios-plugin-kafka|spark-apps|centos-scala|jython|tests|\..*$'
+find . -maxdepth 1 -type d |
+while read -r dir; do
+    [ -f "$dir/README.md" ] ||
+    basename "$dir"
+done |
+grep -Ev '^(alpine|centos|debian|ubuntu)-(dev|java|github)|pytools|tools|nagios-plugins|nagios-plugin-kafka|spark-apps|centos-scala|jython|tests|\..*$'
 echo
 echo

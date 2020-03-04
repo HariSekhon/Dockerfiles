@@ -39,7 +39,7 @@ start_zookeeper(){
 
 start_master(){
     echo "Starting HBase Master..."
-    "$HBASE_HOME/hbase-daemon.sh" start master
+    "$HBASE_HOME/bin/hbase-daemon.sh" start master
     echo
 }
 
@@ -49,7 +49,7 @@ start_regionserver(){
     if [ "$(echo /hbase-* | sed 's,/hbase-,,' | cut -c 1)" = 0 ]; then
         "$HBASE_HOME/bin/local-regionservers.sh" start 1
     else
-        "$HBASE_HOME/hbase-daemon.sh" start regionserver
+        "$HBASE_HOME/bin/hbase-daemon.sh" start regionserver
     fi
     echo
 }
@@ -93,9 +93,15 @@ trap_func(){
     "$HBASE_HOME/bin/hbase-daemon.sh" stop thrift || :
     "$HBASE_HOME/bin/local-regionservers.sh" stop 1 || :
     # let's not confuse users with superficial errors in the Apache HBase scripts
-    "$HBASE_HOME/bin/stop-hbase.sh" | grep -v -e "ssh: command not found" -e "kill: you need to specify whom to kill" -e "kill: can't kill pid .*: No such process"
+    "$HBASE_HOME/bin/stop-hbase.sh" |
+        grep -v -e "ssh: command not found" \
+                -e "kill: you need to specify whom to kill" \
+                -e "kill: can't kill pid .*: No such process"
     sleep 2
-    ps -ef | grep org.apache.hadoop.hbase | grep -v -i org.apache.hadoop.hbase.zookeeper | awk '{print $1}' | xargs kill 2>/dev/null || :
+    pgrep -fla org.apache.hadoop.hbase |
+        grep -vi org.apache.hadoop.hbase.zookeeper |
+            awk '{print $1}' |
+                xargs kill 2>/dev/null || :
     sleep 3
     pkill -f org.apache.hadoop.hbase.zookeeper 2>/dev/null || :
     sleep 2

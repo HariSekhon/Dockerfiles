@@ -20,7 +20,7 @@ else
 endif
 
 ifndef TAG
-	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile)
+	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile 2>/dev/null)
 endif
 
 ifndef REPO
@@ -43,6 +43,10 @@ ifndef NOPORTS
 	NOPORTS :=
 endif
 
+ifndef RUN_ARGS
+	RUN_ARGS := bash
+endif
+
 ifdef LATEST
 	TAG=latest
 endif
@@ -56,6 +60,15 @@ endif
 .PHONY: build
 build:
 	docker build -t $(REPO_TAG) .
+
+.PHONY: cloudbuild
+cloudbuild:
+	gcloud builds submit --tag $(REPO_TAG) .
+
+.PHONY: gcp-cloudbuild
+gcp-cloudbuild:
+	@# replace the prefix with the project ID
+	gcloud builds submit --tag gcr.io/$$GOOGLE_CLOUD_PROJECT/`echo "$(REPO_TAG)" | sed 's,.*/,,'` .
 
 .PHONY: nocache
 nocache:
@@ -96,41 +109,58 @@ push-versions:
 up: build test push
 	:
 
-.PHONY: runcmd
-runcmd:
-	@if [ -n "$(MAP_PORTS)" ]; then \
+# ============================================================================ #
+# complex fix to allow makefile testing to work
+CMD := $(shell \
+	if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
 	else \
-		echo docker run -ti --rm $(REPO_TAG) bash; \
-	fi
+		echo docker run -ti --rm $(REPO_TAG) $(RUN_ARGS); \
+	fi \
+)
 
-.PHONY: runcmd-fg
-runcmd-fg:
-	@if [ -n "$(MAP_PORTS)" ]; then \
+CMD_FG := $(shell \
+	if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run -ti --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
 	else \
 		echo "docker run --rm $(REPO_TAG)"; \
-	fi
+	fi \
+)
+
+.PHONY: runcmd
+runcmd:
+	echo "$(CMD)"
+
+.PHONY: runcmd-fg
+runcmd-fg:
+	echo "$(CMD_FG)"
 
 .PHONY: run
-run:
+run: runcmd
 	@#$(MAKE) run | tee /dev/stderr | sh
-	@cmd=`$(MAKE) runcommand`; echo "$$cmd"; $$cmd
+	@$(CMD)
 
 .PHONY: run-fg
-run-fg:
-	@cmd=`$(MAKE) runcommand-fg`; echo "$$cmd"; $$cmd
+run-fg: runcmd-fg
+	@$(CMD_FG)
+
+# ============================================================================ #
 
 .PHONY: sh
 sh:
 	#make -e MAP_PORTS="" run
 	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) sh
+
+.PHONY: bash
+bash:
+	#make -e MAP_PORTS="" run
+	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) bash
 
 .PHONY: test
 test:

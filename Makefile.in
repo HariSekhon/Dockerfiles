@@ -11,8 +11,20 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-ifeq "$(TAG)" ""
-	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile)
+ifneq ("$(wildcard bash-tools)", "")
+	BASH_TOOLS := bash-tools
+else ifneq ("$(wildcard ../bash-tools)", "")
+	BASH_TOOLS := ../bash-tools
+else
+	BASH_TOOLS := .
+endif
+
+ifndef TAG
+	TAG := $(shell perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile 2>/dev/null)
+endif
+
+ifndef REPO
+	REPO :=
 endif
 
 # cassandra-dev     -> cassandra
@@ -20,11 +32,19 @@ endif
 # solrcloud-dev     -> solrcloud
 # rabbitmq-cluster  -> rabbitmq
 # solrloud          -> solr
-# presto-cli		-> presto
+# presto-cli        -> presto
 BRANCH = $(shell echo "$(REPO)" | sed 's,.*/,,; s/-dev$$//; s/-cli$$//; s/-cluster$$//; s/cloud$$//')
 
 ifndef MAP_PORTS
 	MAP_PORTS := ""
+endif
+
+ifndef NOPORTS
+	NOPORTS :=
+endif
+
+ifndef RUN_ARGS
+	RUN_ARGS := bash
 endif
 
 ifdef LATEST
@@ -40,6 +60,15 @@ endif
 .PHONY: build
 build:
 	docker build -t $(REPO_TAG) .
+
+.PHONY: cloudbuild
+cloudbuild:
+	gcloud builds submit --tag $(REPO_TAG) .
+
+.PHONY: gcp-cloudbuild
+gcp-cloudbuild:
+	@# replace the prefix with the project ID
+	gcloud builds submit --tag gcr.io/$$GOOGLE_CLOUD_PROJECT/`echo "$(REPO_TAG)" | sed 's,.*/,,'` .
 
 .PHONY: nocache
 nocache:
@@ -80,42 +109,58 @@ push-versions:
 up: build test push
 	:
 
-.PHONY: run
-run:
-	@if [ -n "$(MAP_PORTS)" ]; then \
+# ============================================================================ #
+# complex fix to allow makefile testing to work
+CMD := $(shell \
+	if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run --rm $$ports $(REPO_TAG); \
-		docker run --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
-		docker run --rm $(REPO_TAG); \
 	else \
-		echo "docker run -ti --rm $(REPO_TAG) bash"; \
-		docker run -ti --rm $(REPO_TAG) bash; \
-	fi
+		echo docker run -ti --rm $(REPO_TAG) $(RUN_ARGS); \
+	fi \
+)
 
-.PHONY: run-foreground
-run-foreground:
-	@if [ -n "$(MAP_PORTS)" ]; then \
+CMD_FG := $(shell \
+	if [ -n "$(MAP_PORTS)" ]; then \
 		ports=$$(for port in $(MAP_PORTS); do echo "-p $$port:$$port "; done); \
 		echo docker run -ti --rm $$ports $(REPO_TAG); \
-		docker run -ti --rm $$ports $(REPO_TAG); \
 	elif [ -n "$(NOPORTS)" ]; then \
 		echo docker run --rm $(REPO_TAG); \
-		docker run --rm $(REPO_TAG); \
 	else \
 		echo "docker run --rm $(REPO_TAG)"; \
-		docker run --rm $(REPO_TAG); \
-	fi
+	fi \
+)
+
+.PHONY: runcmd
+runcmd:
+	echo "$(CMD)"
+
+.PHONY: runcmd-fg
+runcmd-fg:
+	echo "$(CMD_FG)"
+
+.PHONY: run
+run: runcmd
+	@#$(MAKE) run | tee /dev/stderr | sh
+	@$(CMD)
 
 .PHONY: run-fg
-run-fg: run-foreground
-	:
+run-fg: runcmd-fg
+	@$(CMD_FG)
+
+# ============================================================================ #
 
 .PHONY: sh
 sh:
 	#make -e MAP_PORTS="" run
 	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) sh
+
+.PHONY: bash
+bash:
+	#make -e MAP_PORTS="" run
+	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) bash
 
 .PHONY: test
 test:
@@ -125,3 +170,27 @@ test:
 .PHONY: interactive
 interactive:
 	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` sh
+
+.PHONY: browse
+browse:
+	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://github.com/harisekhon/dockerfiles"
+
+.PHONY: github
+github: browse
+	@:
+
+.PHONY: github-url
+github-url:
+	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://github.com/harisekhon/dockerfiles" | tee /dev/stderr | tr -d '\n' | paste_clipboard
+
+.PHONY: dockerhub
+dockerhub:
+	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://hub.docker.com/r/$(REPO)"
+
+.PHONY: dockerhub-url
+dockerhub-url:
+	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://hub.docker.com/r/$(REPO)" | tee /dev/stderr | tr -d '\n' | paste_clipboard
+
+.PHONY: dockerhub-status
+dockerhub-status:
+	check_dockerhub_repo_build_status.py -r $(REPO)

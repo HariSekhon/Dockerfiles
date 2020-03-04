@@ -19,7 +19,8 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$srcdir/.."
 
-. bash-tools/utils.sh
+# shellcheck disable=SC1091
+. bash-tools/lib/utils.sh
 
 section "Dockerfiles checks"
 

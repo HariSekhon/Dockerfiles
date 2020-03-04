@@ -27,12 +27,17 @@ RUN bash -c ' \
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
+                       bind9-host \
                        build-essential \
+                       cpanminus \
                        curl \
+                       dnsutils \
                        dstat \
                        expect \
                        ethtool \
+                       fping \
                        git \
+                       golang \
                        gradle \
                        groovy \
                        libdbd-mysql-perl \
@@ -43,16 +48,23 @@ RUN bash -c ' \
                        libsasl2-dev \
                        libsnappy-dev \
                        libssl-dev \
+                       lsof \
                        make \
                        maven \
+                       netcat \
+                       nmap \
                        net-tools \
+                       procps \
                        python-dev \
                        python-pip \
                        python-setuptools \
                        ruby \
                        ruby-dev \
+                       socat \
                        scala \
                        sysstat \
+                       strace \
+                       tcpdump \
                        unzip \
                        vim \
                        wget \
@@ -78,4 +90,4 @@ RUN bash -c ' \
     bash jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp'
 
-CMD /bin/bash
+CMD ["/bin/bash"]

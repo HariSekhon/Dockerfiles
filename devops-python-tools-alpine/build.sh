@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #  vim:ts=4:sts=4:sw=4:et
 #
 #  Author: Hari Sekhon
@@ -13,16 +13,21 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-set -euo pipefail
+set -eu #o pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-export REPOS=pytools
-apk update && apk add bash curl
+github="/github"
 
-exec bash <<EOF
-set -euo pipefail
-[ -n "${DEBUG:-}" ] && set -x
+mkdir -pv "$github"
 
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
-EOF
+cd "$github"
+
+repo=bash-tools
+
+wget -O- https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/bootstrap.sh | sh
+
+cd "$github/$repo"
+
+make test
+
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh

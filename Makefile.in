@@ -70,9 +70,13 @@ gcp-cloudbuild:
 	@# replace the prefix with the project ID
 	gcloud builds submit --tag gcr.io/$$GOOGLE_CLOUD_PROJECT/`echo "$(REPO_TAG)" | sed 's,.*/,,'` .
 
+.PHONY: gcp
+gcp: gcp-cloudbuild
+	@:
+
 .PHONY: azure-container-registry
 azure-container-registry:
-	docker build -t "$$AZURE_REGISTRY.azurecr.io/`echo "$(REPO_TAG)" | sed 's,.*/,,'`" .
+	az acr build --file Dockerfile --registry "$$AZURE_REGISTRY" --image "$(REPO_TAG)" .
 
 .PHONY: azure-container-registry
 azure: azure-container-registry
@@ -81,6 +85,10 @@ azure: azure-container-registry
 .PHONY: azure
 acr: azure
 	@:
+
+.PHONY: acr2
+acr2:
+	docker build -t "$$AZURE_REGISTRY.azurecr.io/`echo "$(REPO_TAG)" | sed 's,.*/,,'`" .
 
 .PHONY: nocache
 nocache:

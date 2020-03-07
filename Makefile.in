@@ -74,6 +74,10 @@ gcp-cloudbuild:
 gcp: gcp-cloudbuild
 	@:
 
+.PHONY: gcb
+gcb: gcp-cloudbuild
+	@:
+
 .PHONY: azure-container-registry
 azure-container-registry:
 	az acr build --file Dockerfile --registry "$$AZURE_REGISTRY" --image "$(REPO_TAG)" .

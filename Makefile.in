@@ -82,17 +82,29 @@ gcb: gcp-cloudbuild
 azure-container-registry:
 	az acr build --file Dockerfile --registry "$$AZURE_REGISTRY" --image "$(REPO_TAG)" .
 
-.PHONY: azure-container-registry
+.PHONY: azure
 azure: azure-container-registry
 	@:
 
-.PHONY: azure
+.PHONY: acr
 acr: azure
 	@:
 
-.PHONY: acr2
-acr2:
+.PHONY: azure-container-registry-local
+azure-container-registry-local:
 	docker build -t "$$AZURE_REGISTRY.azurecr.io/`echo "$(REPO_TAG)" | sed 's,.*/,,'`" .
+
+.PHONY: azure-local
+azure-local: azure-container-registry-local
+	@:
+
+.PHONY: acr-local
+acr-local: azure-local
+	@:
+
+.PHONY: acr2
+acr2: acr-local
+	@:
 
 .PHONY: nocache
 nocache:

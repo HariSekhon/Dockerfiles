@@ -1,14 +1,14 @@
 Big Data, NoSQL & DevOps Docker Images
 ======================================
 
+[![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles)](https://github.com/harisekhon/Dockerfiles/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles)](https://github.com/harisekhon/Dockerfiles/network)
 [![Codacy](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles)
 [![CodeFactor](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles/badge)](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=alert_status)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=security_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
-[![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/network)
 
 [![Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux)](https://github.com/HariSekhon/Dockerfiles)
 [![Mac](https://img.shields.io/badge/OS-Mac-blue?logo=apple)](https://github.com/HariSekhon/Dockerfiles)

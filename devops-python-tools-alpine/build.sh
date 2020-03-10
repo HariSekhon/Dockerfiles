@@ -16,18 +16,22 @@
 set -eu #o pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
+# doesn't work because it executes from within docker container where Makefile isn't available
+#srcdir="$(dirname "$0")"
+#repo="$(sed -n '/REPO/ s,.*/,,; s/:.*//; /tools/ p' Makefile)"
+
+repo="$(env | grep ^PATH= | sed 's/.*github\///; s/:.*//')"
+
 github="/github"
 
 mkdir -pv "$github"
 
 cd "$github"
 
-repo=bash-tools
-
-wget -O- https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/bootstrap.sh | sh
+wget -O- "https://raw.githubusercontent.com/HariSekhon/$repo/master/setup/bootstrap.sh" | sh
 
 cd "$github/$repo"
 
 make test
 
-curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+curl -sS "https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh" | sh

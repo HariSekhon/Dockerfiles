@@ -46,10 +46,7 @@ echo "DOCKER_REPO = $DOCKER_REPO"
 if [ "$DOCKER_REPO" = "harisekhon/dev" ]; then
     new_tag="$(sed 's/\/dev:\(.*\)/\/\1-dev/' <<< "$IMAGE_NAME")"
 else
-    new_tag="${IMAGE_NAME//*\//}"
-    new_tag="${new_tag//dev}"
-    new_tag="${new_tag//-}"
-    new_tag="${new_tag/\///dev:}"
+    new_tag="$(sed 's|/\([^/]*\)-dev:.*|/dev:\1|' <<< "$IMAGE_NAME")"
 fi
 echo "docker repo built as $DOCKER_REPO, going to tag as $new_tag"
 

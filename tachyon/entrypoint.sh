@@ -25,8 +25,14 @@ else
         chmod -v 0400 /root/.ssh/authorized_keys
     fi
 
+    # sshd-keygen is removed in newer versions of OpenSSH, only use if available
+    if ! [ -f /etc/ssh/ssh_host_rsa_key ] && [ -x /usr/sbin/sshd-keygen ]; then
+        /usr/sbin/sshd-keygen || :
+    fi
     if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
-        /usr/sbin/sshd-keygen
+        ssh-keygen -q -t rsa -f /etc/ssh/ssh_host_rsa_key -C '' -N ''
+        chmod 0600 /etc/ssh/ssh_host_rsa_key
+        chmod 0644 /etc/ssh/ssh_host_rsa_key.pub
     fi
 
     if ! pgrep -x sshd &>/dev/null; then

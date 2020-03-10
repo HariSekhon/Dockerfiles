@@ -39,14 +39,15 @@ EOF
         fi
     done
 
+    # removed in newer versions of CentOS
+    if ! [ -f /etc/ssh/ssh_host_rsa_key ] && [ -x /usr/sbin/sshd-keygen ]; then
+        /usr/sbin/sshd-keygen || :
+    fi
     if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
         ssh-keygen -q -t rsa -f /etc/ssh/ssh_host_rsa_key -C '' -N ''
         chgrp ssh_keys /etc/ssh/ssh_host_rsa_key
-        chmod 640 /etc/ssh/ssh_host_rsa_key
-        chmod 644 /etc/ssh/ssh_host_rsa_key.pub
-    fi
-
-        /usr/sbin/sshd-keygen || :
+        chmod 0640 /etc/ssh/ssh_host_rsa_key
+        chmod 0644 /etc/ssh/ssh_host_rsa_key.pub
     fi
 
     if ! pgrep -x sshd &>/dev/null; then

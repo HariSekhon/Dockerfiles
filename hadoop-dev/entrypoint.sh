@@ -45,8 +45,7 @@ EOF
     fi
     if ! [ -f /etc/ssh/ssh_host_rsa_key ]; then
         ssh-keygen -q -t rsa -f /etc/ssh/ssh_host_rsa_key -C '' -N ''
-        chgrp ssh_keys /etc/ssh/ssh_host_rsa_key
-        chmod 0640 /etc/ssh/ssh_host_rsa_key
+        chmod 0600 /etc/ssh/ssh_host_rsa_key
         chmod 0644 /etc/ssh/ssh_host_rsa_key.pub
     fi
 

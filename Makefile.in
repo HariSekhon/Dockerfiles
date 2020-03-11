@@ -43,9 +43,9 @@ ifndef NOPORTS
 	NOPORTS :=
 endif
 
-ifndef RUN_ARGS
-	RUN_ARGS := bash
-endif
+#ifndef RUN_ARGS
+#	RUN_ARGS := bash
+#endif
 
 ifdef LATEST
 	TAG=latest

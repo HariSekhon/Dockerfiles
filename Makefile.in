@@ -43,7 +43,6 @@ ifndef NOPORTS
 	NOPORTS :=
 endif
 
-# want default run in a lot of cases to start the daemons
 #ifndef RUN_ARGS
 #	RUN_ARGS := bash
 #endif

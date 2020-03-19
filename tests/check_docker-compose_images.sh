@@ -20,20 +20,25 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$srcdir/.."
 
 echo "checking docker image calls match directory tree"
-for x in *; do
-    [ -d "$x" ] || continue
-    [ "$x" = "bash-tools" ] && continue
-    [ -f "$x/docker-compose.yml" ] || continue
+for directory in *; do
+    [ -d "$directory" ] || continue
+    [ "$directory" = "bash-tools" ] && continue
+    [ "$directory" = "pytools_checks" ] && continue
+    [ -f "$directory/docker-compose.yml" ] || continue
     # exclude things not in Git yet
-    git log -1 "$x" 2>/dev/null | grep -q '.*' || continue
-    for compose_file in "$x/"*docker-compose*.yml; do
+    git log -1 "$directory" 2>/dev/null | grep -q '.*' || continue
+    for compose_file in "$directory/"*docker-compose*.yml; do
         # this allows us to skip things like rabbitmq-cluster
         if grep -q image "$compose_file"; then
-            if ! grep -Eq "^[[:space:]]*image:[[:space:]]*harisekhon/$x(:\\$\\{VERSION:-latest\\}|:latest)?[[:space:]]*$" "$compose_file"; then
-                echo "$x docker-compose.yml image mismatch!"
+            image_name_alternate="${directory%-*}"
+            image_tag_alternate="${directory##*-}"
+            if ! grep -Eq \
+                 -e "^[[:space:]]*image:[[:space:]]*harisekhon/$directory(:\\$\\{VERSION:-latest\\}|:latest)?[[:space:]]*$" \
+                 -e "^[[:space:]]*image:[[:space:]]*harisekhon/${image_name_alternate}(:\\$\\{VERSION:-$image_tag_alternate\\}|:$image_tag_alternate)?[[:space:]]*$" "$compose_file"; then
+                echo "$directory docker-compose.yml image mismatch!"
                 exit 1
             fi
         fi
     done
 done
-echo "Docker-compose images matched expected names for directory tree"
+echo "OK: Docker-compose images matched expected names for directory tree"

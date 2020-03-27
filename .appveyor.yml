@@ -28,10 +28,10 @@ install:
 # The following packages have unmet dependencies:
 #  mssql-server : Depends: libsasl2-modules-gssapi-mit but it is not going to be installed
 #  E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.
-#  bash-tools/Makefile.in:272: recipe for target 'apt-packages' failed
+#  dockerfiles/Makefile.in:272: recipe for target 'apt-packages' failed
 #  make[2]: *** [apt-packages] Error 123
 #  make[2]: Leaving directory '/home/appveyor/projects/pylib'
-#  bash-tools/Makefile.in:212: recipe for target 'system-packages' failed
+#  dockerfiles/Makefile.in:212: recipe for target 'system-packages' failed
 #
 #  adding "|| :" to the end of these commands causes them to be silently ignored!
 - sudo sed -i '/https:\/\/packages.microsoft.com\/ubuntu\/.*\/mssql-server/d' /etc/apt/sources.list

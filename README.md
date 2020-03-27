@@ -27,6 +27,7 @@ Big Data, NoSQL & DevOps Docker Images
 [![buddy pipeline](https://app.buddy.works/harisekhon/dockerfiles/pipelines/pipeline/246993/badge.svg?token=7f63afa3c423a65e6e39a79be0386959e98c4105ea1e20f7f8b05d6d6b587038 "buddy pipeline")](https://app.buddy.works/harisekhon/dockerfiles/pipelines/pipeline/246993)
 [![Cirrus CI](https://img.shields.io/cirrus/github/HariSekhon/Dockerfiles/master?logo=Cirrus%20CI&label=Cirrus%20CI)](https://cirrus-ci.com/github/HariSekhon/Dockerfiles)
 [![Concourse](https://img.shields.io/badge/Concourse-ready-blue)](https://github.com/HariSekhon/Dockerfiles/blob/master/.concourse.yml)
+[![GoCD](https://img.shields.io/badge/GoCD-ready-blue)](https://github.com/HariSekhon/Dockerfiles/blob/master/.gocd.yml)
 
 [![Azure DevOps Pipeline](https://dev.azure.com/harisekhon/GitHub/_apis/build/status/HariSekhon.Dockerfiles?branchName=master)](https://dev.azure.com/harisekhon/GitHub/_build/latest?definitionId=6&branchName=master)
 [![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/dockerfiles/master?logo=bitbucketi&label=BitBucket)](https://bitbucket.org/harisekhon/dockerfiles/addon/pipelines/home#!/)

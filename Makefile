@@ -34,6 +34,11 @@ CODE_FILES := $(shell find . -type f -name '*.py' -o -type f -name '*.sh' | grep
 
 .PHONY: build
 build: init
+	@echo "==========="
+	@echo "Dockerfiles
+	@echo "==========="
+	@bash-tools/git_summary_line.sh
+	@echo
 	@$(MAKE) system-packages
 
 .PHONY: init

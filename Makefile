@@ -37,8 +37,7 @@ build: init
 	@echo "==========="
 	@echo "Dockerfiles
 	@echo "==========="
-	@bash-tools/git_summary_line.sh
-	@echo
+	@$(MAKE) git-summary
 	@$(MAKE) system-packages
 
 .PHONY: init

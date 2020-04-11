@@ -39,6 +39,8 @@ jobs:
           ${{ runner.os }}-pip-dockerfiles
     - name: brew update
       run: which brew && brew update || echo
+    - name: init
+      run: make init
     - name: build
       run: make ci
     - name: test

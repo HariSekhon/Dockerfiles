@@ -1,0 +1,71 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2020-03-16 14:02:53 +0000 (Mon, 16 Mar 2020)
+#
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  https://github.com/harisekhon/dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+# https://docs.semaphoreci.com/reference/pipeline-yaml-reference/
+
+version: v1.0
+name: dockerfiles
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+execution_time_limit:
+  hours: 3
+blocks:
+  - name: Linux build
+    run:
+      when: "branch = 'master'"
+    #execution_time_limit:
+    #  hours: 2
+    task:
+      prologue:
+        commands:
+          - cache restore
+      jobs:
+        - name: install git & make
+          commands:
+            - sudo apt update -qq
+            - sudo apt install -qy git make
+        - name: build
+          commands:
+            - checkout
+            - make init
+            - make ci
+            - make test
+      epilogue:
+        commands:
+          - cache store
+  - name: Mac build
+    run:
+      when: "branch = 'masterX'"
+    task:
+      agent:
+        machine:
+          type: a1-standard-4
+          os_image: macos-mojave-xcode10
+          #os_image: macos-mojave-xcode11
+      prologue:
+        commands:
+          - cache restore
+      jobs:
+        - name: build
+          commands:
+            - checkout
+            - make init
+            - make ci
+            - make test
+      epilogue:
+        commands:
+          - cache store

@@ -37,6 +37,8 @@ jobs:
         key: ${{ runner.os }}-pip-dockerfiles  # ${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-dockerfiles
+    - name: init
+      run: make init
     - name: build
       run: make ci
     - name: test

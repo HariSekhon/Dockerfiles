@@ -60,11 +60,11 @@ else
         if rabbitmqctl join_cluster "$RABBITMQ_NODE"@"$RABBITMQ_CLUSTER_SEED" $RAM; then
             break
         fi
-        if [ $count -ge 3 ]; then
+        if [ $count -ge 20 ]; then
             exit 1
         fi
         # give seed node some time to start if needed
-        sleep 120
+        sleep 10
     done
     echo "starting cluster node"
     rabbitmqctl start_app

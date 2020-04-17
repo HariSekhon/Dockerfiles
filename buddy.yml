@@ -27,11 +27,12 @@
     working_directory: "/buddy/dockerfiles"
     docker_image_name: "library/ubuntu"
     docker_image_tag: "18.04"
+    setup_commands:
+      - apt update
+      - apt install -qy git make
     execute_commands:
-      - "apt update &&"
-      - "apt install -qy git make &&"
-      - "make init &&"
-      - "make ci test"
+      - make init
+      - make ci test
     volume_mappings:
       - "/:/buddy/dockerfiles"
     shell: "BASH"

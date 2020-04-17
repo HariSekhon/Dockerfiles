@@ -53,7 +53,8 @@ else
     if [ -n "$RAM" ]; then
         echo "will configure as a ram node"
     fi
-    rabbitmqctl join_cluster "$RABBITMQ_NODE"@"$RABBITMQ_CLUSTER_SEED" "$RAM"
+    # do not quote $RAM - when it's empty passing "" breaks the join_cluster command
+    rabbitmqctl join_cluster "$RABBITMQ_NODE"@"$RABBITMQ_CLUSTER_SEED" $RAM
     echo "starting cluster node"
     rabbitmqctl start_app
     tail -f /dev/null /var/log/rabbitmq/*

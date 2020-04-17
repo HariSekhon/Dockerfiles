@@ -22,22 +22,26 @@ on: # [push]
       - master
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 10 30 * *'
+    - cron:  '0 7 * * *'
 
 jobs:
   build:
     #name: build
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container: ubuntu:latest
+    env:
+      repo: dockerfiles
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v1
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-dockerfiles  # ${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-dockerfiles
+    # untars repo in docker container so git submodule update fails
+    #- uses: actions/checkout@v2
+    - name: install git & make
+      run: apt-get update -qq && apt-get install -qy git make
+    - name: git clone
+      run: cd /tmp && git clone "https://github.com/harisekhon/$repo"
+    - name: init
+      run: cd "/tmp/$repo" && git submodule update --init --recursive
     - name: build
-      run: make
+      run: cd "/tmp/$repo" && make ci
     - name: test
-      run: make test
+      run: cd "/tmp/$repo" && make test

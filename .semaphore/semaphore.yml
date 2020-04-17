@@ -30,17 +30,20 @@ blocks:
     #execution_time_limit:
     #  hours: 2
     task:
+      env_vars:
+        # to match /usr/local/bin/pip version from $PATH
+        - name: PYTHON
+          value: python3.8
       prologue:
         commands:
           - cache restore
+      # each job is separate and could be run on a separate machine so all steps must be together
       jobs:
-        - name: install git & make
-          commands:
-            - sudo apt update -qq
-            - sudo apt install -qy git make
         - name: build
           commands:
             - checkout
+            - sudo apt update -qq
+            - sudo apt install -qy git make
             - make init
             - make ci
             - make test
@@ -49,8 +52,17 @@ blocks:
           - cache store
   - name: Mac build
     run:
-      when: "branch = 'masterX'"
+      when: "branch = 'master'"
     task:
+      # because otherwise on Mac it uses /usr/bin/python (2.7) but /usr/local/bin/pip (python 3.8)
+      env_vars:
+        # to match /usr/local/bin/pip version from $PATH
+        - name: PYTHON
+          value: python3
+        # must be quoted to force string, otherwise pipeline fails to run with this parsing error:
+        # Error: [{"Type mismatch. Expected String but got Integer.", "#/blocks/1/task/env_vars/1/value"}]
+        #- name: DEBUG
+        #  value: "1"
       agent:
         machine:
           type: a1-standard-4
@@ -59,6 +71,23 @@ blocks:
       prologue:
         commands:
           - cache restore
+          # fix for:
+          # pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
+          - brew install openssl
+          - brew reinstall python
+          - brew reinstall wget
+          # avoid Mac SSL errors:
+          #
+          # ERROR:  Loading command: install (LoadError)
+          #   dlopen(/Users/semaphore/.rbenv/versions/2.5.1/lib/ruby/2.5.0/x86_64-darwin18/openssl.bundle, 9): Library not loaded: /usr/local/opt/openssl/lib/libssl.1.0.0.dylib
+          #   Referenced from: /Users/semaphore/.rbenv/versions/2.5.1/lib/ruby/2.5.0/x86_64-darwin18/openssl.bundle
+          #   Reason: image not found - /Users/semaphore/.rbenv/versions/2.5.1/lib/ruby/2.5.0/x86_64-darwin18/openssl.bundle
+          # ERROR:  While executing gem ... (NoMethodError)
+          #     undefined method `invoke_with_build_args' for nil:NilClass#
+          #
+          - rbenv global system
+          # also considered this:
+          # - for version in $(rbenv versions | grep -v system | sed 's/^\*//'); do yes | rbenv uninstall "$version"; rbenv install "$version"; done
       jobs:
         - name: build
           commands:

@@ -1,0 +1,100 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2020-03-16 14:02:53 +0000 (Mon, 16 Mar 2020)
+#
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  https://github.com/harisekhon/dockerfiles
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+# https://docs.semaphoreci.com/reference/pipeline-yaml-reference/
+
+version: v1.0
+name: dockerfiles
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+execution_time_limit:
+  hours: 3
+blocks:
+  - name: Linux build
+    run:
+      when: "branch = 'master'"
+    #execution_time_limit:
+    #  hours: 2
+    task:
+      env_vars:
+        # to match /usr/local/bin/pip version from $PATH
+        - name: PYTHON
+          value: python3.8
+      prologue:
+        commands:
+          - cache restore
+      # each job is separate and could be run on a separate machine so all steps must be together
+      jobs:
+        - name: build
+          commands:
+            - checkout
+            - sudo apt update -qq
+            - sudo apt install -qy git make
+            - make init
+            - make ci
+            - make test
+      epilogue:
+        commands:
+          - cache store
+  - name: Mac build
+    run:
+      when: "branch = 'master'"
+    task:
+      # because otherwise on Mac it uses /usr/bin/python (2.7) but /usr/local/bin/pip (python 3.8)
+      env_vars:
+        # to match /usr/local/bin/pip version from $PATH
+        - name: PYTHON
+          value: python3
+        # must be quoted to force string, otherwise pipeline fails to run with this parsing error:
+        # Error: [{"Type mismatch. Expected String but got Integer.", "#/blocks/1/task/env_vars/1/value"}]
+        #- name: DEBUG
+        #  value: "1"
+      agent:
+        machine:
+          type: a1-standard-4
+          os_image: macos-mojave-xcode10
+          #os_image: macos-mojave-xcode11
+      prologue:
+        commands:
+          - cache restore
+          # fix for:
+          # pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
+          - brew install openssl
+          - brew reinstall python
+          - brew reinstall wget
+          # avoid Mac SSL errors:
+          #
+          # ERROR:  Loading command: install (LoadError)
+          #   dlopen(/Users/semaphore/.rbenv/versions/2.5.1/lib/ruby/2.5.0/x86_64-darwin18/openssl.bundle, 9): Library not loaded: /usr/local/opt/openssl/lib/libssl.1.0.0.dylib
+          #   Referenced from: /Users/semaphore/.rbenv/versions/2.5.1/lib/ruby/2.5.0/x86_64-darwin18/openssl.bundle
+          #   Reason: image not found - /Users/semaphore/.rbenv/versions/2.5.1/lib/ruby/2.5.0/x86_64-darwin18/openssl.bundle
+          # ERROR:  While executing gem ... (NoMethodError)
+          #     undefined method `invoke_with_build_args' for nil:NilClass#
+          #
+          - rbenv global system
+          # also considered this:
+          # - for version in $(rbenv versions | grep -v system | sed 's/^\*//'); do yes | rbenv uninstall "$version"; rbenv install "$version"; done
+      jobs:
+        - name: build
+          commands:
+            - checkout
+            - make init
+            - make ci
+            - make test
+      epilogue:
+        commands:
+          - cache store

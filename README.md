@@ -1,25 +1,50 @@
 Big Data, NoSQL & DevOps Docker Images
 ======================================
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles.svg)](https://github.com/harisekhon/Dockerfiles/network) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/HariSekhon/Dockerfiles#hari-sekhon-docker) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/u/harisekhon/)
 
-[![Travis CI](https://img.shields.io/travis/harisekhon/Dockerfiles/master?logo=travis)](https://travis-ci.org/HariSekhon/Dockerfiles)
-[![AppVeyor](https://img.shields.io/appveyor/build/harisekhon/Dockerfiles/master?logo=appveyor)](https://ci.appveyor.com/project/HariSekhon/Dockerfiles/branch/master)
-[![Drone](https://img.shields.io/drone/build/HariSekhon/Dockerfiles/master?logo=drone)](https://cloud.drone.io/HariSekhon/Dockerfiles)
+[![Codacy](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles)
+[![CodeFactor](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles/badge)](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=alert_status)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=security_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
+[![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles)](https://github.com/harisekhon/Dockerfiles/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles)](https://github.com/harisekhon/Dockerfiles/network)
+
+[![Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux)](https://github.com/HariSekhon/Dockerfiles)
+[![Mac](https://img.shields.io/badge/OS-Mac-blue?logo=apple)](https://github.com/HariSekhon/Dockerfiles)
+[![Docker](https://img.shields.io/badge/container-Docker-blue?logo=docker)](https://hub.docker.com/u/harisekhon)
+[![CI Builds Overview](https://img.shields.io/badge/CI%20Builds-Overview%20Page-blue)](https://bitbucket.org/harisekhon/devops-bash-tools/src/master/STATUS.md)
+
+[![Travis CI](https://img.shields.io/travis/harisekhon/Dockerfiles/master?logo=travis&label=Travis)](https://travis-ci.org/HariSekhon/Dockerfiles)
+[![AppVeyor](https://img.shields.io/appveyor/build/harisekhon/Dockerfiles/master?logo=appveyor&label=AppVeyor)](https://ci.appveyor.com/project/HariSekhon/Dockerfiles/branch/master)
+[![Drone](https://img.shields.io/drone/build/HariSekhon/Dockerfiles/master?logo=drone&label=Drone)](https://cloud.drone.io/HariSekhon/Dockerfiles)
 [![CircleCI](https://circleci.com/gh/HariSekhon/Dockerfiles.svg?style=svg)](https://circleci.com/gh/HariSekhon/Dockerfiles)
 [![Codeship Status for HariSekhon/Dockerfiles](https://app.codeship.com/projects/915368e0-3c5f-0138-52ff-1ecbdb7eccb9/status?branch=master)](https://app.codeship.com/projects/387249)
-[![Shippable](https://api.shippable.com/projects/5e52c6344c324200063326d1/badge?branch=master)](https://app.shippable.com/github/HariSekhon/Dockerfiles/dashboard/jobs)
-[![Codefresh](https://g.codefresh.io/api/badges/pipeline/harisekhon/GitHub%2FDockerfiles?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWU1MmM5OGNiM2FiOWUzM2Y3ZDZmYjM3.O69674cW7vYom3v5JOGKXDbYgCVIJU9EWhXUMHl3zwA&type=cf-1)](https://g.codefresh.io/pipelines/Dockerfiles/builds)
-[![wercker status](https://app.wercker.com/status/26a0f1151450a0de3d8a339345b70019/s/master "wercker status")](https://app.wercker.com/project/byKey/26a0f1151450a0de3d8a339345b70019)
+[![Shippable](https://img.shields.io/shippable/5e52c63645c70f0007ff514e/master?label=Shippable)](https://app.shippable.com/github/HariSekhon/Dockerfiles/dashboard/jobs)
+[![Codefresh](https://g.codefresh.io/api/badges/pipeline/harisekhon/GitHub%2FDockerfiles?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWU1MmM5OGNiM2FiOWUzM2Y3ZDZmYjM3.O69674cW7vYom3v5JOGKXDbYgCVIJU9EWhXUMHl3zwA&type=cf-1)](https://g.codefresh.io/pipelines/edit/new/builds?id=5e58e32c9604d7520e95ee26&pipeline=Dockerfiles&projects=GitHub&projectId=5e52ca8ea284e00f882ea992&context=github&filter=page:1;pageSize:10;timeFrameStart:week)
+[![Wercker](https://app.wercker.com/status/26a0f1151450a0de3d8a339345b70019/s/master "wercker status")](https://app.wercker.com/project/byKey/26a0f1151450a0de3d8a339345b70019)
+[![BuildKite](https://img.shields.io/buildkite/503cefcbf7f8c60c2826d7a22a22496d1187a4839b71619914/master?label=BuildKite)](https://buildkite.com/hari-sekhon/dockerfiles)
+[![buddy pipeline](https://app.buddy.works/harisekhon/dockerfiles/pipelines/pipeline/246993/badge.svg?token=7f63afa3c423a65e6e39a79be0386959e98c4105ea1e20f7f8b05d6d6b587038 "buddy pipeline")](https://app.buddy.works/harisekhon/dockerfiles/pipelines/pipeline/246993)
+[![Cirrus CI](https://img.shields.io/cirrus/github/HariSekhon/Dockerfiles/master?logo=Cirrus%20CI&label=Cirrus%20CI)](https://cirrus-ci.com/github/HariSekhon/Dockerfiles)
+[![Semaphore](https://harisekhon.semaphoreci.com/badges/Dockerfiles.svg)](https://harisekhon.semaphoreci.com/projects/Dockerfiles)
+[![Concourse](https://img.shields.io/badge/Concourse-ready-blue)](https://github.com/HariSekhon/Dockerfiles/blob/master/.concourse.yml)
+[![GoCD](https://img.shields.io/badge/GoCD-ready-blue)](https://github.com/HariSekhon/Dockerfiles/blob/master/.gocd.yml)
+[![Jenkins](https://img.shields.io/badge/Jenkins-ready-blue)](https://github.com/HariSekhon/Dockerfiles/blob/master/Jenkinsfile)
 
 [![Azure DevOps Pipeline](https://dev.azure.com/harisekhon/GitHub/_apis/build/status/HariSekhon.Dockerfiles?branchName=master)](https://dev.azure.com/harisekhon/GitHub/_build/latest?definitionId=6&branchName=master)
-[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/dockerfiles/master?logo=bitbucket)](https://bitbucket.org/harisekhon/dockerfiles/addon/pipelines/home#!/)
-[![GitLab Pipeline](https://img.shields.io/gitlab/pipeline/harisekhon/Dockerfiles?logo=gitlab)](https://gitlab.com/HariSekhon/Dockerfiles/pipelines)
+[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/dockerfiles/master?logo=bitbucketi&label=BitBucket)](https://bitbucket.org/harisekhon/dockerfiles/addon/pipelines/home#!/)
+[![GitLab Pipeline](https://img.shields.io/gitlab/pipeline/harisekhon/Dockerfiles?logo=gitlab&label=GitLab)](https://gitlab.com/HariSekhon/Dockerfiles/pipelines)
+[![Repo on GitHub](https://img.shields.io/badge/repo-GitHub-blue?logo=github)](https://github.com/HariSekhon/Dockerfiles)
+[![Repo on GitLab](https://img.shields.io/badge/repo-GitLab-blue?logo=gitlab)](https://gitlab.com/HariSekhon/Dockerfiles)
+[![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-blue?logo=bitbucket)](https://bitbucket.org/HariSekhon/Dockerfiles)
 
 [![CI Mac](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Mac/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Mac%22)
+[![CI Mac 10.15](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Mac%2010.15/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Mac+10.15%22)
 [![CI Ubuntu](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Ubuntu/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Ubuntu%22)
 [![CI Ubuntu 14.04](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Ubuntu%2014.04/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Ubuntu+14.04%22)
 [![CI Ubuntu 16.04](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Ubuntu%2016.04/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Ubuntu+16.04%22)
 [![CI Ubuntu 18.04](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Ubuntu%2018.04/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Ubuntu+18.04%22)
+[![CI Ubuntu GitHub](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Ubuntu%20GitHub/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Ubuntu+GitHub%22)
 [![CI Debian](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Debian/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Debian%22)
 [![CI Debian 8](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Debian%208/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Debian+8%22)
 [![CI Debian 9](https://github.com/HariSekhon/Dockerfiles/workflows/CI%20Debian%209/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22CI+Debian+9%22)
@@ -159,7 +184,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
     - `harisekhon/nagios-plugins:python`
 - `harisekhon/tools` - DevOps Tools superset of the below images, containing hundreds of programs:
   - `harisekhon/pytools` - [DevOps Python Tools](https://github.com/harisekhon/devops-python-tools) - 80+ DevOps CLI tools tools for AWS, Log Anonymizer, Spark, Hadoop, HBase, Hive, Impala, Linux, Docker, Spark Data Converters & Validators (Avro/Parquet/JSON/CSV/INI/XML/YAML), Travis CI, Ambari, Blueprints, CloudFormation, Elasticsearch, Solr, Pig etc.
-  - `harisekhon/bash-tools` - [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools) - 100+ DevOps CLI tools for AWS, GCP, Kubernetes, Hadoop, Hive, Impala, Kafka, Docker, LDAP, Git, Code & build linting, package management for Linux / Mac / Python / Perl / Ruby / NodeJS / Golang, and lots more random goodies
+  - `harisekhon/bash-tools` - [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools) - 200+ DevOps CLI tools for AWS, GCP, Kubernetes, Hadoop, Hive, Impala, Kafka, Docker, LDAP, Git, Code & build linting, package management for Linux / Mac / Python / Perl / Ruby / NodeJS / Golang, and lots more random goodies
   - `harisekhon/perl-tools` - [DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools) - 25+ DevOps CLI Tools - Log Anonymizer, Hadoop HDFS & Hive tools, Solr/SolrCloud CLI, SQL ReCaser (MySQL, PostgreSQL, AWS Redshift, Snowflake, Apache Drill, Hive, Impala, Cassandra CQL, Microsoft SQL Server, Oracle, Couchbase N1QL, Dockerfiles, Pig Latin, Neo4j, InfluxDB), Linux, Nginx stats & HTTP(S) URL watchers for load balanced web farms, Ambari FreeIPA Kerberos, Datameer etc.
   - all of the above repos come with tags for `alpine`, `centos`, `debian`, `fedora` and `ubuntu` builds
 - [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Backup & Play Automation: Spotify Lookup - converts Spotify URIs to 'Artist - Track' form by querying the Spotify Metadata API. Spotify Cmd - command line control of Spotify on Mac via AppleScript for automation, auto timed track flick through etc.
@@ -247,7 +272,7 @@ Please raise tickets for issues and improvements at https://github.com/harisekho
 
 * [The Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 450+ programs for Nagios monitoring your Hadoop & NoSQL clusters. Covers every Hadoop vendor's management API and every major NoSQL technology (HBase, Cassandra, MongoDB, Elasticsearch, Solr, Riak, Redis etc.) as well as message queues (Kafka, RabbitMQ), continuous integration (Jenkins, Travis CI) and traditional infrastructure (SSL, Whois, DNS, Linux)
 
-* [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools) - 100+ DevOps Bash scripts, advanced `.bashrc`, `.vimrc`, `.screenrc`, `.tmux.conf`, `.toprc`, Utility Code Library used by CI and all my GitHub repos - includes code for AWS, Kubernetes, Kafka, Docker, Git, Code & build linting, package management for Linux / Mac / Perl / Python / Ruby / Golang, and lots more random goodies
+* [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools) - 200+ DevOps Bash scripts, advanced `.bashrc`, `.vimrc`, `.screenrc`, `.tmux.conf`, `.toprc`, Utility Code Library used by CI and all my GitHub repos - includes code for AWS, Kubernetes, Kafka, Docker, Git, Code & build linting, package management for Linux / Mac / Perl / Python / Ruby / Golang, and lots more random goodies
 
 * [DevOps Perl Tools](https://github.com/harisekhon/perl-tools) - 25+ DevOps CLI tools for Hadoop, HDFS, Hive, Solr/SolrCloud CLI, Log Anonymizer, Nginx stats & HTTP(S) URL watchers for load balanced web farms, Dockerfiles & SQL ReCaser (MySQL, PostgreSQL, AWS Redshift, Snowflake, Apache Drill, Hive, Impala, Cassandra CQL, Microsoft SQL Server, Oracle, Couchbase N1QL, Dockerfiles, Pig Latin, Neo4j, InfluxDB), Ambari FreeIPA Kerberos, Datameer, Linux...
 
@@ -256,3 +281,5 @@ Please raise tickets for issues and improvements at https://github.com/harisekho
 ### Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/HariSekhon/Dockerfiles.svg)](https://starchart.cc/HariSekhon/Dockerfiles)
+
+[git.io/dockerhub](https://git.io/dockerhub)

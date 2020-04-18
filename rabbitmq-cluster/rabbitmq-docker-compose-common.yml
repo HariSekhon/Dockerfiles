@@ -30,6 +30,6 @@ services:
       #- RABBITMQ_FEDERATION_MANAGEMENT_PLUGIN=1
       #- RABBITMQ_SHOVEL_PLUGIN=1
       #- RABBITMQ_SHOVEL_MANAGEMENT_PLUGIN=1
-    ports:
-      - 5672
-      - 15672
+    #ports:
+    #  - 5672
+    #  - 15672

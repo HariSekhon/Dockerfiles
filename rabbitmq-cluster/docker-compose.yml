@@ -12,7 +12,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-version: '3'
+# version 3 no longer supports 'extends' :-(
+version: '2.1'
 services:
   rabbit1:
     hostname: rabbit1

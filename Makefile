@@ -117,12 +117,12 @@ push:
 .PHONY: pull
 pull:
 	git checkout master && \
-	git pull && \
+	git pull --no-edit && \
 	for branch in $$(git branch -a | grep -v -e remotes/ | sed 's/\*//'); do \
 		echo "git checkout $$branch" && \
 		git checkout "$$branch" && \
-		echo "git pull" && \
-		git pull || \
+		echo "git pull --no-edit" && \
+		git pull --no-edit || \
 		exit 1; \
 	done; \
 	git checkout master

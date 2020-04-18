@@ -22,6 +22,9 @@ services:
       service: rabbitmq-common
     environment:
       - RABBITMQ_CLUSTER_SEED=rabbit1
+    ports:
+      - 5672:5672
+      - 15672:15672
   rabbit2:
     hostname: rabbit2
     extends:
@@ -32,3 +35,6 @@ services:
     environment:
       - RABBITMQ_CLUSTER_SEED=rabbit1
       - RABBITMQ_RAM_NODE=1
+    ports:
+      - 5673:5672
+      - 15673:15672

@@ -20,10 +20,10 @@ LABEL Description="RabbitMQ Cluster" \
       "RabbitMQ Version"="$RABBITMQ_VERSION"
 
 COPY entrypoint.sh /
-COPY rabbitmq-cluster /usr/bin
+COPY rabbitmq-cluster /
 
 EXPOSE 15672
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["rabbitmq-cluster"]
+CMD ["/rabbitmq-cluster"]

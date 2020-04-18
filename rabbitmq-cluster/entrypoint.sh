@@ -62,7 +62,7 @@ fi
 
 if [ "${1:-}" = "rabbitmq-cluster" ]; then
     echo "Starting RabbitMQ to trigger upstream entrypoint to write all official configs out"
-    bash -x /docker-entrypoint.sh rabbitmq-server -detached
+    bash -x /usr/local/bin/docker-entrypoint.sh rabbitmq-server -detached
     if [ -n "${RABBITMQ_DEFAULT_USER:-}" ] &&
        [ -n "${RABBITMQ_DEFAULT_PASS:-}" ]; then
         rabbitmqctl add_user "$RABBITMQ_DEFAULT_USER" "$RABBITMQ_DEFAULT_PASS" || :

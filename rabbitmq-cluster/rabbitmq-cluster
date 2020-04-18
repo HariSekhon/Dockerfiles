@@ -53,8 +53,19 @@ else
     if [ -n "$RAM" ]; then
         echo "will configure as a ram node"
     fi
-    # do not quote $RAM - when it's empty passing "" breaks the join_cluster command
-    rabbitmqctl join_cluster "$RABBITMQ_NODE"@"$RABBITMQ_CLUSTER_SEED" $RAM
+    count=0
+    while true; do
+        ((count+=1))
+        # do not quote $RAM - when it's empty passing "" breaks the join_cluster command
+        if rabbitmqctl join_cluster "$RABBITMQ_NODE"@"$RABBITMQ_CLUSTER_SEED" $RAM; then
+            break
+        fi
+        if [ $count -ge 20 ]; then
+            exit 1
+        fi
+        # give seed node some time to start if needed
+        sleep 10
+    done
     echo "starting cluster node"
     rabbitmqctl start_app
     tail -f /dev/null /var/log/rabbitmq/*

@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM rabbitmq:3.7
+FROM rabbitmq:3.8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG RABBITMQ_VERSION=3.7
+ARG RABBITMQ_VERSION=3.8
 
 LABEL Description="RabbitMQ Cluster" \
       "RabbitMQ Version"="$RABBITMQ_VERSION"

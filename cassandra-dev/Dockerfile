@@ -40,7 +40,6 @@ RUN set -eux && \
     url="http://www.apache.org/dyn/closer.lua?filename=cassandra/$CASSANDRA_VERSION/$TAR&action=download"; \
     url_archive="http://archive.apache.org/dist/cassandra/$CASSANDRA_VERSION/$TAR"; \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
-    # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
     #                  (and is also the wrong version for the tag)
     #                  but this breaks stuff later because the link will not point to the right dir

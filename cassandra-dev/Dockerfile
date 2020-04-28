@@ -42,8 +42,6 @@ RUN set -eux && \
     # --max-redirect - some apache mirrors redirect a couple times and give you the latest version instead
     #                  but this breaks stuff later because the link will not point to the right dir
     #                  (and is also the wrong version for the tag)
-    #                  but this breaks stuff later because the link will not point to the right dir
-    #                  (and is also the wrong version for the tag)
     wget -t 10 --max-redirect 1 --retry-connrefused -O "$TAR" "$url" || \
     wget -t 10 --max-redirect 1 --retry-connrefused -O "$TAR" "$url_archive" && \
     tar zxf "$TAR" && \

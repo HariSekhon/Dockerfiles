@@ -32,8 +32,8 @@ cd /
 
 "$bash_tools/setup/download_cassandra.sh"
 
-apt-get autoremove -y
+yum clean all
 
-apt-get clean
+rm -rf /var/cache/yum
 
 "$bash_tools/check_docker_clean.sh"

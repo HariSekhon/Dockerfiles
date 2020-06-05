@@ -33,10 +33,10 @@
     #  - apt update
     #  - apt install -qy git make
     execute_commands:
-      - apt update
-      - apt install -qy git make
+      - setup/ci_bootstrap.sh
       - make init
-      - make ci test
+      - make ci
+      - make test
     volume_mappings:
       - "/:/buddy/dockerfiles"
     shell: "BASH"

@@ -44,8 +44,7 @@ blocks:
         - name: build
           commands:
             - checkout
-            - sudo apt update -qq
-            - sudo apt install -qy git make
+            - setup/ci_bootstrap.sh
             - make init
             - make ci
             - make test

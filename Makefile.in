@@ -21,7 +21,7 @@ endif
 
 ifndef TAG
 	# take explicit tag from Makefile if present otherwise infer tag from first ARG *_VERSION=N.N in Dockerfile
-	TAG := $(shell { perl -n -e '/:(\d+\.\d+|latest)/ && &{print "$1\n"; exit}' Makefile; perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $1; exit }' Dockerfile; } | head -n1)
+	TAG := $(shell { perl -n -e '/REPO.*\w+\/\w+:(\d+\.\d+|\w+)/ && &{print "$1\n"; exit}' Makefile; perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }' Dockerfile; } | head -n1)
 endif
 
 ifndef REPO
@@ -222,11 +222,11 @@ github-url:
 
 .PHONY: dockerhub
 dockerhub:
-	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://hub.docker.com/r/$(REPO)"
+	@source $(BASH_TOOLS)/.bash.d/network.sh; browser `echo "https://hub.docker.com/r/$(REPO)" | sed 's/:[^:]*$$//'`
 
 .PHONY: dockerhub-url
 dockerhub-url:
-	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://hub.docker.com/r/$(REPO)" | tee /dev/stderr | tr -d '\n' | paste_clipboard
+	@source $(BASH_TOOLS)/.bash.d/functions.sh; echo "https://hub.docker.com/r/$(REPO)" | sed 's/:[^:]*$$//' | tee /dev/stderr | tr -d '\n' | paste_clipboard
 
 .PHONY: dockerhub-status
 dockerhub-status:

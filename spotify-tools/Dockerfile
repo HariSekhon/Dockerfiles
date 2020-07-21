@@ -16,7 +16,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Spotify Tools"
 
-ENV PATH $PATH:/github/spotify-tools
+ENV PATH $PATH:/github/spotify-tools:/github/spotify-tools/bash-tools
 
 RUN mkdir -v /github
 
@@ -36,4 +36,4 @@ WORKDIR /github/spotify-tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
 # hadolint ignore=DL3025
-CMD find /github/spotify-tools -maxdepth 1 -type f -name '[A-Za-z]*.pl' | xargs -n1 basename | sort
+CMD find /github/spotify-tools -maxdepth 2 -type f -name '*.pl' -o -type f -name '*.sh' | grep spotify | grep -v old/ | xargs -n1 basename | sort

@@ -21,7 +21,7 @@ export SPOTIFY_ACCESS_TOKEN="$(SPOTIFY_PRIVATE=1 '/Users/hari/github/bash-tools/
 docker run --rm -ti -e SPOTIFY_ACCESS_TOKEN harisekhon/spotify-tools <program> <args>
 ```
 
-List programs like so
+List available programs like so
 ```
 docker run --rm -ti harisekhon/spotify-tools
 ```

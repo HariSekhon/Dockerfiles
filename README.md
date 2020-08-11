@@ -10,7 +10,7 @@ Big Data, NoSQL & DevOps Docker Images
 [![Contributors](https://img.shields.io/github/contributors/HariSekhon/Dockerfiles)](https://github.com/HariSekhon/Dockerfiles/graphs/contributors)
 [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles?logo=github)](https://github.com/harisekhon/Dockerfiles/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles?logo=github)](https://github.com/harisekhon/Dockerfiles/network)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/HariSekhon/Dockerfiles)](https://github.com/HariSekhon/Dockerfiles/commits/master)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/HariSekhon/Dockerfiles?logo=github)](https://github.com/HariSekhon/Dockerfiles/commits/master)
 
 [![Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux)](https://github.com/HariSekhon/Dockerfiles)
 [![Mac](https://img.shields.io/badge/OS-Mac-blue?logo=apple)](https://github.com/HariSekhon/Dockerfiles)

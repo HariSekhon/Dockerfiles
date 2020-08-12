@@ -15,34 +15,37 @@
 
 # Alpine / Wget:
 #
-# wget https://raw.githubusercontent.com/HariSekhon/Dockerfiles/master/setup/bootstrap.sh && sh bootstrap.sh
+# wget https://raw.githubusercontent.com/HariSekhon/dockerfiles/master/setup/bootstrap.sh && sh bootstrap.sh
 #
 # Curl:
 #
-# curl https://raw.githubusercontent.com/HariSekhon/Dockerfiles/master/setup/bootstrap.sh | sh
+# curl https://raw.githubusercontent.com/HariSekhon/dockerfiles/master/setup/bootstrap.sh | sh
 
 set -eu
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(dirname "$0")"
 
-repo="https://github.com/HariSekhon/Dockerfiles"
+repo="https://github.com/HariSekhon/dockerfiles"
 
 directory="dockerfiles"
+
+sudo=""
+[ "$(whoami)" = "root" ] || sudo=sudo
 
 if [ "$(uname -s)" = Darwin ]; then
     echo "Bootstrapping Mac"
     if ! type brew >/dev/null 2>&1; then
-        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
+        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | $sudo ruby
     fi
 elif [ "$(uname -s)" = Linux ]; then
     echo "Bootstrapping Linux"
     if type apk >/dev/null 2>&1; then
-        apk --no-cache add bash git make
+        $sudo apk --no-cache add bash git make
     elif type apt-get >/dev/null 2>&1; then
-        apt-get update
-        apt-get install -y git make
+        $sudo apt-get update
+        $sudo apt-get install -y git make
     elif type yum >/dev/null 2>&1; then
-        yum install -y git make
+        $sudo yum install -y git make
     else
         echo "Package Manager not found on Linux, cannot bootstrap"
         exit 1

@@ -67,13 +67,15 @@ Big Data, NoSQL & DevOps Docker Images
 
 These docker images are tested by hundreds of tools and also used in the full functional test suites of various other GitHub repos.
 
+See also the [Kubernetes templates](https://github.com/HariSekhon/Kubernetes-templates) repo.
+
 Overview - this repo contains:
 
 * **Hadoop & Big Data** ecosystem technologies (Spark, Kafka, Presto, Drill, Nifi, ZooKeeper)
 * **NoSQL** datastores (HBase, Cassandra, Riak, SolrCloud)
 * OS & development images (Alpine, CentOS, Debian, Fedora, Ubuntu)
 * **DevOps** tech, anything cool and open source (RabbitMQ Cluster, Mesos, Consul)
-* [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built
+* [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built in the docker images
 
 These images are all available pre-built on [My DockerHub - https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).
 

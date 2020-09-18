@@ -7,9 +7,9 @@ Big Data, NoSQL & DevOps Docker Images
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=security_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
-[![Contributors](https://img.shields.io/github/contributors/HariSekhon/Dockerfiles?logo=github)](https://github.com/HariSekhon/Dockerfiles/graphs/contributors)
 [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Dockerfiles?logo=github)](https://github.com/harisekhon/Dockerfiles/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Dockerfiles?logo=github)](https://github.com/harisekhon/Dockerfiles/network)
+[![Contributors](https://img.shields.io/github/contributors/HariSekhon/Dockerfiles?logo=github)](https://github.com/HariSekhon/Dockerfiles/graphs/contributors)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/HariSekhon/Dockerfiles?logo=github)](https://github.com/HariSekhon/Dockerfiles/commits/master)
 [![Lines of Code](https://img.shields.io/badge/lines%20of%20code-8k-lightgrey?logo=codecademy)](https://github.com/HariSekhon/Dockerfiles)
 

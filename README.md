@@ -282,7 +282,7 @@ Please raise tickets for issues and improvements at https://github.com/harisekho
 
 * [SQL Scripts](https://github.com/HariSekhon/SQL-scripts) - 100+ SQL Scripts - PostgreSQL, MySQL, AWS Athena, Google BigQuery
 
-* [Templates](https://github.com/HariSekhon/Templates) - dozens of Code & Config templates for many popular programming languages and DevOps tools including Docker, AWS, GCP, Jenkins, Circle CI, Vagrant, Make, SBT, Gradle etc.
+* [Templates](https://github.com/HariSekhon/Templates) - dozens of Code & Config templates - AWS, GCP, Docker, Jenkins, Terraform, Vagrant, Puppet, Python, Bash, Go, Perl, Java, Scala, Groovy, Maven, SBT, Gradle, Make, GitHub Actions Workflows, CircleCI, Jenkinsfile, Makefile, Dockerfile, docker-compose.yml, M4 etc.
 
 * [Kubernetes templates](https://github.com/HariSekhon/Kubernetes-templates) - Kubernetes YAML templates - Best Practices, Tips & Tricks are baked right into the templates for future deployments
 

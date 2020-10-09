@@ -20,7 +20,7 @@ RUN set -euxo pipefail && \
     yum install -y curl && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_powershell_rhel.sh | bash && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_appveyor_byoc.sh | bash && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/docker_clean.sh | sh
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
 
 COPY entrypoint.sh /
 

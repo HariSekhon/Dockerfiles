@@ -43,6 +43,8 @@ echo
 
 tests/check_repo_names.sh
 
+tests/check_no_add_copy_all.sh
+
 tests/check_docker-compose_images.sh
 
 tests/check_ports_exposed.sh

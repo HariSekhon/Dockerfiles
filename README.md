@@ -37,11 +37,13 @@ Big Data, NoSQL & DevOps Docker Images
 <!--[![Wercker](https://img.shields.io/wercker/ci/5e58ef5791cbef3500c15ddb/master?label=Wercker&logo=oracle)](https://app.wercker.com/harisekhon/dockerfiles/runs)-->
 
 [![Azure DevOps Pipeline](https://dev.azure.com/harisekhon/GitHub/_apis/build/status/HariSekhon.Dockerfiles?branchName=master)](https://dev.azure.com/harisekhon/GitHub/_build/latest?definitionId=6&branchName=master)
-[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/dockerfiles/master?logo=bitbucketi&label=BitBucket%20CI)](https://bitbucket.org/harisekhon/dockerfiles/addon/pipelines/home#!/)
 [![GitLab Pipeline](https://img.shields.io/gitlab/pipeline/harisekhon/Dockerfiles?logo=gitlab&label=GitLab%20CI)](https://gitlab.com/HariSekhon/Dockerfiles/pipelines)
-[![Repo on GitHub](https://img.shields.io/badge/repo-GitHub-blue?logo=github)](https://github.com/HariSekhon/Dockerfiles)
-[![Repo on GitLab](https://img.shields.io/badge/repo-GitLab-blue?logo=gitlab)](https://gitlab.com/HariSekhon/Dockerfiles)
-[![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-blue?logo=bitbucket)](https://bitbucket.org/HariSekhon/Dockerfiles)
+[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/dockerfiles/master?logo=bitbucketi&label=BitBucket%20CI)](https://bitbucket.org/harisekhon/dockerfiles/addon/pipelines/home#!/)
+
+[![Repo on Azure DevOps](https://img.shields.io/badge/repo-Azure%20DevOps-0078D7?logo=azure%20devops)](https://dev.azure.com/harisekhon/GitHub/_git/Dockerfiles)
+[![Repo on GitHub](https://img.shields.io/badge/repo-GitHub-2088FF?logo=github)](https://github.com/HariSekhon/Dockerfiles)
+[![Repo on GitLab](https://img.shields.io/badge/repo-GitLab-FCA121?logo=gitlab)](https://gitlab.com/HariSekhon/Dockerfiles)
+[![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-0052CC?logo=bitbucket)](https://bitbucket.org/HariSekhon/Dockerfiles)
 
 [![GitHub Actions Ubuntu](https://github.com/HariSekhon/Dockerfiles/workflows/GitHub%20Actions%20Ubuntu/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22GitHub+Actions+Ubuntu%22)
 [![Mac](https://github.com/HariSekhon/Dockerfiles/workflows/Mac/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions?query=workflow%3A%22Mac%22)

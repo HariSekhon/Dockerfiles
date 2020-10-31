@@ -80,7 +80,7 @@ EOF
     mkdir -pv /hadoop/logs
 
     sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
-
+#    rm -f /run/nologin
     start-dfs.sh
     start-yarn.sh
     tail -f /dev/null /hadoop/logs/*

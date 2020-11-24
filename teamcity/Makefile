@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/teamcity-mysql
+REPO := harisekhon/teamcity-server-mysql
 
 include ../Makefile.in
 

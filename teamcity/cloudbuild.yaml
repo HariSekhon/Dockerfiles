@@ -37,7 +37,8 @@
 # --substitutions=_IMAGE_NAME="myapp",_IMAGE_VERSION:"1.1"
 substitutions:
   _IMAGE_NAME: teamcity-server
-  _IMAGE_VERSION: 2020.2
+  # requires string, otherwise misinterpreted as float
+  _IMAGE_VERSION: "2020.2"
   #_REGISTRY: eu.gcr.io
   _REGISTRY: gcr.io
 

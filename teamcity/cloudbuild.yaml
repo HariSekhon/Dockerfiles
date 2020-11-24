@@ -1,0 +1,71 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2020-02-11 12:53:33 +0000 (Tue, 11 Feb 2020)
+#
+#  https://github.com/harisekhon/templates
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn
+#  and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+# ============================================================================ #
+#                         G C P   C l o u d   B u i l d
+# ============================================================================ #
+
+# References:
+#
+#     https://cloud.google.com/cloud-build/docs/build-config
+#
+#     https://cloud.google.com/cloud-build/docs/speeding-up-builds
+#
+#     https://cloud.google.com/cloud-build/docs/building-leaner-containers
+#
+#     https://cloud.google.com/cloud-build/docs/build-debug-locally
+
+
+# gcloud builds submit --config cloudbuild.yaml .
+
+# tars $PWD to bucket called ${PROJECT_ID}_cloudbuild
+
+# $PROJECT_ID is auto-populated by Cloud Build
+
+# variables - can override these on the CLI:
+# --substitutions=_IMAGE_NAME="myapp",_IMAGE_VERSION:"1.1"
+substitutions:
+  _IMAGE_NAME: teamcity-server
+  _IMAGE_VERSION: 2020.2
+  #_REGISTRY: eu.gcr.io
+  _REGISTRY: gcr.io
+
+timeout: 300s
+
+# push this image to GCR - doing it this way instead of docker push links the image artifact in GCP Console's Cloud Build UI
+images:
+- ${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}
+# the above pushed all tags to GCR without specifying tags explicitly like this:
+#- gcr.io/$PROJECT_ID/${_IMAGE_NAME}:latest
+#- gcr.io/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+
+steps:
+# use Docker cloud builder to build image - not available in eu.gcr.io
+- name: gcr.io/cloud-builders/docker
+  # multiple tags (all tags get pushed to GCR implicitly via image declaration above)
+  args:
+    - build
+    # use variable tags if triggered:
+    # https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values
+    - --tag=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:latest
+    - --tag=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+    # use all cached layers where possible (will pull, better for seldomly rebuilt images, kaniko cache is better for frequenct as it's local)
+    - --cache-from=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+    - .
+  # or use kaniko builder to cache
+  #name: '${_REGISTRY}/kaniko-project/executor:latest'
+  #- --destination=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+  #- --cache=true
+  #- --cache-ttl=6h
+  timeout: 300s

@@ -41,15 +41,18 @@ substitutions:
   _IMAGE_VERSION: "2020.2"
   #_REGISTRY: eu.gcr.io
   _REGISTRY: gcr.io
+  # if you hardcode _PROJECT to a shared project, you'll need to switch your GCloud SDK core.project
+  # to submit to that project for the GCS permissions
+  _PROJECT: $PROJECT_ID
 
 timeout: 300s
 
 # push this image to GCR - doing it this way instead of docker push links the image artifact in GCP Console's Cloud Build UI
 images:
-- ${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}
+- ${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}
 # the above pushed all tags to GCR without specifying tags explicitly like this:
-#- gcr.io/$PROJECT_ID/${_IMAGE_NAME}:latest
-#- gcr.io/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+#- gcr.io/${_PROJECT}/${_IMAGE_NAME}:latest
+#- gcr.io/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
 
 steps:
 # use Docker cloud builder to build image - not available in eu.gcr.io
@@ -59,14 +62,14 @@ steps:
     - build
     # use variable tags if triggered:
     # https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values
-    - --tag=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:latest
-    - --tag=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+    - --tag=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:latest
+    - --tag=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
     # use all cached layers where possible (will pull, better for seldomly rebuilt images, kaniko cache is better for frequenct as it's local)
-    - --cache-from=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+    - --cache-from=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
     - .
   # or use kaniko builder to cache
   #name: '${_REGISTRY}/kaniko-project/executor:latest'
-  #- --destination=${_REGISTRY}/$PROJECT_ID/${_IMAGE_NAME}:${_IMAGE_VERSION}
+  #- --destination=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
   #- --cache=true
   #- --cache-ttl=6h
   timeout: 300s

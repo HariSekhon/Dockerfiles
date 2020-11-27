@@ -19,8 +19,8 @@ ARG TEAMCITY_VERSION=2020.2
 
 ARG MYSQL_CONNECTOR_VERSION=8.0.22
 
-RUN libdir=/opt/teamcity/lib/jdbc && \
-    mkdir -v "$libdir" && \
+RUN libdir=/data/teamcity_server/datadir/lib/jdbc/  && \
+    mkdir -pv "$libdir" && \
     curl -sSL --fail "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.tar.gz" | \
     tar zxvf - -C "$libdir" --strip 1 "mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" && \
     ln -s "$libdir/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" "$libdir/mysql-connector-java.jar"

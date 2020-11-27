@@ -18,9 +18,17 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 ARG TEAMCITY_VERSION=2020.2
 
 ARG MYSQL_CONNECTOR_VERSION=8.0.22
+ARG POSTGRESQL_CONNECTOR_VERSION=42.2.18
 
-RUN libdir=/data/teamcity_server/datadir/lib/jdbc/  && \
-    mkdir -pv "$libdir" && \
+# XXX: this directory gets replaced / covered over, this build isn't necessary any more
+ENV jdbcdir=/data/teamcity_server/datadir/lib/jdbc/
+
+RUN mkdir -pv "$jdbcdir" && \
     curl -sSL --fail "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.tar.gz" | \
-    tar zxvf - -C "$libdir" --strip 1 "mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" && \
-    ln -s "$libdir/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" "$libdir/mysql-connector-java.jar"
+    tar zxvf - -C "$jdbcdir" --strip 1 "mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" && \
+    ln -sfv "$jdbcdir/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" "$jdbcdir/mysql-connector-java.jar"
+
+RUN mkdir -pv "$jdbcdir" && \
+    cd "$jdbcdir" && \
+    curl --fail "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" > "postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" && \
+    ln -sfv "$jdbcdir/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" "$jdbcdir/postgresql.jar"

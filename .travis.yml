@@ -42,8 +42,6 @@ matrix:
       # macOS 10.15.7 - otherwise defaults to Mac macOS 10.13 with xcode9.4 otherwise - and HomeBrew update takes 50 minutes until the build times out :-/
       osx_image: xcode12.2
 
-sudo: required
-
 #env:
 #  - DEBUG=1
 

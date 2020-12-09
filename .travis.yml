@@ -13,10 +13,15 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
+# ============================================================================ #
+#                               T r a v i s   C I
+# ============================================================================ #
+
 # https://docs.travis-ci.com/user/customizing-the-build/
 
 version: ~> 1.0
 
+# =============================================
 # https://docs.travis-ci.com/user/build-matrix/
 # https://docs.travis-ci.com/user/build-stages/matrix-expansion/
 matrix:
@@ -45,14 +50,17 @@ matrix:
       # macOS 10.15.7 - otherwise defaults to Mac macOS 10.13 with xcode9.4 otherwise - and HomeBrew update takes 50 minutes until the build times out :-/
       osx_image: xcode12.2
 
+# ======================================================
 # https://docs.travis-ci.com/user/environment-variables/
 #env:
 #  - DEBUG=1
 
+# ==============================================
 # https://docs.travis-ci.com/user/notifications/
 notifications:
   email: false
 
+# =================================================================================
 # https://docs.travis-ci.com/user/customizing-the-build/#building-specific-branches
 # https://docs.travis-ci.com/user/conditional-builds-stages-jobs
 #branches:

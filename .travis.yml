@@ -70,11 +70,7 @@ notifications:
 # ========================================
 # https://docs.travis-ci.com/user/caching/
 
-cache:
-  directories:
-    - .cache
-    - bash-tools
-    - pytools_checks
+cache: pip
 
 # ==============================================
 # https://docs.travis-ci.com/user/job-lifecycle/

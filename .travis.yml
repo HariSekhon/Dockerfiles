@@ -49,7 +49,7 @@ matrix:
 #env:
 #  - DEBUG=1
 
-# https://docs.travis-ci.com/user/notifications
+# https://docs.travis-ci.com/user/notifications/
 notifications:
   email: false
 

@@ -59,13 +59,16 @@ notifications:
 #  only:
 #    - master
 
+# ========================================
 # https://docs.travis-ci.com/user/caching/
+
 cache:
   directories:
     - .cache
     - bash-tools
     - pytools_checks
 
+# ==============================================
 # https://docs.travis-ci.com/user/job-lifecycle/
 
 # avoid package checksum mismatches when installing packages

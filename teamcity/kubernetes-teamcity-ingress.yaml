@@ -36,5 +36,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: teamcity-server
+          serviceName: teamcity
           servicePort: teamcity-ui

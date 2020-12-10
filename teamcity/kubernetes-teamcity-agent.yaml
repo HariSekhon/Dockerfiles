@@ -1,0 +1,130 @@
+#
+#  Author: Hari Sekhon
+#  Date: Thu Nov 26 13:35:31 2020 +0000
+#
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  https://github.com/HariSekhon/kubernetes-templates
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/HariSekhon
+#
+
+# ============================================================================ #
+#                     T e a m C i t y   C I   -   A g e n t
+# ============================================================================ #
+
+# See Also: https://github.com/HariSekhon/DevOps-Bash-tools/blob/master/setup/teamcity-docker-compose.yml
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: teamcity-agent
+  namespace: teamcity
+  labels:
+    app: teamcity-agent
+spec:
+  replicas: 3
+  serviceName: teamcity-agent
+  selector:
+    matchLabels:
+      app: teamcity-agent
+  template:
+    metadata:
+      labels:
+        app: teamcity-agent
+    spec:
+      securityContext:
+        #runAsUser: 0
+        # set mount point group to gid of teamcity process
+        fsGroup: 1000
+      containers:
+      - name: teamcity-agent
+        image: jetbrains/teamcity-agent:2020.2
+        ports:
+          - containerPort: 9090
+        env:
+          - name: AGENT_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: DOCKER_IN_DOCKER
+            value: start
+          - name: SERVER_URL
+            value: http://teamcity-server.teamcity.svc.cluster.local:8111
+        readinessProbe:
+          tcpSocket:
+            port: 9090
+          initialDelaySeconds: 30
+          failureThreshold: 3
+          periodSeconds: 5
+          timeoutSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 9090
+          initialDelaySeconds: 150  # takes ~ 1:20 - 2:30 for port to pass healthcheck
+          failureThreshold: 10
+          periodSeconds: 5
+          timeoutSeconds: 5
+        volumeMounts:
+          # XXX: not persisting system and work as they're just caches
+          #  mountPath: /var/run/docker.sock
+          #  mountPath: /opt/buildagent/system
+          #  mountPath: /opt/buildagent/work
+          #
+          # persist the buildAgent.properties containing the agent id and autosaved authorization token
+          - name: teamcity-agent-conf
+            mountPath: /data/teamcity_agent/conf
+          # if we reschedule the pods on other nodes we still want continuity of logs and their history for use in the UI
+          - name: teamcity-agent-logs
+            mountPath: /opt/buildagent/logs
+          - name: teamcity-agent-plugins
+            mountPath: /opt/buildagent/plugins
+          - name: teamcity-agent-tools
+            mountPath: /opt/buildagent/tools
+  volumeClaimTemplates:
+    - metadata:
+        name: teamcity-agent-conf
+      spec:
+        storageClassName: gcp-standard-resizeable
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            # 36K in practice
+            # gets a minimum of 1GB regardless on GCP
+            storage: 50Mi
+    - metadata:
+        name: teamcity-agent-plugins
+      spec:
+        storageClassName: gcp-standard-resizeable
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            # uses 262M on my local cluster
+            storage: 5Gi
+    - metadata:
+        name: teamcity-agent-logs
+      spec:
+        storageClassName: gcp-standard-resizeable
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            # after nearly a year as the team's only CI system for all releases the agent logs were rotated to be only 50-70MB - this may increase if we add more pipelines or do more iterations and deployments but this has plenty of room
+            storage: 2Gi
+    - metadata:
+        name: teamcity-agent-tools
+      spec:
+        storageClassName: gcp-standard-resizeable
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            # uses 73M on my local cluster for things like ant, gant, jps
+            storage: 5Gi

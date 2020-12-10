@@ -51,7 +51,7 @@ You can boot any of these CI and run the repo's build with a single short one-wo
 - [Jenkins](https://www.jenkins.io/) - `Jenkinsfile` at the top of each repo
 - [Concourse](https://concourse-ci.org/) - `.concourse.yml` at the top of each repo
 - [GoCD](https://www.gocd.org/) - `setup/gocd_config_repo.json` in each repo
-- [TeamCity](https://www.jetbrains.com/teamcity/) - `.teamcity.vcs.json` connection to this repo
+- [TeamCity](https://www.jetbrains.com/teamcity/) - `.teamcity.vcs.json` in each repo
 
 ##### Hosted CI:
 

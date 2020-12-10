@@ -1,0 +1,40 @@
+#
+#  Author: Hari Sekhon
+#  Date: Thu Nov 26 13:35:31 2020 +0000
+#
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  https://github.com/HariSekhon/kubernetes-templates
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/HariSekhon
+#
+
+# ============================================================================ #
+#                   T e a m C i t y   C I   -   I n g r e s s
+# ============================================================================ #
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: teamcity-ingress
+  namespace: teamcity
+  annotations:
+    # only permit internal networks
+    nginx.ingress.kubernetes.io/whitelist-source-range: |
+      10.0.0.0/8,
+      172.16.0.0/16,
+      192.168.0.0/16
+spec:
+  rules:
+  - host: teamcity.MYDOMAIN.COM
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: teamcity-server
+          servicePort: teamcity-ui

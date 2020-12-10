@@ -1,0 +1,91 @@
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  Author: Hari Sekhon
+#  Date: 2020-11-24 15:40:47 +0000 (Tue, 24 Nov 2020)
+#
+#  https://github.com/harisekhon/bash-tools
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+# Copied of https://github.com/HariSekhon/DevOps-Bash-tools/blob/master/setup/teamcity-docker-compose.yml
+
+# XXX: you must set an external RDBMS for production deployments (I use Cloud SQL)
+
+version: '3'
+
+services:
+  teamcity-server:
+    hostname: teamcity-server
+    # 2GB docker image
+    image: jetbrains/teamcity-server:${VERSION:-2020.2}
+    ports:
+      - 8111:8111
+    restart: unless-stopped
+    healthcheck:
+      #test: ["CMD", "curl", "-f", "http://localhost:8111"]
+      # export DOCKER_HEALTHCHECK=/bin/true in development to bypass healthcheck
+      test: "${DOCKER_HEALTHCHECK:-curl http://localhost:8111}"
+      interval: 30s
+      start_period: 30s
+      timeout: 10s
+      retries: 5
+    environment:
+      #TEAMCITY_SERVER_MEM_OPTS: "-Xmx2g -XX:MaxPermSize=270m -XX:ReservedCodeCacheSize=350m"
+      TEAMCITY_SERVER_MEM_OPTS: "-Xmx512m"
+    volumes:
+      # mount existing TeamCity CI configs - this works from a VCS integrated repo checkout too
+      #- ../../teamcity/.teamcity/HariSekhonGitHubProjects:/data/teamcity_server/datadir/config/projects/HariSekhonGitHubProjects
+      # for server.xml override:
+      #- teamcity/conf:/opt/teamcity/conf
+      #- ./teamcity/teamcity-database.properties:/data/teamcity_server/datadir/config/database.properties
+      - ./teamcity/server/datadir:/data/teamcity_server/datadir
+      - ./teamcity/server/logs:/opt/teamcity/logs
+  teamcity-agent:
+    hostname: teamcity-agent
+    # 1.3GB docker image
+    image: jetbrains/teamcity-agent:${VERSION:-2020.2}
+    # need the linux-sudo image for Docker-in-Docker - but this doesn't work due to iptables initialization error
+    #image: jetbrains/teamcity-agent:${VERSION:-2020.2}-linux-sudo
+    ports:
+      - 9090:9090
+    # needs root to be able to install OS package dependencies - 'sudo' not installed unless using the linux-sudo suffix, which is a lot bigger and similar result
+    # Since version 2020.1, TeamCity agent Docker images run under a non-root user by default
+    user: root:root
+    environment:
+      SERVER_URL: http://teamcity-server:8111
+      # AGENT_NAME is used to set the reported agent name and by teamcity.sh to automatically authorize the agent(s)
+      AGENT_NAME: agent1
+      # currently authorized via API in teamcity.sh
+      #AGENT_TOKEN:
+      # need the linux-sudo image for Docker-in-Docker
+      DOCKER_IN_DOCKER: start
+    healthcheck:
+      #test: ["CMD", "curl", "-f", "http://localhost:9090"]
+      # export DOCKER_HEALTHCHECK=/bin/true in development to bypass healthcheck
+      test: "${DOCKER_HEALTHCHECK:-curl http://localhost:9090}"
+      interval: 30s
+      start_period: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    links:
+      - teamcity-server
+    volumes:
+      # persist the buildAgent.properties containing the agent id and autosaved authorization token
+      - ./teamcity/agent1/conf:/data/teamcity_agent/conf
+      #
+      # checked out sources - this needs 3GB to run builds so needs to be mounted - the docker image has 60GB and the mounts appear to only get 1GB not properly mapped to host but must be stuck in Docker VM overlay so omitting it
+      - ./teamcity/agent1/work:/opt/buildagent/work
+      #
+      - ./teamcity/agent1/logs:/opt/buildagent/logs
+      #
+      # internal build agent caches
+      - ./teamcity/agent1/system:/opt/buildagent/system
+      #
+      # plugins
+      - ./teamcity/agent1/plugins:/opt/buildagent/plugins

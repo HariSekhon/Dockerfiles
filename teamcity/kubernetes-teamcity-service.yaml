@@ -21,7 +21,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: teamcity-server
+  name: teamcity
   namespace: teamcity
 spec:
   ports:

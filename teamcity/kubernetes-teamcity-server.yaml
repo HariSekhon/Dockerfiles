@@ -1,0 +1,92 @@
+#
+#  Author: Hari Sekhon
+#  Date: Thu Nov 26 13:35:31 2020 +0000
+#
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  https://github.com/HariSekhon/kubernetes-templates
+#
+#  License: see accompanying Hari Sekhon LICENSE file
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/HariSekhon
+#
+
+# ============================================================================ #
+#                    T e a m C i t y   C I   -   S e r v e r
+# ============================================================================ #
+
+# See Also: https://github.com/HariSekhon/DevOps-Bash-tools/blob/master/setup/teamcity-docker-compose.yml
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: teamcity-server
+  namespace: teamcity
+  labels:
+    app: teamcity-server
+spec:
+  replicas: 1
+  serviceName: teamcity-server
+  selector:
+    matchLabels:
+      app: teamcity-server
+  template:
+    metadata:
+      labels:
+        app: teamcity-server
+    spec:
+      # TODO: add sidecar logging cleanup container to remove very old datestamped logs or modify TeamCity's log rotation
+      terminationGracePeriodSeconds: 120
+      containers:
+      - name: teamcity-server
+        image: jetbrains/teamcity-server:2020.2
+        ports:
+          - containerPort: 8111
+         # XXX: needs more testing
+#        readinessProbe:
+#          httpGet:
+#            path: /mnt
+#            port: 8111
+#          initialDelaySeconds: 5
+#          failureThreshold: 5
+#          periodSeconds: 5
+#          timeoutSeconds: 5
+#        livenessProbe:
+#          httpGet:
+#            path: /mnt
+#            port: 8111
+#          initialDelaySeconds: 20
+#          failureThreshold: 10
+#          periodSeconds: 5
+#          timeoutSeconds: 5
+        volumeMounts:
+          # contains config/, lib/, plugins/, system/
+          - mountPath: /data/teamcity_server/datadir
+            name: teamcity-server-datadir
+          # if we reschedule the pod on another node we still want continuity of logs and their history
+          - mountPath: /data/teamcity/logs
+            name: teamcity-server-logs
+  volumeClaimTemplates:
+    - metadata:
+        name: teamcity-server-datadir
+      spec:
+        storageClassName: gcp-standard-resizeable
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            # after 1 year this was only 3GB
+            storage: 20Gi
+    - metadata:
+        name: teamcity-server-logs
+      spec:
+        storageClassName: gcp-standard-resizeable
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            # after nearly a year the server logs were only 1.2GB,but accumulated datestamped logs, hence TODO to add sidecar to stop them building up further
+            storage: 10Gi

@@ -24,6 +24,7 @@ for directory in *; do
     [ -d "$directory" ] || continue
     [ "$directory" = "bash-tools" ] && continue
     [ "$directory" = "pytools_checks" ] && continue
+    [ "$directory" = "teamcity" ] && continue
     [ -f "$directory/docker-compose.yml" ] || continue
     # exclude things not in Git yet
     git log -1 "$directory" 2>/dev/null | grep -q '.*' || continue

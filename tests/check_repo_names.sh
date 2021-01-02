@@ -33,6 +33,7 @@ for directory in *; do
     repo2="${repo%-*}:${repo##*-}"
     repo3="${repo2#devops-}"
     repo3="${repo3/python-tools/pytools}"
+    repo3="${repo3/golang-tools/go-tools}"
     if ! grep -q -e "^REPO := harisekhon/$repo" \
                  -e "^REPO := harisekhon/$repo2" \
                  -e "^REPO := harisekhon/$repo3" \

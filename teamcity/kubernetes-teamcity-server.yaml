@@ -40,6 +40,19 @@ spec:
     spec:
       # TODO: add sidecar logging cleanup container to remove very old datestamped logs or modify TeamCity's log rotation
       terminationGracePeriodSeconds: 120
+      securityContext:
+        #runAsUser: 0
+        fsGroup: 1000
+      # new version changed user to tcuser (uid 1000), crashing out, this was the fix
+      #initContainers:
+      #- name: init
+      #  image: busybox:latest
+      #  command: ['/bin/chown', '-R', '1000:1000', '/data/teamcity_server/datadir', '/data/teamcity/logs']
+      #  volumeMounts:
+      #  - name: teamcity-server-datadir
+      #    mountPath: /data/teamcity_server/datadir
+      #    - mountPath: /data/teamcity/logs
+      #      name: teamcity-server-logs
       containers:
       - name: teamcity-server
         image: jetbrains/teamcity-server:2020.2
@@ -67,8 +80,21 @@ spec:
           - mountPath: /data/teamcity_server/datadir
             name: teamcity-server-datadir
           # if we reschedule the pod on another node we still want continuity of logs and their history
-          - mountPath: /data/teamcity/logs
+          - mountPath: /opt/teamcity/logs
             name: teamcity-server-logs
+# Optional: uncomment RemoteIpValve block in server.xml containing x-forwarded-for and x-forwarded-proto then upload to a configmap called server-xml in teamcity namespace to get rid of the following warning:
+#
+#           Requests with incorrect proxy configuration were detected
+#           Insecure Tomcat connector attributes
+#           Request by <user> from x.x.x.x
+#
+#          - mountPath: /opt/teamcity/conf/server.xml
+#            subPath: server.xml
+#            name: server-xml
+#      volumes:
+#        - name: server-xml
+#          configMap:
+#            name: server-xml
   volumeClaimTemplates:
     - metadata:
         name: teamcity-server-datadir

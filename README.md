@@ -167,7 +167,7 @@ More specific information can be found in the readme page under each respective 
 - [H2O](https://www.h2o.ai/) - distributed machine learning framework by [0xdata](https://www.h2o.ai/)
 - [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn) - distributed storage and compute cluster by Yahoo, [Cloudera](https://www.cloudera.com/) and [Hortonworks](https://hortonworks.com/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hadoop/README-hadoop.md)
 - [HBase](https://hbase.apache.org/) - distributed NoSQL datastore by Facebook (opens HBase shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hbase/README-hbase.md)
-- [Jenkins Agent with Docker](https://www.jenkins.io/) - Jenkins inbound-agent with docker installed - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/jenkins-agent-docker/README-jenkins-agent-docker.md)
+- [Jenkins Agent](https://www.jenkins.io/) with Docker - Jenkins inbound-agent with `docker` & `docker-compose` installed - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/jenkins-agent-docker/README-jenkins-agent-docker.md)
 - [Jython](http://www.jython.org/) - Python on Java JVM (useful for Hadoop python utilities using Hadoop's Java API. eg. [DevOps Python Tools](https://github.com/harisekhon/devops-python-tools))
 - [Kafka](https://kafka.apache.org/) - pub-sub data broker by [LinkedIn](https://www.linkedin.com) and [Confluent](https://www.confluent.io/). Deprecated, see new [Confluent docker images](https://hub.docker.com/u/confluentinc/) instead
 - [Mesos](http://mesos.apache.org/) - datacenter resource manager by [Mesosphere](https://mesosphere.com/) (mostly obsoleted by more free Hortonworks / Hadoop Yarn resource manager)

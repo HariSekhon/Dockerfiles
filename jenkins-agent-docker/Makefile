@@ -11,6 +11,6 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-REPO := harisekhon/jenkins-docker
+REPO := harisekhon/jenkins-agent-docker
 
 include ../Makefile.in

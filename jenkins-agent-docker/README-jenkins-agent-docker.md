@@ -24,3 +24,9 @@ If doing DooD, beware it lacks isolation and should only be done in trusted envi
 For more discussion of DooD vs DinD, see this article:
 
 http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
+
+### Kubernetes
+
+For Jenkins on Kubernetes, see:
+
+https://github.com/HariSekhon/Kubernetes-templates

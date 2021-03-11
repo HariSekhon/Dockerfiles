@@ -23,7 +23,7 @@ USER root
 
 RUN set -eux && \
     apt-get update && \
-    apt-get install -y docker.io && \
+    apt-get install -y docker.io docker-compose && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
 
 USER jenkins

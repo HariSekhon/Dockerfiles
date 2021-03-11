@@ -1,7 +1,7 @@
 Jenkins inbound-agent + Docker
 ==============================
 
-Jenkins inbound agent + docker.io package installed to be able to use the `docker` command (combine with mounting docker socket).
+Jenkins inbound agent + docker packages installed to be able to use the `docker` and `docker-compose` commands (combine with mounting docker socket).
 
 This is known as Docker-out-of-Docker (DooD), which allows running docker commands inside the Jenkins agent's CI/CD builds, creating sibling docker containers.
 

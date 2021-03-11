@@ -14,10 +14,10 @@
 FROM jenkins/inbound-agent:4.6-1
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG JENKINS_VERSION=4.6
+ARG JENKINS_AGENT_VERSION=4.6
 
 LABEL Description="Jenkins inbound-agent with Docker command" \
-      "Jenkins Version"="$JENKINS_VERSION"
+      "Jenkins Version"="$JENKINS_AGENT_VERSION"
 
 USER root
 

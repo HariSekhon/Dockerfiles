@@ -5,7 +5,7 @@ Jenkins inbound agent + docker.io package installed to be able to use the `docke
 
 https://hub.docker.com/r/jenkins/inbound-agent/
 
-Using the stock image the default Jenkins attempt to use docker will fail with this error:
+Solves this problem you'll see when using the stock [jenkins/inbound-agent](https://hub.docker.com/r/jenkins/inbound-agent/) image, as documented in https://github.com/jenkinsci/docker-inbound-agent/issues/215:
 
 ```
 /home/jenkins/agent/workspace/<name>@tmp/durable-2f6d01c2/script.sh: 1: /home/jenkins/agent/workspace/<name>@tmp/durable-2f6d01c2/script.sh: docker: not found

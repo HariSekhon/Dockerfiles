@@ -13,7 +13,7 @@ docker ps
 ...
 ```
 
-This docker image solves the lack of `docker` command availability in the stock [jenkins/inbound-agent](https://hub.docker.com/r/jenkins/inbound-agent/) image (see [#215](https://github.com/jenkinsci/docker-inbound-agent/issues/215:))
+This docker image solves the lack of `docker` command availability in the stock [jenkins/inbound-agent](https://hub.docker.com/r/jenkins/inbound-agent/) image (see issues [#215](https://github.com/jenkinsci/docker-inbound-agent/issues/215) and [[#222](https://github.com/jenkinsci/docker-inbound-agent/issues/222))
 
 ```
 /home/jenkins/agent/workspace/<name>@tmp/durable-2f6d01c2/script.sh: docker: not found

@@ -35,8 +35,12 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -sSL "$RELEASE_URL" | tar zxv --strip-components=1
-    # doc removes these package.json but this breaks the cli dependency in the next stage
+    # doc removes these package.json but this breaks the cli dependency in the next stage during yarn tsc:
+    #
+    # tsconfig.json(2,14): error TS6053: File '@backstage/cli/config/tsconfig.json' not found.
+    #
     #find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
+    #
     #rm -rf microsite  # 60 out of 100MB we probably don't need including an mp4
 
 # ============================================================================ #
@@ -79,7 +83,10 @@ RUN yarn install --frozen-lockfile --production --network-timeout 600000 && rm -
 COPY --from=build /app/packages/backend/dist/bundle.tar.gz .
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
-#COPY app-config.yaml ./
+# contains boilerplate for all sorts of integrations which fail
+#COPY --from=build /app/app-config.yaml ./
+# commented out version
+COPY app-config.yaml ./
 
 EXPOSE 3000
 

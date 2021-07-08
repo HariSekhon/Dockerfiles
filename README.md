@@ -162,6 +162,7 @@ More specific information can be found in the readme page under each respective 
 - [Alluxio](http://www.alluxio.org/) - distributed in-memory filesystem for cluster computing frameworks by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/alluxio/README-alluxio.md)
 - [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/apache-drill/README-apache-drill.md)
 - [Awless](http://awless.io/) - a Mighty CLI for AWS - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/awless/README-awless.md)
+- [Backstage](https://backstage.io/) - Spotify's Backstage software catalog and developer portal - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/alluxio/README-backstage.md)
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
 - [FakeS3](https://supso.org/projects/fake-s3) - Amazon S3 API simulator for testing without incurring AWS S3 costs - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/fakes3/README-fakes3.md)

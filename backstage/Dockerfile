@@ -88,6 +88,6 @@ RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 # commented out version
 COPY app-config.yaml ./
 
-EXPOSE 3000
+EXPOSE 7000
 
 CMD ["node", "packages/backend", "--config", "app-config.yaml"]

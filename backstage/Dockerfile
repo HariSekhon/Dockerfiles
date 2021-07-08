@@ -79,8 +79,7 @@ RUN yarn install --frozen-lockfile --production --network-timeout 600000 && rm -
 COPY --from=build /app/packages/backend/dist/bundle.tar.gz .
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
-# Copy any other files that we need at runtime
-COPY app-config.yaml ./
+#COPY app-config.yaml ./
 
 EXPOSE 3000
 

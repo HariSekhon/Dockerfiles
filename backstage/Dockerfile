@@ -12,12 +12,13 @@
 
 # This huge monolith app beast is unfortunately not really designed for the Cloud-native Kubernetes era:
 #
-# - aside from not being very modular it takes over 10 minutes to build!! :'-(
-# - it fails to build on a 2GB local Docker Desktop, had to increase to 3GB
+# - not really modular / microservices
+# - takes ~15 minutes to build!
+# - fails to build on a 2GB local Docker Desktop, had to increase to 4GB!
 
 # Based off https://backstage.io/docs/deployment/docker#multi-stage-build
 #
-# but improved to be more cloud suitable self-contained and not use locally staged files
+# but improved to be more cloud suitable self-contained and not use locally staged repo
 
 # ============================================================================ #
 # Stage 1 - Create yarn install skeleton layer
@@ -33,8 +34,9 @@ WORKDIR /app
 
 RUN apt-get update && \
     apt-get install -y curl && \
-    curl -sSL "$RELEASE_URL" | tar zxv --strip-components=1 && \
-    find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
+    curl -sSL "$RELEASE_URL" | tar zxv --strip-components=1
+    # doc removes these package.json but this breaks the cli dependency in the next stage
+    #find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
     #rm -rf microsite  # 60 out of 100MB we probably don't need including an mp4
 
 # ============================================================================ #
@@ -47,10 +49,9 @@ COPY --from=packages /app .
 
 RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
 
-#COPY . .
-
-RUN yarn tsc && \
-    yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencies
+# '--jsx preserve' avoids a tonne of errors that exceed the 1MiB docker log and mask later breaking errors
+RUN yarn tsc --jsx preserve
+RUn yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencies
 
 # ============================================================================ #
 # Stage 3 - Build the actual backend image and install production dependencies

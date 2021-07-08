@@ -1,0 +1,86 @@
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  Author: Hari Sekhon
+#  Date: 2021-07-08 15:16:50 +0100 (Thu, 08 Jul 2021)
+#
+#  https://github.com/HariSekhon/Dockerfiles
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+#
+#  https://www.linkedin.com/in/HariSekhon
+#
+
+# This huge monolith app beast is unfortunately not really designed for the Cloud-native Kubernetes era:
+#
+# - aside from not being very modular it takes over 10 minutes to build!! :'-(
+# - it fails to build on a 2GB local Docker Desktop, had to increase to 3GB
+
+# Based off https://backstage.io/docs/deployment/docker#multi-stage-build
+#
+# but improved to be more cloud suitable self-contained and not use locally staged files
+
+# ============================================================================ #
+# Stage 1 - Create yarn install skeleton layer
+FROM node:14-buster-slim AS packages
+
+# XXX: set this to change the release version
+ARG RELEASE="2021-07-08"
+
+# only change this if the URL changes in future or you want to pull from another source, eg. an internal staging area
+ARG RELEASE_URL="https://github.com/backstage/backstage/archive/refs/tags/release-$RELEASE.tar.gz"
+
+WORKDIR /app
+
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -sSL "$RELEASE_URL" | tar zxv --strip-components=1 && \
+    find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
+    #rm -rf microsite  # 60 out of 100MB we probably don't need including an mp4
+
+# ============================================================================ #
+# Stage 2 - Install dependencies and build packages
+FROM node:14-buster-slim AS build
+
+WORKDIR /app
+
+COPY --from=packages /app .
+
+RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
+
+#COPY . .
+
+RUN yarn tsc && \
+    yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencies
+
+# ============================================================================ #
+# Stage 3 - Build the actual backend image and install production dependencies
+
+FROM node:14-buster-slim
+
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+
+ARG RELEASE=2021-07-08
+
+#ENV PATH $PATH:/NAME/bin
+
+LABEL Description="Backstage", \
+      "Backstage Version"="$RELEASE"
+
+WORKDIR /app
+
+# Copy the install dependencies from the build stage and context
+COPY --from=build /app/yarn.lock /app/package.json /app/packages/backend/dist/skeleton.tar.gz ./
+RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
+
+RUN yarn install --frozen-lockfile --production --network-timeout 600000 && rm -rf "$(yarn cache dir)"
+
+# Copy the built packages from the build stage
+COPY --from=build /app/packages/backend/dist/bundle.tar.gz .
+RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
+
+# Copy any other files that we need at runtime
+COPY app-config.yaml ./
+
+EXPOSE 3000
+
+CMD ["node", "packages/backend", "--config", "app-config.yaml"]

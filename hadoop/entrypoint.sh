@@ -23,14 +23,15 @@ export PATH="$PATH:/hadoop/sbin:/hadoop/bin"
 if [ $# -gt 0 ]; then
     exec "$@"
 else
-    for x in root hdfs yarn; do
-        if ! [ -f "$x/.ssh/id_rsa" ]; then
+    for tuple in root,root hdfs,/home/hdfs yarn,/home/yarn; do
+        IFS=',' read x xhome <<< "${tuple}"
+        if ! [ -f "$xhome/.ssh/id_rsa" ]; then
             su - "$x" <<-EOF
                 [ -n "${DEBUG:-}" ] && set -x
                 ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
 EOF
         fi
-        if ! [ -f "$x/.ssh/authorized_keys" ]; then
+        if ! [ -f "$xhome/.ssh/authorized_keys" ]; then
             su - "$x" <<-EOF
                 [ -n "${DEBUG:-}" ] && set -x
                 cp -v ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
@@ -79,7 +80,7 @@ EOF
     mkdir -pv /hadoop/logs
 
     sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
-
+#    rm -f /run/nologin
     start-dfs.sh
     start-yarn.sh
     tail -f /dev/null /hadoop/logs/*

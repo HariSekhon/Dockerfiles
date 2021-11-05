@@ -18,6 +18,8 @@ ARG GITHUB_ACTIONS_RUNNER_VERSION=2.284.0
 
 ENV PATH $PATH:/actions-runner
 
+ENV DEBIAN_FRONTEND noninteractive
+
 LABEL Description="GitHub Actions Runner" \
       "GitHub Actions Runner Version"="$GITHUB_ACTIONS_RUNNER_VERSION"
 
@@ -26,11 +28,12 @@ WORKDIR /actions-runner
 
 RUN set -eux && \
     apt-get update && \
-    apt-get install -y curl && \
+    apt-get install -y curl sudo && \
     curl -Lo actions-runner.tar.gz "https://github.com/actions/runner/releases/download/v$GITHUB_ACTIONS_RUNNER_VERSION/actions-runner-linux-x64-$GITHUB_ACTIONS_RUNNER_VERSION.tar.gz" && \
     tar zxvf actions-runner.tar.gz && \
     rm -f actions-runner.tar.gz && \
-    adduser actions-runner && \
+    useradd actions-runner && \
+    echo "actions-runner ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     cd /actions-runner && \
     bin/installdependencies.sh && \
     chown -R actions-runner /actions-runner && \

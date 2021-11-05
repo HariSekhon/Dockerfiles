@@ -21,13 +21,12 @@ ENV PATH $PATH:/actions-runner
 LABEL Description="GitHub Actions Runner" \
       "GitHub Actions Runner Version"="$GITHUB_ACTIONS_RUNNER_VERSION"
 
+# creates and cd's to this dir
 WORKDIR /actions-runner
 
 RUN set -eux && \
     apt-get update && \
     apt-get install -y curl && \
-    mkdir -pv /actions-runner && \
-    cd /actions-runner && \
     curl -Lo actions-runner.tar.gz "https://github.com/actions/runner/releases/download/v$GITHUB_ACTIONS_RUNNER_VERSION/actions-runner-linux-x64-$GITHUB_ACTIONS_RUNNER_VERSION.tar.gz" && \
     tar zxvf actions-runner.tar.gz && \
     rm -f actions-runner.tar.gz && \

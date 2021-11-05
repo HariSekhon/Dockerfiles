@@ -10,13 +10,13 @@ Hundreds of DevOps related programs from my main DevOps tools repos on [my Githu
 Running the docker container without arguments will show just the list of programs:
 
 ```
-docker run harisekhon/tools
+docker run harisekhon/tools:ubuntu
 ```
 
 Run any given program:
 
 ```
-docker run harisekhon/tools <program> <args>
+docker run harisekhon/tools:ubuntu <program> <args>
 ```
 
 All programs have `--help` to list the available options.

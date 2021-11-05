@@ -1,0 +1,46 @@
+#
+#  Author: Hari Sekhon
+#  Date: 2021-11-05 03:37:37 +0000 (Fri, 05 Nov 2021)
+#
+#  vim:ts=4:sts=4:sw=4:et
+#
+#  https://github.com/HariSekhon/Dockerfiles
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+FROM ubuntu:20.04
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+
+ARG GITHUB_ACTIONS_RUNNER_VERSION=2.284.0
+
+ENV PATH $PATH:/actions-runner
+
+LABEL Description="GitHub Actions Runner" \
+      "GitHub Actions Runner Version"="$GITHUB_ACTIONS_RUNNER_VERSION"
+
+WORKDIR /actions-runner
+
+RUN set -eux && \
+    apt-get update && \
+    apt-get install -y curl && \
+    mkdir -pv /actions-runner && \
+    cd /actions-runner && \
+    curl -Lo actions-runner.tar.gz "https://github.com/actions/runner/releases/download/v$GITHUB_ACTIONS_RUNNER_VERSION/actions-runner-linux-x64-$GITHUB_ACTIONS_RUNNER_VERSION.tar.gz" && \
+    tar zxvf actions-runner.tar.gz && \
+    rm -f actions-runner.tar.gz && \
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+
+RUN adduser actions-runner && \
+    cd /actions-runner && \
+    bin/installdependencies.sh
+
+RUN chown -R actions-runner /actions-runner
+
+USER actions-runner
+
+COPY entrypoint.sh /
+
+ENTRYPOINT ["/entrypoint.sh"]

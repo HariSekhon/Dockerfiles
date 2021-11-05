@@ -39,6 +39,12 @@ RUN set -eux && \
     chown -R actions-runner /actions-runner && \
     curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
 
+# adds nearly 500MB to the image size
+#run set -eux && \
+#    apt-get update && \
+#    apt-get install -y docker.io && \
+#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+
 USER actions-runner
 
 COPY entrypoint.sh /

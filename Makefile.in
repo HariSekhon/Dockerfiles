@@ -192,12 +192,12 @@ run-fg: runcmd-fg
 .PHONY: sh
 sh:
 	#make -e MAP_PORTS="" run
-	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) sh
+	docker run -ti --rm -v $$PWD:/code --entrypoint sh $(REPO_TAG)
 
 .PHONY: bash
 bash:
 	#make -e MAP_PORTS="" run
-	docker run -ti --rm -v $$PWD:/code $(REPO_TAG) bash
+	docker run -ti --rm -v $$PWD:/code --entrypoint bash $(REPO_TAG)
 
 .PHONY: test
 test:

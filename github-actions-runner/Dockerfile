@@ -31,13 +31,11 @@ RUN set -eux && \
     curl -Lo actions-runner.tar.gz "https://github.com/actions/runner/releases/download/v$GITHUB_ACTIONS_RUNNER_VERSION/actions-runner-linux-x64-$GITHUB_ACTIONS_RUNNER_VERSION.tar.gz" && \
     tar zxvf actions-runner.tar.gz && \
     rm -f actions-runner.tar.gz && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
-
-RUN adduser actions-runner && \
+    adduser actions-runner && \
     cd /actions-runner && \
-    bin/installdependencies.sh
-
-RUN chown -R actions-runner /actions-runner
+    bin/installdependencies.sh && \
+    chown -R actions-runner /actions-runner && \
+    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
 
 USER actions-runner
 

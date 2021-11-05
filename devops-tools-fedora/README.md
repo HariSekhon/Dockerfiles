@@ -10,7 +10,7 @@ Hundreds of DevOps related programs from my main DevOps tools repos on [my Githu
 Running the docker container without arguments will show just the list of programs:
 
 ```
-docker run harisekhon/tools
+docker run harisekhon/tools:fedora
 ```
 
 Run any given program:

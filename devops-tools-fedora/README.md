@@ -16,7 +16,7 @@ docker run harisekhon/tools
 Run any given program:
 
 ```
-docker run harisekhon/tools <program> <args>
+docker run harisekhon/tools:fedora <program> <args>
 ```
 
 All programs have `--help` to list the available options.

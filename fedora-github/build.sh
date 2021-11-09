@@ -20,14 +20,14 @@ mkdir -pv /github
 
 cd /github
 
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | bash
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | bash
 
 if [ -n "$*" ]; then
     export REPOS="$*"
 else
     export REPOS="bash-tools lib pylib perl-tools pytools" # spotify-tools
 fi
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 #pip uninstall -y certifi && pip install certifi==2015.04.28
@@ -35,16 +35,16 @@ curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_
 # could 'make deep-clean' to remove the wrappers and local build libs but it's a trade off between being able to develop quicker by not having to redownload them to recompile
 # instead build each project with a different build tool and don't deep-clean so we have them cached for faster development in docker
 export REPOS="lib-java" BUILD="gradle"
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 
 export REPOS="nagios-plugin-kafka" BUILD="mvn"
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 
 #export REPOS="spark-apps" BUILD="sbt"
-#curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+#curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 
 # inherited instead now
 #export REPOS="nagios-plugins" OPTS="zookeeper" NO_TEST=1
-#curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
+#curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 
-curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh

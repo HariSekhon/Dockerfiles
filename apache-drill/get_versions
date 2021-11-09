@@ -20,7 +20,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 get_versions(){
-    curl -s http://archive.apache.org/dist/drill/ |
+    curl -sS http://archive.apache.org/dist/drill/ |
     egrep -i -o 'href="drill-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
     sed 's/href="drill-//'
 }

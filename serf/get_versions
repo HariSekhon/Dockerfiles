@@ -20,7 +20,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 get_versions(){
-    curl -s https://releases.hashicorp.com/serf/ |
+    curl -sS https://releases.hashicorp.com/serf/ |
     egrep -i -o 'href="/serf/[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
     sed 's,href="/serf/,,'
 }

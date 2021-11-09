@@ -19,7 +19,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 get_versions(){
-    curl -s http://archive.apache.org/dist/spark/ |
+    curl -sS http://archive.apache.org/dist/spark/ |
     egrep -i -o 'href="spark-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |
     sed 's/href="spark-//'
 }

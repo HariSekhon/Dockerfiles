@@ -20,7 +20,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 get_versions(){
-    curl -s https://releases.hashicorp.com/consul/ |
+    curl -sS https://releases.hashicorp.com/consul/ |
     egrep -i -o 'href="/consul/[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+(-[[:alnum:]]+)?' |
     grep -v -e '-beta' -e '-rc' |
     sed 's,href="/consul/,,'

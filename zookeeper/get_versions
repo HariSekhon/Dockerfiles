@@ -19,7 +19,7 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 get_versions(){
-    curl -s http://archive.apache.org/dist/zookeeper/ |
+    curl -sS http://archive.apache.org/dist/zookeeper/ |
     # no grep -P on Mac, requires GNU grep :-/
     egrep -i -o 'href="zookeeper-[[:digit:]]+(\.[[:digit:]]+)+(-[[:alpha:]]+)?' |
     grep -v -e alpha -e beta |

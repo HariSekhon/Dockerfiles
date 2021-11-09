@@ -164,6 +164,7 @@ More specific information can be found in the readme page under each respective 
 - [Awless](http://awless.io/) - a Mighty CLI for AWS - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/awless/README.md)
 - [Backstage](https://backstage.io/) - Spotify's Backstage software catalog and developer portal - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/backstage/README.md)
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/harisekhon/nagios-plugins))
+- [CircleCI Runner](https://circleci.com/) - CI/CD runner for CircleCI - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/circleci-runner/README.md)
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
 - [FakeS3](https://supso.org/projects/fake-s3) - Amazon S3 API simulator for testing without incurring AWS S3 costs - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/fakes3/README.md)
 - [GitHub Actions Runner](https://github.com/features/actions) - CI/CD runner for GitHub Actions - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/github-actions-runner/README.md)

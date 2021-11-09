@@ -40,7 +40,7 @@ RUN /build.sh
 #    wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
 #    bash jython_install.sh && \
 #    yum remove -y wget expect && \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+#    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
 #    rm -f jython_install.sh jython_autoinstall.exp
 
 #COPY profile.d/java.sh /etc/profile.d/

@@ -21,10 +21,10 @@ LABEL Description="CircleCI Runner"
 RUN set -eux && \
     apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
-    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
 
 # adds nearly 500MB to the image size
 #run set -eux && \
 #    apt-get update && \
 #    apt-get install -y docker.io && \
-#    curl -s https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+#    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh

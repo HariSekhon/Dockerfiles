@@ -12,5 +12,7 @@
 #
 
 REPO := harisekhon/github-actions-runner
+#REPO := europe-west4-docker.pkg.dev/$CLOUDSDK_CORE_PROJECT/github-actions-runner/github-actions-runner
+#GIT_COMMIT := $(shell git rev-parse HEAD)
 
 include ../Makefile.in

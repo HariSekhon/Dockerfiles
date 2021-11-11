@@ -28,7 +28,7 @@ WORKDIR /actions-runner
 
 RUN set -eux && \
     apt-get update && \
-    apt-get install -y --no-install-recommends curl sudo && \
+    apt-get install -y --no-install-recommends ca-certificates curl sudo && \
     curl -Lo actions-runner.tar.gz "https://github.com/actions/runner/releases/download/v$GITHUB_ACTIONS_RUNNER_VERSION/actions-runner-linux-x64-$GITHUB_ACTIONS_RUNNER_VERSION.tar.gz" && \
     tar zxvf actions-runner.tar.gz && \
     rm -f actions-runner.tar.gz && \

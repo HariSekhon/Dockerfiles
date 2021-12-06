@@ -1,0 +1,43 @@
+options:
+  dynamic_substitutions: true
+substitutions:
+  _IMAGE_NAME: git-kustomize
+  _IMAGE_VERSION: "4.4"
+  _REGISTRY: europe-docker.pkg.dev
+  _REPOSITORY: git-kustomize
+  _PROJECT: $CLOUDSDK_CORE_PROJECT
+  _IMAGE: ${_REGISTRY}/${_PROJECT}/${_REPOSITORY}/${_IMAGE_NAME}
+
+timeout: 660s
+
+images:
+- ${_REGISTRY}/${_PROJECT}/${_REPOSITORY}/${_IMAGE_NAME}
+
+steps:
+- id: pull-image-cache-latest
+  name: gcr.io/cloud-builders/docker
+  waitFor: [ '-' ]
+  entrypoint: 'bash'
+  args:
+    - -c
+    - docker pull ${_IMAGE}:latest || exit 0
+
+- id: pull-image-cache-version
+  name: gcr.io/cloud-builders/docker
+  waitFor: [ '-' ]
+  entrypoint: 'bash'
+  args:
+    - -c
+    - docker pull ${_IMAGE}:${_IMAGE_VERSION} || exit 0
+
+- id: build-git-kustomize
+  name: gcr.io/cloud-builders/docker
+  args:
+    - build
+    - --tag=${_IMAGE}:latest
+    - --tag=${_IMAGE}:${_IMAGE_VERSION}
+    - --build-arg=BUILDKIT_INLINE_CACHE=1
+    - --cache-from=${_IMAGE}:latest
+    - --cache-from=${_IMAGE}:${_IMAGE_VERSION}
+    - .
+  timeout: 600s

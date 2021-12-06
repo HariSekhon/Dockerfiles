@@ -15,6 +15,7 @@ FROM alpine/git:v2.32.0
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG KUSTOMIZE_VERSION=4.4.1
+ARG GIT_KUSTOMIZE_VERSION=4.4.1  # workaround for hooks/post_build
 
 WORKDIR /
 

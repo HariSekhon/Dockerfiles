@@ -168,6 +168,7 @@ More specific information can be found in the readme page under each respective 
 - [Consul](https://www.consul.io/) - distributed service discovery by [HashiCorp](https://www.hashicorp.com/)
 - [FakeS3](https://supso.org/projects/fake-s3) - Amazon S3 API simulator for testing without incurring AWS S3 costs - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/fakes3/README.md)
 - [GitHub Actions Runner](https://github.com/features/actions) - CI/CD runner for GitHub Actions - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/github-actions-runner/README.md)
+- [Git](https://git-scm.com/) + [Kustomize](https://kustomize.io/) - minimal Git + Kustomize for CI/CD GitOps workflows - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/git-kustomize/README.md)
 - [H2O](https://www.h2o.ai/) - distributed machine learning framework by [0xdata](https://www.h2o.ai/)
 - [Hadoop](http://hadoop.apache.org/) (HDFS + Yarn) - distributed storage and compute cluster by Yahoo, [Cloudera](https://www.cloudera.com/) and [Hortonworks](https://hortonworks.com/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hadoop/README.md)
 - [HBase](https://hbase.apache.org/) - distributed NoSQL datastore by Facebook (opens HBase shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/hbase/README.md)

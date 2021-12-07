@@ -28,7 +28,7 @@ WORKDIR /
 
 RUN bash -c 'set -euxo pipefail && \
     apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates curl git && \
+    apt-get install -y --no-install-recommends ca-certificates curl git openssh-client && \
     curl -Lo /tmp/kustomize.tgz "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_amd64.tar.gz" && \
     tar zxvf /tmp/kustomize.tgz kustomize -O > /usr/local/bin/kustomize && \
     rm -v /tmp/kustomize.tgz && \

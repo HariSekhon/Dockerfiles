@@ -20,9 +20,9 @@ ARG GIT_KUSTOMIZE_VERSION=4.4.1  # workaround for hooks/post_build
 WORKDIR /
 
 RUN set -eux && \
-    apk add --no-cache ca-certificates && \
+    apk add --no-cache bash ca-certificates && \
     wget -O /tmp/kustomize.tgz "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_amd64.tar.gz" && \
     tar zxvf /tmp/kustomize.tgz kustomize -O > /usr/local/bin/kustomize && \
     chmod +x /usr/local/bin/kustomize
 
-ENTRYPOINT ["sh"]
+ENTRYPOINT ["/bin/bash"]

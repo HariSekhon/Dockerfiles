@@ -87,7 +87,7 @@ RUN bash -c ' \
     #apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
-    apt-get clean \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
     '
 
 # Gradle in Debian was old 1.5

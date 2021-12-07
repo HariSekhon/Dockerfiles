@@ -19,7 +19,7 @@ options:
   dynamic_substitutions: true
 substitutions:
   _IMAGE_NAME: git-kustomize
-  _IMAGE_VERSION: "4.4"
+  _IMAGE_VERSION: "4.4"  # XXX: must override this, eg. "gcloud builds submit --substitutions=_IMAGE_VERSION:4.5"
   _REGISTRY: europe-docker.pkg.dev
   _REPOSITORY: git-kustomize
   _PROJECT: $CLOUDSDK_CORE_PROJECT

@@ -32,7 +32,8 @@ RUN bash -c ' \
     fi; \
     apt-get install -y --no-install-recommends "$pkg" && \
     apt-get clean && \
-    rm -fr /var/lib/apt/lists'
+    rm -fr /var/lib/apt/lists
+    '
 
 COPY profile.d/java.sh /etc/profile.d/
 

@@ -1,9 +1,9 @@
 Git + Kustomize
 ===============
 
-Minimal Git + Kustomize docker image for use in GitOps workflows where `kustomization.yaml` is updated with the docker image version/hashref as part of the CI/CD workflow and the deployed via ArgoCD or similar from Git.
+Minimal Git + Kustomize docker image for use in GitOps workflows where `kustomization.yaml` is updated with the docker image version/hashref as part of the CI/CD workflow (eg. to then be deployed via ArgoCD or similar from Git).
 
-OpenSSH Client is included because it is necessary for Jenkins ssh-agent functionality to execute inside the container for Git ssh access.
+OpenSSH Client is included because it is necessary for Jenkins ssh-agent functionality to execute inside the container for Git repo access via ssh.
 
 ### Jenkins usage example
 

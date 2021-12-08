@@ -1,13 +1,19 @@
 Git + Kustomize
 ===============
 
-Minimal Git + Kustomize docker image for use in GitOps workflows where `kustomization.yaml` need to be updated as part of the CI/CD workflow.
+Minimal Git + Kustomize docker image for use in GitOps workflows where `kustomization.yaml` is updated with the docker image version/hashref as part of the CI/CD workflow and the deployed via ArgoCD or similar from Git.
 
-Jenkins usage Example:
+OpenSSH Client is included because it is necessary for Jenkins ssh-agent functionality to execute inside the container for Git ssh access.
+
+### Jenkins usage example
 
   https://github.com/HariSekhon/Templates/blob/master/vars/gitOpsK8sUpdate.groovy
 
-Kubernetes kustomization examples:
+  https://github.com/HariSekhon/Kubernetes-configs/blob/master/jenkins-agent-pod.yaml
+
+  https://github.com/HariSekhon/Templates/blob/master/Jenkinsfile
+
+### Kubernetes kustomization examples
 
   https://github.com/HariSekhon/Kubernetes-configs
 

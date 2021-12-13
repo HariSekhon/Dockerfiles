@@ -11,6 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# Ubuntu based image, so apt-get install dependencies
+
 FROM circleci/runner:launch-agent
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
@@ -18,10 +20,19 @@ ENV DEBIAN_FRONTEND noninteractive
 
 LABEL Description="CircleCI Runner"
 
-RUN set -eux && \
+USER root
+
+RUN bash -c ' \
+    set -euxo pipefail && \
     apt-get update && \
-    apt-get install -y --no-install-recommends python3 && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+    apt-get install -y --no-install-recommends \
+        make \
+        python3 \
+        && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh \
+    '
+
+USER circleci
 
 # adds nearly 500MB to the image size
 #run set -eux && \

@@ -1,5 +1,4 @@
-Big Data, NoSQL & DevOps Docker Images
-======================================
+# DevOps, CI/CD, Big Data & NoSQL Docker Images
 
 [![Codacy](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles)
 [![CodeFactor](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles/badge)](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles)
@@ -82,7 +81,7 @@ Overview - this repo contains:
 * **Hadoop & Big Data** ecosystem technologies (Spark, Kafka, Presto, Drill, Nifi, ZooKeeper)
 * **NoSQL** datastores (HBase, Cassandra, Riak, SolrCloud)
 * OS & development images (Alpine, CentOS, Debian, Fedora, Ubuntu)
-* **DevOps** tech, anything cool and open source (RabbitMQ Cluster, Mesos, Consul)
+* **DevOps**, CI/CD (CircleCI, GitHub Actions, Jenkins, TeamCity etc), open source (RabbitMQ Cluster, Mesos, Consul)
 * [My GitHub repos](https://github.com/HariSekhon) containing hundreds of tools related to these technologies with all dependencies pre-built in the docker images
 
 These images are all available pre-built on [My DockerHub - https://hub.docker.com/u/harisekhon/](https://hub.docker.com/u/harisekhon/).

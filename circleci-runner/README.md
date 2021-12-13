@@ -25,6 +25,6 @@ https://circleci.com/docs/2.0/runner-on-kubernetes/
 
 # CircleCI Runner on Kubernetes
 
-See https://github.com/harisekhon/kubernetes-configs
+See https://github.com/HariSekhon/Kubernetes-configs
 
 Related Docker images can be found for many Open Source, Big Data and NoSQL technologies on [my DockerHub profile](https://hub.docker.com/r/harisekhon). The source for them all can be found in the [master Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).

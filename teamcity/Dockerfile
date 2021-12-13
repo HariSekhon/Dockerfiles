@@ -24,11 +24,11 @@ ARG POSTGRESQL_CONNECTOR_VERSION=42.2.18
 ENV jdbcdir=/data/teamcity_server/datadir/lib/jdbc/
 
 RUN mkdir -pv "$jdbcdir" && \
-    curl -sSL --fail "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.tar.gz" | \
+    curl -sSL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.tar.gz" | \
     tar zxvf - -C "$jdbcdir" --strip 1 "mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" && \
     ln -sfv "$jdbcdir/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" "$jdbcdir/mysql-connector-java.jar"
 
 RUN mkdir -pv "$jdbcdir" && \
     cd "$jdbcdir" && \
-    curl --fail "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" > "postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" && \
+    curl -sS "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" > "postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" && \
     ln -sfv "$jdbcdir/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" "$jdbcdir/postgresql.jar"

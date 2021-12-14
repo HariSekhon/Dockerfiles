@@ -12,7 +12,7 @@ or with docker-compose:
 
 ```
 export CIRCLECI_API_TOKEN=...
-export CIRCLECI_RESOURCE_CLASS=<org>/<runner_name>
+export CIRCLECI_RESOURCE_CLASS=<namespace>/<resource>
 
 docker-compose up
 ```
@@ -25,6 +25,6 @@ https://circleci.com/docs/2.0/runner-on-kubernetes/
 
 # CircleCI Runner on Kubernetes
 
-See https://github.com/HariSekhon/Kubernetes-configs
+For a much more advanced example with autoscaling on Kubernetes, see:
 
-Related Docker images can be found for many Open Source, Big Data and NoSQL technologies on [my DockerHub profile](https://hub.docker.com/r/harisekhon). The source for them all can be found in the [master Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).
+https://github.com/HariSekhon/Kubernetes-configs

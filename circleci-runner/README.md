@@ -5,14 +5,14 @@ CircleCI self-hosted runner, with added build dependencies eg. make, python3
 
 Usage:
 ```
-docker run -e CIRCLECI_API_TOKEN=... -e CIRCLECI_RESOURCE_CLASS=<org>/<runner_name> harisekhon/circleci-runner
+docker run -e CIRCLECI_API_TOKEN=... -e CIRCLECI_RESOURCE_CLASS=<namespace>/<resource_class> harisekhon/circleci-runner
 ```
 
 or with docker-compose:
 
 ```
 export CIRCLECI_API_TOKEN=...
-export CIRCLECI_RESOURCE_CLASS=<namespace>/<resource>
+export CIRCLECI_RESOURCE_CLASS=<namespace>/<resource_class>
 
 docker-compose up
 ```

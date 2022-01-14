@@ -152,9 +152,9 @@ docker run -ti -p 2181:2181 -p 8080:8080 -p 8085:8085 -p 9090:9090 -p 9095:9095 
 docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:10020 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 harisekhon/hadoop
 ```
 
-### Full Inventory:
+### Full Inventory
 
-##### Official Standard Open Source Technologies:
+##### Official Standard Open Source Technologies
 
 More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
 
@@ -192,7 +192,7 @@ More specific information can be found in the readme page under each respective 
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 
-##### My GitHub Repos (with all libs + deps pre-built):
+##### My GitHub Repos (with all libs + deps pre-built)
 
 - [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 450+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, CouchDB, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, Presto, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
     - `harisekhon/nagios-plugins:centos` / `harisekhon/nagios-plugins:latest`
@@ -216,7 +216,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
   - `harisekhon/github:fedora`
   - `harisekhon/github:ubuntu`
 
-##### Base Images:
+##### Base Images
 
 Dev images:
 
@@ -227,7 +227,7 @@ Dev images:
 - `harisekhon/dev:fedora` - Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 - `harisekhon/dev:ubuntu` - Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
-###### Base Images of Java / Scala:
+###### Base Images of Java / Scala
 
 All builds use OpenJDK with ```jre``` and ```jdk``` numbered tags. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
 
@@ -286,7 +286,7 @@ See the top level `Makefile` as well as the `Makefile.in` which is sourced per p
 
 Please raise tickets for issues and improvements at https://github.com/harisekhon/dockerfiles/issues
 
-### See Also:
+### See Also
 
 * [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools) - 550+ DevOps Bash Scripts, Advanced `.bashrc`, `.vimrc`, `.screenrc`, `.tmux.conf`, `.gitconfig`, CI configs & Utility Code Library - AWS, GCP, Kubernetes, Docker, Kafka, Hadoop, SQL, BigQuery, Hive, Impala, PostgreSQL, MySQL, LDAP, DockerHub, Jenkins, Spotify API & MP3 tools, Git tricks, GitHub API, GitLab API, BitBucket API, Code & build linting, package management for Linux / Mac / Python / Perl / Ruby / NodeJS / Golang, and lots more random goodies
 

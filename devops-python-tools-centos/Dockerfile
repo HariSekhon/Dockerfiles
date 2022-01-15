@@ -38,6 +38,11 @@ RUN /build.sh
     # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
     #pip uninstall -y certifi && pip install certifi==2015.04.28
 
+# Cache Bust upon new commits
+RUN curl -sS https://api.github.com/repos/HariSekhon/DevOps-Python-tools/git/refs/heads/master | jq -r .object.sha > /.git-hashref
+
+RUN /build.sh
+
 WORKDIR /github/pytools
 
 # Jython

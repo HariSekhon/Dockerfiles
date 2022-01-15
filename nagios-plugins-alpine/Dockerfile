@@ -21,11 +21,13 @@ COPY build.sh /
 # drops in to /bin/sh pushd not available, could bash -c but explicit paths are good enough
 RUN apk add --no-cache bash && /build.sh
 
-#ADD http://date.jsontest.com /etc/builddate
-ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
+# Cache Bust upon new commits
+RUN curl -sS https://api.github.com/repos/HariSekhon/Nagios-Plugins/git/refs/heads/master | jq -r .object.sha > /.git-hashref
 
-# get updates, faster rebuild
 RUN /build.sh
+
+#ADD http://date.jsontest.com /etc/builddate
+#ADD http://worldclockapi.com/api/json/utc/now /etc/builddate
 
 ENV PATH $PATH:/github/nagios-plugins
 

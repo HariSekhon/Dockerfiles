@@ -53,5 +53,7 @@ RUN /build.sh
 
 WORKDIR /github/pytools
 
+ENV PATH $PATH:/github/pytools/bash-tools
+
 # trying to do -exec basename {} \; results in only the jython files being printed
 CMD ["/bin/bash", "-c", "find /github/pytools/ -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]

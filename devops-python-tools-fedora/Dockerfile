@@ -62,4 +62,4 @@ WORKDIR /github/pytools
 #COPY profile.d/java.sh /etc/profile.d/
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD ["/bin/bash", "-c", "find /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]
+CMD ["/bin/bash", "-c", "find /github/pytools/ -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]

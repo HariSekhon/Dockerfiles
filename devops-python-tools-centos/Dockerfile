@@ -22,7 +22,7 @@ LABEL Description="Python Tools"
 #ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
 
 # used by build.sh to figure out which repo to bootstrap
-ENV PATH $PATH:/github/pytools
+ENV PATH $PATH:/github/pytools:/github/pytools/bash-tools
 
 # not using Alpine any more
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
@@ -62,4 +62,4 @@ WORKDIR /github/pytools
 #COPY profile.d/java.sh /etc/profile.d/
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD ["/bin/bash", "-c", "find /github/pytools/ -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]
+CMD ["/bin/bash", "-c", "find /github/pytools/ -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -type f -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]

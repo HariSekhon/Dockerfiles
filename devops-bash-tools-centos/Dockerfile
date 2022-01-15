@@ -23,6 +23,11 @@ COPY build.sh /
 
 RUN /build.sh
 
+# Cache Bust upon new commits
+RUN curl -sS https://api.github.com/repos/HariSekhon/DevOps-Bash-tools/git/refs/heads/master | jq -r .object.sha > /.git-hashref
+
+RUN /build.sh
+
 WORKDIR /github/bash-tools
 
 CMD ["/bin/bash", "-c", "find /github/bash-tools -maxdepth 1 -type f -iname '[A-Za-z]*.sh' | xargs -n1 basename | sort"]

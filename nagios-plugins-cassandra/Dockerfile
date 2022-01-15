@@ -20,6 +20,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 COPY build2.sh /
 
+# Cache Bust upon new commits
+ADD https://api.github.com/repos/HariSekhon/Nagios-Plugins/git/refs/heads/master /.git-hashref
+
 RUN /build2.sh
 
 ENV PATH $PATH:/cassandra/bin

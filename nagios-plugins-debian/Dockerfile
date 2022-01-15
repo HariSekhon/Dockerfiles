@@ -24,7 +24,7 @@ COPY build.sh /
 RUN /build.sh
 
 # Cache Bust upon new commits
-RUN curl -sS https://api.github.com/repos/HariSekhon/Nagios-Plugins/git/refs/heads/master | jq -r .object.sha > /.git-hashref
+ADD https://api.github.com/repos/HariSekhon/Nagios-Plugins/git/refs/heads/master /.git-hashref
 
 RUN /build.sh
 

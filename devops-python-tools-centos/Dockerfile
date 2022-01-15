@@ -39,7 +39,7 @@ RUN /build.sh
     #pip uninstall -y certifi && pip install certifi==2015.04.28
 
 # Cache Bust upon new commits
-RUN curl -sS https://api.github.com/repos/HariSekhon/DevOps-Python-tools/git/refs/heads/master | jq -r .object.sha > /.git-hashref
+ADD https://api.github.com/repos/HariSekhon/DevOps-Python-tools/git/refs/heads/master /.git-hashref
 
 # 2nd run is almost a noop without cache, and only an incremental update upon cache bust
 RUN /build.sh

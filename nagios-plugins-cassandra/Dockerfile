@@ -23,6 +23,7 @@ COPY build2.sh /
 # Cache Bust upon new commits
 ADD https://api.github.com/repos/HariSekhon/Nagios-Plugins/git/refs/heads/master /.git-hashref
 
+# 2nd run is almost a noop without cache, and only an incremental update upon cache bust
 RUN /build2.sh
 
 ENV PATH $PATH:/cassandra/bin

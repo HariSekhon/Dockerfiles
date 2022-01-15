@@ -24,7 +24,7 @@ ENV DEBIAN_FRONTEND noninteractive
 #ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools
 
 # used by build.sh to figure out which repo to bootstrap
-ENV PATH $PATH:/github/pytools
+ENV PATH $PATH:/github/pytools:/github/pytools/bash-tools
 
 COPY build.sh /
 
@@ -54,4 +54,4 @@ RUN /build.sh
 WORKDIR /github/pytools
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-CMD ["/bin/bash", "-c", "find /github/pytools/ -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]
+CMD ["/bin/bash", "-c", "find /github/pytools/ -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -type f -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]

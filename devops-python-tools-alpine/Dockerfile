@@ -30,6 +30,11 @@ RUN /build.sh
     #ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     #py-cffi && \
 
+# Cache Bust upon new commits
+RUN curl -sS https://api.github.com/repos/HariSekhon/DevOps-Python-tools/git/refs/heads/master | jq -r .object.sha > /.git-hashref
+
+RUN /build.sh
+
 # Jython
 #
 # Not realistically gonna use Hadoop Jython utils from docker when they need -Jcp `hadoop classpath` anyway, leave it for harisekhon/hadoop-dev docker image

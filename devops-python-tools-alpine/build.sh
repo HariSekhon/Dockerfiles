@@ -30,7 +30,7 @@ cd "$github"
 
 wget -O- "https://raw.githubusercontent.com/HariSekhon/$repo/master/setup/bootstrap.sh" | sh
 
-cd "$github/$repo"
+cd "$github/python-tools"
 
 make test
 

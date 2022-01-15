@@ -35,7 +35,9 @@ fi
 
 curl -sS "https://raw.githubusercontent.com/HariSekhon/$repo/master/setup/bootstrap.sh" | sh
 
-cd "$github/python-tools"
+ln -sv python-tools pytools
+
+cd "$github/$repo"
 
 make test
 

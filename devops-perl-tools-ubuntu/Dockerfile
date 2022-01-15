@@ -26,6 +26,11 @@ COPY build.sh /
 
 RUN /build.sh
 
+# Cache Bust upon new commits
+RUN curl -sS https://api.github.com/repos/HariSekhon/DevOps-Perl-tools/git/refs/heads/master | jq -r .object.sha > /.git-hashref
+
+RUN /build.sh
+
 WORKDIR /github/perl-tools
 
 # trying to do -exec basename {} \; results in only the jython files being printed

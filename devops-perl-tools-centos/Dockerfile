@@ -27,6 +27,7 @@ RUN /build.sh
 # Cache Bust upon new commits
 RUN curl -sS https://api.github.com/repos/HariSekhon/DevOps-Perl-tools/git/refs/heads/master | jq -r .object.sha > /.git-hashref
 
+# 2nd run is almost a noop without cache, and only an incremental update upon cache bust
 RUN /build.sh
 
 WORKDIR /github/perl-tools

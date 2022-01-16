@@ -16,6 +16,7 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-find -L "$1" /github/pytools -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -type f -iname '[A-Za-z]*.jy' |
+# trying to do -exec basename {} \; results in only the jython files being printed
+find -L "$1" -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -type f -iname '[A-Za-z]*.jy' |
 xargs -n1 basename |
 sort

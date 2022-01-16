@@ -17,14 +17,14 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools (Ubuntu)"
 
-ENV DEBIAN_FRONTEND noninteractive
+#ENV DEBIAN_FRONTEND noninteractive
 
 # used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/perl-tools
 
-COPY build.sh /
+ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 
-RUN /build.sh
+RUN chmod +x /build.sh && /build.sh
 
 # Cache Bust upon new commits
 ADD https://api.github.com/repos/HariSekhon/DevOps-Perl-tools/git/refs/heads/master /.git-hashref

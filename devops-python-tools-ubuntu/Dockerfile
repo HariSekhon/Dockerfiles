@@ -33,8 +33,10 @@ RUN chmod +x /build.sh && /build.sh
 # Cache Bust upon new commits
 ADD https://api.github.com/repos/HariSekhon/DevOps-Python-tools/git/refs/heads/master /.git-hashref
 
+ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/src/list_python_jython.sh /list.sh
+
 # 2nd run is almost a noop without cache, and only an incremental update upon cache bust
-RUN /build.sh
+RUN chmod +x /list.sh && /build.sh
 
 # Jython
 #
@@ -53,5 +55,4 @@ RUN /build.sh
 
 WORKDIR /github/pytools
 
-# trying to do -exec basename {} \; results in only the jython files being printed
-CMD ["/bin/bash", "-c", "find /github/pytools/ -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -type f -iname '[A-Za-z]*.jy' | xargs -n1 basename | sort"]
+CMD ["/list.sh", "/github/pytools"]

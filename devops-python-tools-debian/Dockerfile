@@ -28,7 +28,7 @@ ENV PATH $PATH:/github/pytools:/github/pytools/bash-tools
 
 ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 
-RUN chmod +x /build.sh && /build.sh
+RUN chmod +x /build.sh && NO_TESTS=1 /build.sh
 
 # Cache Bust upon new commits
 ADD https://api.github.com/repos/HariSekhon/DevOps-Python-tools/git/refs/heads/master /.git-hashref

@@ -34,7 +34,7 @@ ENV PATH $PATH:/github/pytools:/github/pytools/bash-tools
 
 ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 
-RUN chmod +x /build.sh && /build.sh
+RUN chmod +x /build.sh && NO_TESTS=1 /build.sh
     # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
     #pip uninstall -y certifi && pip install certifi==2015.04.28
 

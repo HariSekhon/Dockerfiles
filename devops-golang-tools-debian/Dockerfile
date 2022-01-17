@@ -19,9 +19,9 @@ LABEL Description="Golang Tools"
 # used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/go-tools/bin
 
-COPY build.sh /
+ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 
-RUN /build.sh
+RUN chmod +x /build.sh && NO_TESTS=1 /build.sh
 
 # gets error:
 # bash: ./uniq2: No such file or directory

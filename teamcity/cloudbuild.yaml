@@ -33,6 +33,7 @@
 
 # $PROJECT_ID is auto-populated by Cloud Build
 
+---
 # variables - can override these on the CLI:
 # --substitutions=_IMAGE_NAME="myapp",_IMAGE_VERSION:"1.1"
 substitutions:
@@ -49,27 +50,27 @@ timeout: 300s
 
 # push this image to GCR - doing it this way instead of docker push links the image artifact in GCP Console's Cloud Build UI
 images:
-- ${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}
-# the above pushed all tags to GCR without specifying tags explicitly like this:
-#- gcr.io/${_PROJECT}/${_IMAGE_NAME}:latest
-#- gcr.io/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
+  - ${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}
+  # the above pushed all tags to GCR without specifying tags explicitly like this:
+  #- gcr.io/${_PROJECT}/${_IMAGE_NAME}:latest
+  #- gcr.io/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
 
 steps:
-# use Docker cloud builder to build image - not available in eu.gcr.io
-- name: gcr.io/cloud-builders/docker
-  # multiple tags (all tags get pushed to GCR implicitly via image declaration above)
-  args:
-    - build
-    # use variable tags if triggered:
-    # https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values
-    - --tag=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:latest
-    - --tag=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
-    # use all cached layers where possible (will pull, better for seldomly rebuilt images, kaniko cache is better for frequenct as it's local)
-    - --cache-from=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
-    - .
-  # or use kaniko builder to cache
-  #name: '${_REGISTRY}/kaniko-project/executor:latest'
-  #- --destination=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
-  #- --cache=true
-  #- --cache-ttl=6h
-  timeout: 300s
+  # use Docker cloud builder to build image - not available in eu.gcr.io
+  - name: gcr.io/cloud-builders/docker
+    # multiple tags (all tags get pushed to GCR implicitly via image declaration above)
+    args:
+      - build
+      # use variable tags if triggered:
+      # https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values
+      - --tag=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:latest
+      - --tag=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
+      # use all cached layers where possible (will pull, better for seldomly rebuilt images, kaniko cache is better for frequenct as it's local)
+      - --cache-from=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
+      - .
+    # or use kaniko builder to cache
+    #name: '${_REGISTRY}/kaniko-project/executor:latest'
+    #- --destination=${_REGISTRY}/${_PROJECT}/${_IMAGE_NAME}:${_IMAGE_VERSION}
+    #- --cache=true
+    #- --cache-ttl=6h
+    timeout: 300s

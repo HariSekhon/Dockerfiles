@@ -43,49 +43,49 @@ spec:
         # set mount point group to gid of teamcity process
         fsGroup: 1000
       containers:
-      - name: teamcity-agent
-        image: jetbrains/teamcity-agent:2020.2
-        ports:
-          - containerPort: 9090
-        env:
-          - name: AGENT_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: DOCKER_IN_DOCKER
-            value: start
-          - name: SERVER_URL
-            value: http://teamcity-server.teamcity.svc.cluster.local:8111
-        readinessProbe:
-          tcpSocket:
-            port: 9090
-          initialDelaySeconds: 30
-          failureThreshold: 3
-          periodSeconds: 5
-          timeoutSeconds: 5
-        livenessProbe:
-          tcpSocket:
-            port: 9090
-          initialDelaySeconds: 150  # takes ~ 1:20 - 2:30 for port to pass healthcheck
-          failureThreshold: 10
-          periodSeconds: 5
-          timeoutSeconds: 5
-        volumeMounts:
-          # XXX: not persisting system and work as they're just caches
-          #  mountPath: /var/run/docker.sock
-          #  mountPath: /opt/buildagent/system
-          #  mountPath: /opt/buildagent/work
-          #
-          # persist the buildAgent.properties containing the agent id and autosaved authorization token
-          - name: teamcity-agent-conf
-            mountPath: /data/teamcity_agent/conf
-          # if we reschedule the pods on other nodes we still want continuity of logs and their history for use in the UI
-          - name: teamcity-agent-logs
-            mountPath: /opt/buildagent/logs
-          - name: teamcity-agent-plugins
-            mountPath: /opt/buildagent/plugins
-          - name: teamcity-agent-tools
-            mountPath: /opt/buildagent/tools
+        - name: teamcity-agent
+          image: jetbrains/teamcity-agent:2020.2
+          ports:
+            - containerPort: 9090
+          env:
+            - name: AGENT_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: DOCKER_IN_DOCKER
+              value: start
+            - name: SERVER_URL
+              value: http://teamcity-server.teamcity.svc.cluster.local:8111
+          readinessProbe:
+            tcpSocket:
+              port: 9090
+            initialDelaySeconds: 30
+            failureThreshold: 3
+            periodSeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 9090
+            initialDelaySeconds: 150  # takes ~ 1:20 - 2:30 for port to pass healthcheck
+            failureThreshold: 10
+            periodSeconds: 5
+            timeoutSeconds: 5
+          volumeMounts:
+            # XXX: not persisting system and work as they're just caches
+            #  mountPath: /var/run/docker.sock
+            #  mountPath: /opt/buildagent/system
+            #  mountPath: /opt/buildagent/work
+            #
+            # persist the buildAgent.properties containing the agent id and autosaved authorization token
+            - name: teamcity-agent-conf
+              mountPath: /data/teamcity_agent/conf
+            # if we reschedule the pods on other nodes we still want continuity of logs and their history for use in the UI
+            - name: teamcity-agent-logs
+              mountPath: /opt/buildagent/logs
+            - name: teamcity-agent-plugins
+              mountPath: /opt/buildagent/plugins
+            - name: teamcity-agent-tools
+              mountPath: /opt/buildagent/tools
   volumeClaimTemplates:
     - metadata:
         name: teamcity-agent-conf

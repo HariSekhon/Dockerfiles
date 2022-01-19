@@ -12,13 +12,13 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+---
 version: '2.1'
 services:
   rabbitmq-common:
-    environment:
-      - DEBUG
     image: harisekhon/rabbitmq-cluster:${VERSION:-latest}
     environment:
+      - DEBUG
       # quotes here break RabbitMQ startup:
       # could not start kernel pid (application_controller) (error in config file "/etc/rabbitmq/rabbitmq.config" (5): syntax error before: rabbituser)
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-rabbituser}

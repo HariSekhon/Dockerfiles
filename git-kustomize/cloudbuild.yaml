@@ -15,6 +15,7 @@
 #
 #   https://github.com/HariSekhon/Templates/blob/master/cloudbuild.yaml
 
+---
 options:
   dynamic_substitutions: true
 substitutions:
@@ -28,33 +29,33 @@ substitutions:
 timeout: 660s
 
 images:
-- ${_REGISTRY}/${_PROJECT}/${_REPOSITORY}/${_IMAGE_NAME}
+  - ${_REGISTRY}/${_PROJECT}/${_REPOSITORY}/${_IMAGE_NAME}
 
 steps:
-- id: pull-image-cache-latest
-  name: gcr.io/cloud-builders/docker
-  waitFor: [ '-' ]
-  entrypoint: 'bash'
-  args:
-    - -c
-    - docker pull ${_IMAGE}:latest || exit 0
+  - id: pull-image-cache-latest
+    name: gcr.io/cloud-builders/docker
+    waitFor: ['-']
+    entrypoint: 'bash'
+    args:
+      - -c
+      - docker pull ${_IMAGE}:latest || exit 0
 
-- id: pull-image-cache-version
-  name: gcr.io/cloud-builders/docker
-  waitFor: [ '-' ]
-  entrypoint: 'bash'
-  args:
-    - -c
-    - docker pull ${_IMAGE}:${_IMAGE_VERSION} || exit 0
+  - id: pull-image-cache-version
+    name: gcr.io/cloud-builders/docker
+    waitFor: ['-']
+    entrypoint: 'bash'
+    args:
+      - -c
+      - docker pull ${_IMAGE}:${_IMAGE_VERSION} || exit 0
 
-- id: build-git-kustomize
-  name: gcr.io/cloud-builders/docker
-  args:
-    - build
-    - --tag=${_IMAGE}:latest
-    - --tag=${_IMAGE}:${_IMAGE_VERSION}
-    - --build-arg=BUILDKIT_INLINE_CACHE=1
-    - --cache-from=${_IMAGE}:latest
-    - --cache-from=${_IMAGE}:${_IMAGE_VERSION}
-    - .
-  timeout: 600s
+  - id: build-git-kustomize
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --tag=${_IMAGE}:latest
+      - --tag=${_IMAGE}:${_IMAGE_VERSION}
+      - --build-arg=BUILDKIT_INLINE_CACHE=1
+      - --cache-from=${_IMAGE}:latest
+      - --cache-from=${_IMAGE}:${_IMAGE_VERSION}
+      - .
+    timeout: 600s

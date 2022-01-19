@@ -31,10 +31,10 @@ metadata:
       192.168.0.0/16
 spec:
   rules:
-  - host: teamcity.MYDOMAIN.COM
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: teamcity
-          servicePort: teamcity-ui
+    - host: teamcity.MYDOMAIN.COM
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: teamcity
+              servicePort: teamcity-ui

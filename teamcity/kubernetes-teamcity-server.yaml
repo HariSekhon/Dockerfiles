@@ -54,34 +54,34 @@ spec:
       #    - mountPath: /data/teamcity/logs
       #      name: teamcity-server-logs
       containers:
-      - name: teamcity-server
-        image: jetbrains/teamcity-server:2020.2
-        ports:
-          - containerPort: 8111
-         # XXX: needs more testing
-#        readinessProbe:
-#          httpGet:
-#            path: /mnt
-#            port: 8111
-#          initialDelaySeconds: 5
-#          failureThreshold: 5
-#          periodSeconds: 5
-#          timeoutSeconds: 5
-#        livenessProbe:
-#          httpGet:
-#            path: /mnt
-#            port: 8111
-#          initialDelaySeconds: 20
-#          failureThreshold: 10
-#          periodSeconds: 5
-#          timeoutSeconds: 5
-        volumeMounts:
-          # contains config/, lib/, plugins/, system/
-          - mountPath: /data/teamcity_server/datadir
-            name: teamcity-server-datadir
-          # if we reschedule the pod on another node we still want continuity of logs and their history
-          - mountPath: /opt/teamcity/logs
-            name: teamcity-server-logs
+        - name: teamcity-server
+          image: jetbrains/teamcity-server:2020.2
+          ports:
+            - containerPort: 8111
+           # XXX: needs more testing
+          #readinessProbe:
+          #  httpGet:
+          #    path: /mnt
+          #    port: 8111
+          #  initialDelaySeconds: 5
+          #  failureThreshold: 5
+          #  periodSeconds: 5
+          #  timeoutSeconds: 5
+          #livenessProbe:
+          #  httpGet:
+          #    path: /mnt
+          #    port: 8111
+          #  initialDelaySeconds: 20
+          #  failureThreshold: 10
+          #  periodSeconds: 5
+          #  timeoutSeconds: 5
+          volumeMounts:
+            # contains config/, lib/, plugins/, system/
+            - mountPath: /data/teamcity_server/datadir
+              name: teamcity-server-datadir
+            # if we reschedule the pod on another node we still want continuity of logs and their history
+            - mountPath: /opt/teamcity/logs
+              name: teamcity-server-logs
 # Optional: uncomment RemoteIpValve block in server.xml containing x-forwarded-for and x-forwarded-proto then upload to a configmap called server-xml in teamcity namespace to get rid of the following warning:
 #
 #           Requests with incorrect proxy configuration were detected

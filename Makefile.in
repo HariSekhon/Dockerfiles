@@ -69,7 +69,7 @@ build:
 	@#    docker build -t $(REPO_TAG) . ; \
 	@#fi
 	@# use BuildKite if available via DOCKER_BUILDKIT=1 being set for all targets above
-	docker build -t $(REPO_TAG) .
+	docker build -t $(REPO_TAG) . --cache-from $(REPO_TAG) --build-arg BUILDKIT_INLINE_CACHE=1
 
 .PHONY: cloudbuild
 cloudbuild:

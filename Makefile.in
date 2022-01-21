@@ -60,12 +60,14 @@ endif
 
 .PHONY: build
 build:
-	@if docker buildx >/dev/null; then \
-		docker buildx build -t $(REPO_TAG) . ; \
-	else \
-		echo "WARNING: docker buildx is not installed, using old docker build which will not reuse existing upstream cache layers"; \
-		docker build -t $(REPO_TAG) . ; \
-	fi
+	@#@if docker buildx >/dev/null; then \
+	@#    docker buildx build -t $(REPO_TAG) . ; \
+	@#else \
+	@#    echo "WARNING: docker buildx is not installed, using old docker build which will not reuse existing upstream cache layers"; \
+	@#    docker build -t $(REPO_TAG) . ; \
+	@#fi
+	@# use if available, don't warn
+	DOCKER_BUILDKIT=1 docker build -t $(REPO_TAG) .
 
 .PHONY: cloudbuild
 cloudbuild:

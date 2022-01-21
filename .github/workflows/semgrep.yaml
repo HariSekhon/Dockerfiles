@@ -15,6 +15,8 @@
 #                 S e m g r e p   G i t H u b   W o r k f l o w
 # ============================================================================ #
 
+# Generates code scanning alerts in GitHub's Security tab -> Code scanning alerts
+
 # https://semgrep.dev/docs/semgrep-ci/sample-ci-configs/#github-actions
 
 ---
@@ -37,7 +39,3 @@ jobs:
   semgrep:
     name: Semgrep
     uses: HariSekhon/GitHub-Actions/.github/workflows/semgrep.yaml@master
-    permissions:
-      actions: read
-      contents: read
-      security-events: write

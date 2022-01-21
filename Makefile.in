@@ -58,6 +58,8 @@ else
 	REPO_TAG := "$(REPO)"
 endif
 
+export DOCKER_BUILDKIT=1
+
 .PHONY: build
 build:
 	@#@if docker buildx >/dev/null; then \
@@ -66,8 +68,8 @@ build:
 	@#    echo "WARNING: docker buildx is not installed, using old docker build which will not reuse existing upstream cache layers"; \
 	@#    docker build -t $(REPO_TAG) . ; \
 	@#fi
-	@# use if available, don't warn
-	DOCKER_BUILDKIT=1 docker build -t $(REPO_TAG) .
+	@# use BuildKite if available via DOCKER_BUILDKIT=1 being set for all targets above
+	docker build -t $(REPO_TAG) .
 
 .PHONY: cloudbuild
 cloudbuild:

@@ -12,15 +12,13 @@
 #
 
 # ============================================================================ #
-#                 S e m g r e p   G i t H u b   W o r k f l o w
+#                  S e m g r e p   C l o u d   W o r k f l o w
 # ============================================================================ #
 
-# Generates code scanning alerts in GitHub's Security tab -> Code scanning alerts
-
-# https://semgrep.dev/docs/semgrep-ci/sample-ci-configs/#github-actions
+# Logs results to https://semgrep.dev/
 
 ---
-name: Semgrep
+name: Semgrep Cloud
 
 on:
   push:
@@ -37,5 +35,5 @@ on:
 
 jobs:
   semgrep:
-    name: Semgrep
-    uses: HariSekhon/GitHub-Actions/.github/workflows/semgrep.yaml@master
+    name: Semgrep Cloud
+    uses: HariSekhon/GitHub-Actions/.github/workflows/semgrep-cloud.yaml@master

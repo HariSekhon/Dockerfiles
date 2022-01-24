@@ -12,15 +12,15 @@
 #
 
 # ============================================================================ #
-#                 S e m g r e p   G i t H u b   W o r k f l o w
+#                 C h e c k o v   G i t H u b   W o r k f l o w
 # ============================================================================ #
 
-# Generates code scanning alerts in GitHub's Security tab -> Code scanning alerts
+# Static analysis of Terraform code - publishes report to GitHub Security tab
 
-# https://semgrep.dev/docs/semgrep-ci/sample-ci-configs/#github-actions
+# https://github.com/bridgecrewio/checkov-action
 
 ---
-name: Semgrep
+name: Checkov
 
 on:
   push:
@@ -36,6 +36,6 @@ on:
     - cron: '0 0 * * 1'
 
 jobs:
-  semgrep:
-    name: Semgrep
-    uses: HariSekhon/GitHub-Actions/.github/workflows/semgrep.yaml@master
+  checkov:
+    name: Checkov
+    uses: HariSekhon/GitHub-Actions/.github/workflows/checkov.yaml@master

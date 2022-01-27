@@ -27,8 +27,9 @@ jobs:
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
       repo: harisekhon/devops-bash-tools
-      tags: latest
+      tags: latest centos
       context: devops-bash-tools-centos
+      max-cache: true
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}

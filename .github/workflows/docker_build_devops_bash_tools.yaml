@@ -29,7 +29,6 @@ jobs:
       repo: harisekhon/bash-tools
       tags: latest centos
       context: devops-bash-tools-centos
-      max-cache: true
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}

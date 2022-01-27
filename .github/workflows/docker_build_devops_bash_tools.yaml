@@ -26,7 +26,7 @@ jobs:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
-      repo: harisekhon/devops-bash-tools
+      repo: harisekhon/bash-tools
       tags: latest centos
       context: devops-bash-tools-centos
       max-cache: true

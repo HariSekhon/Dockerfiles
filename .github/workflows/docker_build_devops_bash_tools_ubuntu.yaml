@@ -22,7 +22,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  validate:
+  docker_build:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:

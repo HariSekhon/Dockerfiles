@@ -27,7 +27,7 @@ jobs:
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
       repo: harisekhon/bash-tools
-      tags: latest centos
+      tags: fedora
       context: devops-bash-tools-fedora
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

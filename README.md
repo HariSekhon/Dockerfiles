@@ -24,7 +24,6 @@
 [![GoCD](https://img.shields.io/badge/GoCD-ready-blue?logo=go)](https://github.com/HariSekhon/Dockerfiles/blob/master/.gocd.yml)
 [![TeamCity](https://img.shields.io/badge/TeamCity-ready-blue?logo=teamcity)](https://github.com/HariSekhon/TeamCity-CI)
 
-[![Validation](https://github.com/HariSekhon/Jenkins/actions/workflows/validate.yaml/badge.svg)](https://github.com/HariSekhon/Jenkins/actions/workflows/validate.yaml)
 [![AppVeyor](https://img.shields.io/appveyor/build/harisekhon/Dockerfiles/master?logo=appveyor&label=AppVeyor)](https://ci.appveyor.com/project/HariSekhon/Dockerfiles/branch/master)
 [![Drone](https://img.shields.io/drone/build/HariSekhon/Dockerfiles/master?logo=drone&label=Drone)](https://cloud.drone.io/HariSekhon/Dockerfiles)
 [![CircleCI](https://circleci.com/gh/HariSekhon/Dockerfiles.svg?style=svg)](https://circleci.com/gh/HariSekhon/Dockerfiles)

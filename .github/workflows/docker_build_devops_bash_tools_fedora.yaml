@@ -12,7 +12,7 @@
 #
 
 ---
-name: Docker Build DevOps Bash Tools (CentOS)
+name: Docker Build DevOps Bash Tools (Fedora)
 
 on:
   push:
@@ -22,14 +22,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  validate:
+  docker_build:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
-      repo: harisekhon/devops-bash-tools
-      tags: latest centos
-      context: devops-bash-tools-centos
-      max-cache: true
+      repo: harisekhon/bash-tools
+      tags: fedora
+      context: devops-bash-tools-fedora
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}

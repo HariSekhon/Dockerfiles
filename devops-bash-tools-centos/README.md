@@ -15,13 +15,13 @@ See a list of included programs with descriptions on the [GitHub project page](h
 Running the docker container without arguments will show just the list of programs:
 
 ```
-docker run harisekhon/bash-tools
+docker run harisekhon/bash-tools:centos
 ```
 
 Run any given program:
 
 ```
-docker run harisekhon/bash-tools <program> <args>
+docker run harisekhon/bash-tools:centos <program> <args>
 ```
 
 See Also:

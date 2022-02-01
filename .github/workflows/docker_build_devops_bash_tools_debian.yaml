@@ -21,6 +21,7 @@ on:
       - main
     paths:
       - devops-bash-tools-debian/**
+      - .github/workflows/docker_build_devops_bash_tools_debian.yaml
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 1'

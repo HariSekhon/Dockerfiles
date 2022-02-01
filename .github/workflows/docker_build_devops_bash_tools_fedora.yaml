@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-bash-tools-fedora
+      - devops-bash-tools-fedora/**
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 1'

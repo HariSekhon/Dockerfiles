@@ -1,6 +1,6 @@
 # DevOps, CI/CD, Big Data & NoSQL Docker Images
 
-[![Codacy](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://www.codacy.com/app/harisekhon/Dockerfiles)
+[![Codacy](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://app.codacy.com/gh/HariSekhon/Dockerfiles/dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles/badge)](https://www.codefactor.io/repository/github/harisekhon/Dockerfiles)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=alert_status)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Dockerfiles&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Dockerfiles)
@@ -209,7 +209,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
   - `harisekhon/bash-tools` - [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools) - 700+ DevOps CLI tools for AWS, GCP, Kubernetes, Hadoop, Hive, Impala, Kafka, Docker, LDAP, Git, Code & build linting, package management for Linux / Mac / Python / Perl / Ruby / NodeJS / Golang, and lots more random goodies
   - `harisekhon/perl-tools` - [DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools) - 25+ DevOps CLI Tools - Log Anonymizer, Hadoop HDFS & Hive tools, Solr/SolrCloud CLI, SQL ReCaser (MySQL, PostgreSQL, AWS Redshift, Snowflake, Apache Drill, Hive, Impala, Cassandra CQL, Microsoft SQL Server, Oracle, Couchbase N1QL, Dockerfiles, Pig Latin, Neo4j, InfluxDB), Linux, Nginx stats & HTTP(S) URL watchers for load balanced web farms, Ambari FreeIPA Kerberos, Datameer etc.
   - all of the above repos come with tags for `alpine`, `centos`, `debian`, `fedora` and `ubuntu` builds
-- [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Spotify API tools - eg. convert Spotify URIs to `Artist - Track` form by querying the Spotify API - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/spotify-tools/README-spotify.md)
+- [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Spotify API tools - eg. convert Spotify URIs to `Artist - Track` form by querying the Spotify API - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/spotify-tools/README.md)
 
 - all Github repos pre-built on major Linux distros with CLI programs located at `/github/<project>`
   - `harisekhon/github:centos` / `harisekhon/github:latest`

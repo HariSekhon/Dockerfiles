@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-bash-tools-centos
+      - devops-bash-tools-centos/**
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 1'

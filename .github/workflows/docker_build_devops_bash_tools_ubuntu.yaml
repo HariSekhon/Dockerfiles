@@ -19,7 +19,11 @@ on:
     branches:
       - master
       - main
+    paths:
+      - devops-bash-tools-ubuntu
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'
 
 jobs:
   docker_build:

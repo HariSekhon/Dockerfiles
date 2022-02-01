@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-bash-tools-debian
+      - devops-bash-tools-debian/**
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 1'

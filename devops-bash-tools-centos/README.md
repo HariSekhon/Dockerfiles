@@ -8,7 +8,7 @@
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/bash-tools#hari-sekhon---bash-tools)
 [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/bash-tools/)
 
-750+ Shell Scripts, Advanced Bash environment & Utility Code Library used by all my other [GitHub](https://github.com/harisekhon) repos [CI builds](https://github.com/HariSekhon/DevOps-Bash-tools/blob/master/Status.md).
+700+ Shell Scripts, Advanced Bash environment & Utility Code Library used by all my other [GitHub](https://github.com/harisekhon) repos [CI builds](https://github.com/HariSekhon/DevOps-Bash-tools/blob/master/Status.md).
 
 See a list of included programs with descriptions on the [GitHub project page](https://github.com/harisekhon/devops-bash-tools).
 

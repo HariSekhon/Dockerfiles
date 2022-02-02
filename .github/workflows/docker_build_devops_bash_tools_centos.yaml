@@ -19,7 +19,12 @@ on:
     branches:
       - master
       - main
+    paths:
+      - devops-bash-tools-centos/**
+      - .github/workflows/docker_build_devops_bash_tools_centos.yaml
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'
 
 jobs:
   docker_build:

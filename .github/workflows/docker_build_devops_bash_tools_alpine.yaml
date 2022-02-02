@@ -19,7 +19,12 @@ on:
     branches:
       - master
       - main
+    paths:
+      - devops-bash-tools-alpine/**
+      - .github/workflows/docker_build_devops_bash_tools_alpine.yaml
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'
 
 jobs:
   docker_build:

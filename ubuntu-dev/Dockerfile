@@ -26,61 +26,63 @@ RUN bash -c ' \
     set -euxo pipefail && \
     apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-                       bind9-host \
-                       build-essential \
-                       cpanminus \
-                       curl \
-                       dnsutils \
-                       dstat \
-                       expect \
-                       ethtool \
-                       fping \
-                       git \
-                       golang \
-                       gradle \
-                       groovy \
-                       libdbd-mysql-perl \
-                       libev4 \
-                       libexpat1-dev \
-                       libkrb5-dev \
-                       libmysqlclient-dev \
-                       libsasl2-dev \
-                       libsnappy-dev \
-                       libssl-dev \
-                       lsof \
-                       make \
-                       maven \
-                       netcat \
-                       nmap \
-                       net-tools \
-                       procps \
-                       python-dev \
-                       python-pip \
-                       python-setuptools \
-                       ruby \
-                       ruby-dev \
-                       socat \
-                       scala \
-                       sysstat \
-                       strace \
-                       tcpdump \
-                       unzip \
-                       vim \
-                       wget \
-                       zip && \
-    # for sbt https repo
+    apt-get install -y \
+        bind9-host \
+        build-essential \
+        cpanminus \
+        curl \
+        dnsutils \
+        dstat \
+        expect \
+        ethtool \
+        fping \
+        git \
+        golang \
+        gradle \
+        groovy \
+        libdbd-mysql-perl \
+        libev4 \
+        libexpat1-dev \
+        libkrb5-dev \
+        libmysqlclient-dev \
+        libsasl2-dev \
+        libsnappy-dev \
+        libssl-dev \
+        lsof \
+        make \
+        maven \
+        netcat \
+        nmap \
+        net-tools \
+        procps \
+        python-dev \
+        python-pip \
+        python-setuptools \
+        ruby \
+        ruby-dev \
+        socat \
+        scala \
+        sysstat \
+        strace \
+        tcpdump \
+        unzip \
+        vim \
+        wget \
+        zip && \
     apt-get install -y --no-install-recommends apt-transport-https gnupg2 && \
-    echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
+    echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" >> /etc/apt/sources.list.d/sbt.list && \
+    echo "deb https://repo.scala-sbt.org/scalasbt/debian /" >> /etc/apt/sources.list.d/sbt_old.list && \
+    curl -sSfL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import && \
+    chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg && \
     apt-get update && \
-    apt-get install -y --no-install-recommends sbt && \
+    apt-get install -y sbt && \
     # for Maven 3
     #echo deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main >> /etc/apt/sources.list && \
     #apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh'
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh \
+    '
 
 # Jython
 RUN bash -c ' \

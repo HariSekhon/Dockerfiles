@@ -26,7 +26,6 @@ RUN bash -c ' \
     set -euxo pipefail && \
     apt-get update && \
     apt-get upgrade -y && \
-    # --no-install-recommends breaks sbt download due to missing gnupg, even adding gnupg + gnupg1 + gnupg2 manually it still breaks on download manager when trying to get sbt
     apt-get install -y \
         bind9-host \
         build-essential \
@@ -40,7 +39,7 @@ RUN bash -c ' \
         git \
         golang \
         gradle \
-        groovy2 \
+        groovy \
         libdbd-mysql-perl \
         libev4 \
         libexpat1-dev \
@@ -72,14 +71,11 @@ RUN bash -c ' \
         wget \
         zip \
         && \
-    # for sbt https repo
-    apt-get install -y --no-install-recommends apt-transport-https \
-        #gnupg \
-        #gnupg1 \
-        #gnupg2 \
-        && \
-    echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
+    apt-get install -y --no-install-recommends apt-transport-https gnupg2 && \
+    echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" >> /etc/apt/sources.list.d/sbt.list && \
+    echo "deb https://repo.scala-sbt.org/scalasbt/debian /" >> /etc/apt/sources.list.d/sbt_old.list && \
+    curl -sSfL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import && \
+    chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg && \
     apt-get update && \
     apt-get install -y sbt && \
     # for Maven 3
@@ -87,19 +83,17 @@ RUN bash -c ' \
     #apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh \
     '
 
 # Gradle in Debian was old 1.5
 #RUN bash -c 'set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh | sh'
 
 # Jython
-RUN bash -c ' \
-    set -euxo pipefail && \
+RUN set -eux && \
     wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
     bash jython_install.sh && \
-    rm -f jython_install.sh jython_autoinstall.exp \
-    '
+    rm -fv jython_install.sh jython_autoinstall.exp
 
 CMD ["/bin/bash"]

@@ -13,7 +13,7 @@
 
 # busybox wget doesn't support SSL, no curl available :-(
 #FROM busybox:latest
-FROM alpine:latest
+FROM alpine:3.12
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SERF_VERSION=0.8.2

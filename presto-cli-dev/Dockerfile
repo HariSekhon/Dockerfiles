@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM alpine:3.12
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 # cache the std packages between tagged versions for space efficiency, must have this above ARG

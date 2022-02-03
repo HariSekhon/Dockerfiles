@@ -13,7 +13,7 @@
 
 #FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
-FROM alpine:latest
+FROM alpine:3.12
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG SPARK_VERSION=1.6.2

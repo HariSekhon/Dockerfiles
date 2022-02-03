@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM alpine:latest
+FROM alpine:3.12
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG ALLUXIO_VERSION=1.8.1

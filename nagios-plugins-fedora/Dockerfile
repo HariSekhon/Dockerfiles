@@ -11,7 +11,9 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM fedora:latest
+#FROM fedora:latest
+# Fedora 35 gets 'curl: (6) getaddrinfo() thread failed to start' for any address due to a bug
+FROM fedora:34
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Advanced Nagios Plugins Collection (Fedora build)"

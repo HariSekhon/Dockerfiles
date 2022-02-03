@@ -12,7 +12,9 @@
 #
 
 # Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
-FROM fedora:latest
+#FROM fedora:latest
+# Fedora 35 gets 'curl: (6) getaddrinfo() thread failed to start' for any address due to a bug
+FROM fedora:34
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools (Fedora)"

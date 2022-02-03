@@ -15,11 +15,11 @@
 
 # Alpine / Wget:
 #
-# wget https://raw.githubusercontent.com/HariSekhon/dockerfiles/master/setup/bootstrap.sh && sh bootstrap.sh
+#   wget -O- https://raw.githubusercontent.com/HariSekhon/dockerfiles/master/setup/bootstrap.sh | sh
 #
 # Curl:
 #
-# curl https://raw.githubusercontent.com/HariSekhon/dockerfiles/master/setup/bootstrap.sh | sh
+#   curl https://raw.githubusercontent.com/HariSekhon/dockerfiles/master/setup/bootstrap.sh | sh
 
 set -eu
 [ -n "${DEBUG:-}" ] && set -x
@@ -40,16 +40,24 @@ if [ "$(uname -s)" = Darwin ]; then
 elif [ "$(uname -s)" = Linux ]; then
     echo "Bootstrapping on Linux:  $repo"
     if type apk >/dev/null 2>&1; then
-        $sudo apk --no-cache add bash git make curl
+        $sudo apk --no-cache add bash git make curl wget
     elif type apt-get >/dev/null 2>&1; then
+        if [ -n "${CI:-}" ]; then
+            export DEBIAN_FRONTEND=noninteractive
+        fi
         opts=""
         if [ -z "${PS1:-}" ]; then
             opts="-qq"
         fi
         $sudo apt-get update $opts
-        $sudo apt-get install $opts -y git make curl
+        $sudo apt-get install $opts -y git make curl wget --no-install-recommends
     elif type yum >/dev/null 2>&1; then
-        $sudo yum install -y git make curl
+        if grep -qi 'NAME=.*CentOS' /etc/*release; then
+            echo "CentOS EOL detected, replacing yum base URL to vault to re-enable package installs"
+            $sudo sed -i 's/^[[:space:]]*mirrorlist/#mirrorlist/' /etc/yum.repos.d/CentOS-Linux-*
+            $sudo sed -i 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|' /etc/yum.repos.d/CentOS-Linux-*
+        fi
+        $sudo yum install -y git make curl wget
     else
         echo "Package Manager not found on Linux, cannot bootstrap"
         exit 1

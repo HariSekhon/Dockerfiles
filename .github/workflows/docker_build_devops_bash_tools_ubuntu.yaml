@@ -32,7 +32,7 @@ jobs:
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
       repo: harisekhon/bash-tools
-      tags: ubuntu
+      tags: ubuntu latest
       context: devops-bash-tools-ubuntu
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

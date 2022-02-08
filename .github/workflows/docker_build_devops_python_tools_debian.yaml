@@ -24,7 +24,7 @@ on:
       - .github/workflows/docker_build_devops_python_tools_debian.yaml
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 4 * * *'
 
 jobs:
   docker_build:

@@ -24,7 +24,7 @@ on:
       - .github/workflows/docker_build_devops_perl_tools_ubuntu.yaml
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 3 * * *'
 
 jobs:
   docker_build:

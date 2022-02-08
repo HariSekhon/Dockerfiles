@@ -21,6 +21,7 @@ on:
       - main
     paths:
       - devops-bash-tools-ubuntu/**
+      - src/**
       - .github/workflows/docker_build_devops_bash_tools_ubuntu.yaml
   workflow_dispatch:
   schedule:

@@ -21,6 +21,7 @@ on:
       - main
     paths:
       - devops-python-tools-centos/**
+      - src/**
       - .github/workflows/docker_build_devops_python_tools_centos.yaml
   workflow_dispatch:
   schedule:

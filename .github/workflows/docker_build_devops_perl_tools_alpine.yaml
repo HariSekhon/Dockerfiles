@@ -21,6 +21,7 @@ on:
       - main
     paths:
       - devops-perl-tools-alpine/**
+      - src/**
       - .github/workflows/docker_build_devops_perl_tools_alpine.yaml
   workflow_dispatch:
   schedule:

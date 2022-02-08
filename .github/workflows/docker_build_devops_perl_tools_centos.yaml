@@ -21,6 +21,7 @@ on:
       - main
     paths:
       - devops-perl-tools-centos/**
+      - src/**
       - .github/workflows/docker_build_devops_perl_tools_centos.yaml
   workflow_dispatch:
   schedule:

@@ -24,7 +24,7 @@ on:
       - .github/workflows/docker_build_devops_bash_tools_centos.yaml
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 2 * * *'
 
 jobs:
   docker_build:

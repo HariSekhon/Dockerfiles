@@ -1,0 +1,36 @@
+#
+#  Author: Hari Sekhon
+#  Date: Tue Feb 4 09:53:28 2020 +0000
+#
+#  vim:ts=2:sts=2:sw=2:et
+#
+#  https://github.com/HariSekhon/Dockerfiles
+#
+#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
+#
+#  https://www.linkedin.com/in/harisekhon
+#
+
+---
+name: Fork Update PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: string
+        required: false
+  schedule:
+    # fork-sync happens for default branch every hour, so just after that, run PRs for branches
+    - cron: '2 10 * * 2'
+
+jobs:
+  fork_update_pr:
+    if: github.repository_owner != 'HariSekhon'
+    name: Fork Update PR
+    uses: HariSekhon/GitHub-Actions/.github/workflows/fork-update-pr.yaml@master
+    with:
+      debug: ${{ github.event.inputs.debug }}
+    permissions:
+      contents: write
+      pull-requests: write

@@ -19,6 +19,11 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        required: false
+        default: false
   schedule:
     - cron: '0 7 * * *'
 
@@ -27,10 +32,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  make:
     if: github.event.repository.fork == false
-    name: Debian 10
-    uses: HariSekhon/GitHub-Actions/.github/workflows/debian.yaml@master
+    name: Make
+    uses: HariSekhon/GitHub-Actions/.github/workflows/make.yaml@master
     with:
-      version: 10
-      #debug: 1
+      container: debian:10
+      debug: ${{ github.event.inputs.debug }}

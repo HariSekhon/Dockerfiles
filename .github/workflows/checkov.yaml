@@ -40,12 +40,15 @@ on:
   schedule:
     - cron: '0 0 * * 1'
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
   checkov:
     if: github.event.repository.fork == false
     name: Checkov
     uses: HariSekhon/GitHub-Actions/.github/workflows/checkov.yaml@master
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
+    with:
+      debug: ${{ github.event.inputs.debug }}

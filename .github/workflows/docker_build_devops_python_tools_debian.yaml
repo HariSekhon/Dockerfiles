@@ -32,8 +32,9 @@ jobs:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
-      repo: harisekhon/pytools
-      tags: debian
+      repo: |
+        harisekhon/pytools:debian
+        ghcr.io/harisekhon/pytools:debian
       context: devops-python-tools-debian
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

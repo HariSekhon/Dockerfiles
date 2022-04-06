@@ -31,8 +31,9 @@ jobs:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
-      repo: harisekhon/fedora-dev
-      tags: latest
+      repo_tags: |
+        harisekhon/fedora-dev:latest
+        ghcr.io/harisekhon/fedora-dev:latest
       context: fedora-dev
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

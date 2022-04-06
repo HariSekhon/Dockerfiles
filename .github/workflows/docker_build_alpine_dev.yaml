@@ -31,8 +31,9 @@ jobs:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
-      repo: harisekhon/alpine-dev
-      tags: latest
+      repo_tags: |
+        harisekhon/alpine-dev:latest
+        ghcr.io/harisekhon/alpine-dev:latest
       context: alpine-dev
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

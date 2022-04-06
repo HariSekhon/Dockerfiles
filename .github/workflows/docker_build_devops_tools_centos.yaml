@@ -32,8 +32,9 @@ jobs:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
-      repo: harisekhon/tools
-      tags: centos
+      repo_tags: |
+        harisekhon/tools:centos
+        ghcr.io/harisekhon/tools:centos
       context: devops-tools-centos
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

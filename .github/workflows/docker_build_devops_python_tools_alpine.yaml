@@ -32,8 +32,9 @@ jobs:
     name: Docker Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
-      repo: harisekhon/pytools
-      tags: alpine
+      repo: |
+        harisekhon/pytools:alpine
+        ghcr.io/harisekhon/pytools:alpine
       context: devops-python-tools-alpine
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

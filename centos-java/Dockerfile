@@ -20,6 +20,8 @@ ARG JAVA_VERSION=8
 ARG JAVA_RELEASE=JDK
 
 RUN set -eux && \
+    sed -i "s/^[[:space:]]*mirrorlist/#mirrorlist/" /etc/yum.repos.d/CentOS-* && \
+    sed -i "s|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|" /etc/yum.repos.d/CentOS-* && \
     pkg="java-1.$JAVA_VERSION.0-openjdk" && \
     if [ "$JAVA_RELEASE" = "JDK" ]; then \
         pkg="$pkg-devel"; \

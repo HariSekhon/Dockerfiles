@@ -12,7 +12,7 @@
 #
 
 ---
-name: harisekhon/alpine-dev
+name: harisekhon/dev:alpine
 
 on:
   push:
@@ -33,7 +33,9 @@ jobs:
     with:
       repo_tags: |
         harisekhon/alpine-dev:latest
+        harisekhon/dev:alpine
         ghcr.io/harisekhon/alpine-dev:latest
+        ghcr.io/harisekhon/dev:alpine
       context: alpine-dev
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

@@ -23,6 +23,8 @@ ENV PATH $PATH:$GRADLE_HOME/bin:$JYTHON_HOME/bin
 # behaviour has changed in RHEL 8 - dnf doesn't install any packages if any of them can't be found
 RUN bash -c ' \
     set -euxo pipefail && \
+    sed -i "s/^[[:space:]]*mirrorlist/#mirrorlist/" /etc/yum.repos.d/CentOS-* && \
+    sed -i "s|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|" /etc/yum.repos.d/CentOS-* && \
     for x in \
     bind-utils \
     curl \
@@ -86,8 +88,7 @@ RUN bash -c ' \
     jwhois; do \
         rpm -q "$x" >/dev/null || yum install -y "$x" || :; \
     done; \
-    curl -L https://bintray.com/sbt/rpm/rpm | tee /etc/yum.repos.d/bintray-sbt-rpm.repo && \
-    yum install -y --nogpgcheck sbt && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | bash -x && \
     yum autoremove -y && \
     yum clean all && \
     rm -rf /var/cache/yum && \

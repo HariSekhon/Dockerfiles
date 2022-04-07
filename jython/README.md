@@ -1,5 +1,4 @@
-Jython
-======
+# Jython
 
 http://www.jython.org/
 

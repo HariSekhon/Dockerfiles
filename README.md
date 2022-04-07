@@ -222,11 +222,11 @@ Available as `harisekhon/github:<distro>` and `harisekhon/<distro>-github`. `har
 [![Docker Build GitHub Fedora](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml)
 [![Docker Build GitHub Ubuntu](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml)
 
-  - [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--alpine-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-github)
-  - [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--centos-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-github)
-  - [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--debian-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-github)
-  - [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--fedora-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-github)
-  - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--ubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)
+  - [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--github-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-github)
+  - [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--github-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-github)
+  - [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--github-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-github)
+  - [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--github-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-github)
+  - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--github-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)
 
 #### Base Images
 

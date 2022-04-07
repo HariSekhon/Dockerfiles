@@ -1,6 +1,6 @@
 # Jython Dev
 
-[![DockerHub Jython](https://img.shields.io/badge/DockerHub-harisekhon%2Fjython-blue)](https://hub.docker.com/repository/docker/harisekhon/jython)
+[![DockerHub Jython Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fjython--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/jython-dev)
 
 http://www.jython.org/
 

@@ -33,7 +33,9 @@ jobs:
     with:
       repo_tags: |
         harisekhon/debian-dev:latest
+        harisekhon/dev:debian
         ghcr.io/harisekhon/debian-dev:latest
+        ghcr.io/harisekhon/dev:debian
       context: debian-dev
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

@@ -1,5 +1,6 @@
-Alluxio
-=======
+# Alluxio
+
+[![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Falluxio-blue)](https://hub.docker.com/repository/docker/harisekhon/alluxio)
 
 http://www.alluxio.org/
 

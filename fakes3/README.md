@@ -1,5 +1,4 @@
-FakeS3
-=======
+# FakeS3
 
 https://github.com/jubos/fake-s3
 

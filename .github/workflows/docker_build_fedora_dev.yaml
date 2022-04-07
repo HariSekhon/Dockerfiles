@@ -33,7 +33,9 @@ jobs:
     with:
       repo_tags: |
         harisekhon/fedora-dev:latest
+        harisekhon/dev:fedora
         ghcr.io/harisekhon/fedora-dev:latest
+        ghcr.io/harisekhon/dev:fedora
       context: fedora-dev
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

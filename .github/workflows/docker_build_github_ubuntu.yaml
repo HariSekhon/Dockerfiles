@@ -33,8 +33,10 @@ jobs:
     with:
       repo_tags: |
         harisekhon/ubuntu-github:latest
+        harisekhon/github:latest
         harisekhon/github:ubuntu
         ghcr.io/harisekhon/ubuntu-github:latest
+        ghcr.io/harisekhon/github:latest
         ghcr.io/harisekhon/github:ubuntu
       context: ubuntu-github
     secrets:

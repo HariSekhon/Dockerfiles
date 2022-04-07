@@ -212,12 +212,19 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
   - all of the above repos come with tags for `alpine`, `centos`, `debian`, `fedora` and `ubuntu` builds
 - [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Spotify API tools - eg. convert Spotify URIs to `Artist - Track` form by querying the Spotify API - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/spotify-tools/README.md)
 
-- all Github repos pre-built on major Linux distros with CLI programs located at `/github/<project>`
-  - `harisekhon/github:centos` / `harisekhon/github:latest`
-  - `harisekhon/github:alpine`
-  - `harisekhon/github:debian`
-  - `harisekhon/github:fedora`
-  - `harisekhon/github:ubuntu`
+All Github repos pre-built on major Linux distros with CLI programs located at `/github/<project>`. `latest` is `ubuntu`
+
+[![Docker Build GitHub Alpine](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_alpine.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_alpine.yaml)
+[![Docker Build GitHub CentOS](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_centos.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_centos.yaml)
+[![Docker Build GitHub Debian](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_debian.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_debian.yaml)
+[![Docker Build GitHub Fedora](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml)
+[![Docker Build GitHub Ubuntu](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml)
+
+  - [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--alpine-blue)](https://hub.docker.com/repository/docker/harisekhon/github:alpine)
+  - [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--centos-blue)](https://hub.docker.com/repository/docker/harisekhon/github:centos)
+  - [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--debian-blue)](https://hub.docker.com/repository/docker/harisekhon/github:debian)
+  - [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--fedora-blue)](https://hub.docker.com/repository/docker/harisekhon/github:fedora)
+  - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--ubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/github:ubuntu)
 
 #### Base Images
 

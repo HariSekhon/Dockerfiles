@@ -212,7 +212,9 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
   - all of the above repos come with tags for `alpine`, `centos`, `debian`, `fedora` and `ubuntu` builds
 - [Spotify Tools](https://github.com/harisekhon/spotify-tools) - Spotify API tools - eg. convert Spotify URIs to `Artist - Track` form by querying the Spotify API - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/spotify-tools/README.md)
 
-All Github repos pre-built on major Linux distros with CLI programs located at `/github/<project>`. `latest` is `ubuntu`
+All Github repos pre-built on major Linux distros with CLI programs located at `/github/<project>`.
+
+Available as `harisekhon/github:<distro>` and `harisekhon/<distro>-github`. `harisekhon/github:latest` is `harisekhon/github:ubuntu`
 
 [![Docker Build GitHub Alpine](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_alpine.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_alpine.yaml)
 [![Docker Build GitHub CentOS](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_centos.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_centos.yaml)

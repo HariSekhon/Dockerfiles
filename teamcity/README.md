@@ -1,5 +1,4 @@
-Teamcity CI
-===========
+# Teamcity CI
 
 ### Automation
 

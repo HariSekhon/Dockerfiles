@@ -1,5 +1,7 @@
 # Tachyon
 
+[![DockerHub Tachyon](https://img.shields.io/badge/DockerHub-harisekhon%2Ftachylon-blue)](https://hub.docker.com/repository/docker/harisekhon/tachyon)
+
 http://www.alluxio.org/
 
 Distributed in-memory filesystem for cluster computing frameworks, now called Alluxio (newer versions 1.0+ are found under harisekhon/alluxio and the alluxio directory adjacent in this repo)

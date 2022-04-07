@@ -1,5 +1,4 @@
-[Hari Sekhon - DevOps Golang Tools](https://github.com/harisekhon/devops-golang-tools)
-=================================
+# [Hari Sekhon - DevOps Golang Tools](https://github.com/harisekhon/devops-golang-tools)
 
 [![Build Status](https://travis-ci.org/HariSekhon/DevOps-Golang-tools.svg?branch=master)](https://travis-ci.org/HariSekhon/DevOps-Golang-tools)
 [![GitHub stars](https://img.shields.io/github/stars/harisekhon/devops-golang-tools.svg)](https://github.com/harisekhon/devops-golang-tools/stargazers)

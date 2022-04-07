@@ -1,5 +1,7 @@
 # Apache HBase
 
+[![DockerHub HBase](https://img.shields.io/badge/DockerHub-harisekhon%2Fhvase-blue)](https://hub.docker.com/repository/docker/harisekhon/hbase)
+
 https://hbase.apache.org/
 
 Apache HBase NoSQL columnar datastore

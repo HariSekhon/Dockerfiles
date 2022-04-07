@@ -219,9 +219,9 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
   - `harisekhon/github:fedora`
   - `harisekhon/github:ubuntu`
 
-##### Base Images
+#### Base Images
 
-###### Dev images
+##### Linux Distros + Development Tools
 
 Available as both `harisekhon/<distro>-dev` and `harisekhon/dev:<distro>`
 

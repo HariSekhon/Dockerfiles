@@ -245,6 +245,12 @@ All builds use OpenJDK with ```jre``` and ```jdk``` numbered tags. See this arti
 
 https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
 
+[![Docker Build Alpine Java](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_alpine_java.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_alpine_java.yaml)
+[![Docker Build CentOS Java](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_centos_java.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_centos_java.yaml)
+[![Docker Build Debian Java](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_debian_java.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_centos_java.yaml)
+[![Docker Build Fedora Java](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_fedora_java.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_fedora_java.yaml)
+[![Docker Build Ubuntu Java](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_ubuntu_java.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_ubuntu_java.yaml)
+
 - [![Docker Build Alpine Java](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--java-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-java) - Alpine latest with Java 8
 - [![Docker Build CentOS Java](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--java-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-java) - CentOS latest combinations of Java 7 / 8 and Scala 2.10 / 2.11
 - [![Docker Build Debian Java](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--java-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-java) - Debian latest with Java 7, 8

@@ -1,5 +1,4 @@
-Presto SQL DB by Facebook
-=========================
+# Presto SQL DB by Facebook
 
 https://prestodb.io/
 

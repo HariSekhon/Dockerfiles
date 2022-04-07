@@ -1,5 +1,4 @@
-Teradata's distribution of Presto SQL Client (by Facebook)
-======================================================
+# Teradata's distribution of Presto SQL Client (by Facebook)
 
 http://www.teradata.com/products-and-services/Presto/Presto-Download
 

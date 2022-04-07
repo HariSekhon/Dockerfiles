@@ -221,7 +221,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 ##### Base Images
 
-Dev images:
+###### Dev images
 
 Available as both `harisekhon/<distro>-dev` and `harisekhon/dev:<distro>`
 
@@ -233,11 +233,11 @@ Available as both `harisekhon/<distro>-dev` and `harisekhon/dev:<distro>`
 [![Docker Build Fedora Dev](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_fedora_dev.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_fedora_dev.yaml)
 [![Docker Build Ubuntu Dev](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_ubuntu_dev.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_ubuntu_dev.yaml)
 
-- [![Docker Build Alpine Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-dev) - Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- [![Docker Build CentOS Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-dev) - CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
-- [![Docker Build Debian Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-dev) - Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- [![Docker Build Fedora Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-dev) - Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- [![Docker Build Ubuntu Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-dev) - Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- [![DockerHub Alpine Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-dev) - Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- [![DockerHub CentOS Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-dev) - CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- [![DockerHub Debian Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-dev) - Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- [![DockerHub Fedora Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-dev) - Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- [![DockerHub Ubuntu Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-dev) - Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images of Java / Scala
 
@@ -245,11 +245,11 @@ All builds use OpenJDK with ```jre``` and ```jdk``` numbered tags. See this arti
 
 https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
 
-- `harisekhon/alpine-java` - Alpine latest with Java 8
-- `harisekhon/centos-java` - CentOS latest combinations of Java 7 / 8 and Scala 2.10 / 2.11
-- `harisekhon/debian-java` - Debian latest with Java 7, 8
-- `harisekhon/fedora-java` - Fedora latest combinations of Java 7/8 and Scala 2.10/2.11
-- `harisekhon/ubuntu-java`
+- [![Docker Build Alpine Java](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--java-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-java) - Alpine latest with Java 8
+- [![Docker Build CentOS Java](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--java-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-java) - CentOS latest combinations of Java 7 / 8 and Scala 2.10 / 2.11
+- [![Docker Build Debian Java](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--java-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-java) - Debian latest with Java 7, 8
+- [![Docker Build Fedora Java](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--java-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-java) - Fedora latest combinations of Java 7/8 and Scala 2.10/2.11
+- [![Docker Build Ubuntu Java](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--java-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-java)
   - Ubuntu 14.04 with Java 7
   - Ubuntu latest with Java 8, 9
 

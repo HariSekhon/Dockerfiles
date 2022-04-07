@@ -12,7 +12,7 @@
 #
 
 ---
-name: harisekhon/dev:alpine
+name: Docker Build Alpine Dev
 
 on:
   push:

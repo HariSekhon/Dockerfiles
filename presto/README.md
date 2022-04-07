@@ -1,5 +1,4 @@
-Teradata's distribution of Presto SQL DB (by Facebook)
-======================================================
+# Teradata's distribution of Presto SQL DB (by Facebook)
 
 http://www.teradata.com/products-and-services/Presto/Presto-Download
 

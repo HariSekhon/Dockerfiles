@@ -1,5 +1,7 @@
 # Presto SQL CLI by Facebook
 
+[![DockerHub Presto CLI](https://img.shields.io/badge/DockerHub-harisekhon%2Fpresto--cli-blue)](https://hub.docker.com/repository/docker/harisekhon/presto-cli)
+
 https://prestodb.io/
 
 SQL Client for Presto DB - the distributed interactive high scale SQL engine for Big Data.

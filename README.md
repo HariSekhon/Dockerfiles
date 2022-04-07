@@ -223,12 +223,12 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 
 Dev images:
 
-- `harisekhon/dev:latest` = `harisekhon/dev:centos`
-- `harisekhon/dev:centos` / - CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
-- `harisekhon/dev:alpine` - Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- `harisekhon/dev:debian` - Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- `harisekhon/dev:fedora` - Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
-- `harisekhon/dev:ubuntu` - Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- `harisekhon/dev:latest` is the same as `harisekhon/dev:centos`
+- [![Docker Build CentOS Dev](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_centos_dev.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_centos_dev.yaml) `harisekhon/dev:centos` - CentOS latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect, EPEL etc.
+- [![Docker Build Alpine Dev](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_alpine_dev.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_alpine_dev.yaml) `harisekhon/dev:alpine` - Alpine latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- [![Docker Build Debian Dev](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_debian_dev.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_debian_dev.yaml) `harisekhon/dev:debian` - Debian latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- [![Docker Build Fedora Dev](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_fedora_dev.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_fedora_dev.yaml) `harisekhon/dev:fedora` - Fedora latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
+- [![Docker Build Ubuntu Dev](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_ubuntu_dev.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_ubuntu_dev.yaml) `harisekhon/dev:ubuntu` - Ubuntu latest with Java JDK, Perl, Python, Jython, Ruby, Scala, Groovy, GCC, Maven, SBT, Gradle, Make, Expect etc.
 
 ###### Base Images of Java / Scala
 

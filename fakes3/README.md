@@ -1,5 +1,7 @@
 # FakeS3
 
+[![DockerHub FakeS3](https://img.shields.io/badge/DockerHub-harisekhon%2Ffakes3-blue)](https://hub.docker.com/repository/docker/harisekhon/fakes3)
+
 https://github.com/jubos/fake-s3
 
 Local lightweight Amazon S3 API server simulator. Useful for running tests without incurring AWS S3 costs.

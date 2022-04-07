@@ -1,5 +1,4 @@
-Jenkins inbound-agent + Docker
-==============================
+# Jenkins inbound-agent + Docker
 
 Jenkins inbound agent + docker packages installed to be able to use the `docker` and `docker-compose` commands (combine with mounting docker socket).
 

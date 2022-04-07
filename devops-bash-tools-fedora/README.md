@@ -1,5 +1,4 @@
-[Hari Sekhon - DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools)
-=================================
+# [Hari Sekhon - DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools)
 
 [![Build Status](https://travis-ci.org/HariSekhon/DevOps-Bash-tools.svg?branch=master)](https://travis-ci.org/HariSekhon/DevOps-Bash-tools)
 [![Codacy](https://app.codacy.com/project/badge/Grade/dffc1bfd13404c95b5a0ab97fd47974e)](https://www.codacy.com/gh/HariSekhon/DevOps-Bash-tools/dashboard)

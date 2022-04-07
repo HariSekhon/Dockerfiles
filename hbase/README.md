@@ -1,5 +1,4 @@
-Apache HBase
-============
+# Apache HBase
 
 https://hbase.apache.org/
 

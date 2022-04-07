@@ -1,5 +1,4 @@
-GitHub Actions Runner
-======================
+# GitHub Actions Runner
 
 https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners
 

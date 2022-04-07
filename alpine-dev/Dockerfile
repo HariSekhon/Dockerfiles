@@ -58,10 +58,10 @@ RUN set -eux && \
         perl-dbd-mysql \
         perl-libwww \
         procps \
-        py-mysqldb \
         py-pip \
         py-setuptools \
-        python-dev \
+        python3-dev \
+        py3-mysqlclient \
         ruby \
         ruby-dev \
         snappy-dev \

@@ -1,5 +1,7 @@
 # OpenTSDB's TCollector
 
+[![DockerHub Tcollector](https://img.shields.io/badge/DockerHub-harisekhon%2Ftcollector-blue)](https://hub.docker.com/repository/docker/harisekhon/tcollector)
+
 Metrics collection agent for OpenTSDB:
 
 http://opentsdb.net/docs/build/html/user_guide/utilities/tcollector.html

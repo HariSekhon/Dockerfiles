@@ -1,5 +1,6 @@
-Awless - A Mighty CLI for AWS
-=============================
+# Awless - A Mighty CLI for AWS
+
+[![DockerHub Awless](https://img.shields.io/badge/DockerHub-harisekhon%2Fawless-blue)](https://hub.docker.com/repository/docker/harisekhon/awless)
 
 https://github.com/wallix/awless
 

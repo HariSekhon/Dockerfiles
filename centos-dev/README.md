@@ -1,5 +1,6 @@
-CentOS Development Build
-========================
+# CentOS Development Build
+
+[![DockerHub CentOS Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-dev)
 
 CentOS Linux latest version + Development Tools including:
 

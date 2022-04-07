@@ -33,7 +33,9 @@ jobs:
     with:
       repo_tags: |
         harisekhon/centos-dev:latest
+        harisekhon/dev:centos
         ghcr.io/harisekhon/centos-dev:latest
+        ghcr.io/harisekhon/dev:centos
       context: centos-dev
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

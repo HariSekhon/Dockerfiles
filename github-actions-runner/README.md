@@ -1,5 +1,7 @@
 # GitHub Actions Runner
 
+[![DockerHub GitHub Actions Runner](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub--actions--runner-blue)](https://hub.docker.com/repository/docker/harisekhon/github-actions-runner)
+
 https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners
 
 GitHub Actions self-hosted runner

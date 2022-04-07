@@ -1,5 +1,4 @@
-Spotify Tools
-=============
+# Spotify Tools
 
 Pre-built image containing the tools from my [Spotify Tools](https://github.com/harisekhon/spotify-tools) repo.
 

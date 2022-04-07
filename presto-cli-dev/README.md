@@ -1,5 +1,4 @@
-Presto SQL CLI by Facebook
-==========================
+# Presto SQL CLI by Facebook
 
 https://prestodb.io/
 

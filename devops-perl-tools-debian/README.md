@@ -1,6 +1,12 @@
-[Hari Sekhon - DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools)
-=================
-[![Build Status](https://travis-ci.org/HariSekhon/devops-perl-tools.svg?branch=master)](https://travis-ci.org/HariSekhon/devops-perl-tools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1769cc854b5246968ee2bae1818f771a)](https://www.codacy.com/app/harisekhon/devops-perl-tools) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/devops-perl-tools.svg)](https://github.com/harisekhon/devops-perl-tools/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/devops-perl-tools.svg)](https://github.com/harisekhon/devops-perl-tools/network) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/devops-perl-tools#hari-sekhon-tools) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/tools/) [![](https://images.microbadger.com/badges/image/harisekhon/devops-perl-tools.svg)](http://microbadger.com/#/images/harisekhon/devops-perl-tools)
+# [Hari Sekhon - DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools)
+
+[![Build Status](https://travis-ci.org/HariSekhon/devops-perl-tools.svg?branch=master)](https://travis-ci.org/HariSekhon/devops-perl-tools)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1769cc854b5246968ee2bae1818f771a)](https://www.codacy.com/app/harisekhon/devops-perl-tools)
+[![GitHub stars](https://img.shields.io/github/stars/harisekhon/devops-perl-tools.svg)](https://github.com/harisekhon/devops-perl-tools/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/harisekhon/devops-perl-tools.svg)](https://github.com/harisekhon/devops-perl-tools/network)
+[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/devops-perl-tools#hari-sekhon-tools)
+[![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/tools/)
+[![](https://images.microbadger.com/badges/image/harisekhon/devops-perl-tools.svg)](http://microbadger.com/#/images/harisekhon/devops-perl-tools)
 
 ### Hadoop, Hive, Solr, NoSQL, Web, Linux Tools ###
 

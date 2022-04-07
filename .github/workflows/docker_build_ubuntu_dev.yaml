@@ -33,7 +33,11 @@ jobs:
     with:
       repo_tags: |
         harisekhon/ubuntu-dev:latest
+        harisekhon/dev:latest
+        harisekhon/dev:ubuntu
         ghcr.io/harisekhon/ubuntu-dev:latest
+        ghcr.io/harisekhon/dev:latest
+        ghcr.io/harisekhon/dev:ubuntu
       context: ubuntu-dev
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

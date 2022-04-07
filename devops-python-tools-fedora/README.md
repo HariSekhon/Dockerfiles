@@ -1,6 +1,13 @@
-[Hari Sekhon - DevOps Python Tools](https://github.com/harisekhon/devops-python-tools)
-===================
-[![Build Status](https://travis-ci.org/HariSekhon/devops-python-tools.svg?branch=master)](https://travis-ci.org/HariSekhon/devops-python-tools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f7af72140c3b408b9659207ced17544f)](https://www.codacy.com/app/harisekhon/devops-python-tools) [![GitHub stars](https://img.shields.io/github/stars/harisekhon/devops-python-tools.svg)](https://github.com/harisekhon/devops-python-tools/stargazers) [![GitHub forks](https://img.shields.io/github/forks/harisekhon/devops-python-tools.svg)](https://github.com/harisekhon/devops-python-tools/network) [![Dependency Status](https://gemnasium.com/badges/github.com/HariSekhon/devops-python-tools.svg)](https://gemnasium.com/github.com/HariSekhon/devops-python-tools) [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/devops-python-tools#hari-sekhon-pytools) [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/pytools/) [![](https://images.microbadger.com/badges/image/harisekhon/devops-python-tools.svg)](http://microbadger.com/#/images/harisekhon/devops-python-tools)
+# [Hari Sekhon - DevOps Python Tools](https://github.com/harisekhon/devops-python-tools)
+
+[![Build Status](https://travis-ci.org/HariSekhon/devops-python-tools.svg?branch=master)](https://travis-ci.org/HariSekhon/devops-python-tools)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f7af72140c3b408b9659207ced17544f)](https://www.codacy.com/app/harisekhon/devops-python-tools)
+[![GitHub stars](https://img.shields.io/github/stars/harisekhon/devops-python-tools.svg)](https://github.com/harisekhon/devops-python-tools/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/harisekhon/devops-python-tools.svg)](https://github.com/harisekhon/devops-python-tools/network)
+[![Dependency Status](https://gemnasium.com/badges/github.com/HariSekhon/devops-python-tools.svg)](https://gemnasium.com/github.com/HariSekhon/devops-python-tools)
+[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/devops-python-tools#hari-sekhon-pytools)
+[![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/pytools/)
+[![](https://images.microbadger.com/badges/image/harisekhon/devops-python-tools.svg)](http://microbadger.com/#/images/harisekhon/devops-python-tools)
 
 ### Hadoop, Spark / PySpark, HBase, Pig, Ambari, IPython and Linux Tools ###
 

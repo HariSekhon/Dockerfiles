@@ -1,5 +1,7 @@
 # Apache HBase + Dev Tools
 
+[![DockerHub HBase Dev](https://img.shields.io/badge/DockerHub-harisekhon%2Fhvase--dev-blue)](https://hub.docker.com/repository/docker/harisekhon/hbase-dev)
+
 https://hbase.apache.org/
 
 Apache HBase NoSQL columnaredatastore plus all the programming languages development tools listed on the [main page](https://github.com/HariSekhon/Dockerfiles/#base-images) and all my [GitHub repos](https://github.com/harisekhon) with all dependencies pre-built for easy development and testing.

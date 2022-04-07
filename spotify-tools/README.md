@@ -1,5 +1,7 @@
 # Spotify Tools
 
+[![DockerHub Spotify Tools](https://img.shields.io/badge/DockerHub-harisekhon%2Fspotify--tools-blue)](https://hub.docker.com/repository/docker/harisekhon/spotify-tools)
+
 Pre-built image containing the tools from my [Spotify Tools](https://github.com/harisekhon/spotify-tools) repo.
 
 Many tools require authorization. You will need to create a Spotify App with Client ID and Secret here:

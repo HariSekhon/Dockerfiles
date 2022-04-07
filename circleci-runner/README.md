@@ -1,5 +1,6 @@
-CircleCI Runner
-===============
+# CircleCI Runner
+
+[![DockerHub CircleCI Runner](https://img.shields.io/badge/DockerHub-harisekhon%2Fcircleci--runner-blue)](https://hub.docker.com/repository/docker/harisekhon/circleci-runner)
 
 CircleCI self-hosted runner, with added build dependencies eg. make, python3
 

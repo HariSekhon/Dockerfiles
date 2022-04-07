@@ -1,5 +1,4 @@
-Apache HBase + Dev Tools
-========================
+# Apache HBase + Dev Tools
 
 https://hbase.apache.org/
 

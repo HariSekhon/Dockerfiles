@@ -1,5 +1,6 @@
-Alpine Java
-===========
+# Alpine Java
+
+[![DockerHub Alpine Java](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--java-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-java)
 
 Alpine Linux latest version + Java OpenJDK
 

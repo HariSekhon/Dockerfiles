@@ -1,5 +1,4 @@
-Jenkins + plugins
-=================
+# Jenkins + plugins
 
 Jenkins server with plugins installed, needed for CI/CD Jenkinsfile validation
 

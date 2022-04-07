@@ -7,7 +7,6 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/HariSekhon/devops-python-tools.svg)](https://gemnasium.com/github.com/HariSekhon/devops-python-tools)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/devops-python-tools#hari-sekhon-pytools)
 [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/pytools/)
-[![](https://images.microbadger.com/badges/image/harisekhon/devops-python-tools.svg)](http://microbadger.com/#/images/harisekhon/devops-python-tools)
 
 ### Hadoop, Spark / PySpark, HBase, Pig, Ambari, IPython and Linux Tools ###
 

@@ -1,5 +1,4 @@
-OpenTSDB
-========
+# OpenTSDB
 
 Open Source Time Series DB
 

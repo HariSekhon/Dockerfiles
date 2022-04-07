@@ -1,5 +1,4 @@
-Hari Sekhon - DevOps Tools
-==========================
+# Hari Sekhon - DevOps Tools
 
 Hundreds of DevOps related programs from my main DevOps tools repos on [my Github](https://github.com/harisekhon), including:
 

@@ -1,5 +1,7 @@
 # Teradata's distribution of Presto SQL Client (by Facebook)
 
+[![DockerHub Presto](https://img.shields.io/badge/DockerHub-harisekhon%2Fpresto-blue)](https://hub.docker.com/repository/docker/harisekhon/presto)
+
 http://www.teradata.com/products-and-services/Presto/Presto-Download
 
 Teradata's distribution of Presto SQL Client.

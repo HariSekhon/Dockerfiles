@@ -1,5 +1,4 @@
-Jython Dev
-==========
+# Jython Dev
 
 http://www.jython.org/
 

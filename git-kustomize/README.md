@@ -1,5 +1,4 @@
-Git + Kustomize
-===============
+# Git + Kustomize
 
 Minimal Git + Kustomize docker image for use in GitOps workflows where `kustomization.yaml` is updated with the docker image version/hashref as part of the CI/CD workflow (eg. to then be deployed via ArgoCD or similar from Git).
 

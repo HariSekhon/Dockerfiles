@@ -19,6 +19,8 @@ ARG SCALA_VERSION=2.10.6
 LABEL Description="Scala + CentOS (+OpenJDK)"
 
 RUN set -eux && \
+    sed -i "s/^[[:space:]]*mirrorlist/#mirrorlist/" /etc/yum.repos.d/CentOS-* && \
+    sed -i "s|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|" /etc/yum.repos.d/CentOS-* && \
     rpm -ivh http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm && \
     yum autoremove -y && \
     yum clean all && \

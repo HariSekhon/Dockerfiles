@@ -1,5 +1,4 @@
-OpenTSDB's TCollector
-=====================
+# OpenTSDB's TCollector
 
 Metrics collection agent for OpenTSDB:
 

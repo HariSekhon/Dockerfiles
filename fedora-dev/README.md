@@ -1,5 +1,4 @@
-Fedora Development Build
-========================
+# Fedora Development Build
 
 Fedora Linux latest version + Development Tools including:
 

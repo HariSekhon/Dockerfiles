@@ -19,10 +19,14 @@ on:
     branches:
       - master
       - main
+    paths:
+      - '**/*.json'
   pull_request:
     branches:
       - master
       - main
+    paths:
+      - '**/*.json'
   workflow_dispatch:
     inputs:
       debug:

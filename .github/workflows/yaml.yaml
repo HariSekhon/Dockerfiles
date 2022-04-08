@@ -19,10 +19,16 @@ on:
     branches:
       - master
       - main
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
   pull_request:
     branches:
       - master
       - main
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
   workflow_dispatch:
     inputs:
       debug:

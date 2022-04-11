@@ -199,7 +199,7 @@ Repos suffixed with ```-dev``` are the official technologies + development & deb
 ##### My GitHub Repos (with all libs + deps pre-built)
 
 - [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) - 450+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, CouchDB, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, Presto, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
-    - [![DockerHub Nagios Plugins Centos](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Acentos-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins) (`harisekhon/nagios-plugins:latest`)
+    - [![DockerHub Nagios Plugins Centos](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Acentos-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins) ([![DockerHub Nagios Plugins Latest](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Alatest-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins))
     - [![DockerHub Nagios Plugins Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Aalpine-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
     - [![DockerHub Nagios Plugins Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
     - [![DockerHub Nagios Plugins Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Adebian-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
@@ -239,7 +239,7 @@ Available as both `harisekhon/github:<distro>` and `harisekhon/<distro>-github` 
     [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
   - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--github-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)
     [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Alastest-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+    ([![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Alastest-blue)](https://hub.docker.com/repository/docker/harisekhon/github))
 
 #### Base Images
 

@@ -229,16 +229,17 @@ Available as both `harisekhon/github:<distro>` and `harisekhon/<distro>-github` 
 [![Docker Build GitHub Fedora](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml)
 [![Docker Build GitHub Ubuntu](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml)
 
-  - [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--github-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-github)/
+  - [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--github-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-github)
     [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aalpine-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--github-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-github)/
+  - [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--github-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-github)
     [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Acentos-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--github-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-github)/
+  - [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--github-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-github)
     [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Adebian-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--github-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-github)/
+  - [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--github-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-github)
     [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--github-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)/
-    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/github) (`harisekhon/github:latest`)
+  - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--github-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)
+    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Alastest-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
 
 #### Base Images
 

@@ -239,7 +239,7 @@ Available as both `harisekhon/github:<distro>` and `harisekhon/<distro>-github` 
     [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
   - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--github-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)
     [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Alastest-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Alatest-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
 
 #### Base Images
 

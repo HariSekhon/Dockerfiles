@@ -40,7 +40,10 @@ jobs:
   build:
     # github.event.repository context not available in scheduled workflows
     #if: github.event.repository.fork == false
-    if: github.repository_owner == 'HariSekhon'
+    if: |
+      github.repository_owner == 'HariSekhon' &&
+      github.ref_type == 'branch' &&
+      ( github.ref_name == github.event.repository.default_branch || github.ref_name == 'docker' )
     name: Build
     uses: HariSekhon/GitHub-Actions/.github/workflows/make.yaml@master
     with:

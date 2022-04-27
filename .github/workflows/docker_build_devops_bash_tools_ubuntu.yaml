@@ -43,11 +43,10 @@ jobs:
       )
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
+      # don't put ghcr.io/harisekhon/... here because it'll clash with packages owned by devops tools repos
       repo_tags: |
         harisekhon/bash-tools:latest
         harisekhon/bash-tools:ubuntu
-        ghcr.io/harisekhon/bash-tools:latest
-        ghcr.io/harisekhon/bash-tools:ubuntu
       context: devops-bash-tools-ubuntu
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

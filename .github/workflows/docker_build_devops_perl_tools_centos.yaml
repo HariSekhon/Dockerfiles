@@ -43,9 +43,9 @@ jobs:
       )
     uses: HariSekhon/GitHub-Actions/.github/workflows/docker_build.yaml@master
     with:
+      # don't put ghcr.io/harisekhon/... here because it'll clash with packages owned by devops tools repos
       repo_tags: |
         harisekhon/perl-tools:centos
-        ghcr.io/harisekhon/perl-tools:centos
       context: devops-perl-tools-centos
     secrets:
       DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}

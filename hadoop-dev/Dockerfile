@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-github:latest
+FROM harisekhon/github:centos
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG HADOOP_VERSION=3.0.0

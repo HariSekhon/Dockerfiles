@@ -14,7 +14,7 @@
 # can't base off official Riak as it's missing deps to run the tools
 #FROM riak:latest
 # this is so that the nagios-plugin deps are available to mount new versions calling local programs eg. riak-admin
-FROM harisekhon/centos-github:latest
+FROM harisekhon/github:centos
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG RIAK_VERSION=2.1.4

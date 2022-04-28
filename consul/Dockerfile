@@ -12,12 +12,12 @@
 #
 
 # busybox wget doesn't support SSL, no curl available :-(
-#FROM busybox:latest
+#FROM busybox
 # Alpine keeps breaking stuff, even after adding libc6-compat:
 # Error relocating ./consul: __fprintf_chk: symbol not foundError relocating ./consul: __fprintf_chk: symbol not found
 # rather than downloading glibc with a tonne of extra commands, just switch to debian
-#FROM alpine:latest
-FROM debian:latest
+#FROM alpine
+FROM debian:11
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG CONSUL_VERSION=1.4.2

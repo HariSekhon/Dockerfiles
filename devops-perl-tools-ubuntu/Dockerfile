@@ -12,7 +12,7 @@
 #
 
 # Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
-FROM ubuntu:latest
+FROM ubuntu:20.04
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools (Ubuntu)"

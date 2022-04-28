@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM debian:latest as builder
+FROM debian:11 as builder
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Golang Tools"
@@ -26,7 +26,7 @@ RUN chmod +x /build.sh && NO_TESTS=1 /build.sh
 # gets error:
 # bash: ./uniq2: No such file or directory
 #FROM bash
-FROM debian:latest
+FROM debian:11
 
 ENV PATH $PATH:/github/go-tools/bin
 

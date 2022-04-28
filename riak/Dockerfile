@@ -13,7 +13,7 @@
 
 # can't base off official Riak as it's missing deps to run the tools
 #FROM riak
-FROM centos:latest
+FROM centos:8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG RIAK_VERSION=2.1.4

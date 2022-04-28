@@ -12,7 +12,7 @@
 #
 
 # Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
-FROM debian:latest
+FROM debian:11
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="DevOps Perl Tools (Debian)"

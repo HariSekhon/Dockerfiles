@@ -13,7 +13,7 @@
 
 # Alpine's underlying libraries are causing find_active_server.py --https mode to run all threads concurrently without respecting the --num causing indeterministic results and failing tests/test_find_active_server.sh
 #FROM alpine:latest
-FROM ubuntu:latest
+FROM ubuntu:20.04
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 LABEL Description="Python Tools (Ubuntu)"

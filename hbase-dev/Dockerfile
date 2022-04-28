@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/alpine-github:latest
+FROM harisekhon/github:alpine
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
 ARG HBASE_VERSION=2.1.3

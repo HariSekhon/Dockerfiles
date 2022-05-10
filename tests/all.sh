@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2016-07-25 18:14:49 +0100 (Mon, 25 Jul 2016)
 #
-#  https://github.com/harisekhon/bash-tools
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #

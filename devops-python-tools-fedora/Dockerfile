@@ -4,17 +4,17 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 #FROM fedora:latest
 # Fedora 35 gets 'curl: (6) getaddrinfo() thread failed to start' for any address due to a bug
 FROM fedora:34
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 LABEL Description="Python Tools"
 

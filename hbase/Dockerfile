@@ -4,15 +4,15 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 FROM harisekhon/alpine-java:jre8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG HBASE_VERSION=2.1.3
 

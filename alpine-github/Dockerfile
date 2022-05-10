@@ -4,16 +4,16 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 # inherit the nagios-plugins container for less duplication as it's the biggest project
 FROM harisekhon/nagios-plugins:alpine
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 LABEL Description="Alpine + my GitHub repos pre-built"
 

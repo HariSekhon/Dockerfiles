@@ -4,7 +4,7 @@
   "material": {
     "type": "git",
     "attributes": {
-  	"url": "https://github.com/harisekhon/dockerfiles",
+  	"url": "https://github.com/HariSekhon/Dockerfiles",
   	"branch": "master",
   	"auto_update": true
     }

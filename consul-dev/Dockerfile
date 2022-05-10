@@ -4,11 +4,11 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 # -dev version allows testing of local consul command utils like check_consul_version.py
@@ -20,7 +20,7 @@
 # rather than downloading glibc with a tonne of extra commands, just switch to debian
 #FROM harisekhon/github:alpine
 FROM harisekhon/github:centos
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG CONSUL_VERSION=1.4.2
 

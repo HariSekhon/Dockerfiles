@@ -4,15 +4,15 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 FROM jetbrains/teamcity-server:2020.2
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 # used to version tagging by Make build, keep aligned with the FROM above since it can't be used in the FROM directly
 ARG TEAMCITY_VERSION=2020.2

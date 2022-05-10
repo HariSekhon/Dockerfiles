@@ -4,19 +4,19 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
 #  to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 # can't base off Cassandra as it's missing deps to run the tools
 # and official Cassandra versions only go back to 2.1 and miss in between versions like 3.5, 3.6 which I still test against
 #FROM cassandra:latest
 FROM harisekhon/nagios-plugins:alpine
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ENV PATH $PATH:/cassandra/bin
 

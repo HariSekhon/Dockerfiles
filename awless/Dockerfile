@@ -4,11 +4,11 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 #FROM golang:alpine AS builder
@@ -44,7 +44,7 @@ RUN go get -ldflags "-linkmode external -extldflags -static" -u github.com/walli
 
 FROM scratch
 
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 LABEL Description="Awless - a Mighty CLI for AWS"
 

@@ -4,16 +4,16 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 FROM harisekhon/nagios-plugins:centos
 
-LABEL Maintainer="Hari Sekhon (https://www.linkedin.com/in/harisekhon)" \
+LABEL Maintainer="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
       Description="CentOS + my GitHub repos pre-built"
 
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin

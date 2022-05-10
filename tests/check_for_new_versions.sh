@@ -4,13 +4,13 @@
 #  Author: Hari Sekhon
 #  Date: 2018-10-07 13:53:06 +0100 (Sun, 07 Oct 2018)
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 # Check each directory for a check_for_new_version script in each directory and if found run it

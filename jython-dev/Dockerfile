@@ -4,18 +4,18 @@
 #
 #  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 # 'jython -m ensurepip' to install pip results in this on openjdk:jdk-alpine:
 # NotImplementedError: passwd.pw_passwd unimplemented
 # so instead use Debian based openjdk normal image
 FROM openjdk:8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 LABEL Description="Jython $JYTHON_VERSION on OpenJDK, with pip, jip and mock"
 

@@ -4,9 +4,9 @@
 
 Hundreds of DevOps related programs from my main DevOps tools repos on [my Github](https://github.com/harisekhon), including:
 
-- [DevOps Python Tools](https://github.com/harisekhon/devops-python-tools)
-- [DevOps Perl Tools](https://github.com/harisekhon/devops-perl-tools)
-- [DevOps Bash Tools](https://github.com/harisekhon/devops-bash-tools)
+- [DevOps Python Tools](https://github.com/HariSekhon/DevOps-Python-tools)
+- [DevOps Perl Tools](https://github.com/HariSekhon/DevOps-Perl-tools)
+- [DevOps Bash Tools](https://github.com/HariSekhon/DevOps-Bash-tools)
 
 Running the docker container without arguments will show just the list of programs:
 
@@ -26,6 +26,6 @@ Hari Sekhon
 
 Cloud Big Data Contractor, United Kingdom
 
-https://www.linkedin.com/in/harisekhon
+https://www.linkedin.com/in/HariSekhon
 
 Related Docker images can be found for many Open Source, Big Data and NoSQL technologies on [my DockerHub profile](https://hub.docker.com/r/harisekhon). The source for them all can be found in the [master Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).

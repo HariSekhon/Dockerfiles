@@ -1,13 +1,13 @@
-# [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins)
+# [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/Nagios-Plugins)
 
 [![Build Status](https://travis-ci.org/HariSekhon/nagios-plugins.svg?branch=master)](https://travis-ci.org/HariSekhon/nagios-plugins)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/22d2175b89d8414d921d0196984307bd)](https://www.codacy.com/gh/HariSekhon/Nagios-Plugins/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HariSekhon/Nagios-Plugins&amp;utm_campaign=Badge_Grade)
-[![GitHub stars](https://img.shields.io/github/stars/harisekhon/nagios-plugins.svg)](https://github.com/harisekhon/nagios-plugins/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/harisekhon/nagios-plugins.svg)](https://github.com/harisekhon/nagios-plugins/network)
-[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/nagios-plugins#advanced-nagios-plugins-collection)
+[![GitHub stars](https://img.shields.io/github/stars/harisekhon/nagios-plugins.svg)](https://github.com/HariSekhon/Nagios-Plugins/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/harisekhon/nagios-plugins.svg)](https://github.com/HariSekhon/Nagios-Plugins/network)
+[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/HariSekhon/Nagios-Plugins#advanced-nagios-plugins-collection)
 [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/nagios-plugins/)
 
-Docker image containing the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/nagios-plugins) - the largest, most advanced collection of production-grade Nagios monitoring code (over 350 programs).
+Docker image containing the [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/Nagios-Plugins) - the largest, most advanced collection of production-grade Nagios monitoring code (over 350 programs).
 
 This docker image contains all dependencies pre-built on Alpine, CentOS, Debian, Fedora and Ubuntu latest docker base images and are tagged as `:alpine`, `:centos` (`:latest`), `:debian`, `:fedora` and `:ubuntu` respectively. There are also `:python` and `:perl` tags containing only those respective plugins and dependencies, built on the python-slim and perl-slim standard images (which are built off debian). The source for each OS build is available in adjacent directories in the [Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).
 
@@ -17,7 +17,7 @@ Hadoop and extensive API integration with all major Hadoop vendors ([Hortonworks
 
 Most enterprise monitoring systems come with basic generic checks, while this project extends their monitoring capabilities significantly further in to advanced infrastructure, application layer, APIs etc.
 
-For more documentation on the Nagios Plugins contained in this image, see the [GitHub project page](https://github.com/HariSekhon/nagios-plugins#usage---help)
+For more documentation on the Nagios Plugins contained in this image, see the [GitHub project page](https://github.com/HariSekhon/Nagios-Plugins#usage---help)
 
 List all plugins:
 
@@ -37,7 +37,7 @@ eg.
 docker run harisekhon/nagios-plugins check_ssl_cert.pl --help
 ```
 
-Supports a a wide variety of [compatible Enterprise Monitoring servers](https://github.com/harisekhon/nagios-plugins#enterprise-monitoring-systems).
+Supports a a wide variety of [compatible Enterprise Monitoring servers](https://github.com/HariSekhon/Nagios-Plugins#enterprise-monitoring-systems).
 
 The project is a treasure trove of essentials for every single "DevOp" / sysadmin / engineer, with extensive goodies for people running:
 

@@ -62,7 +62,7 @@ RUn yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencie
 
 FROM node:14-buster-slim
 
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG RELEASE=2021-07-08
 

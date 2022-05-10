@@ -4,13 +4,13 @@
 #  Author: Hari Sekhon
 #  Date: 2016-07-14 16:35:56 +0100 (Thu, 14 Jul 2016)
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 set -euo pipefail

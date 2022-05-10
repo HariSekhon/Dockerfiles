@@ -24,6 +24,6 @@ https://github.com/PeterGrace/opentsdb-docker
 docker run -dp 4242:4242 petergrace/opentsdb-docker
 ```
 
-For a full example of using this along with agents like TCollector, Telegraf and Collectd and see the Advanced Nagios Plugins Collection's [tests/docker/opentsdb-docker-compose.yml](https://github.com/HariSekhon/nagios-plugins/blob/master/tests/docker/opentsdb-docker-compose.yml)
+For a full example of using this along with agents like TCollector, Telegraf and Collectd and see the Advanced Nagios Plugins Collection's [tests/docker/opentsdb-docker-compose.yml](https://github.com/HariSekhon/Nagios-Plugins/blob/master/tests/docker/opentsdb-docker-compose.yml)
 
 Related Docker images can be found for many Open Source, Big Data and NoSQL technologies on [my DockerHub profile](https://hub.docker.com/r/harisekhon). The source for them all can be found in the [master Dockerfiles GitHub repo](https://github.com/HariSekhon/Dockerfiles/).

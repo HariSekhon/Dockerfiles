@@ -4,13 +4,13 @@
 #  Author: Hari Sekhon
 #  Date: 2019-10-16 10:33:03 +0100 (Wed, 16 Oct 2019)
 #
-#  https://github.com/harisekhon/dockerfiles
+#  https://github.com/HariSekhon/Dockerfiles
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 # Alpine / Wget:
@@ -25,7 +25,7 @@ set -eu
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(dirname "$0")"
 
-repo="https://github.com/HariSekhon/dockerfiles"
+repo="https://github.com/HariSekhon/Dockerfiles"
 
 directory="dockerfiles"
 

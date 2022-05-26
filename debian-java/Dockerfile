@@ -13,6 +13,7 @@
 
 # currently on Jessie which doesn't have OpenJDK 8 yet
 #FROM debian:latest
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM debian:stretch
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

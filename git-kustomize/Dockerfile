@@ -15,6 +15,7 @@
 #FROM alpine/git:v2.32.0
 #FROM ubuntu:20.04
 # a little smaller image
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM debian:10-slim
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

@@ -12,6 +12,7 @@
 #
 
 #FROM golang:alpine AS builder
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM golang:stretch AS builder
 
 WORKDIR /
@@ -42,6 +43,7 @@ RUN go get -ldflags "-linkmode external -extldflags -static" -u github.com/walli
 
 # ============
 
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM scratch
 
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)

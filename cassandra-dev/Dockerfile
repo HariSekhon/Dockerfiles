@@ -15,6 +15,7 @@
 # can't base off Cassandra as it's missing deps to run the tools
 # and official Cassandra versions only go back to 2.1 and miss in between versions like 3.5, 3.6 which I still test against
 #FROM cassandra:latest
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/nagios-plugins:alpine
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

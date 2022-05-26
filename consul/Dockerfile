@@ -17,6 +17,7 @@
 # Error relocating ./consul: __fprintf_chk: symbol not foundError relocating ./consul: __fprintf_chk: symbol not found
 # rather than downloading glibc with a tonne of extra commands, just switch to debian
 #FROM alpine
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM debian:11
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

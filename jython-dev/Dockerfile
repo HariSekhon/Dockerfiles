@@ -14,6 +14,7 @@
 # 'jython -m ensurepip' to install pip results in this on openjdk:jdk-alpine:
 # NotImplementedError: passwd.pw_passwd unimplemented
 # so instead use Debian based openjdk normal image
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM openjdk:8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

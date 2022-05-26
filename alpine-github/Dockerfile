@@ -12,6 +12,7 @@
 #
 
 # inherit the nagios-plugins container for less duplication as it's the biggest project
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/nagios-plugins:alpine
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

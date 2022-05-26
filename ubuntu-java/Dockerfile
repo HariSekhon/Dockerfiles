@@ -11,6 +11,7 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM ubuntu:20.04
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

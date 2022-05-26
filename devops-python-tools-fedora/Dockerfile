@@ -13,6 +13,7 @@
 
 #FROM fedora:latest
 # Fedora 35 gets 'curl: (6) getaddrinfo() thread failed to start' for any address due to a bug
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM fedora:34
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

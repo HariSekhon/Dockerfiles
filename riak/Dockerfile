@@ -13,6 +13,7 @@
 
 # can't base off official Riak as it's missing deps to run the tools
 #FROM riak
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

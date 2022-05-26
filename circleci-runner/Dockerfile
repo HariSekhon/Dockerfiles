@@ -13,6 +13,7 @@
 
 # Ubuntu based image, so apt-get install dependencies
 
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM circleci/runner:launch-agent
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

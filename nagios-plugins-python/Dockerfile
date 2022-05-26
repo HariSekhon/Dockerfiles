@@ -11,6 +11,7 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM python:2.7-slim
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

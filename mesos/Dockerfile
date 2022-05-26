@@ -13,6 +13,7 @@
 
 #FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/debian-java:jre7
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 

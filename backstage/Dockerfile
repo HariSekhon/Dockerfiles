@@ -22,6 +22,7 @@
 
 # ============================================================================ #
 # Stage 1 - Create yarn install skeleton layer
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM node:14-buster-slim AS packages
 
 # XXX: set this to change the release version
@@ -48,6 +49,7 @@ RUN apt-get update && \
 
 # ============================================================================ #
 # Stage 2 - Install dependencies and build packages
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM node:14-buster-slim AS build
 
 WORKDIR /app
@@ -63,6 +65,7 @@ RUn yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencie
 # ============================================================================ #
 # Stage 3 - Build the actual backend image and install production dependencies
 
+# nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM node:14-buster-slim
 
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)

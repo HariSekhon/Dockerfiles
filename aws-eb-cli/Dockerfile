@@ -31,16 +31,17 @@ RUN apk add --no-cache \
     rust
     #linux-headers
 
+RUN adduser -D aws
+
+USER aws
+
 RUN python3 -m pip install \
+        --user \
         --upgrade \
         pip \
         awsebcli && \
     eb --help --quiet
         #--ignore-installed six \
-
-RUN adduser -D aws
-
-USER aws
 
 SHELL ["/bin/bash"]
 

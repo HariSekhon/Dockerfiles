@@ -19,11 +19,17 @@ ARG JENKINS_AGENT_VERSION=4.6
 LABEL Description="Jenkins inbound-agent with Docker command" \
       "Jenkins Version"="$JENKINS_AGENT_VERSION"
 
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+
 USER root
 
-RUN set -eux && \
-    apt-get update && \
+# hadolint ignore=DL3008,DL3015
+RUN apt-get update && \
     apt-get install -y docker.io docker-compose && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+SHELL ["/bin/bash"]
 
 USER jenkins

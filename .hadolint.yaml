@@ -13,8 +13,6 @@
 #
 
 ignored:
-  # Maintainer is fine
-  - DL4000
   # dev images build on upstream latest tag
   - DL3007
   # apk add versions need not be pinned

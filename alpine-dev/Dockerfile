@@ -87,9 +87,12 @@ SHELL ["/bin/bash", "-euxo", "pipefail"]
 # Gradle - has package now
 #RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh | sh
 
+WORKDIR /opt
+
 # SBT
-RUN cd /opt && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | sh
+RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | sh
+
+WORKDIR /
 
 # Groovy
 RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_groovy.sh | sh

@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM perl:5.28.1-slim-threaded
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection (Perl plugins only)"
+LABEL org.opencontainers.image.description="Advanced Nagios Plugins Collection (Perl plugins only)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/nagios-plugins" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/nagios-plugins" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND noninteractive
 

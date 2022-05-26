@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM ubuntu:20.04
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Java + Ubuntu (OpenJDK)"
+LABEL org.opencontainers.image.description="Java + Ubuntu (OpenJDK)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/ubuntu-java" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/ubuntu-java" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND noninteractive
 

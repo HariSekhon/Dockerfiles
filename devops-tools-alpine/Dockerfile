@@ -14,9 +14,12 @@
 # Alpine's underlying libraries are causing find_active_server.py --https mode to run all threads concurrently without respecting the --num causing indeterministic results and failing tests/test_find_active_server.sh
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/pytools:alpine
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="DevOps Tools (Alpine)"
+LABEL org.opencontainers.image.description="DevOps Tools (Alpine)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/tools" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/tools" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 COPY build.sh /
 

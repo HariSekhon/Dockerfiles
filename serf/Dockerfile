@@ -15,14 +15,17 @@
 #FROM busybox:latest
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG SERF_VERSION=0.8.2
 
-ENV PATH $PATH:/
+LABEL org.opencontainers.image.description="HashiCorp's Serf minimal" \
+      org.opencontainers.image.version="$SERF_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/serf" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/serf" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
-LABEL Description="HashiCorp's Serf minimal" \
-      "Serf Version"="$SERF_VERSION"
+ENV PATH $PATH:/
 
 #COPY serf /
 

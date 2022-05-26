@@ -13,16 +13,21 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM openjdk:jre-alpine
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG JYTHON_VERSION=2.7.0
+
+LABEL org.opencontainers.image.description="Jython $JYTHON_VERSION on Alpine + OpenJDK, minimal container" \
+      org.opencontainers.image.version="$JYTHON_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/jython" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/jython" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 ARG JYTHON_HOME=/opt/jython-$JYTHON_VERSION
 
 ENV JYTHON_VERSION=$JYTHON_VERSION
 ENV JYTHON_HOME=$JYTHON_HOME
 ENV PATH=$PATH:$JYTHON_HOME/bin
-
-LABEL Description="Jython $JYTHON_VERSION on Alpine + OpenJDK, minimal container"
 
 RUN set -eux && \
     apk add --no-cache bash

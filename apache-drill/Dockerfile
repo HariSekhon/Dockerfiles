@@ -13,9 +13,15 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG APACHE_DRILL_VERSION=1.17.0
+
+LABEL org.opencontainers.image.description="Apache Drill distributed SQL engine" \
+      org.opencontainers.image.version="$APACHE_DRILL_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/apache-drill" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/apache-drill" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ARG TAR=apache-drill-${APACHE_DRILL_VERSION}.tar.gz
 

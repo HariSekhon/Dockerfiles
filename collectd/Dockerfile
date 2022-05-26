@@ -13,11 +13,14 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
+
+LABEL org.opencontainers.image.description="Collectd on CentOS 7" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/collectd" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/collectd" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV PATH $PATH:/NAME/bin
-
-LABEL Description="Collectd"
 
 WORKDIR /
 

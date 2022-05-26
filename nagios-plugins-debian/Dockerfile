@@ -14,9 +14,12 @@
 # newer libxml2 in Debian 9 Stretch has incompatible libxml2 version that breaks CPAN XML::LibXML compile, but now using libxml-perl package instead
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM debian:11
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection (on Debian)"
+LABEL org.opencontainers.image.description="Advanced Nagios Plugins Collection (Debian)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/nagios-plugins" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/nagios-plugins" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND noninteractive
 

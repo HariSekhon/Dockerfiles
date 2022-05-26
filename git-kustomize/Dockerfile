@@ -17,9 +17,12 @@
 # a little smaller image
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM debian:10-slim
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Git + Kustomize minimal docker image"
+LABEL org.opencontainers.image.description="Git + Kustomize minimal docker image" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/git-kustomize" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/git-kustomize" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND noninteractive
 

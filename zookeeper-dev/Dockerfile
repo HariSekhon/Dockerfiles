@@ -13,15 +13,19 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/github:alpine
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG ZOOKEEPER_VERSION=3.4.13
+
+LABEL org.opencontainers.image.description="ZooKeeper Dev" \
+      org.opencontainers.image.version="$ZOOKEEPER_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/zookeeper-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/zookeeper-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 ARG TAR="zookeeper-${ZOOKEEPER_VERSION}.tar.gz"
 
 ENV PATH $PATH:/zookeeper/bin
-
-LABEL Description="ZooKeeper Dev" \
-      "ZooKeeper Version"="$ZOOKEEPER_VERSION"
 
 WORKDIR /
 

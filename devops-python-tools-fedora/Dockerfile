@@ -15,9 +15,12 @@
 # Fedora 35 gets 'curl: (6) getaddrinfo() thread failed to start' for any address due to a bug
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM fedora:34
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Python Tools"
+LABEL org.opencontainers.image.description="Python Tools (Fedora)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/pytools" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/pytools" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 #ENV JYTHON_HOME=/opt/jython
 #ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools

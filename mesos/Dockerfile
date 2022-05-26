@@ -15,18 +15,21 @@
 # > 100MB smaller than centos
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/debian-java:jre7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG MESOS_VERSION=0.28.2
 
+LABEL org.opencontainers.image.description="Apache Mesos" \
+      org.opencontainers.image.version="$MESOS_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/mesos" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/mesos" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 #ARG TAR="mesos-$MESOS_VERSION.tar.gz"
 
-ENV PATH $PATH:/mesos/bin
-
-LABEL Description="Apache Mesos" \
-      "Apache Mesos Version"="$MESOS_VERSION"
-
 ENV DEBIAN_FRONTEND noninteractive
+
+ENV PATH $PATH:/mesos/bin
 
 WORKDIR /
 

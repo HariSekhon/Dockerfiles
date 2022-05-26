@@ -16,12 +16,15 @@
 # this is so that the nagios-plugin deps are available to mount new versions calling local programs eg. riak-admin
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/github:centos
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG RIAK_VERSION=2.1.4
 
-LABEL Description="Riak Dev" \
-      "Riak Version"="$RIAK_VERSION"
+LABEL org.opencontainers.image.description="Riak Dev" \
+      org.opencontainers.image.version="$RIAK_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/riak-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/riak-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 #RUN OS=el DIST=6 curl "https://packagecloud.io/install/repositories/basho/riak/config_file.repo?os=${OS}&dist=${DIST}&name=basho_repo" > /etc/yum.repos.d/basho.repo && \
 

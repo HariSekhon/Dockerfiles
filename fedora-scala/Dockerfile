@@ -13,11 +13,14 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/fedora-java:jdk8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG SCALA_VERSION=2.10.6
 
-LABEL Description="Scala + Fedora (+OpenJDK)"
+LABEL org.opencontainers.image.description="Scala + Fedora (+OpenJDK)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/fedora-scala" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/fedora-scala" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 RUN set -eux && \
     rpm -ivh http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.rpm && \

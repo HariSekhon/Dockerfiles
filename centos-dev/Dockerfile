@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/centos-scala:2.11-jdk8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="CentOS Dev Build"
+LABEL org.opencontainers.image.description="CentOS Dev Build" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/centos-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/centos-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython

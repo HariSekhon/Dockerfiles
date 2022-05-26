@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM ruby:2.6.5-alpine
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="FakeS3"
+LABEL org.opencontainers.image.description="FakeS3" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/fakes3" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/fakes3" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 RUN set -ex && \
     mkdir -pv /data && \

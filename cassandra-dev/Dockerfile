@@ -17,7 +17,12 @@
 #FROM cassandra:latest
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/nagios-plugins:alpine
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
+
+LABEL org.opencontainers.image.description="Cassandra + Dev Tools / Nagios Plugins" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/cassandra-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/cassandra-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV PATH $PATH:/cassandra/bin
 

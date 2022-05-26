@@ -19,14 +19,17 @@
 #FROM alpine
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM debian:11
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG CONSUL_VERSION=1.4.2
 
 ENV PATH $PATH:/
 
-LABEL Description="HashiCorp's Consul minimal" \
-      "Consul Version"="$CONSUL_VERSION"
+LABEL org.opencontainers.image.description="HashiCorp's Consul minimal" \
+      org.opencontainers.image.version="$CONSUL_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/consul" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/consul" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 # faster, cached
 #COPY consul /

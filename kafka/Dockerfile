@@ -13,22 +13,24 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG SCALA_VERSION=2.11
 ARG KAFKA_VERSION=0.9.0.1
 # 0.10 fails to come up
 #ARG KAFKA_VERSION=0.10.0.0
 
+LABEL org.opencontainers.image.description="Apache Kafka by LinkedIn" \
+      org.opencontainers.image.version="${KAFKA_VERSION}_$SCALA_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/kafka" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/kafka" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 ENV ADVERTISED_HOSTNAME=127.0.0.1
 
 ENV PATH $PATH:/kafka/bin
 
 ENV TAR="kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz"
-
-LABEL Description="Apache Kafka by LinkedIn" \
-      "Scala Version"="$SCALA_VERSION" \
-      "Kafka Version"="$KAFKA_VERSION"
 
 # bash => entrypoint.sh
 # perl => entrypoint.sh kafka configs in place edit for advertised hostname

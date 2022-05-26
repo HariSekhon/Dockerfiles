@@ -13,13 +13,17 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG TCOLLECTOR_VERSION=1.3.2
 
-ENV PATH $PATH:/tcollector:/usr/local/tcollector
+LABEL org.opencontainers.image.description="OpenTSDB TCollector" \
+      org.opencontainers.image.version="$TACHYON_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/tcollector" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/tcollector" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
-LABEL Description="OpenTSDB TCollector"
+ENV PATH $PATH:/tcollector:/usr/local/tcollector
 
 WORKDIR /
 

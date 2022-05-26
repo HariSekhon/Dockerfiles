@@ -25,6 +25,12 @@
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM node:14-buster-slim AS packages
 
+LABEL org.opencontainers.image.description="Backstage Developer Portal" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/backstage" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/backstage" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 # XXX: set this to change the release version
 ARG RELEASE="2021-07-08"
 

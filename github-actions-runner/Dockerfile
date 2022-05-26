@@ -13,16 +13,19 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM ubuntu:20.04
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG GITHUB_ACTIONS_RUNNER_VERSION=2.284.0
+
+LABEL org.opencontainers.image.description="GitHub Actions Runner" \
+      org.opencontainers.image.version="$GITHUB_ACTIONS_RUNNER_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/github-actions-runner" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/github-actions-runner" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV PATH $PATH:/actions-runner
 
 ENV DEBIAN_FRONTEND noninteractive
-
-LABEL Description="GitHub Actions Runner" \
-      "GitHub Actions Runner Version"="$GITHUB_ACTIONS_RUNNER_VERSION"
 
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 

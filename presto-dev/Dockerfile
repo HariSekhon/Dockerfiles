@@ -13,7 +13,6 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 # cache the std packages between tagged versions for space efficiency, must have this above ARG
 
@@ -25,14 +24,18 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 RUN set -eux && \
     apk add --no-cache bash openjdk8-jre-base python less
 
+ARG PRESTO_VERSION="latest"
+
+LABEL org.opencontainers.image.description="Presto SQL" \
+      org.opencontainers.image.version="$PRESTO_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/presto-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/presto-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 WORKDIR /
 
 ENV PATH $PATH:/presto/bin
-
-ARG PRESTO_VERSION="latest"
-
-LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_VERSION"
 
 COPY get_presto_versions.sh /
 

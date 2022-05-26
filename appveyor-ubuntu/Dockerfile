@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM ubuntu:18.04
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="AppVeyor BYOC Agent"
+LABEL org.opencontainers.image.description="AppVeyor BYOC Agent" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/appveyor" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/appveyor" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND=noninteractive
 

@@ -15,9 +15,12 @@
 # Fedora 35 gets 'curl: (6) getaddrinfo() thread failed to start' for any address due to a bug
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM fedora:34
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection (Fedora build)"
+LABEL org.opencontainers.image.description="Advanced Nagios Plugins Collection (Fedora)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/nagios-plugins" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/nagios-plugins" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 COPY build.sh /
 

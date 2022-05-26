@@ -13,13 +13,19 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM jetbrains/teamcity-server:2020.2
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 # used to version tagging by Make build, keep aligned with the FROM above since it can't be used in the FROM directly
 ARG TEAMCITY_VERSION=2020.2
 
 ARG MYSQL_CONNECTOR_VERSION=8.0.22
 ARG POSTGRESQL_CONNECTOR_VERSION=42.2.18
+
+LABEL org.opencontainers.image.description="TeamCity" \
+      org.opencontainers.image.version="$TEAMCITY_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/teamcity" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/teamcity" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 # XXX: this directory gets replaced / covered over, this build isn't necessary any more
 ENV JDBCDIR=/data/teamcity_server/datadir/lib/jdbc/

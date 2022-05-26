@@ -12,15 +12,19 @@
 #
 
 FROM harisekhon/centos-java:latest
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG TEAMCITY_VERSION=10.0
-ARG TAR="TeamCity-$TEAMCITY_VERSION.tar.gz"
 
 ENV PATH $PATH:/opt/TeamCity/bin
 
-LABEL Description="TeamCity" \
-      "TeamCity Version"="$TEAMCITY_VERSION"
+LABEL org.opencontainers.image.description="TeamCity" \
+      org.opencontainers.image.version="$TEAMCITY_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/teamcity" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/teamcity" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
+ARG TAR="TeamCity-$TEAMCITY_VERSION.tar.gz"
 
 WORKDIR /opt
 

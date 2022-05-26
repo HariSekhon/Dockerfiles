@@ -24,8 +24,9 @@ ENV SBT_HOME=/opt/sbt
 
 ENV PATH $PATH:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$JYTHON_HOME/bin:$MAVEN_HOME/bin:$SBT_HOME/bin
 
-RUN set -eux && \
-    mkdir -p /opt && \
+SHELL ["/bin/sh", "-eux"]
+
+RUN mkdir -p /opt && \
     apk add --no-cache \
         acf-openssl \
         alpine-sdk \
@@ -76,39 +77,30 @@ RUN set -eux && \
         which \
         zip
 
+SHELL ["/bin/bash", "-euxo", "pipefail"]
+
 # didn't have Gradle / Groovy / Maven / SBT packages ...
 
 # Maven - has package now
-#RUN bash -c ' \
-#    set -euxo pipefail && \
-#    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_maven.sh | sh \
-#    '
+#RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_maven.sh | sh
 
 # Gradle - has package now
-#RUN bash -c ' \
-#    set -euxo pipefail && \
-#    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh | sh \
-#    '
+#RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh | sh
 
 # SBT
-RUN bash -c ' \
-    set -euxo pipefail && \
-    cd /opt && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | sh \
-    '
+RUN cd /opt && \
+    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | sh
 
 # Groovy
-RUN bash -c ' \
-    set -euxo pipefail && \
-    curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_groovy.sh | sh \
-    '
+RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_groovy.sh | sh
 
 # Jython
 # hadolint ignore=DL4001
-RUN set -eux && \
-    wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_install.sh && \
+RUN wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_install.sh && \
     wget https://raw.githubusercontent.com/HariSekhon/devops-python-tools/master/jython_autoinstall.exp && \
     sh jython_install.sh && \
     rm -f jython_install.sh jython_autoinstall.exp
+
+SHELL ["/bin/bash"]
 
 CMD ["/bin/bash"]

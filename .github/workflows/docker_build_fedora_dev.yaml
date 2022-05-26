@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - fedora-dev/**
+      - fedora-dev/Dockerfile
       - .github/workflows/docker_build_fedora_dev.yaml
   workflow_dispatch:
   schedule:

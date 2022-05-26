@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - debian-scala/**
+      - debian-scala/Dockerfile
       - .github/workflows/docker_build_debian_scala.yaml
   workflow_dispatch:
   schedule:

@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-tools-fedora/**
+      - devops-tools-fedora/Dockerfile
       - src/**
       - .github/workflows/docker_build_devops_tools_fedora.yaml
   workflow_dispatch:

@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - ubuntu-scala/**
+      - ubuntu-scala/Dockerfile
       - .github/workflows/docker_build_ubuntu_scala.yaml
   workflow_dispatch:
   schedule:

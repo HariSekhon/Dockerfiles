@@ -20,7 +20,8 @@ on:
       - master
       - main
     paths:
-      - centos-java/**
+      - centos-java/Dockerfile
+      - 'centos-java/profile.d/**'
       - .github/workflows/docker_build_centos_java.yaml
   workflow_dispatch:
   schedule:

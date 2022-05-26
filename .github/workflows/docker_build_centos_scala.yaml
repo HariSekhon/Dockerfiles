@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - centos-scala/**
+      - centos-scala/Dockerfile
       - .github/workflows/docker_build_centos_scala.yaml
   workflow_dispatch:
   schedule:

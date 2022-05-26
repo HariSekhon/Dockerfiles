@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - centos-github/**
+      - centos-github/Dockerfile
       - .github/workflows/docker_build_centos_github.yaml
   workflow_dispatch:
   schedule:

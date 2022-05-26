@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-perl-tools-fedora/**
+      - devops-perl-tools-fedora/Dockerfile
       - src/**
       - .github/workflows/docker_build_devops_perl_tools_fedora.yaml
   workflow_dispatch:

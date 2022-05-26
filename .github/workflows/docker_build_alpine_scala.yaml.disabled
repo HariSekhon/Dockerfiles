@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - alpine-scala/**
+      - alpine-scala/Dockerfile
       - .github/workflows/docker_build_alpine_scala.yaml
   workflow_dispatch:
   schedule:

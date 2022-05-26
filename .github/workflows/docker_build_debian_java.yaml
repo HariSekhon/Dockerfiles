@@ -20,7 +20,8 @@ on:
       - master
       - main
     paths:
-      - debian-java/**
+      - debian-java/Dockerfile
+      - 'debian-java/profile.d/**'
       - .github/workflows/docker_build_debian_java.yaml
   workflow_dispatch:
   schedule:

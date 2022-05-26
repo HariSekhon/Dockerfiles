@@ -20,7 +20,8 @@ on:
       - master
       - main
     paths:
-      - alpine-java/**
+      - alpine-java/Dockerfile
+      - 'alpine-java/profile.d/**'
       - .github/workflows/docker_build_alpine_java.yaml
   workflow_dispatch:
   schedule:

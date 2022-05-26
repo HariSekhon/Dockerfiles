@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - debian-github/**
+      - debian-github/Dockerfile
       - .github/workflows/docker_build_debian_github.yaml
   workflow_dispatch:
   schedule:

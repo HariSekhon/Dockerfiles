@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - aws-eb-cli/**
+      - aws-eb-cli/Dockerfile
       - .github/workflows/docker_build_aws_eb_cli.yaml
   workflow_dispatch:
   schedule:

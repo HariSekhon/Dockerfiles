@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - alpine-github/**
+      - alpine-github/Dockerfile
       - .github/workflows/docker_build_alpine_github.yaml
   workflow_dispatch:
   schedule:

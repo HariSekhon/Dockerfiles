@@ -20,7 +20,8 @@ on:
       - master
       - main
     paths:
-      - fedora-java/**
+      - fedora-java/Dockerfile
+      - 'fedora-java/profile.d/**'
       - .github/workflows/docker_build_fedora_java.yaml
   workflow_dispatch:
   schedule:

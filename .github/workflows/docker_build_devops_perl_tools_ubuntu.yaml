@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-perl-tools-ubuntu/**
+      - devops-perl-tools-ubuntu/Dockerfile
       - src/**
       - .github/workflows/docker_build_devops_perl_tools_ubuntu.yaml
   workflow_dispatch:

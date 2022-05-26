@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-tools-alpine/**
+      - devops-tools-alpine/Dockerfile
       - src/**
       - .github/workflows/docker_build_devops_tools_alpine.yaml
   workflow_dispatch:

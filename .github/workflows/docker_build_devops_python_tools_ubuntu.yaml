@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-python-tools-ubuntu/**
+      - devops-python-tools-ubuntu/Dockerfile
       - src/**
       - .github/workflows/docker_build_devops_python_tools_ubuntu.yaml
   workflow_dispatch:

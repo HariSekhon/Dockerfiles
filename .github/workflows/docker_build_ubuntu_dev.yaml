@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - ubuntu-dev/**
+      - ubuntu-dev/Dockerfile
       - .github/workflows/docker_build_ubuntu_dev.yaml
   workflow_dispatch:
   schedule:

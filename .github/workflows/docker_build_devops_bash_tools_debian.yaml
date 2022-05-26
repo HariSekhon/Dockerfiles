@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-bash-tools-debian/**
+      - devops-bash-tools-debian/Dockerfile
       - src/**
       - .github/workflows/docker_build_devops_bash_tools_debian.yaml
   workflow_dispatch:

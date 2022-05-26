@@ -20,7 +20,7 @@ on:
       - master
       - main
     paths:
-      - devops-tools-centos/**
+      - devops-tools-centos/Dockerfile
       - src/**
       - .github/workflows/docker_build_devops_tools_centos.yaml
   workflow_dispatch:

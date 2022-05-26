@@ -20,7 +20,8 @@ on:
       - master
       - main
     paths:
-      - ubuntu-java/**
+      - ubuntu-java/Dockerfile
+      - 'ubuntu-java/profile.d/**'
       - .github/workflows/docker_build_ubuntu_java.yaml
   workflow_dispatch:
   schedule:

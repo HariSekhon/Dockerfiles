@@ -39,7 +39,7 @@ USER aws
 
 RUN python3 -m pip install \
         --user \
-        urllib3==1.24.0 && \
+        urllib3==1.24.0 \
         awsebcli && \
     eb --help --quiet
         #pip \

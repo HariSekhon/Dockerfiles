@@ -21,14 +21,17 @@ ARG MYSQL_CONNECTOR_VERSION=8.0.22
 ARG POSTGRESQL_CONNECTOR_VERSION=42.2.18
 
 # XXX: this directory gets replaced / covered over, this build isn't necessary any more
-ENV jdbcdir=/data/teamcity_server/datadir/lib/jdbc/
+ENV JDBCDIR=/data/teamcity_server/datadir/lib/jdbc/
 
-RUN mkdir -pv "$jdbcdir" && \
-    curl -sSL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.tar.gz" | \
-    tar zxvf - -C "$jdbcdir" --strip 1 "mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" && \
-    ln -sfv "$jdbcdir/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" "$jdbcdir/mysql-connector-java.jar"
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 
-RUN mkdir -pv "$jdbcdir" && \
-    cd "$jdbcdir" && \
-    curl -sS "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" > "postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" && \
-    ln -sfv "$jdbcdir/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" "$jdbcdir/postgresql.jar"
+WORKDIR ${JDBCDIR}
+
+RUN curl -sSL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.tar.gz" | \
+    tar zxvf - --strip 1 "mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" && \
+    ln -sfv "mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar" "mysql-connector-java.jar"
+
+RUN curl -sS "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" > "postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" && \
+    ln -sfv "postgresql-${POSTGRESQL_CONNECTOR_VERSION}.jar" "postgresql.jar"
+
+WORKDIR /

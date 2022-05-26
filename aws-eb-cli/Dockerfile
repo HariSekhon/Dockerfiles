@@ -34,7 +34,8 @@ RUN apk add --no-cache \
 RUN python3 -m pip install \
         --upgrade \
         pip \
-        awsebcli
+        awsebcli && \
+    eb --help --quiet
         #--ignore-installed six \
 
 RUN adduser -D aws

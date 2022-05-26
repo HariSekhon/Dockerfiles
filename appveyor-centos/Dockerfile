@@ -16,8 +16,9 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 LABEL Description="AppVeyor BYOC Agent"
 
-RUN set -euxo pipefail && \
-    yum install -y curl && \
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+
+RUN yum install -y curl && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_powershell_rhel.sh | bash && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_appveyor_byoc.sh | bash && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh

@@ -14,7 +14,8 @@
 # running kustomize command breaks horribly on 'kustomize edit', even 'kustomize version' hangs - even with gcompat - probaby due to musl vs libc
 #FROM alpine/git:v2.32.0
 #FROM ubuntu:20.04
-FROM debian:10-slim  # a little smaller image
+# a little smaller image
+FROM debian:10-slim
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 LABEL Description="Git + Kustomize minimal docker image"

@@ -20,6 +20,7 @@ on:
       - master
     paths-ignore:
       - '**/*.md'
+      - '**/Dockerfile'
   workflow_dispatch:
     inputs:
       debug:

@@ -55,6 +55,7 @@ RUN set -eux && \
     apk del tar wget
 
 # need to keep this here to make it easier to launch supervisor with just a ZOOKEEPER_HOST and DRILL_HEAP environment variables
+# hadolint ignore=SC1117
 RUN set -eux && \
     # for older versions
     sed -i -e "s/-Xms1G/-Xms\$DRILL_MAX_HEAP/" apache-drill/conf/drill-env.sh && \

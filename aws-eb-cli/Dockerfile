@@ -39,11 +39,12 @@ USER aws
 
 RUN python3 -m pip install \
         --user \
-        --upgrade \
-        pip \
         awsebcli && \
     eb --help --quiet
+        #pip \
+        #--upgrade \
         #--ignore-installed \
+        #urllib3 \
 
 SHELL ["/bin/bash"]
 

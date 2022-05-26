@@ -29,7 +29,7 @@ RUN apk add --no-cache \
     rust
     #linux-headers
 
-RUN python3 -m pip install awsebcli
+RUN python3 -m pip install --upgrade pip awsebcli
 
 RUN adduser -D aws
 

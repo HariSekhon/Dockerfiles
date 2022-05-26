@@ -14,6 +14,8 @@
 FROM alpine:3.12
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
+SHELL ["/bin/sh", "-eux", "-c"]
+
 # needs Python, Rust, Cargo, Make and various headers and libs to build EB CLI
 RUN apk add --no-cache \
     bash \
@@ -31,12 +33,14 @@ RUN apk add --no-cache \
 
 RUN python3 -m pip install \
         --upgrade \
-        --ignore-installed six \
         pip \
         awsebcli
+        #--ignore-installed six \
 
 RUN adduser -D aws
 
 USER aws
+
+SHELL ["/bin/bash"]
 
 ENTRYPOINT ["eb"]

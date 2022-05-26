@@ -23,7 +23,7 @@ RUN apk add --no-cache \
     libffi-dev \
     libressl-dev \
     make \
-    py3-pip
+    py3-pip \
     python3 \
     python3-dev \
     rust

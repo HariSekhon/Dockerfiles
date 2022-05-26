@@ -14,6 +14,8 @@
 FROM alpine:3.12
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
+ENV PATH $PATH:/home/aws/.local/bin
+
 SHELL ["/bin/sh", "-eux", "-c"]
 
 # needs Python, Rust, Cargo, Make and various headers and libs to build EB CLI
@@ -41,7 +43,7 @@ RUN python3 -m pip install \
         pip \
         awsebcli && \
     eb --help --quiet
-        #--ignore-installed six \
+        #--ignore-installed \
 
 SHELL ["/bin/bash"]
 

@@ -23,27 +23,31 @@ ENV DEBIAN_FRONTEND noninteractive
 LABEL Description="GitHub Actions Runner" \
       "GitHub Actions Runner Version"="$GITHUB_ACTIONS_RUNNER_VERSION"
 
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+
 # creates and cd's to this dir
 WORKDIR /actions-runner
 
-RUN set -eux && \
-    apt-get update && \
+# hadolint ignore=DL3008
+RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates curl sudo && \
     curl -Lo actions-runner.tar.gz "https://github.com/actions/runner/releases/download/v$GITHUB_ACTIONS_RUNNER_VERSION/actions-runner-linux-x64-$GITHUB_ACTIONS_RUNNER_VERSION.tar.gz" && \
     tar zxvf actions-runner.tar.gz && \
     rm -f actions-runner.tar.gz && \
     useradd actions-runner && \
     echo "actions-runner ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    cd /actions-runner && \
     bin/installdependencies.sh && \
     chown -R actions-runner /actions-runner && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # adds nearly 500MB to the image size
-#run set -eux && \
-#    apt-get update && \
+#run apt-get update && \
 #    apt-get install -y docker.io && \
 #    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+
+SHELL ["/bin/bash"]
 
 USER actions-runner
 

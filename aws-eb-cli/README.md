@@ -1,5 +1,7 @@
 # AWS Elastic Beanstalk CLI
 
+[![Docker Build AWS EB CLI](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_aws_eb_cli.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_aws_eb_cli.yaml)
+
 https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html
 
 CLI for AWS Elastic Beanstalk

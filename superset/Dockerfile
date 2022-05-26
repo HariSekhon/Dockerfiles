@@ -27,11 +27,23 @@ ADD https://repository.apache.org/content/groups/public/org/apache/calcite/avati
 
 ENV CLASSPATH=/home/avatica/classpath
 
-RUN set -euxo pipefail && \
-    yum install -y epel-release && \
-    # Java needed for Apache Calcite's Avatica driver
-    yum install -y java-headless && \
-    yum install -y gcc gcc-c++ libffi-devel python3-devel python3-pip python3-wheel openssl-devel cyrus-sasl-devel openldap-devel mysql-devel && \
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+
+# Java needed for Apache Calcite's Avatica driver
+# hadolint ignore=DL3013
+RUN yum install -y epel-release && \
+    yum install -y \
+        java-headless && \
+        gcc \
+        gcc-c++ \
+        libffi-devel \
+        python3-devel \
+        python3-pip \
+        python3-wheel \
+        openssl-devel \
+        cyrus-sasl-devel \
+        openldap-devel \
+        mysql-devel && \
     alternatives --set python /usr/bin/python3 && \
     alternatives --install /usr/bin/pip pip /usr/bin/pip3 100 && \
     # 0.30.1 needs tonnes of Python dependencies when booting superset that are not automatically pulled in, found by iterative testing :-/
@@ -68,17 +80,28 @@ RUN set -euxo pipefail && \
                 wtforms-json && \
     # built on Superset 0.19 originally, update tested on 0.30.1
     pip install superset && \
-    printf "admin\nadmin\nuser\nroot@localhost\nadmin\nadmin\n" | \
+    printf 'admin\nadmin\nuser\nroot@localhost\nadmin\nadmin\n' | \
     superset fab create-admin && \
     superset db upgrade && \
     superset load-examples && \
     superset init && \
-    yum remove -y gcc gcc-c++ libffi-devel python-devel openssl-devel cyrus-sasl-devel openldap-devel mysql-devel && \
+    yum remove -y \
+        gcc \
+        gcc-c++ \
+        libffi-devel \
+        python-devel \
+        openssl-devel \
+        cyrus-sasl-devel \
+        openldap-devel \
+        mysql-devel && \
     yum autoremove -y && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh && \
     yum clean all && \
     rm -rf /var/cache/yum
 
 EXPOSE 8088
+
+SHELL ["/bin/bash"]
 
 # hadolint ignore=DL3025
 CMD /usr/local/bin/superset run -h 0.0.0.0 -p 8088

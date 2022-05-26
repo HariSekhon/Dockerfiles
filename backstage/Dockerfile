@@ -32,6 +32,9 @@ ARG RELEASE_URL="https://github.com/backstage/backstage/archive/refs/tags/releas
 
 WORKDIR /app
 
+SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
+
+# hadolint ignore=DL3008,DL3015
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -sSL "$RELEASE_URL" | tar zxv --strip-components=1
@@ -68,18 +71,22 @@ ARG RELEASE=2021-07-08
 
 #ENV PATH $PATH:/NAME/bin
 
-LABEL Description="Backstage", \
+LABEL Description="Backstage" \
       "Backstage Version"="$RELEASE"
 
 WORKDIR /app
 
 # Copy the install dependencies from the build stage and context
+# ADD doesn't have --from feature
+# hadolint ignore=DL3010
 COPY --from=build /app/yarn.lock /app/package.json /app/packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
 RUN yarn install --frozen-lockfile --production --network-timeout 600000 && rm -rf "$(yarn cache dir)"
 
 # Copy the built packages from the build stage
+# ADD doesn't have --from feature
+# hadolint ignore=DL3010
 COPY --from=build /app/packages/backend/dist/bundle.tar.gz .
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 

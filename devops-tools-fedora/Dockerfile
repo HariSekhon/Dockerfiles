@@ -17,7 +17,7 @@ MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 LABEL Description="DevOps Tools (Fedora)"
 
-ADD build.sh /
+COPY build.sh /
 
 WORKDIR /github
 

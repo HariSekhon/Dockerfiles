@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM debian:11 as builder
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Golang Tools"
+LABEL org.opencontainers.image.description="Golang Tools" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/go-tools" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/go-tools" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 # used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/go-tools/bin

@@ -15,14 +15,17 @@
 # > 100MB smaller than centos
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/debian-java:jre7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG H2O_VERSION=3.10.0.3
 
 ENV PATH $PATH:/h2o/bin
 
-LABEL Description="H2O" \
-      "0xData H2O Version"="$H2O_VERSION"
+LABEL org.opencontainers.image.description="0xdata H20" \
+      org.opencontainers.image.version="$H2O_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/h2o" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/h2o" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND noninteractive
 

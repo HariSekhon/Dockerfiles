@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Python Tools"
+LABEL org.opencontainers.image.description="Python Tools (CentOS)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/pytools" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/pytools" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 #ENV JYTHON_HOME=/opt/jython
 #ENV PATH $PATH:$JYTHON_HOME/bin:/github/devops-python-tools

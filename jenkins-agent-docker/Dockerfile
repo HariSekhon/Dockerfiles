@@ -13,12 +13,15 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM jenkins/inbound-agent:4.6-1
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG JENKINS_AGENT_VERSION=4.6
 
-LABEL Description="Jenkins inbound-agent with Docker command" \
-      "Jenkins Version"="$JENKINS_AGENT_VERSION"
+LABEL org.opencontainers.image.description="Jenkins inbound-agent with Docker command" \
+      org.opencontainers.image.version="$JENKINS_AGENT_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/jenkins-agent-docker" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/jenkins-agent-docker" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 

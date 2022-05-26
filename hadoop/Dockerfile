@@ -13,16 +13,19 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/centos-java:latest
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG HADOOP_VERSION=3.0.0
+
+LABEL org.opencontainers.image.description="Hadoop" \
+      org.opencontainers.image.version="$HADOOP_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/hadoop" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/hadoop" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
 ENV PATH $PATH:/hadoop/bin
-
-LABEL Description="Hadoop Dev" \
-      "Hadoop Version"="$HADOOP_VERSION"
 
 WORKDIR /
 

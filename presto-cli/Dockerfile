@@ -13,7 +13,6 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 # cache the std packages between tagged versions for space efficiency, must have this above ARG
 
@@ -24,13 +23,17 @@ RUN set -eux && \
     yum install -y bash java-1.8.0-openjdk-headless.x86_64 less && \
     yum clean all
 
-WORKDIR /
-
 ARG PRESTO_VERSION=0.179
 ARG PRESTO_PKG_RELEASE=0.1
 
-LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_VERSION"
+LABEL org.opencontainers.image.description="Presto SQL" \
+      org.opencontainers.image.version="$PRESTO_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/presto-cli" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/presto-cli" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
+WORKDIR /
 
 # for faster build testing without having to download
 #COPY $CLI_TAR /

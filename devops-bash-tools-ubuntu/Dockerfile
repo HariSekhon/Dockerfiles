@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM ubuntu:20.04
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Bash Tools"
+LABEL org.opencontainers.image.description="Bash Tools" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/bash-tools" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/bash-tools" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 # used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/bash-tools

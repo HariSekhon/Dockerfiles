@@ -13,11 +13,15 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/centos-java:jdk8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG OPENTSDB_VERSION=2.4.0
 
-LABEL Description="OpenTSDB"
+LABEL org.opencontainers.image.description="OpenTSDB" \
+      org.opencontainers.image.version="$OPENTSDB_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/opentsdb" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/opentsdb" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 WORKDIR /
 

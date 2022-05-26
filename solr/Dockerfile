@@ -14,16 +14,19 @@
 # not basing on official solr as it doesn't have Solr < 5.0 which I want to keep using for my test suite
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG SOLR_VERSION=7.7.1
 
 ARG TAR="solr-$SOLR_VERSION.tgz"
 
-ENV PATH $PATH:/solr/bin
+LABEL org.opencontainers.image.description="Solr" \
+      org.opencontainers.image.version="$SOLR_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/solr" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/solr" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
-LABEL Description="Solr" \
-      "Solr Version"="$SOLR_VERSION"
+ENV PATH $PATH:/solr/bin
 
 WORKDIR /
 

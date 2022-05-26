@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Spotify Tools"
+LABEL org.opencontainers.image.description="Spotify Tools" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/spotify-tools" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/spotify-tools" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV PATH $PATH:/github/spotify-tools:/github/spotify-tools/bash-tools
 

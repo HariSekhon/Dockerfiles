@@ -13,16 +13,19 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
-
-ENV PATH $PATH:/nifi/bin
 
 ARG NIFI_VERSION=1.9.0
 
+LABEL org.opencontainers.image.description="Nifi" \
+      org.opencontainers.image.version="$NIFI_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/nifi" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/nifi" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 ARG TAR=nifi-${NIFI_VERSION}-bin.tar.gz
 
-LABEL Description="Nifi" \
-      "Nifi Version"="$NIFI_VERSION"
+ENV PATH $PATH:/nifi/bin
 
 WORKDIR /
 

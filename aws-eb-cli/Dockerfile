@@ -13,7 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
+
+LABEL org.opencontainers.image.description="AWS Elastic Beanstalk CLI" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/aws-eb-cli" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/aws-eb-cli" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV PATH $PATH:/home/aws/.local/bin
 

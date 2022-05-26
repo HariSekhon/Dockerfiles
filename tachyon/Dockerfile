@@ -15,14 +15,17 @@
 # > 100MB smaller than centos
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/debian-java:jre7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG TACHYON_VERSION=0.8.2
 
-ENV PATH $PATH:/tachyon/bin
+LABEL org.opencontainers.image.description="Tachyon from BDAS" \
+      org.opencontainers.image.version="$TACHYON_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/tachyon" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/tachyon" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
-LABEL Description="Tachyon from BDAS" \
-      "Tachyon Version"="$TACHYON_VERSION"
+ENV PATH $PATH:/tachyon/bin
 
 ENV DEBIAN_FRONTEND noninteractive
 

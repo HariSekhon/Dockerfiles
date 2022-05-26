@@ -13,14 +13,17 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG ALLUXIO_VERSION=1.8.1
 
 ENV PATH $PATH:/alluxio/bin
 
-LABEL Description="Alluxio by Berkeley AMPLab" \
-      "Alluxio Version"="$ALLUXIO_VERSION"
+LABEL org.opencontainers.image.description="Alluxio by Berkeley AMPLab" \
+      org.opencontainers.image.version="$ALLUXIO_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/alluxio" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/alluxio" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 WORKDIR /
 

@@ -15,12 +15,15 @@
 #FROM riak
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG RIAK_VERSION=2.1.4
 
-LABEL Description="Riak" \
-      "Riak Version"="$RIAK_VERSION"
+LABEL org.opencontainers.image.description="Riak" \
+      org.opencontainers.image.version="$RIAK_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/riak" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/riak" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 #RUN OS=el DIST=6 curl "https://packagecloud.io/install/repositories/basho/riak/config_file.repo?os=${OS}&dist=${DIST}&name=basho_repo" > /etc/yum.repos.d/basho.repo && \
 

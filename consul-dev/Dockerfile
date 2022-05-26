@@ -21,14 +21,17 @@
 #FROM harisekhon/github:alpine
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/github:centos
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG CONSUL_VERSION=1.4.2
 
 ENV PATH $PATH:/
 
-LABEL Description="HashiCorp's Consul + Dev tools" \
-      "Consul Version"="$CONSUL_VERSION"
+LABEL org.opencontainers.image.description="HashiCorp's Consul + Dev tools" \
+      org.opencontainers.image.version="$CONSUL_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/consul-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/consul-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 WORKDIR /
 

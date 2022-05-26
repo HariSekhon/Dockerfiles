@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Java + CentOS (OpenJDK)"
+LABEL org.opencontainers.image.description="Java + CentOS (OpenJDK)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/centos-java" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/centos-java" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ARG JAVA_VERSION=8
 ARG JAVA_RELEASE=JDK

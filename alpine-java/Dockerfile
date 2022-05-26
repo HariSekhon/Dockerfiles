@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Alpine Java (OpenJDK)"
+LABEL org.opencontainers.image.description="Alpine Java (OpenJDK)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/alpine-java" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/alpine-java" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ARG JAVA_VERSION=8
 ARG JAVA_RELEASE=JDK

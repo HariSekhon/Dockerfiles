@@ -15,16 +15,19 @@
 # not basing on official solr as it doesn't have SolrCloud 4.x which I want to keep using for my test suite
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG SOLRCLOUD_VERSION=7.7.1
+
+LABEL org.opencontainers.image.description="SolrCloud" \
+      org.opencontainers.image.version="$SOLRCLOUD_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/solrcloud" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/solrcloud" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ARG TAR="solr-$SOLRCLOUD_VERSION.tgz"
 
 ENV PATH $PATH:/solr/bin
-
-LABEL Description="SolrCloud" \
-      "Solr Version"="$SOLRCLOUD_VERSION"
 
 WORKDIR /
 

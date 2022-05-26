@@ -13,7 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/centos-java:jdk8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
+
+LABEL org.opencontainers.image.description="Scala + CentOS (OpenJDK)" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/centos-scala" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/centos-scala" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ARG SCALA_VERSION=2.10.6
 

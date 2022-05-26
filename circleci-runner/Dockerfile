@@ -15,7 +15,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM circleci/runner:launch-agent
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
+
+LABEL org.opencontainers.image.description="CircleCI Runner" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/circleci-runner" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/circleci-runner" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND noninteractive
 

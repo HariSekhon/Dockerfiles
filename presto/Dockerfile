@@ -30,8 +30,12 @@ WORKDIR /
 ARG PRESTO_VERSION=0.179
 ARG PRESTO_PKG_RELEASE=0.1
 
-LABEL Description="Presto SQL" \
-      "Presto SQL Version"="$PRESTO_VERSION"
+LABEL org.opencontainers.image.description="Presto SQL" \
+      org.opencontainers.image.version="$PRESTO_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/presto" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/presto" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 # for faster build testing without having to download
 #COPY $TAR /

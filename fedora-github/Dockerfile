@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/nagios-plugins:fedora
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Fedora + my GitHub repos pre-built"
+LABEL org.opencontainers.image.description="Fedora + my GitHub repos pre-built" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/fedora-github" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/fedora-github" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 # unit test for lib-java fails when sh is found in /usr/bin/sh as /usr/bin is earlier in the path than /bin
 ENV PATH /bin:$PATH:/github/nagios-plugins:/github/devops-perl-tools:/github/devops-python-tools:/github/bash-tools:/github/spotify

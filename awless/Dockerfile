@@ -15,6 +15,12 @@
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM golang:stretch AS builder
 
+LABEL org.opencontainers.image.description="AWLess CLI" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/awless" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/awless" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 WORKDIR /
 
 # awless standard build fetch is broken due to expired SSL cert:

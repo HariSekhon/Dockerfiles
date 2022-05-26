@@ -15,16 +15,20 @@
 # > 100MB smaller than centos
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM alpine:3.12
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG SPARK_VERSION=1.6.2
 ARG HADOOP_VERSION=2.6
+
+LABEL org.opencontainers.image.description="Apache Spark" \
+      org.opencontainers.image.version="$SPARK_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/spark" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/spark" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 ARG TAR=spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 ENV PATH $PATH:/spark/bin
-
-LABEL Description="Apache Spark" \
-      "Spark Version"="$SPARK_VERSION"
 
 #COPY spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION /spark
 #ADD "http://d3kbcqa49mib13.cloudfront.net/${TAR}"

@@ -16,11 +16,16 @@
 # so instead use Debian based openjdk normal image
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM openjdk:8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
-
-LABEL Description="Jython $JYTHON_VERSION on OpenJDK, with pip, jip and mock"
 
 ARG JYTHON_VERSION=2.7.0
+
+LABEL org.opencontainers.image.description="Jython $JYTHON_VERSION on OpenJDK, with pip, jip and mock" \
+      org.opencontainers.image.version="$JYTHON_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/jython-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/jython-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
+
 ARG JYTHON_HOME=/opt/jython-$JYTHON_VERSION
 
 ENV JYTHON_VERSION=$JYTHON_VERSION

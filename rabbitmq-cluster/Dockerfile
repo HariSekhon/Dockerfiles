@@ -13,12 +13,15 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM rabbitmq:3.8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG RABBITMQ_VERSION=3.8
 
-LABEL Description="RabbitMQ Cluster" \
-      "RabbitMQ Version"="$RABBITMQ_VERSION"
+LABEL org.opencontainers.image.description="RabbitMQ Cluster" \
+      org.opencontainers.image.version="$RABBITMQ_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/rabbitmq-cluster" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/rabbitmq-cluster" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 COPY entrypoint.sh /
 COPY rabbitmq-cluster /

@@ -13,16 +13,19 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/alpine-java:jre8
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG HBASE_VERSION=2.1.3
+
+LABEL org.opencontainers.image.description="HBase" \
+      org.opencontainers.image.version="$HBASE_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/hbase" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/hbase" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV PATH $PATH:/hbase/bin
 
 ENV JAVA_HOME=/usr
-
-LABEL Description="HBase" \
-      "HBase Version"="$HBASE_VERSION"
 
 WORKDIR /
 

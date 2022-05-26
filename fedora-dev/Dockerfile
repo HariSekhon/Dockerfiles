@@ -14,9 +14,12 @@
 #FROM harisekhon/fedora-scala:2.11-jdk8
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/fedora-scala:latest
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Fedora Dev Build"
+LABEL org.opencontainers.image.description="Fedora Dev Build" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/fedora-dev" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/fedora-dev" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV GRADLE_HOME=/opt/gradle
 ENV JYTHON_HOME=/opt/jython

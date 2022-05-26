@@ -13,9 +13,12 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM harisekhon/nagios-plugins:centos
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
-LABEL Description="Advanced Nagios Plugins Collection (on CentOS) with Cassandra + Java installed"
+LABEL org.opencontainers.image.description="Advanced Nagios Plugins Collection (on CentOS) with Cassandra + Java installed" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/nagios-plugins-cassandra" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/nagios-plugins-cassandra" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ENV DEBIAN_FRONTEND noninteractive
 

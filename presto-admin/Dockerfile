@@ -13,16 +13,19 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 ARG PRESTO_ADMIN_VERSION=2.3
+
+LABEL org.opencontainers.image.description="Presto Admin" \
+      org.opencontainers.image.version="$PRESTO_ADMIN_VERSION" \
+      org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
+      org.opencontainers.image.url="https://ghcr.io/HariSekhon/presto-admin" \
+      org.opencontainers.image.documentation="https://hub.docker.com/r/harisekhon/presto-admin" \
+      org.opencontainers.image.source="https://github.com/HariSekhon/Dockerfiles"
 
 ARG TAR="prestoadmin-${PRESTO_ADMIN_VERSION}-online.tar.gz"
 
 ENV PATH $PATH:/prestoadmin/bin
-
-LABEL Description="Presto Admin" \
-      "Presto Admin Version"="$PRESTO_ADMIN_VERSION"
 
 WORKDIR /
 

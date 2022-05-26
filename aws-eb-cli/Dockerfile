@@ -41,6 +41,9 @@ RUN python3 -m pip install \
         --user \
         urllib3==1.24.0 \
         awsebcli && \
+    echo && \
+    echo "Checking EB CLI runtime..." && \
+    echo && \
     eb --help --quiet
         #pip \
         #--upgrade \

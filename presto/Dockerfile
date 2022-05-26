@@ -13,7 +13,6 @@
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM centos:7
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/HariSekhon)
 
 # cache the std packages between tagged versions for space efficiency, must have this above ARG
 

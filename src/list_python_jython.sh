@@ -17,6 +17,6 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
 # trying to do -exec basename {} \; results in only the jython files being printed
-find -L "$1" -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -type f -iname '[A-Za-z]*.jy' |
-xargs -n1 basename |
+find -L "${1:-.}" -maxdepth 1 -type f -iname '[A-Za-z]*.py' -o -type f -iname '[A-Za-z]*.jy' -print0 |
+xargs -0 -n1 basename |
 sort

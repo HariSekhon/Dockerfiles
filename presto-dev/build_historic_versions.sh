@@ -66,7 +66,7 @@ check_config_property(){
         if grep "^[[:space:]]*${name}[[:space:]]*=" "$srcdir/etc/config.properties"; then
             if [ -n "${FORCE_FIX:-}" ]; then
                 echo "FORCE_FIX set, commenting out unavailable property setting '$name' to correctly build version $version:"
-                sed -i "s/^\([[:space:]]*${name}[[:space:]]*=\)/#\\1/" "$srcdir/etc/config.properties"
+                sed -i "s/^\\([[:space:]]*${name}[[:space:]]*=\\)/#\\1/" "$srcdir/etc/config.properties"
             else
                 echo "ERROR: $name config property not available in Presto version $version (< $min_version), make sure to comment it out in $srcdir/etc/config.properties file before continuing to build the image other it won't start up!"
                 exit 1

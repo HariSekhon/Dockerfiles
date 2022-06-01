@@ -16,6 +16,6 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-find -L "$1" -maxdepth 1 -type f -iname '[A-Za-z]*.sh' |
-xargs -n1 basename |
+find -L "${1:-.}" -maxdepth 1 -type f -iname '[A-Za-z]*.sh' -print0 |
+xargs -0 -n1 basename |
 sort

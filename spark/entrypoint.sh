@@ -61,10 +61,10 @@ echo
 sleep 2
 
 if [ -t 0 ]; then
-    echo -e "\nStarting Spark Shell to connect to standalone daemons\n"
+    echo -e '\nStarting Spark Shell to connect to standalone daemons\n'
     # less than about 480m SQLContext fails to load and gets a bunch of NPEs
     "$SPARK_HOME/bin/spark-shell" --driver-memory 500m --master "spark://$(hostname -f):7077"
-    echo -e "\n\nSpark Shell exited\n\n"
+    echo -e '\n\nSpark Shell exited\n\n'
 else
     echo -e "
 
@@ -75,6 +75,6 @@ To open Spark Shell in future start docker with the switches:
 docker run -t -i ...
 "
 fi
-echo -e "\n\nWill now read logs to keep container alive until killed...\n\n"
+echo -e '\n\nWill now read logs to keep container alive until killed...\n\n'
 tail -f /dev/null "$SPARK_HOME"/logs/* &
 wait || :

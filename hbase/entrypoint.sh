@@ -88,7 +88,7 @@ Now starting HBase Shell...
 }
 
 trap_func(){
-    echo -e "\n\nShutting down HBase:"
+    echo -e '\n\nShutting down HBase:'
     "$HBASE_HOME/bin/hbase-daemon.sh" stop rest || :
     "$HBASE_HOME/bin/hbase-daemon.sh" stop thrift || :
     "$HBASE_HOME/bin/local-regionservers.sh" stop 1 || :

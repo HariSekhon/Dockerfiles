@@ -27,6 +27,8 @@ for directory in *; do
     [ "$directory" = "teamcity" ] && continue
     [ -f "$directory/docker-compose.yml" ] || continue
     # exclude things not in Git yet
+    # false positive
+    # shellcheck disable=SC2063
     git log -1 "$directory" 2>/dev/null | grep -q '.*' || continue
     for compose_file in "$directory/"*docker-compose*.yml; do
         # this allows us to skip things like rabbitmq-cluster

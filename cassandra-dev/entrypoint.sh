@@ -49,7 +49,7 @@ else
         cqlsh="$(type -P cqlsh)"
         echo "su cassandra $cqlsh $bind_address"
         su cassandra "$cqlsh" "$bind_address"
-        echo -e "\n\nCQL shell exited"
+        echo -e '\n\nCQL shell exited'
     else
         echo "
     Running non-interactively, will not open CQL shell
@@ -58,7 +58,7 @@ else
 
     "
     fi
-    echo -e "\n\nWill tail logs now to keep this container alive until killed...\n\n"
+    echo -e '\n\nWill tail logs now to keep this container alive until killed...\n\n'
     sleep 30
     tail -f /dev/null /cassandra/logs/* &
     wait || :

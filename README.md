@@ -178,7 +178,8 @@ More specific information can be found in the readme page under each respective 
 
 - [Alluxio](http://www.alluxio.org/) - distributed in-memory filesystem for cluster computing frameworks by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/alluxio/README.md)
 - [Apache Drill](https://drill.apache.org/) - distributed SQL engine by [MapR](https://mapr.com/) (opens Drill SQL shell) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/apache-drill/README.md)
-- Awless - a Mighty CLI for AWS - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/awless/README.md)
+- [Awless](https://github.com/wallix/awless) - a Mighty CLI for AWS - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/awless/README.md)
+- [AWS Elastic Beanstalk CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) - CLI for AWS [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/aws-eb-cli/README.md)
 - [Backstage](https://backstage.io/) - Spotify's Backstage software catalog and developer portal - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/backstage/README.md)
 - [Cassandra](http://cassandra.apache.org/) - distributed NoSQL datastore by Facebook and [DataStax](https://www.datastax.com/) (opens CQL shell, bundled with [nagios-plugins](https://github.com/HariSekhon/Nagios-Plugins))
 - [CircleCI Runner](https://circleci.com/) - CI/CD runner for CircleCI - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/circleci-runner/README.md)
@@ -206,6 +207,7 @@ More specific information can be found in the readme page under each respective 
 - [Spark](https://spark.apache.org/) - fast distributed cluster compute engine usually used on Hadoop, by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/) and [Databricks](https://databricks.com/) (opens Spark shell)
 - [Superset](http://airbnb.io/projects/superset/) - data visualization by [Airbnb](https://www.airbnb.com/)
 - [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0) - distributed in-memory filesystem for cluster computing frameworks by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
+- [tfenv) - Terraform version manager - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/tfenv/README.md)
 - [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell) - distributed coordination and sychronization service by Yahoo
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.

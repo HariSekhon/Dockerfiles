@@ -16,6 +16,8 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
+TFENV_TERRAFORM_VERSION="${TERRAFORM_VERSION:-latest}"
+
 #if ! tfenv list &>/dev/null; then
 if ! tfenv version-name &>/dev/null; then
     tfenv install

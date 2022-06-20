@@ -45,7 +45,7 @@ USER aws
 
 RUN python3 -m pip install \
         --user \
-        urllib3>=1.26.5 \
+        'urllib3>=1.26.5' \
         awsebcli && \
     echo && \
     echo "Checking EB CLI runtime..." && \

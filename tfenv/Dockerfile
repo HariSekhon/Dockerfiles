@@ -34,6 +34,7 @@ SHELL ["/bin/sh", "-eux", "-c"]
 
 ENV OWNER_REPO="tfutils/tfenv"
 
+# entrypoint.sh will override this is TERRAFORM_VERSION is set
 ENV TFENV_TERRAFORM_VERSION=latest
 
 ENV TFENV_AUTO_INSTALL=true

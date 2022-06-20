@@ -12,10 +12,10 @@ Run any version of Terraform dynamically, downloads the version dynamically.
 docker run --rm -ti harisekhon/tfenv <terraform_args>
 ```
 
-Pass the environment variable `TFENV_TERRAFORM_VERSION` to this docker container to run that version of terraform.
+Pass the environment variable `TERRAFORM_VERSION` to this docker container to run that version of terraform:
 
 ```
-docker run --rm -ti -e TFENV_TERRAFORM_VERSION=1.2.3 harisekhon/tfenv <terraform_args>
+docker run --rm -ti -e TERRAFORM_VERSION=1.2.3 harisekhon/tfenv <terraform_args>
 ```
 
 Designed to be a utility for a dynamic CI/CD pipeline to run different versions of Terraform for different environments.

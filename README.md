@@ -207,7 +207,7 @@ More specific information can be found in the readme page under each respective 
 - [Spark](https://spark.apache.org/) - fast distributed cluster compute engine usually used on Hadoop, by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/) and [Databricks](https://databricks.com/) (opens Spark shell)
 - [Superset](http://airbnb.io/projects/superset/) - data visualization by [Airbnb](https://www.airbnb.com/)
 - [Tachyon](http://www.alluxio.org/) (Alluxio < 1.0) - distributed in-memory filesystem for cluster computing frameworks by UC Berkely's [AMPLab](https://amplab.cs.berkeley.edu/)
-- [tfenv) - Terraform version manager - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/tfenv/README.md)
+- [tfenv](https://github.com/tfutils/tfenv) - Terraform version manager - [readme](https://github.com/HariSekhon/Dockerfiles/blob/master/tfenv/README.md)
 - [ZooKeeper](https://zookeeper.apache.org/) (opens ZK shell) - distributed coordination and sychronization service by Yahoo
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.

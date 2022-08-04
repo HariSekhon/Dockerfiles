@@ -17,6 +17,14 @@
 
 image: Ubuntu
 
+# workaround for default JDK9 have old CA certs:
+#
+#   https://github.com/appveyor/ci/issues/3833
+#
+#   https://www.appveyor.com/docs/getting-started-with-appveyor-for-linux/#configuring-language-stack
+#
+stack: jdk 15
+
 skip_commits:
   files:
     - docs/*
@@ -42,7 +50,7 @@ on_finish:
   #
   #     https://github.com/appveyor/ci/pull/3385
   #
-  #- sh: curl -sflL 'https://raw.githubusercontent.com/HariSekhon/dockerfiles/master/setup/install_openssh.sh' | bash -e -
+  #- sh: curl -sflL 'https://raw.githubusercontent.com/HariSekhon/Dockerfiles/master/setup/install_openssh.sh' | bash -e -
   - sh: if [ "$APPVEYOR_SSH_BLOCK" = true ]; then curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -; fi
 
 install:
@@ -56,10 +64,10 @@ install:
   # The following packages have unmet dependencies:
   #  mssql-server : Depends: libsasl2-modules-gssapi-mit but it is not going to be installed
   #  E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.
-  #  dockerfiles/Makefile.in:272: recipe for target 'apt-packages' failed
+  #  Dockerfiles/Makefile.in:272: recipe for target 'apt-packages' failed
   #  make[2]: *** [apt-packages] Error 123
   #  make[2]: Leaving directory '/home/appveyor/projects/pylib'
-  #  dockerfiles/Makefile.in:212: recipe for target 'system-packages' failed
+  #  Dockerfiles/Makefile.in:212: recipe for target 'system-packages' failed
   #
   #  adding "|| :" to the end of these commands causes them to be silently ignored!
   - sudo sed -i '/https:\/\/packages.microsoft.com\/ubuntu\/.*\/mssql-server/d' /etc/apt/sources.list

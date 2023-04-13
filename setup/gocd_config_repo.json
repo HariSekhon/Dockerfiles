@@ -1,5 +1,5 @@
 {
-  "id": "dockerfiles",
+  "id": "Dockerfiles",
   "plugin_id": "yaml.config.plugin",
   "material": {
     "type": "git",

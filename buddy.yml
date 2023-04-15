@@ -24,7 +24,7 @@
   actions:
   - action: "Execute: make ci test"
     type: "BUILD"
-    working_directory: "/buddy/dockerfiles"
+    working_directory: "/buddy/Dockerfiles"
     docker_image_name: "library/ubuntu"
     docker_image_tag: "18.04"
     #setup_commands:
@@ -38,6 +38,6 @@
       - make ci
       - make test
     volume_mappings:
-      - "/:/buddy/dockerfiles"
+      - "/:/buddy/Dockerfiles"
     shell: "BASH"
     trigger_condition: "ALWAYS"

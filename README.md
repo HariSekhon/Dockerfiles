@@ -234,7 +234,6 @@ Available as both `harisekhon/github:<distro>` and `harisekhon/<distro>-github` 
 `harisekhon/github:latest` is the same as `harisekhon/github:ubuntu`
 
 [![Docker Build GitHub Alpine](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_alpine.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_alpine.yaml)
-[![Docker Build GitHub CentOS](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_centos.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_centos.yaml)
 [![Docker Build GitHub Debian](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_debian.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_debian.yaml)
 [![Docker Build GitHub Fedora](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml)
 [![Docker Build GitHub Ubuntu](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml)

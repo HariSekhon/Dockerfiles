@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM debian:9
+FROM --platform=linux/amd64 debian:9
 
 LABEL org.opencontainers.image.description="AppVeyor BYOC Agent" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

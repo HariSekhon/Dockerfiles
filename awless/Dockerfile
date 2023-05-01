@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
-#FROM golang:alpine AS builder
+#FROM --platform=linux/amd64 golang:alpine AS builder
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM golang:stretch AS builder
+FROM --platform=linux/amd64 golang:stretch AS builder
 
 WORKDIR /
 
@@ -44,7 +44,7 @@ RUN go get -ldflags "-linkmode external -extldflags -static" -u github.com/walli
 # ============
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM scratch
+FROM --platform=linux/amd64 scratch
 
 LABEL org.opencontainers.image.description="AWLess - a Mighty CLI for AWS" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

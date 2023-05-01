@@ -12,13 +12,13 @@
 #
 
 # busybox wget doesn't support SSL, no curl available :-(
-#FROM busybox
+#FROM --platform=linux/amd64 busybox
 # Alpine keeps breaking stuff, even after adding libc6-compat:
 # Error relocating ./consul: __fprintf_chk: symbol not foundError relocating ./consul: __fprintf_chk: symbol not found
 # rather than downloading glibc with a tonne of extra commands, just switch to debian
-#FROM alpine
+#FROM --platform=linux/amd64 alpine
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM debian:11
+FROM --platform=linux/amd64 debian:11
 
 ARG CONSUL_VERSION=1.4.2
 

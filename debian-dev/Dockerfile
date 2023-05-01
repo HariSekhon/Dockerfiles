@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/debian-java:jdk8
+FROM --platform=linux/amd64 harisekhon/debian-java:jdk8
 
 LABEL org.opencontainers.image.description="Debian Dev Build" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

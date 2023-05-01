@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
-#FROM harisekhon/centos-java:jre7
+#FROM --platform=linux/amd64 harisekhon/centos-java:jre7
 # > 100MB smaller than centos
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/debian-java:jre7
+FROM --platform=linux/amd64 harisekhon/debian-java:jre7
 
 ARG MESOS_VERSION=0.28.2
 

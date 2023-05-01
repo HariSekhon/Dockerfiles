@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/alpine-java:jre8
+FROM --platform=linux/amd64 harisekhon/alpine-java:jre8
 
 ARG HBASE_VERSION=2.1.3
 

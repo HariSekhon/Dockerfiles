@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/nagios-plugins:centos
+FROM --platform=linux/amd64 harisekhon/nagios-plugins:centos
 
 LABEL org.opencontainers.image.description="CentOS + my GitHub repos pre-built" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

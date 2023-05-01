@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM centos:7
+FROM --platform=linux/amd64 centos:7
 
 ARG TCOLLECTOR_VERSION=1.3.2
 

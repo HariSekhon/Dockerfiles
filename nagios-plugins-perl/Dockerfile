@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM perl:5.28.1-slim-threaded
+FROM --platform=linux/amd64 perl:5.28.1-slim-threaded
 
 LABEL org.opencontainers.image.description="Advanced Nagios Plugins Collection (Perl plugins only)" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

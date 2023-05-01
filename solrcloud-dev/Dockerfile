@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/nagios-plugins:alpine
+FROM --platform=linux/amd64 harisekhon/nagios-plugins:alpine
 
 ARG SOLRCLOUD_VERSION=7.7.1
 

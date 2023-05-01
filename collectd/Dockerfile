@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM centos:7
+FROM --platform=linux/amd64 centos:7
 
 LABEL org.opencontainers.image.description="Collectd on CentOS 7" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

@@ -14,13 +14,13 @@
 # -dev version allows testing of local consul command utils like check_consul_version.py
 
 # busybox wget doesn't support SSL, no curl available :-(
-#FROM busybox:latest
+#FROM --platform=linux/amd64 busybox:latest
 # Alpine keeps breaking stuff, even after adding libc6-compat:
 # Error relocating ./consul: __fprintf_chk: symbol not foundError relocating ./consul: __fprintf_chk: symbol not found
 # rather than downloading glibc with a tonne of extra commands, just switch to debian
-#FROM harisekhon/github:alpine
+#FROM --platform=linux/amd64 harisekhon/github:alpine
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/github:centos
+FROM --platform=linux/amd64 harisekhon/github:centos
 
 ARG CONSUL_VERSION=1.4.2
 

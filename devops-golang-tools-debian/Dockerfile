@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM debian:11 as builder
+FROM --platform=linux/amd64 debian:11 as builder
 
 LABEL org.opencontainers.image.description="Golang Tools" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \
@@ -29,9 +29,9 @@ RUN chmod +x /build.sh && NO_TESTS=1 /build.sh
 
 # gets error:
 # bash: ./uniq2: No such file or directory
-#FROM bash
+#FROM --platform=linux/amd64 bash
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM debian:11
+FROM --platform=linux/amd64 debian:11
 
 ENV PATH $PATH:/github/go-tools/bin
 

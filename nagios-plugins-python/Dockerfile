@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM python:2.7-slim
+FROM --platform=linux/amd64 python:2.7-slim
 
 LABEL org.opencontainers.image.description="Advanced Nagios Plugins Collection (Python plugins only)" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

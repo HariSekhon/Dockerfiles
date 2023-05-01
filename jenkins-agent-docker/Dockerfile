@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM jenkins/inbound-agent:4.6-1
+FROM --platform=linux/amd64 jenkins/inbound-agent:4.6-1
 
 ARG JENKINS_AGENT_VERSION=4.6
 

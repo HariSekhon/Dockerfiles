@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:20.04
 
 ARG GITHUB_ACTIONS_RUNNER_VERSION=2.284.0
 

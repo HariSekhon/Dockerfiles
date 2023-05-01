@@ -13,7 +13,7 @@
 
 # Alpine grep is broken and doesn't detect unbalanced regex parens which breaks tests
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM centos:8
+FROM --platform=linux/amd64 centos:8
 
 LABEL org.opencontainers.image.description="DevOps Perl Tools (CentOS)" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

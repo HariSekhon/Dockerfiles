@@ -13,7 +13,7 @@
 
 # inherit the nagios-plugins container for less duplication as it's the biggest project
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/nagios-plugins:alpine
+FROM --platform=linux/amd64 harisekhon/nagios-plugins:alpine
 
 LABEL org.opencontainers.image.description="Alpine + my GitHub repos pre-built" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

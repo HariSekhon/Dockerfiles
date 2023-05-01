@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/nagios-plugins:debian
+FROM --platform=linux/amd64 harisekhon/nagios-plugins:debian
 
 LABEL org.opencontainers.image.description="Debian + my GitHub repos pre-built" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

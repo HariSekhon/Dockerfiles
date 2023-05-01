@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM harisekhon/centos-scala:2.11-jdk8
+FROM --platform=linux/amd64 harisekhon/centos-scala:2.11-jdk8
 
 LABEL org.opencontainers.image.description="Spark Scala Apps (Spark => Elasticsearch etc)" \
       org.opencontainers.image.version="$VERSION" \

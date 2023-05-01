@@ -14,7 +14,7 @@
 
 # not basing on official solr as it doesn't have SolrCloud 4.x which I want to keep using for my test suite
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM alpine:3.12
+FROM --platform=linux/amd64 alpine:3.12
 
 ARG SOLRCLOUD_VERSION=7.7.1
 

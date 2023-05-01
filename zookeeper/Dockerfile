@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM alpine:3.12
+FROM --platform=linux/amd64 alpine:3.12
 
 ARG ZOOKEEPER_VERSION=3.4.13
 

@@ -12,6 +12,6 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM jenkins/jenkins:lts
+FROM --platform=linux/amd64 jenkins/jenkins:lts
 
 RUN /bin/jenkins-plugin-cli --plugins workflow-aggregator:2.6

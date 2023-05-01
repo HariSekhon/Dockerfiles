@@ -15,7 +15,7 @@
 # NotImplementedError: passwd.pw_passwd unimplemented
 # so instead use Debian based openjdk normal image
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM openjdk:8
+FROM --platform=linux/amd64 openjdk:8
 
 ARG JYTHON_VERSION=2.7.0
 

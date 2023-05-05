@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/centos-java:jdk8
+FROM harisekhon/centos-java:jdk8
 
 ARG OPENTSDB_VERSION=2.4.0
 

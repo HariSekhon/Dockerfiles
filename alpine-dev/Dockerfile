@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/alpine-java:latest
+FROM harisekhon/alpine-java:latest
 
 LABEL org.opencontainers.image.description="Alpine Dev Build" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

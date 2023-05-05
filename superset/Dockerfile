@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 centos:8
+FROM centos:8
 
 ARG SUPERSET_VERSION=0.30.1
 ARG AVATICA_VERSION=1.17.0

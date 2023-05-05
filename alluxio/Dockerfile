@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 alpine:3.12
+FROM alpine:3.12
 
 ARG ALLUXIO_VERSION=1.8.1
 

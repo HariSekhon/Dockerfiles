@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
-#FROM --platform=linux/amd64 harisekhon/centos-java:jre7
+#FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 alpine:3.12
+FROM alpine:3.12
 
 ARG SPARK_VERSION=1.6.2
 ARG HADOOP_VERSION=2.6

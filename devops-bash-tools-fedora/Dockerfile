@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
-#FROM --platform=linux/amd64 fedora:latest
+#FROM fedora:latest
 # Fedora 35 gets 'curl: (6) getaddrinfo() thread failed to start' for any address due to a bug
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 fedora:34
+FROM fedora:34
 
 LABEL org.opencontainers.image.description="Bash Tools" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

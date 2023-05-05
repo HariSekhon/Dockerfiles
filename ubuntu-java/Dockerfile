@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 ubuntu:20.04
+FROM ubuntu:20.04
 
 LABEL org.opencontainers.image.description="Java + Ubuntu (OpenJDK)" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

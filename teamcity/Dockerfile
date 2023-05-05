@@ -12,9 +12,9 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 jetbrains/teamcity-server:2020.2
+FROM jetbrains/teamcity-server:2020.2
 
-# used to version tagging by Make build, keep aligned with the FROM --platform=linux/amd64 above since it can't be used in the FROM directly
+# used to version tagging by Make build, keep aligned with the FROM above since it can't be used in the FROM directly
 ARG TEAMCITY_VERSION=2020.2
 
 ARG MYSQL_CONNECTOR_VERSION=8.0.22

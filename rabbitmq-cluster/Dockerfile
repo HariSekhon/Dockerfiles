@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 rabbitmq:3.8
+FROM rabbitmq:3.8
 
 ARG RABBITMQ_VERSION=3.8
 

@@ -12,10 +12,10 @@
 #
 
 # can't base off official Riak as it's missing deps to run the tools
-#FROM --platform=linux/amd64 riak:latest
+#FROM riak:latest
 # this is so that the nagios-plugin deps are available to mount new versions calling local programs eg. riak-admin
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/github:centos
+FROM harisekhon/github:centos
 
 ARG RIAK_VERSION=2.1.4
 

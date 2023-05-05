@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 openjdk:jre-alpine
+FROM openjdk:jre-alpine
 
 ARG JYTHON_VERSION=2.7.0
 

@@ -12,9 +12,9 @@
 #
 
 # can't base off official Riak as it's missing deps to run the tools
-#FROM --platform=linux/amd64 riak
+#FROM riak
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 centos:8
+FROM centos:8
 
 ARG RIAK_VERSION=2.1.4
 

@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 centos:7
+FROM centos:7
 
 # cache the std packages between tagged versions for space efficiency, must have this above ARG
 

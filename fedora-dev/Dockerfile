@@ -11,9 +11,9 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
-#FROM --platform=linux/amd64 harisekhon/fedora-scala:2.11-jdk8
+#FROM harisekhon/fedora-scala:2.11-jdk8
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/fedora-scala:latest
+FROM harisekhon/fedora-scala:latest
 
 LABEL org.opencontainers.image.description="Fedora Dev Build" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

@@ -12,11 +12,11 @@
 #
 
 # running kustomize command breaks horribly on 'kustomize edit', even 'kustomize version' hangs - even with gcompat - probaby due to musl vs libc
-#FROM --platform=linux/amd64 alpine/git:v2.32.0
-#FROM --platform=linux/amd64 ubuntu:20.04
+#FROM alpine/git:v2.32.0
+#FROM ubuntu:20.04
 # a little smaller image
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 debian:10-slim
+FROM debian:10-slim
 
 LABEL org.opencontainers.image.description="Git + Kustomize minimal docker image" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

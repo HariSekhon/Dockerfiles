@@ -12,9 +12,9 @@
 #
 
 # currently on Jessie which doesn't have OpenJDK 8 yet
-#FROM --platform=linux/amd64 debian:latest
+#FROM debian:latest
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 debian:stretch
+FROM debian:stretch
 
 LABEL org.opencontainers.image.description="Java + Debian (OpenJDK)" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

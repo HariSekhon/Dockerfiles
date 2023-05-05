@@ -14,9 +14,9 @@
 
 # can't base off Cassandra as it's missing deps to run the tools
 # and official Cassandra versions only go back to 2.1 and miss in between versions like 3.5, 3.6 which I still test against
-#FROM --platform=linux/amd64 cassandra:latest
+#FROM cassandra:latest
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/nagios-plugins:alpine
+FROM harisekhon/nagios-plugins:alpine
 
 LABEL org.opencontainers.image.description="Cassandra + Dev Tools / Nagios Plugins" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/fedora-java:jdk8
+FROM harisekhon/fedora-java:jdk8
 
 ARG SCALA_VERSION=2.10.6
 

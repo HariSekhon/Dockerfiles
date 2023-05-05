@@ -12,7 +12,7 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/github:centos
+FROM harisekhon/github:centos
 
 ARG HADOOP_VERSION=3.0.0
 

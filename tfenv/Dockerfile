@@ -22,7 +22,7 @@
 # pass TFENV_TERRAFORM_VERSION when running the container, otherwise will default to downloading the latest version of Terraform
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 alpine:3.12
+FROM alpine:3.12
 
 LABEL org.opencontainers.image.description="TFenv for Terraform" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

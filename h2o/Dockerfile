@@ -11,10 +11,10 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
-#FROM --platform=linux/amd64 harisekhon/centos-java:jre7
+#FROM harisekhon/centos-java:jre7
 # > 100MB smaller than centos
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 harisekhon/debian-java:jre7
+FROM harisekhon/debian-java:jre7
 
 ARG H2O_VERSION=3.10.0.3
 

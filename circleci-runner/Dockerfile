@@ -14,7 +14,7 @@
 # Ubuntu based image, so apt-get install dependencies
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM --platform=linux/amd64 circleci/runner:launch-agent
+FROM circleci/runner:launch-agent
 
 LABEL org.opencontainers.image.description="CircleCI Runner" \
       org.opencontainers.image.authors="Hari Sekhon (https://www.linkedin.com/in/HariSekhon)" \

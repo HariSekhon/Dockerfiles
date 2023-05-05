@@ -60,8 +60,14 @@ endif
 
 export DOCKER_BUILDKIT=1
 
+# for new M1 Macs which otherwise fail to build with errors like this:
+#
+#   AWS CLI version: qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+#
+#export DOCKER_DEFAULT_PLATFORM=linux/amd64
+#
 .PHONY: build
-build:
+build: export DOCKER_DEFAULT_PLATFORM = linux/amd64
 	@#@if docker buildx >/dev/null; then \
 	@#    docker buildx build -t $(REPO_TAG) . ; \
 	@#else \

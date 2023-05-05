@@ -64,10 +64,14 @@ export DOCKER_BUILDKIT=1
 #
 #   AWS CLI version: qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
 #
-#export DOCKER_DEFAULT_PLATFORM=linux/amd64
-#
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 .PHONY: build
-build: export DOCKER_DEFAULT_PLATFORM = linux/amd64
+build:
+	@echo "Docker Environment variables:"
+	@echo
+	@env | grep ^DOCKER || :
+	@echo
 	@#@if docker buildx >/dev/null; then \
 	@#    docker buildx build -t $(REPO_TAG) . ; \
 	@#else \

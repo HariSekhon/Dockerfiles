@@ -100,7 +100,7 @@ RUN yum install -y epel-release && \
         openldap-devel \
         mysql-devel && \
     yum autoremove -y && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh && \
     yum clean all && \
     rm -rf /var/cache/yum
 

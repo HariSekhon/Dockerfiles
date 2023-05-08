@@ -35,7 +35,7 @@ RUN bash -c ' \
         make \
         python3 \
         && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh \
     '
 
 USER circleci
@@ -44,4 +44,4 @@ USER circleci
 #run set -eux && \
 #    apt-get update && \
 #    apt-get install -y docker.io && \
-#    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+#    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh

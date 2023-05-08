@@ -47,4 +47,4 @@ curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull
 #export REPOS="nagios-plugins" OPTS="zookeeper" NO_TEST=1
 #curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/git_pull_make_repos.sh | bash
 
-curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh

@@ -42,14 +42,14 @@ RUN apt-get update && \
     echo "actions-runner ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     bin/installdependencies.sh && \
     chown -R actions-runner /actions-runner && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # adds nearly 500MB to the image size
 #run apt-get update && \
 #    apt-get install -y docker.io && \
-#    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh
+#    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh
 
 SHELL ["/bin/bash"]
 

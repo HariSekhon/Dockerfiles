@@ -85,7 +85,7 @@ RUN bash -c ' \
     #apt-get update && \
     #apt-get install -y maven && \
     apt-get autoremove -y && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/clean_caches.sh | sh \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh \
     '
 
 # Jython

@@ -243,15 +243,15 @@ postbuild: post-build
 
 .PHONY: mergemaster
 mergemaster:
-	bash-tools/git_merge_master.sh
+	bash-tools/git/git_merge_master.sh
 
 .PHONY: mergemasterpull
 mergemasterpull:
-	bash-tools/git_merge_master_pull.sh
+	bash-tools/git/git_merge_master_pull.sh
 
 .PHONY: mergeall
 mergeall:
-	bash-tools/git_merge_all.sh
+	bash-tools/git/git_merge_all.sh
 
 # this would apply to all recipes
 #.ONESHELL:

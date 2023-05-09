@@ -40,7 +40,7 @@ make test deep-clean
 # leave make it's needed for updates later
 #apk del make
 
-bash-tools/check_docker_clean.sh
+bash-tools/checks/check_docker_clean.sh
 
 # basic test for missing dependencies again
 tests/help.sh

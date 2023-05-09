@@ -40,7 +40,7 @@ apt-get autoremove -y
 
 apt-get clean
 
-bash-tools/check_docker_clean.sh
+bash-tools/checks/check_docker_clean.sh
 
 #EXT=pl make deep-clean test
 

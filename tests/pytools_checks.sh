@@ -26,7 +26,7 @@ export PROJECT=Dockerfiles
 
 # start time is run in here
 # shellcheck disable=SC1090
-. "$srcdir/../bash-tools/check_pytools.sh"
+. "$srcdir/../bash-tools/checks/check_pytools.sh"
 
 # set in check_pytools.sh
 # shellcheck disable=SC2154

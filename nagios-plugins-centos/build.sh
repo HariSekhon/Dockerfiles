@@ -67,7 +67,7 @@ yum clean all
 
 rm -rf /var/cache/yum
 
-bash-tools/check_docker_clean.sh
+bash-tools/checks/check_docker_clean.sh
 
 # basic test for missing dependencies again
 tests/help.sh

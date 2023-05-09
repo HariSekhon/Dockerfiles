@@ -20,7 +20,7 @@ srcdir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$srcdir"
 
 # shellcheck disable=SC1090
-. "$srcdir/../bash-tools/utils.sh"
+. "$srcdir/../bash-tools/lib/utils.sh"
 
 section "Presto CLI - validating Development Versions"
 

@@ -22,7 +22,7 @@ cd "$srcdir"
 srcdir2="$srcdir"
 
 # shellcheck disable=SC1090
-. "$srcdir/../bash-tools/utils.sh"
+. "$srcdir/../bash-tools/lib/utils.sh"
 
 srcdir="$srcdir2"
 

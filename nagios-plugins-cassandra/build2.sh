@@ -36,4 +36,4 @@ yum clean all
 
 rm -rf /var/cache/yum
 
-"$bash_tools/check_docker_clean.sh"
+"$bash_tools/checks/check_docker_clean.sh"

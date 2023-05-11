@@ -24,7 +24,7 @@ if [ $# -gt 0 ]; then
     exec "$@"
 else
     for tuple in root,root hdfs,/home/hdfs yarn,/home/yarn; do
-        IFS=',' read x xhome <<< "${tuple}"
+        IFS=',' read -r x xhome <<< "${tuple}"
         if ! [ -f "$xhome/.ssh/id_rsa" ]; then
             su - "$x" <<-EOF
                 [ -n "${DEBUG:-}" ] && set -x
@@ -80,7 +80,7 @@ EOF
     mkdir -pv /hadoop/logs
 
     sed -i "s/localhost/$hostname/" /hadoop/etc/hadoop/core-site.xml
-#    rm -f /run/nologin
+
     start-dfs.sh
     start-yarn.sh
     tail -f /dev/null /hadoop/logs/*

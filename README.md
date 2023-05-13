@@ -62,6 +62,7 @@
 [![XML](https://github.com/HariSekhon/Dockerfiles/actions/workflows/xml.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/xml.yaml)
 [![Validation](https://github.com/HariSekhon/Dockerfiles/actions/workflows/validate.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/validate.yaml)
 [![Kics](https://github.com/HariSekhon/Dockerfiles/actions/workflows/kics.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/kics.yaml)
+[![Grype](https://github.com/HariSekhon/Dockerfiles/actions/workflows/grype.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/grype.yaml)
 [![Semgrep](https://github.com/HariSekhon/Dockerfiles/actions/workflows/semgrep.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/semgrep.yaml)
 [![Semgrep Cloud](https://github.com/HariSekhon/Dockerfiles/actions/workflows/semgrep-cloud.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/semgrep-cloud.yaml)
 [![Trivy](https://github.com/HariSekhon/Dockerfiles/actions/workflows/trivy.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/trivy.yaml)

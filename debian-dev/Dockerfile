@@ -91,7 +91,7 @@ RUN bash -c ' \
     '
 
 # Gradle in Debian was old 1.5
-#RUN bash -c 'set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh | sh'
+#RUN bash -c 'set -euxo pipefail && curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_gradle.sh | sh'
 
 # Jython
 RUN set -eux && \

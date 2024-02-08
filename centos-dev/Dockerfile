@@ -92,7 +92,7 @@ RUN bash -c ' \
     jwhois; do \
         rpm -q "$x" >/dev/null || yum install -y "$x" || :; \
     done; \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | bash -x && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_sbt.sh | bash -x && \
     yum autoremove -y && \
     yum clean all && \
     rm -rf /var/cache/yum && \
@@ -102,7 +102,7 @@ RUN bash -c ' \
 
 # Gradle doesn't have an RPM :-(
 RUN set -eux && \
-    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh && \
+    wget https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_gradle.sh && \
     bash install_gradle.sh && \
     rm -f install_gradle.sh
 

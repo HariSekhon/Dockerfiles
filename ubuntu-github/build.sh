@@ -20,7 +20,7 @@ mkdir -pv /github
 
 cd /github
 
-curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | bash
+curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_sbt.sh | bash
 
 if [ -n "$*" ]; then
     export REPOS="$*"

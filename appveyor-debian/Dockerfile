@@ -26,8 +26,8 @@ RUN bash -c ' \
     set -euxo pipefail && \
     apt-get update && \
     apt-get install -y curl && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_powershell_debian.sh | bash && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_appveyor_byoc.sh | bash && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/install/install_powershell_debian.sh | bash && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/install/install_appveyor_byoc.sh | bash && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh \
     '
 

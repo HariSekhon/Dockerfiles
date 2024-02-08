@@ -86,20 +86,20 @@ SHELL ["/bin/bash", "-euxo", "pipefail"]
 # didn't have Gradle / Groovy / Maven / SBT packages ...
 
 # Maven - has package now
-#RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_maven.sh | sh
+#RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_maven.sh | sh
 
 # Gradle - has package now
-#RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_gradle.sh | sh
+#RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_gradle.sh | sh
 
 WORKDIR /opt
 
 # SBT
-RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_sbt.sh | sh
+RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_sbt.sh | sh
 
 WORKDIR /
 
 # Groovy
-RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/setup/install_groovy.sh | sh
+RUN curl https://raw.githubusercontent.com/HariSekhon/bash-tools/master/install/install_groovy.sh | sh
 
 # Jython
 # hadolint ignore=DL4001

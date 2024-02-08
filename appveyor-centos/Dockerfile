@@ -23,8 +23,8 @@ LABEL org.opencontainers.image.description="AppVeyor BYOC Agent" \
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 
 RUN yum install -y curl && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_powershell_rhel.sh | bash && \
-    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/install_appveyor_byoc.sh | bash && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/install/install_powershell_rhel.sh | bash && \
+    curl -sS https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/install/install_appveyor_byoc.sh | bash && \
     curl -sS https://raw.githubusercontent.com/HariSekhon/bash-tools/master/bin/clean_caches.sh | sh
 
 COPY entrypoint.sh /

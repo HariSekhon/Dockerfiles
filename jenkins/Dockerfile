@@ -11,6 +11,18 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# Use JCasC to do this instead now
+#
+# See:
+#
+#   https://github.com/HariSekhon/Kubernetes-configs/blob/master/jenkins/base/values.yaml
+#
+
+# and execute everything in dynamically spawned Kubernetes pod agents using docker images containing everything you need
+#
+#   - see https://github.com/HariSekhon/Kubernetes-configs/blob/master/jenkins/base/jenkins-agent-pod.yaml
+#   - and adjacent docker-image-jenkins for deriving your own custom docker image from the default jenkins agent on debian
+
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
 FROM jenkins/jenkins:lts
 

@@ -12,9 +12,9 @@
 #
 
 # nosemgrep: dockerfile.audit.dockerfile-source-not-pinned.dockerfile-source-not-pinned
-FROM jenkins/inbound-agent:4.6-1
+FROM jenkins/inbound-agent:latest-bookworm
 
-ARG JENKINS_AGENT_VERSION=4.6
+ARG JENKINS_AGENT_VERSION=latest-bookworm
 
 LABEL org.opencontainers.image.description="Jenkins inbound-agent with PHP + New Relic" \
       org.opencontainers.image.version="$JENKINS_AGENT_VERSION" \

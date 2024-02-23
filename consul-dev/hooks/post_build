@@ -89,7 +89,7 @@ if ! grep ':' <<< "$IMAGE_NAME";  then
         echo "ERROR: failed to determine current tag from Dockerfile!"
         exit 1
     fi
-    if [ "$current_tag" != "latest" ]; then
+    if [[ "$current_tag" =~ \. ]]; then
         current_tag="$(awk -F. '{print $1"."$2}' <<< "$current_tag")"
     fi
     if [ "$docker_branch_base" = "kafka" ]; then

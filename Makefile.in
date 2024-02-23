@@ -21,7 +21,7 @@ endif
 
 ifndef TAG
 	# take explicit tag from Makefile if present otherwise infer tag from first ARG *_VERSION=N.N in Dockerfile
-	TAG := $(shell { perl -n -e '/REPO.*\w+\/\w+:(\d+\.\d+|\w+)/ && &{print "$1\n"; exit}' Makefile; perl -n -e '/^\s*ARG\s+.+_VERSION\s*=\s*"?(\d+\.\d+|latest)"?/ && &{ print $$1; exit }; /^\s*ARG\s+.*RELEASE\s*=\s*"?([^"]*)"?/ && &{ print $$1; exit }' Dockerfile; } | head -n1)
+	TAG := $(shell { perl -n -e '/REPO.*\w+\/\w+:(\d+\.\d+|\w+)/ && &{print "$1\n"; exit}' Makefile; perl -n -e '/^\s*ARG\s+.*(?:VERSION|RELEASE)\s*=\s*"?([^"]*)"?/ && &{ print $$1; exit }' Dockerfile; } | head -n1)
 endif
 
 ifndef REPO

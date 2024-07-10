@@ -304,7 +304,14 @@ build-github:
 status:
 	@tests/check_dockerhub_statuses.sh
 
-# Nice trick I've used to build docker images and auto-tag them with the path and git commit and optional dirty checksum suffix
+# build a locally named obvious docker image with the git checkout dir and subdirectories for testing purposes
+# -  with a tag of the Git Commit Short Sha of this current commit +
+# - a unique checksum of the list of files changed as a 'dirty' differentiator
+# - to compare the different resulting docker image sizes from
+# - the current commit's version of the Dockerfile
+#     vs
+# - the currently modified Dockerfile
+#
 #.PHONY: docker-build-hash
 #docker-build-hash:
 #    set -euxo pipefail; \
@@ -317,3 +324,4 @@ status:
 #        dirty="-dirty-$$(git status --porcelain | md5sum | cut -c 1-7)"; \
 #    fi; \
 #    docker build . -t "$${image_name}:$${git_commit_short_sha}$${dirty}"
+#

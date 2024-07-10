@@ -312,8 +312,8 @@ status:
 #     vs
 # - the currently modified Dockerfile
 #
-#.PHONY: docker-build-hash
-#docker-build-hash:
+#.PHONY: docker-build-autotag
+#docker-build-autotag:
 #    set -euxo pipefail; \
 #    git_commit_short_sha="$$(git rev-parse --short HEAD)"; \
 #    git_root="$$(git rev-parse --show-toplevel)"; \

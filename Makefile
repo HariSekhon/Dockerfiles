@@ -305,7 +305,7 @@ status:
 	@tests/check_dockerhub_statuses.sh
 
 # build a locally named obvious docker image with the git checkout dir and subdirectories for testing purposes
-# -  with a tag of the Git Commit Short Sha of this current commit +
+# -  with a tag of the Git Commit Short Sha hashref of this current commit +
 # - a unique checksum of the list of files changed as a 'dirty' differentiator
 # - to compare the different resulting docker image sizes from
 # - the current commit's version of the Dockerfile

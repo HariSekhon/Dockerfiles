@@ -303,3 +303,17 @@ build-github:
 .PHONY: status
 status:
 	@tests/check_dockerhub_statuses.sh
+
+# Nice trick I've used to build docker images and auto-tag them with the path and git commit and optional dirty checksum suffix
+#.PHONY: docker-build-hash
+#docker-build-hash:
+#    set -euxo pipefail; \
+#    git_commit_short_sha="$$(git rev-parse --short HEAD)"; \
+#    git_root="$$(git rev-parse --show-toplevel)"; \
+#    git_root_dir="$${git_root##*/}"; \
+#    git_path="$${git_root_dir}/$${PWD##$$git_root/}"; \
+#    image_name="$${git_path////--}"; \
+#    if git status --porcelain | grep -q . ; then \
+#        dirty="-dirty-$$(git status --porcelain | md5sum | cut -c 1-7)"; \
+#    fi; \
+#    docker build . -t "$${image_name}:$${git_commit_short_sha}$${dirty}"

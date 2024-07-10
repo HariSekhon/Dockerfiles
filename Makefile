@@ -320,6 +320,7 @@ status:
 #    git_root_dir="$${git_root##*/}"; \
 #    git_path="$${git_root_dir}/$${PWD##$$git_root/}"; \
 #    image_name="$${git_path////--}"; \
+#    dirty=""; \
 #    if git status --porcelain | grep -q . ; then \
 #        dirty="-dirty-$$(git status --porcelain | md5sum | cut -c 1-7)"; \
 #    fi; \

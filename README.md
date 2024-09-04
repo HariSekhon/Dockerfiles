@@ -5,7 +5,7 @@
 [![Contributors](https://img.shields.io/github/contributors/HariSekhon/Dockerfiles?logo=github)](https://github.com/HariSekhon/Dockerfiles/graphs/contributors)
 [![Lines of Code](https://img.shields.io/badge/lines%20of%20code-8k-lightgrey?logo=codecademy)](https://github.com/HariSekhon/Dockerfiles)
 [![License](https://img.shields.io/github/license/HariSekhon/Dockerfiles)](https://github.com/HariSekhon/Dockerfiles/blob/master/LICENSE)
-[![My LinkedIn](https://img.shields.io/badge/LinkedIn%20Profile-HariSekhon-blue?logo=linkedin)](https://www.linkedin.com/in/HariSekhon/)
+[![My LinkedIn](https://img.shields.io/badge/LinkedIn%20Profile-HariSekhon-blue?logo=data:image/svg%2bxml;base64,PHN2ZyByb2xlPSJpbWciIGZpbGw9IiNmZmZmZmYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+TGlua2VkSW48L3RpdGxlPjxwYXRoIGQ9Ik0yMC40NDcgMjAuNDUyaC0zLjU1NHYtNS41NjljMC0xLjMyOC0uMDI3LTMuMDM3LTEuODUyLTMuMDM3LTEuODUzIDAtMi4xMzYgMS40NDUtMi4xMzYgMi45Mzl2NS42NjdIOS4zNTFWOWgzLjQxNHYxLjU2MWguMDQ2Yy40NzctLjkgMS42MzctMS44NSAzLjM3LTEuODUgMy42MDEgMCA0LjI2NyAyLjM3IDQuMjY3IDUuNDU1djYuMjg2ek01LjMzNyA3LjQzM2MtMS4xNDQgMC0yLjA2My0uOTI2LTIuMDYzLTIuMDY1IDAtMS4xMzguOTItMi4wNjMgMi4wNjMtMi4wNjMgMS4xNCAwIDIuMDY0LjkyNSAyLjA2NCAyLjA2MyAwIDEuMTM5LS45MjUgMi4wNjUtMi4wNjQgMi4wNjV6bTEuNzgyIDEzLjAxOUgzLjU1NVY5aDMuNTY0djExLjQ1MnpNMjIuMjI1IDBIMS43NzFDLjc5MiAwIDAgLjc3NCAwIDEuNzI5djIwLjU0MkMwIDIzLjIyNy43OTIgMjQgMS43NzEgMjRoMjAuNDUxQzIzLjIgMjQgMjQgMjMuMjI3IDI0IDIyLjI3MVYxLjcyOUMyNCAuNzc0IDIzLjIgMCAyMi4yMjIgMGguMDAzeiIvPjwvc3ZnPgo=)](https://www.linkedin.com/in/HariSekhon/)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/HariSekhon/Dockerfiles?logo=github)](https://github.com/HariSekhon/Dockerfiles/commits/master)
 
 [![Codacy](https://api.codacy.com/project/badge/Grade/de6229f2d2ba4945acde9f86f59d2c66)](https://app.codacy.com/gh/HariSekhon/Dockerfiles/dashboard)
@@ -87,7 +87,7 @@
 
 [git.io/dockerhub](https://git.io/dockerhub)
 
-##### Contains 50+ DockerHub repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down.
+**Contains 50+ DockerHub repos with 340+ tags, many different versions of standard official open source software, see [Full Inventory](https://github.com/HariSekhon/Dockerfiles#full-inventory) futher down**
 
 These docker images are tested by hundreds of tools and also used in the full functional test suites of various other GitHub repos.
 
@@ -115,19 +115,19 @@ Cloud & Big Data Contractor, United Kingdom
 
 (ex-Cloudera, former Hortonworks Consultant)
 
-[![My LinkedIn](https://img.shields.io/badge/LinkedIn%20Profile-HariSekhon-blue?logo=linkedin)](https://www.linkedin.com/in/HariSekhon/)
-###### (you're welcome to connect with me on LinkedIn)
+[![My LinkedIn](https://img.shields.io/badge/LinkedIn%20Profile-HariSekhon-blue?logo=data:image/svg%2bxml;base64,PHN2ZyByb2xlPSJpbWciIGZpbGw9IiNmZmZmZmYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+TGlua2VkSW48L3RpdGxlPjxwYXRoIGQ9Ik0yMC40NDcgMjAuNDUyaC0zLjU1NHYtNS41NjljMC0xLjMyOC0uMDI3LTMuMDM3LTEuODUyLTMuMDM3LTEuODUzIDAtMi4xMzYgMS40NDUtMi4xMzYgMi45Mzl2NS42NjdIOS4zNTFWOWgzLjQxNHYxLjU2MWguMDQ2Yy40NzctLjkgMS42MzctMS44NSAzLjM3LTEuODUgMy42MDEgMCA0LjI2NyAyLjM3IDQuMjY3IDUuNDU1djYuMjg2ek01LjMzNyA3LjQzM2MtMS4xNDQgMC0yLjA2My0uOTI2LTIuMDYzLTIuMDY1IDAtMS4xMzguOTItMi4wNjMgMi4wNjMtMi4wNjMgMS4xNCAwIDIuMDY0LjkyNSAyLjA2NCAyLjA2MyAwIDEuMTM5LS45MjUgMi4wNjUtMi4wNjQgMi4wNjV6bTEuNzgyIDEzLjAxOUgzLjU1NVY5aDMuNTY0djExLjQ1MnpNMjIuMjI1IDBIMS43NzFDLjc5MiAwIDAgLjc3NCAwIDEuNzI5djIwLjU0MkMwIDIzLjIyNy43OTIgMjQgMS43NzEgMjRoMjAuNDUxQzIzLjIgMjQgMjQgMjMuMjI3IDI0IDIyLjI3MVYxLjcyOUMyNCAuNzc0IDIzLjIgMCAyMi4yMjIgMGguMDAzeiIvPjwvc3ZnPgo=)](https://www.linkedin.com/in/HariSekhon/)
+<br>*(you're welcome to connect with me on LinkedIn)*
 
-### Ready to run Docker images
+## Ready to run Docker images
 
-```
+```shell
 docker search harisekhon
 docker run harisekhon/nagios-plugins
 ```
 
 To see more than the 25 DockerHub repos limited by ```docker search``` ([docker issue 23055](https://github.com/docker/docker/issues/23055)) I wrote ```dockerhub_search.py``` using the DockerHub API, available in my [DevOps Python Tools github repo](https://github.com/HariSekhon/DevOps-Python-tools) and as a pre-built docker image:
 
-```
+```shell
 docker run harisekhon/pytools dockerhub_search.py harisekhon
 ```
 
@@ -135,43 +135,43 @@ There are lots of tagged versions of official software in my repos to allow deve
 
 DockerHub tags are not shown by ```docker search``` ([docker issue 17238](https://github.com/docker/docker/issues/17238)) so I wrote ```dockerhub_show_tags.py``` available in my [DevOps Python Tools github repo](https://github.com/HariSekhon/DevOps-Python-tools) and as a pre-built docker image - eg. to see an organized list of all CentOS tags:
 
-```
+```shell
 docker run harisekhon/pytools dockerhub_show_tags.py centos
 ```
 
 For service technologies like Hadoop, HBase, ZooKeeper etc for which you'll also want port mappings, each directory in the [GitHub project](https://github.com/HariSekhon/Dockerfiles) contains both a standard ` docker-compose ` configuration as well as a ` make run ` shortcut (which doesn't require ` docker-compose ` to be installed) - either way you don't have to remember all the command line switches and port number specifics:
 
-```
+```shell
 cd zookeeper
 docker-compose up
 ```
 
 or for technologies with interactive shells like Spark, ZooKeeper, HBase, Drill, Cassandra where you want to be dropped in to an interactive shell, use the ` make run ` shortcut instead:
 
-```
+```shell
 cd zookeeper
 make run
 ```
 
 which is much easier to type and remember than the equivalent bigger commands like:
 
-```
+```shell
 docker run -ti -p 2181:2181 harisekhon/zookeeper
 ```
 
 and avoid this for more complex services like Hadoop / HBase:
 
-```
+```shell
 docker run -ti -p 2181:2181 -p 8080:8080 -p 8085:8085 -p 9090:9090 -p 9095:9095 -p 16000:16000 -p 16010:16010 -p 16201:16201 -p 16301:16301 harisekhon/hbase
 ```
 
-```
+```shell
 docker run -ti -p 8020:8020 -p 8032:8032 -p 8088:8088 -p 9000:9000 -p 10020:10020 -p 19888:19888 -p 50010:50010 -p 50020:50020 -p 50070:50070 -p 50075:50075 -p 50090:50090 harisekhon/hadoop
 ```
 
 ### Full Inventory
 
-##### Official Standard Open Source Technologies
+### Official Standard Open Source Technologies
 
 More specific information can be found in the readme page under each respective directory in the [Dockerfiles git repo](https://github.com/HariSekhon/Dockerfiles).
 
@@ -212,23 +212,23 @@ More specific information can be found in the readme page under each respective 
 
 Repos suffixed with ```-dev``` are the official technologies + development & debugging tools + my github repos with all dependencies pre-built.
 
-##### My GitHub Repos (with all libs + deps pre-built)
+### My GitHub Repos (with all libs + deps pre-built)
 
 You might like this Dockerfile trick for busting the Docker cache to get the latest repo updates:
 
-```
+```Dockerfile
 # Cache Bust upon new commits
 ADD https://api.github.com/repos/HariSekhon/DevOps-Bash-tools/git/refs/heads/master /.git-hashref
 ```
 
 - [Advanced Nagios Plugins Collection](https://github.com/HariSekhon/Nagios-Plugins) - 450+ nagios plugins for every Hadoop distribution and every major NoSQL technology - Hadoop, Redis, Elasticsearch, Solr, HBase, Cassandra & DataStax OpsCenter, MongoDB, MySQL, Kafka, Riak, Memcached, Couchbase, CouchDB, Mesos, Spark, Neo4j, Datameer, H2O, WanDisco, Yarn, HDFS, Impala, Apache Drill, Presto, ZooKeeper, Cloudera, Hortonworks, MapR, IBM BigInsights, Infrastructure - Linux, DNS, Whois, SSL Certs etc
-    - [![DockerHub Nagios Plugins Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Aalpine-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
-    - [![DockerHub Nagios Plugins Centos](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Acentos-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins) [![DockerHub Nagios Plugins Latest](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Alatest-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
-    - [![DockerHub Nagios Plugins Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Adebian-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
-    - [![DockerHub Nagios Plugins Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
-    - [![DockerHub Nagios Plugins Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
-    - [![DockerHub Nagios Plugins Perl](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Aperl-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
-    - [![DockerHub Nagios Plugins Python](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Apython-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
+  - [![DockerHub Nagios Plugins Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Aalpine-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
+  - [![DockerHub Nagios Plugins Centos](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Acentos-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins) [![DockerHub Nagios Plugins Latest](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Alatest-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
+  - [![DockerHub Nagios Plugins Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Adebian-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
+  - [![DockerHub Nagios Plugins Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
+  - [![DockerHub Nagios Plugins Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
+  - [![DockerHub Nagios Plugins Perl](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Aperl-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
+  - [![DockerHub Nagios Plugins Python](https://img.shields.io/badge/DockerHub-harisekhon%2Fnagios--plugins%3Apython-blue)](https://hub.docker.com/repository/docker/harisekhon/nagios-plugins)
 - `harisekhon/tools` - DevOps Tools superset of the below images, containing hundreds of programs:
   - [![DockerHub PyTools](https://img.shields.io/badge/DockerHub-harisekhon%2Fpytools-blue)](https://hub.docker.com/repository/docker/harisekhon/pytools) - [DevOps Python Tools](https://github.com/HariSekhon/DevOps-Python-tools) - 80+ DevOps CLI tools tools for AWS, Log Anonymizer, Spark, Hadoop, HBase, Hive, Impala, Linux, Docker, Spark Data Converters & Validators (Avro/Parquet/JSON/CSV/INI/XML/YAML), Travis CI, Ambari, Blueprints, CloudFormation, Elasticsearch, Solr, Pig etc.
   - [![DockerHub Bash Tools](https://img.shields.io/badge/DockerHub-harisekhon%2Fbash--tools-blue)](https://hub.docker.com/repository/docker/harisekhon/bash-tools) - [DevOps Bash Tools](https://github.com/HariSekhon/DevOps-Bash-tools) - 750+ DevOps CLI tools for AWS, GCP, Kubernetes, Hadoop, Hive, Impala, Kafka, Docker, LDAP, Git, Code & build linting, package management for Linux / Mac / Python / Perl / Ruby / NodeJS / Golang, and lots more random goodies
@@ -251,17 +251,17 @@ Available as both `harisekhon/github:<distro>` and `harisekhon/<distro>-github` 
 [![Docker Build GitHub Fedora](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_fedora.yaml)
 [![Docker Build GitHub Ubuntu](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_github_ubuntu.yaml)
 
-  - [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--github-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-github)
-    [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aalpine-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--github-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-github)
-    [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Acentos-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--github-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-github)
-    [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Adebian-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--github-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-github)
-    [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-  - [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--github-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)
-    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
-    [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Alatest-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+- [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Falpine--github-blue)](https://hub.docker.com/repository/docker/harisekhon/alpine-github)
+  [![DockerHub GitHub Alpine](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aalpine-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+- [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fcentos--github-blue)](https://hub.docker.com/repository/docker/harisekhon/centos-github)
+  [![DockerHub GitHub CentOS](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Acentos-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+- [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fdebian--github-blue)](https://hub.docker.com/repository/docker/harisekhon/debian-github)
+  [![DockerHub GitHub Debian](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Adebian-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+- [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Ffedora--github-blue)](https://hub.docker.com/repository/docker/harisekhon/fedora-github)
+  [![DockerHub GitHub Fedora](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Afedora-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+- [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fubuntu--github-blue)](https://hub.docker.com/repository/docker/harisekhon/ubuntu-github)
+  [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Aubuntu-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
+  [![DockerHub GitHub Ubuntu](https://img.shields.io/badge/DockerHub-harisekhon%2Fgithub%3Alatest-blue)](https://hub.docker.com/repository/docker/harisekhon/github)
 
 #### Base Images
 
@@ -287,7 +287,7 @@ Available as both `harisekhon/<distro>-dev` and `harisekhon/dev:<distro>`
 
 All builds use OpenJDK with ```jre``` and ```jdk``` numbered tags. See this article below for why it might be illegal to bundle Oracle Java (and why no Linux distributions do this either):
 
-https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html
+<https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.html>
 
 [![Docker Build Alpine Java](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_alpine_java.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_alpine_java.yaml)
 [![Docker Build CentOS Java](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_centos_java.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/docker_build_centos_java.yaml)
@@ -307,7 +307,7 @@ https://www.javacodegeeks.com/2016/03/running-java-docker-youre-breaking-law.htm
 
 All images come pre-built on [DockerHub](https://hub.docker.com/u/harisekhon/) but if you want to compile from source for any reason such as developing improvements, I've made this easy to do:
 
-```
+```shell
 git clone https://github.com/HariSekhon/Dockerfiles
 
 cd Dockerfiles
@@ -315,13 +315,13 @@ cd Dockerfiles
 
 To build all Docker images, just run the ```make``` command at the top level:
 
-```
+```shell
 make
 ```
 
 To build a specific Docker image, enter its directory and run `make`:
 
-```
+```shell
 cd nagios-plugins
 
 make
@@ -329,7 +329,7 @@ make
 
 You can also build a specific version by checking out the git branch for the version and running the build:
 
-```
+```shell
 cd consul
 git checkout consul-0.9
 make
@@ -337,7 +337,7 @@ make
 
 or build all versions of a given software project like so:
 
-```
+```shell
 cd hadoop
 make build-versions
 ```
@@ -346,42 +346,81 @@ See the top level `Makefile` as well as the `Makefile.in` which is sourced per p
 
 ### Support
 
-Please raise tickets for issues and improvements at https://github.com/HariSekhon/Dockerfiles/issues
-
-## Related Repositories
-
-- [HashiCorp Packer templates](https://github.com/HariSekhon/Packer-templates) - Linux automated bare-metal installs and portable virtual machines OVA format appliances using HashiCorp Packer, Redhat Kickstart, Debian Preseed and Ubuntu AutoInstaller / Cloud-Init
-
-- [DevOps Bash Tools](https://github.com/HariSekhon/DevOps-Bash-tools) - 1000+ DevOps Bash Scripts, Advanced `.bashrc`, `.vimrc`, `.screenrc`, `.tmux.conf`, `.gitconfig`, CI configs & Utility Code Library - AWS, GCP, Kubernetes, Docker, Kafka, Hadoop, SQL, BigQuery, Hive, Impala, PostgreSQL, MySQL, LDAP, DockerHub, Jenkins, Spotify API & MP3 tools, Git tricks, GitHub API, GitLab API, BitBucket API, Code & build linting, package management for Linux / Mac / Python / Perl / Ruby / NodeJS / Golang, and lots more random goodies
-
-- [SQL Scripts](https://github.com/HariSekhon/SQL-scripts) - 100+ SQL Scripts - PostgreSQL, MySQL, AWS Athena, Google BigQuery
-
-- [Jenkins](https://github.com/HariSekhon/Jenkins) - Advanced Jenkinsfile & Jenkins Groovy Shared Library
-
-- [GitHub-Actions](https://github.com/HariSekhon/GitHub-Actions) - GitHub Actions master template & GitHub Actions Shared Workflows library
-
-- [Templates](https://github.com/HariSekhon/Templates) - dozens of Code & Config templates - AWS, GCP, Docker, Jenkins, Terraform, Vagrant, Puppet, Python, Bash, Go, Perl, Java, Scala, Groovy, Maven, SBT, Gradle, Make, GitHub Actions Workflows, CircleCI, Jenkinsfile, Makefile, Dockerfile, docker-compose.yml, M4 etc.
-
-- [Kubernetes configs](https://github.com/HariSekhon/Kubernetes-configs) - Kubernetes YAML configs - Best Practices, Tips & Tricks are baked right into the templates for future deployments
-
-- [Terraform](https://github.com/HariSekhon/Terraform) - Terraform templates for AWS / GCP / Azure / GitHub management
-
-- [DevOps Python Tools](https://github.com/HariSekhon/DevOps-Python-tools) - 80+ DevOps CLI tools for AWS, GCP, Hadoop, HBase, Spark, Log Anonymizer, Ambari Blueprints, AWS CloudFormation, Linux, Docker, Spark Data Converters & Validators (Avro / Parquet / JSON / CSV / INI / XML / YAML), Elasticsearch, Solr, Travis CI, Pig, IPython
-
-- [DevOps Perl Tools](https://github.com/harisekhon/perl-tools) - 25+ DevOps CLI tools for Hadoop, HDFS, Hive, Solr/SolrCloud CLI, Log Anonymizer, Nginx stats & HTTP(S) URL watchers for load balanced web farms, Dockerfiles & SQL ReCaser (MySQL, PostgreSQL, AWS Redshift, Snowflake, Apache Drill, Hive, Impala, Cassandra CQL, Microsoft SQL Server, Oracle, Couchbase N1QL, Dockerfiles, Pig Latin, Neo4j, InfluxDB), Ambari FreeIPA Kerberos, Datameer, Linux...
-
-- [The Advanced Nagios Plugins Collection](https://github.com/HariSekhon/Nagios-Plugins) - 450+ programs for Nagios monitoring your Hadoop & NoSQL clusters. Covers every Hadoop vendor's management API and every major NoSQL technology (HBase, Cassandra, MongoDB, Elasticsearch, Solr, Riak, Redis etc.) as well as message queues (Kafka, RabbitMQ), continuous integration (Jenkins, Travis CI) and traditional infrastructure (SSL, Whois, DNS, Linux)
-
-- [Nagios Plugin Kafka](https://github.com/HariSekhon/Nagios-Plugin-Kafka) - Kafka API pub/sub Nagios Plugin written in Scala with Kerberos support
-
-- [HAProxy Configs](https://github.com/HariSekhon/HAProxy-configs) - 80+ HAProxy Configs for Hadoop, Big Data, NoSQL, Docker, Elasticsearch, SolrCloud, HBase, Cloudera, Hortonworks, MapR, MySQL, PostgreSQL, Apache Drill, Hive, Presto, Impala, ZooKeeper, OpenTSDB, InfluxDB, Prometheus, Kibana, Graphite, SSH, RabbitMQ, Redis, Riak, Rancher etc.
-
-- [Diagrams-as-Code](https://github.com/HariSekhon/Diagrams-as-Code) - Cloud & Open Source architecture diagrams with Python & D2 source code provided - automatically regenerated via GitHub Actions CI/CD - AWS, GCP, Kubernetes, Jenkins, ArgoCD, Traefik, Kong API Gateway, Nginx, Redis, PostgreSQL, Kafka, Spark, web farms, event processing...
-
-- [Knowledge-Base](https://github.com/HariSekhon/Knowledge-Base) - IT Knowledge Base from 20 years in DevOps, Linux, Cloud, Big Data, AWS, GCP etc.
+Please raise tickets for issues and improvements at <https://github.com/HariSekhon/Dockerfiles/issues>
 
 ### Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/HariSekhon/Dockerfiles.svg)](https://starchart.cc/HariSekhon/Dockerfiles)
 
 [git.io/dockerhub](https://git.io/dockerhub)
+
+## More Core Repos
+
+<!-- OTHER_REPOS_START -->
+
+### Knowledge
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Knowledge-Base&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Knowledge-Base)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Diagrams-as-Code&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Diagrams-as-Code)
+
+<!--
+
+Not support on GitHub Markdown:
+
+<iframe src="https://raw.githubusercontent.com/HariSekhon/HariSekhon/main/knowledge.md" width="100%" height="500px"></iframe>
+
+Does nothing:
+
+<embed src="https://raw.githubusercontent.com/HariSekhon/HariSekhon/main/knowledge.md" width="100%" height="500px" />
+
+-->
+
+### DevOps Code
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=DevOps-Bash-tools&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/DevOps-Bash-tools)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=DevOps-Python-tools&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/DevOps-Python-tools)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=DevOps-Perl-tools&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/DevOps-Perl-tools)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=DevOps-Golang-tools&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/DevOps-Golang-tools)
+
+<!--
+[![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=f8f551332440f1ca8897ff010e363e03)](https://gist.github.com/HariSekhon/f8f551332440f1ca8897ff010e363e03)
+-->
+
+### Containerization
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Kubernetes-configs&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Kubernetes-configs)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Dockerfiles&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Dockerfiles)
+
+### CI/CD
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=GitHub-Actions&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/GitHub-Actions)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Jenkins&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Jenkins)
+
+### DBA - SQL
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=SQL-scripts&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/SQL-scripts)
+
+### DevOps Reloaded
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Nagios-Plugins&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Nagios-Plugins)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=HAProxy-configs&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/HAProxy-configs)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Templates&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Templates)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Terraform&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Terraform)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Packer-templates&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Packer-templates)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Nagios-Plugin-Kafka&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Nagios-Plugin-Kafka)
+
+### Misc
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Template-repo&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Template-repo)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Spotify-tools&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Spotify-tools)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=HariSekhon&repo=Spotify-playlists&theme=ambient_gradient&description_lines_count=3)](https://github.com/HariSekhon/Spotify-playlists)
+
+The rest of my original source repos are
+[here](https://github.com/HariSekhon?tab=repositories&q=&type=source&language=&sort=stargazers).
+
+Pre-built Docker images are available on my [DockerHub](https://hub.docker.com/u/harisekhon/).
+
+<!-- 1x1 pixel counter to record hits -->
+![](https://hit.yhype.me/github/profile?user_id=2211051)
+
+<!-- OTHER_REPOS_END -->

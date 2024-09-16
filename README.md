@@ -348,9 +348,9 @@ See the top level `Makefile` as well as the `Makefile.in` which is sourced per p
 
 Please raise tickets for issues and improvements at <https://github.com/HariSekhon/Dockerfiles/issues>
 
-### Stargazers over time
+## Star History
 
-[![Stargazers over time](https://starchart.cc/HariSekhon/Dockerfiles.svg)](https://starchart.cc/HariSekhon/Dockerfiles)
+[![Star History Chart](https://api.star-history.com/svg?repos=HariSekhon/Dockerfiles&type=Date)](https://star-history.com/#HariSekhon/Dockerfiles&Date)
 
 [git.io/dockerhub](https://git.io/dockerhub)
 

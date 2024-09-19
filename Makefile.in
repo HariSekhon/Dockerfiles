@@ -242,6 +242,7 @@ build-script:
 		-w /code \
 		-e path="$$path" \
 		-e DEBUG="$$DEBUG" \
+		-e NO_TESTS=1 \
 		"$$(awk '/^FROM /{print $$2; exit}' Dockerfile)" \
 		sh -c 'export PATH="$$PATH:$$path"; ./build.sh; if type bash >/dev/null 2>&1; then exec bash; else exec sh; fi'
 

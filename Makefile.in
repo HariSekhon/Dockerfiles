@@ -211,21 +211,38 @@ run-fg: runcmd-fg
 .PHONY: sh
 sh:
 	#make -e MAP_PORTS="" run
-	docker run -ti --rm -v $$PWD:/code --entrypoint sh $(REPO_TAG)
+	docker run -ti --rm -v "$$PWD:/code" --entrypoint sh "$(REPO_TAG)"
 
 .PHONY: bash
 bash:
 	#make -e MAP_PORTS="" run
-	docker run -ti --rm -v $$PWD:/code --entrypoint bash $(REPO_TAG)
+	docker run -ti --rm -v "$$PWD:/code" -w "$$PWD/code" --entrypoint bash "$(REPO_TAG)"
 
 .PHONY: test
 test:
 	#docker run -ti $(REPO) sh -c 'if test -f tests/all.sh; then tests/all.sh; fi;'
-	docker run -ti $(REPO) tests/all.sh
+	docker run -ti "$(REPO)" tests/all.sh
 
 .PHONY: interactive
 interactive:
-	docker run -ti --rm -v $$PWD:/code `awk '/^FROM /{print $$2; exit}' Dockerfile` sh
+	docker run -ti --rm \
+		-v "$$PWD:/code" \
+		-w /code \
+		"$$(awk '/^FROM /{print $$2; exit}' Dockerfile)" \
+		sh -c 'if type bash >/dev/null 2>&1; then exec bash; else exec sh; fi'
+
+.PHONY: build-script
+build-script:
+	path="$$(awk '/^[[:space:]]*ENV PATH / {print $$3}' Dockerfile)" && \
+	build_script="$$(awk '/^[[:space:]]*ADD .* \/build.sh/ {print $$2}' Dockerfile)" && \
+	wget -cO build.sh "$$build_script" && \
+	chmod +x build.sh && \
+	docker run -ti --rm \
+		-v "$$PWD:/code" \
+		-w /code \
+		-e path="$$path" \
+		"$$(awk '/^FROM /{print $$2; exit}' Dockerfile)" \
+		sh -c 'export PATH="$$PATH:$$path"; ./build.sh; if type bash >/dev/null 2>&1; then exec bash; else exec sh; fi'
 
 .PHONY: browse
 browse:

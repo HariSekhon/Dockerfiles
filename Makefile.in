@@ -245,6 +245,11 @@ build-script:
 		"$$(awk '/^FROM /{print $$2; exit}' Dockerfile)" \
 		sh -c 'export PATH="$$PATH:$$path"; ./build.sh; if type bash >/dev/null 2>&1; then exec bash; else exec sh; fi'
 
+.PHONY: build-debug
+build-debug:
+	export DEBUG=1 && \
+	$(MAKE) build-script
+
 .PHONY: browse
 browse:
 	@source $(BASH_TOOLS)/.bash.d/network.sh; browser "https://github.com/HariSekhon/Dockerfiles"

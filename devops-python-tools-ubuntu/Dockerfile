@@ -28,6 +28,53 @@ ENV DEBIAN_FRONTEND noninteractive
 # used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/pytools:/github/pytools/bash-tools
 
+ENV PATH $PATH:/github/pytools/bash-tools/ai
+ENV PATH $PATH:/github/pytools/bash-tools/appveyor
+ENV PATH $PATH:/github/pytools/bash-tools/aws
+ENV PATH $PATH:/github/pytools/bash-tools/azure_devops
+ENV PATH $PATH:/github/pytools/bash-tools/bigdata
+ENV PATH $PATH:/github/pytools/bash-tools/bin
+ENV PATH $PATH:/github/pytools/bash-tools/bitbucket
+ENV PATH $PATH:/github/pytools/bash-tools/buildkite
+ENV PATH $PATH:/github/pytools/bash-tools/checks
+ENV PATH $PATH:/github/pytools/bash-tools/cicd
+ENV PATH $PATH:/github/pytools/bash-tools/circleci
+ENV PATH $PATH:/github/pytools/bash-tools/cloudflare
+#ENV PATH $PATH:/github/pytools/bash-tools/codeship
+ENV PATH $PATH:/github/pytools/bash-tools/data
+ENV PATH $PATH:/github/pytools/bash-tools/docker
+ENV PATH $PATH:/github/pytools/bash-tools/drone
+ENV PATH $PATH:/github/pytools/bash-tools/gcp
+ENV PATH $PATH:/github/pytools/bash-tools/git
+ENV PATH $PATH:/github/pytools/bash-tools/github
+ENV PATH $PATH:/github/pytools/bash-tools/gitlab
+ENV PATH $PATH:/github/pytools/bash-tools/install
+ENV PATH $PATH:/github/pytools/bash-tools/ipaas
+ENV PATH $PATH:/github/pytools/bash-tools/java
+ENV PATH $PATH:/github/pytools/bash-tools/jenkins
+ENV PATH $PATH:/github/pytools/bash-tools/kafka
+ENV PATH $PATH:/github/pytools/bash-tools/kubernetes
+ENV PATH $PATH:/github/pytools/bash-tools/media
+ENV PATH $PATH:/github/pytools/bash-tools/mysql
+ENV PATH $PATH:/github/pytools/bash-tools/packages
+ENV PATH $PATH:/github/pytools/bash-tools/perl
+ENV PATH $PATH:/github/pytools/bash-tools/pingdom
+ENV PATH $PATH:/github/pytools/bash-tools/postgres
+ENV PATH $PATH:/github/pytools/bash-tools/python
+ENV PATH $PATH:/github/pytools/bash-tools/scripts
+ENV PATH $PATH:/github/pytools/bash-tools/search
+ENV PATH $PATH:/github/pytools/bash-tools/setup
+#ENV PATH $PATH:/github/pytools/bash-tools/shippable
+ENV PATH $PATH:/github/pytools/bash-tools/spotify
+ENV PATH $PATH:/github/pytools/bash-tools/sql
+ENV PATH $PATH:/github/pytools/bash-tools/teamcity
+ENV PATH $PATH:/github/pytools/bash-tools/templates
+ENV PATH $PATH:/github/pytools/bash-tools/terraform
+ENV PATH $PATH:/github/pytools/bash-tools/travis
+ENV PATH $PATH:/github/pytools/bash-tools/vagrant
+#ENV PATH $PATH:/github/pytools/bash-tools/wercker
+ENV PATH $PATH:/github/pytools/bash-tools/yamllint
+
 ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 
 RUN chmod +x /build.sh && NO_TESTS=1 /build.sh

@@ -55,6 +55,7 @@ ENV PATH $PATH:/github/pytools/bash-tools/jenkins
 ENV PATH $PATH:/github/pytools/bash-tools/kafka
 ENV PATH $PATH:/github/pytools/bash-tools/kubernetes
 ENV PATH $PATH:/github/pytools/bash-tools/media
+ENV PATH $PATH:/github/pytools/bash-tools/monitoring
 ENV PATH $PATH:/github/pytools/bash-tools/mysql
 ENV PATH $PATH:/github/pytools/bash-tools/packages
 ENV PATH $PATH:/github/pytools/bash-tools/perl

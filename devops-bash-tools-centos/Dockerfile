@@ -63,7 +63,6 @@ ENV PATH $PATH:/github/bash-tools/setup
 ENV PATH $PATH:/github/bash-tools/spotify
 ENV PATH $PATH:/github/bash-tools/terraform
 
-
 ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 
 RUN chmod +x /build.sh && NO_TESTS=1 /build.sh

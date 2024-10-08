@@ -36,7 +36,6 @@ ENV PATH $PATH:/github/bash-tools/checks
 ENV PATH $PATH:/github/bash-tools/cicd
 ENV PATH $PATH:/github/bash-tools/circleci
 ENV PATH $PATH:/github/bash-tools/cloudflare
-#ENV PATH $PATH:/github/bash-tools/codeship
 ENV PATH $PATH:/github/bash-tools/data
 ENV PATH $PATH:/github/bash-tools/docker
 ENV PATH $PATH:/github/bash-tools/drone
@@ -51,6 +50,7 @@ ENV PATH $PATH:/github/bash-tools/jenkins
 ENV PATH $PATH:/github/bash-tools/kafka
 ENV PATH $PATH:/github/bash-tools/kubernetes
 ENV PATH $PATH:/github/bash-tools/media
+ENV PATH $PATH:/github/bash-tools/monitoring
 ENV PATH $PATH:/github/bash-tools/mysql
 ENV PATH $PATH:/github/bash-tools/packages
 ENV PATH $PATH:/github/bash-tools/perl
@@ -60,16 +60,9 @@ ENV PATH $PATH:/github/bash-tools/python
 ENV PATH $PATH:/github/bash-tools/scripts
 ENV PATH $PATH:/github/bash-tools/search
 ENV PATH $PATH:/github/bash-tools/setup
-#ENV PATH $PATH:/github/bash-tools/shippable
 ENV PATH $PATH:/github/bash-tools/spotify
-ENV PATH $PATH:/github/bash-tools/sql
-ENV PATH $PATH:/github/bash-tools/teamcity
-ENV PATH $PATH:/github/bash-tools/templates
 ENV PATH $PATH:/github/bash-tools/terraform
-ENV PATH $PATH:/github/bash-tools/travis
-ENV PATH $PATH:/github/bash-tools/vagrant
-#ENV PATH $PATH:/github/bash-tools/wercker
-ENV PATH $PATH:/github/bash-tools/yamllint
+
 
 ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 

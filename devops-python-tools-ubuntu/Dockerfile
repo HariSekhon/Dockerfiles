@@ -65,6 +65,7 @@ ENV PATH $PATH:/github/pytools/bash-tools/scripts
 ENV PATH $PATH:/github/pytools/bash-tools/search
 ENV PATH $PATH:/github/pytools/bash-tools/setup
 ENV PATH $PATH:/github/pytools/bash-tools/spotify
+ENV PATH $PATH:/github/pytools/bash-tools/terraform
 
 ADD https://raw.githubusercontent.com/HariSekhon/DevOps-Bash-tools/master/setup/docker_bootstrap.sh /build.sh
 

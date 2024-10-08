@@ -27,6 +27,7 @@ LABEL org.opencontainers.image.description="Python Tools (Alpine)" \
 # used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/pytools:/github/pytools/bash-tools
 
+# access the scripts via the $PATH - safer than trying to do .profile injection since it may not be triggered
 ENV PATH $PATH:/github/pytools/bash-tools/ai
 ENV PATH $PATH:/github/pytools/bash-tools/appveyor
 ENV PATH $PATH:/github/pytools/bash-tools/aws

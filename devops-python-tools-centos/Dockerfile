@@ -26,6 +26,45 @@ LABEL org.opencontainers.image.description="Python Tools (CentOS)" \
 # used by build.sh to figure out which repo to bootstrap
 ENV PATH $PATH:/github/pytools:/github/pytools/bash-tools
 
+ENV PATH $PATH:/github/pytools/bash-tools/ai
+ENV PATH $PATH:/github/pytools/bash-tools/appveyor
+ENV PATH $PATH:/github/pytools/bash-tools/aws
+ENV PATH $PATH:/github/pytools/bash-tools/azure_devops
+ENV PATH $PATH:/github/pytools/bash-tools/bigdata
+ENV PATH $PATH:/github/pytools/bash-tools/bin
+ENV PATH $PATH:/github/pytools/bash-tools/bitbucket
+ENV PATH $PATH:/github/pytools/bash-tools/buildkite
+ENV PATH $PATH:/github/pytools/bash-tools/checks
+ENV PATH $PATH:/github/pytools/bash-tools/cicd
+ENV PATH $PATH:/github/pytools/bash-tools/circleci
+ENV PATH $PATH:/github/pytools/bash-tools/cloudflare
+ENV PATH $PATH:/github/pytools/bash-tools/data
+ENV PATH $PATH:/github/pytools/bash-tools/docker
+ENV PATH $PATH:/github/pytools/bash-tools/drone
+ENV PATH $PATH:/github/pytools/bash-tools/gcp
+ENV PATH $PATH:/github/pytools/bash-tools/git
+ENV PATH $PATH:/github/pytools/bash-tools/github
+ENV PATH $PATH:/github/pytools/bash-tools/gitlab
+ENV PATH $PATH:/github/pytools/bash-tools/install
+ENV PATH $PATH:/github/pytools/bash-tools/ipaas
+ENV PATH $PATH:/github/pytools/bash-tools/java
+ENV PATH $PATH:/github/pytools/bash-tools/jenkins
+ENV PATH $PATH:/github/pytools/bash-tools/kafka
+ENV PATH $PATH:/github/pytools/bash-tools/kubernetes
+ENV PATH $PATH:/github/pytools/bash-tools/media
+ENV PATH $PATH:/github/pytools/bash-tools/monitoring
+ENV PATH $PATH:/github/pytools/bash-tools/mysql
+ENV PATH $PATH:/github/pytools/bash-tools/packages
+ENV PATH $PATH:/github/pytools/bash-tools/perl
+ENV PATH $PATH:/github/pytools/bash-tools/pingdom
+ENV PATH $PATH:/github/pytools/bash-tools/postgres
+ENV PATH $PATH:/github/pytools/bash-tools/python
+ENV PATH $PATH:/github/pytools/bash-tools/scripts
+ENV PATH $PATH:/github/pytools/bash-tools/search
+ENV PATH $PATH:/github/pytools/bash-tools/setup
+ENV PATH $PATH:/github/pytools/bash-tools/spotify
+ENV PATH $PATH:/github/pytools/bash-tools/terraform
+
 # not using Alpine any more
 # downgrading certifi package is a workaround so that dockerhub_show_tags.py will work with SSL
 #RUN set -euxo pipefail && \

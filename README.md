@@ -63,6 +63,7 @@
 [![JSON](https://github.com/HariSekhon/Dockerfiles/actions/workflows/json.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/json.yaml)
 [![YAML](https://github.com/HariSekhon/Dockerfiles/actions/workflows/yaml.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/yaml.yaml)
 [![XML](https://github.com/HariSekhon/Dockerfiles/actions/workflows/xml.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/xml.yaml)
+[![Markdown](https://github.com/HariSekhon/Dockerfiles/actions/workflows/markdown.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/markdown.yaml)
 [![Validation](https://github.com/HariSekhon/Dockerfiles/actions/workflows/validate.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/validate.yaml)
 [![Kics](https://github.com/HariSekhon/Dockerfiles/actions/workflows/kics.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/kics.yaml)
 [![Grype](https://github.com/HariSekhon/Dockerfiles/actions/workflows/grype.yaml/badge.svg)](https://github.com/HariSekhon/Dockerfiles/actions/workflows/grype.yaml)

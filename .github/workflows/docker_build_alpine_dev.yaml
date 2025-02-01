@@ -14,7 +14,7 @@
 ---
 name: Docker Build Alpine Dev
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master

@@ -14,7 +14,7 @@
 ---
 name: Docker Build DevOps Python Tools (Ubuntu)
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master

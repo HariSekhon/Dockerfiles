@@ -22,9 +22,10 @@
 version: v1.0
 name: Dockerfiles
 agent:
+  # https://docs.semaphoreci.com/reference/machine-types
   machine:
-    type: e2-standard-2
-    os_image: ubuntu2204
+    type: e1-standard-2
+    os_image: ubuntu2004
 execution_time_limit:
   hours: 3
 blocks:
